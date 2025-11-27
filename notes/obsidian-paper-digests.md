@@ -1,7 +1,5 @@
 # Obsidian Paper Digests
 
-Sources: `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/InternetNotes/AI/AI papers 1.md`, `AI papers 2.md`, and `Memory Papers.md`. Only paper-focused references are captured; personal annotations were omitted.
-
 ## Attention and Transformer Foundations
 - Bahdanau et al. 2014 — *Neural Machine Translation by Jointly Learning to Align and Translate* ([arXiv:1409.0473](https://arxiv.org/abs/1409.0473)) kicked off the attention wave cited in the notes.
 - Devlin et al. 2018 — *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding* ([arXiv:1810.04805](https://arxiv.org/abs/1810.04805)) marked the tipping point where self-supervised learning plus transformers went mainstream.
