@@ -45,7 +45,7 @@ A significant aspect of this process is the randomness function [[39](https://a
 
 0) CoT et al: arxiv.org/pdf/2201.11903
 
-Ground zero (plus I'm a C guy :P iykyk). It started with Chain-of-Thought paper. This class of methods boils down to asking the LLM nicely to reveal its internal thoughts (e.g. "Let's think step by step"; more generally telling the model to disclose the intermediate computation steps in someway).
+It started with Chain-of-Thought paper. This class of methods boils down to asking the LLM nicely to reveal its internal thoughts (e.g. "Let's think step by step"; more generally telling the model to disclose the intermediate computation steps in someway).
 
 A simple variation on CoT would be "CoT self-consistency" -> i.e. sample multiple CoT traces in parallel and use majority voting to find the "right" answer.
 
