@@ -115,7 +115,7 @@ A few files are tagged as **borderline include** because they are clearly about 
 ### Pass-three benchmarks / evaluation papers
 - [MemoryRewardBench](./memoryrewardbench-benchmarking-reward-models-for-long-term-memory-management-in-large-language-models.md)
 - [BenchPreS](./benchpres-a-benchmark-for-context-aware-personalized-preference-selectivity-of-persistent-memory-llms.md)
-- [VehicleMemBench](./vehiclemembench-an-executable-benchmark-for-multi-user-long-term-memory-in-in-vehicle-agents.md)
+- [VehicleMemBench](./vehiclemembench-an-executable-benchmark-for-multi-user-long-term-memory-in-vehicle-agents.md)
 
 ### Pass-three security / privacy papers
 - [SuperLocalMemory](./superlocalmemory-privacy-preserving-multi-agent-memory-with-bayesian-trust-defense-against-memory-poisoning.md)
