@@ -12,7 +12,7 @@ authors:
   - ChengXiang Zhai
 arxiv_id: "2603.03296"
 arxiv_url: "https://arxiv.org/abs/2603.03296"
-published: "2026-03-06"
+published: "2026-02-06"
 updated: "2026-02-06"
 source: "arXiv"
 project: "memory"
