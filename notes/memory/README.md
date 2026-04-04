@@ -2,9 +2,10 @@
 
 This folder is a **systematic working corpus** for papers on **deployed / inference-time memory** in AI agents, LLM agents, conversational agents, and embodied agents.
 
-It currently contains **37 paper notes**:
+It currently contains **47 paper notes**:
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
+- **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
 
 ## Scope
 - **Source:** arXiv only
@@ -12,6 +13,7 @@ It currently contains **37 paper notes**:
 - **Preference:** ICL-style or prompt-time memory (retrieved experiences, workflows, summaries, skills)
 - **Also included:** other live-agent memory mechanisms (episodic / semantic / hierarchical / personalization memory)
 - **Pass-two expansion:** benchmark, survey, taxonomy, and security papers that are directly useful for understanding or evaluating deployed memory systems
+- **Pass-three expansion:** additional personalization, memory-systems, reward-model, and multi-user evaluation papers from the remaining 2026 pool
 - **Excluded by default:** papers centered on pretraining, fine-tuning, or memory architectures without a deployed-agent angle
 
 ## Search method used so far
@@ -35,6 +37,14 @@ It currently contains **37 paper notes**:
    - comparing memory systems,
    - evaluating structure or memory-to-action behavior,
    - understanding attack surfaces of persistent memory.
+
+### Pass 3: breadth expansion over the remaining 2026 pool
+1. Add more papers from the unresolved candidate list with emphasis on:
+   - personalization and selective-memory use,
+   - memory as a systems / latency / lifecycle problem,
+   - reward-model or benchmark infrastructure for memory evaluation,
+   - additional privacy / pollution / poisoning defenses.
+2. Keep the same one-note-per-paper format so the corpus remains navigable while breadth increases.
 
 ## Notes on borderline papers
 A few files are tagged as **borderline include** because they are clearly about deployed agent memory but also rely on learned memory controllers or RL-tuned memory-management policies. They were kept so the corpus does not erase an important current trend in the literature.
@@ -93,8 +103,26 @@ A few files are tagged as **borderline include** because they are clearly about 
 - [ER-MIA](./er-mia-black-box-adversarial-memory-injection-attacks-on-long-term-memory-augmented-large-language-models.md)
 - [Zombie Agents](./zombie-agents-persistent-control-of-self-evolving-llm-agents-via-self-reinforcing-injections.md)
 
+### Pass-three mechanism / systems additions
+- [AMA](./ama-adaptive-memory-via-multi-agent-collaboration.md)
+- [HyMem](./hymem-hybrid-memory-architecture-with-dynamic-retrieval-scheduling.md)
+- [AMV-L](./amv-l-lifecycle-managed-agent-memory-for-tail-latency-control-in-long-running-llm-systems.md)
+
+### Pass-three borderline training-heavy additions
+- [MemBuilder](./membuilder-reinforcing-llms-for-long-term-memory-construction-via-attributed-dense-rewards.md)
+- [HiMeS](./himes-hippocampus-inspired-memory-system-for-personalized-ai-assistants.md)
+
+### Pass-three benchmarks / evaluation papers
+- [MemoryRewardBench](./memoryrewardbench-benchmarking-reward-models-for-long-term-memory-management-in-large-language-models.md)
+- [BenchPreS](./benchpres-a-benchmark-for-context-aware-personalized-preference-selectivity-of-persistent-memory-llms.md)
+- [VehicleMemBench](./vehiclemembench-an-executable-benchmark-for-multi-user-long-term-memory-in-vehicle-agents.md)
+
+### Pass-three security / privacy papers
+- [SuperLocalMemory](./superlocalmemory-privacy-preserving-multi-agent-memory-with-bayesian-trust-defense-against-memory-poisoning.md)
+- [Mind Your HEARTBEAT](./mind-your-heartbeat-claw-background-execution-inherently-enables-silent-memory-pollution.md)
+
 ## Still likely candidates for a future pass
-This corpus is much broader after pass two, but it is still not the last word. Good future targets include:
-- `HiMeS`, `HyMem`, `BenchPreS`, `VehicleMemBench`
-- `SuperLocalMemory`, `Mind Your HEARTBEAT`, `MemBuilder`, `MemoryRewardBench`
-- any additional 2026 papers that refine graph, temporal, or persona-memory evaluation after the current cutoff date
+This corpus is broad after pass three, but it is still not literally exhaustive. Good future targets include:
+- additional post-cutoff 2026 papers that refine graph, temporal, persona, or multi-user memory evaluation
+- later 2026 work that extends privacy-preserving memory or memory-contamination defenses
+- any strong new benchmark papers that become standard references for evaluating long-term deployed memory
