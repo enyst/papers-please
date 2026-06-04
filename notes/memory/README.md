@@ -16,6 +16,9 @@ It currently contains **47 paper notes**:
 - **Pass-three expansion:** additional personalization, memory-systems, reward-model, and multi-user evaluation papers from the remaining 2026 pool
 - **Excluded by default:** papers centered on pretraining, fine-tuning, or memory architectures without a deployed-agent angle
 
+## Related working lists
+- [Memory and RAG Papers](./memory-and-rag.md) is a broader legacy reading list that mixes memory, RAG, and prompting references; it is kept here because its center of gravity is memory/retrieval rather than long-context prompting or skills.
+
 ## Search method used so far
 ### Pass 1: core mechanism sweep
 1. Sweep arXiv title/abstract with overlapping query families:
