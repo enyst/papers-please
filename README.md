@@ -9,7 +9,7 @@ Curated research paper notes for Liberty Labs. Each paper has structured frontma
 | `notes/memory/` | 63 | Agent memory — architectures, consolidation, benchmarks, security |
 | `notes/prompt-injection/` | 11 | Prompt injection attacks and defenses — 8 approaches with pros/cons |
 | `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
-| `notes/skills/` | 7 | Agent skill discovery, optimization, and benchmarking |
+| `notes/skills/` | 9 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
 | `notes/misc/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
