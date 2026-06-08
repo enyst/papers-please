@@ -12,6 +12,7 @@ Curated research paper notes for Liberty Labs. Each paper has structured frontma
 | `notes/skills/` | 7 | Agent skill discovery, optimization, and benchmarking |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
+| `notes/misc/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
 | `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
 
 ## How notes are structured
