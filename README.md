@@ -1,6 +1,6 @@
 # Papers Please
 
-Curated research paper notes for Liberty Labs. Each paper has structured frontmatter (title, authors, arXiv link, mechanism summary, one-line take) and a short analysis.
+Curated research paper notes. Each paper has structured frontmatter (title, authors, arXiv link, mechanism summary, one-line take) and a short analysis.
 
 ## Topics
 
