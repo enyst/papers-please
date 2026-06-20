@@ -1,5 +1,8 @@
 # Interesting Blog Posts
 
+## 2026-06-17 - [Machine Studying](https://jacobxli.com/blog/2026/machine-studying/)
+Jacob Li, Rick Battle, and Omar Khattab (MIT CSAIL / Broadcom) introduce "Machine Studying": given a corpus of documents about a domain the model never saw in training, can an agent turn reading into expertise — the way humans do with textbooks? Current approaches (RAG, long context, agentic search) engage shallowly. They release StudyBench, benchmarking agents on DSPy, OpenClaw, and ML literature tasks, and find the gap is large: retrieval finds relevant docs but models can't judge what matters without domain knowledge. Three studying paradigms are tested (memorization, retrieval, active study); none yet close the gap. The core thesis: expertise is the efficiency of turning inference compute into accuracy, and right now agents mostly can't acquire it from reading alone.
+
 ## 2025-11-02 - [What if you dont need MCP at all?](https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/)
 Mario Zechner argues that many MCP servers add dozens of tools, long descriptions, and brittle abstractions that waste context and are hard to extend. He shows that equipping an agent with a handful of Bash- and Node-driven browser tools (start Chrome, navigate, evaluate JS, take screenshots, pick DOM nodes, grab cookies) built on Puppeteer gives composable, debuggable functionality without the MCP overhead. The post includes concrete scripts, token cost comparisons, and guidance on packaging these utilities so any coding agent can invoke them like ordinary CLI commands.
 
