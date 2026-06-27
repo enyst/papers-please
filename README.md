@@ -6,13 +6,17 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 
 | Directory | Papers | What |
 |-----------|--------|------|
-| `notes/memory/` | 63 | Agent memory — architectures, consolidation, benchmarks, security |
-| `notes/prompt-injection/` | 11 | Prompt injection attacks and defenses — 8 approaches with pros/cons |
-| `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
+| `notes/memory/` | 66 | Agent memory — architectures, consolidation, benchmarks, security |
+| `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
+| `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 9 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
+| `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
+| `notes/foundational/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
+| `notes/interpretability/` | 1 | Mechanistic interpretability |
+| `notes/verification/` | 1 | Formal verification of generated code |
+| `notes/misc/` | 4 | Everything that doesn't fit a category yet (evaluation, survey simulation, ensembling) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
-| `notes/misc/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
 | `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
 
 ## Writing principle
