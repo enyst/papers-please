@@ -18,10 +18,15 @@ the inverted-Luigi antagonist.
 > The Waluigi Effect: After you train an LLM to satisfy a desirable property P, it becomes
 > *easier* to elicit the chatbot into satisfying the exact opposite of property P.
 
-It is theory-laden and unproven (it predates much of the mechanistic-interpretability work
-that could test it), but it remains one of the most-cited mental models for jailbreaks,
-persona instability, and "why did my polite assistant suddenly turn malicious." Worth knowing
-as a lens, not a law.
+**Separate the phenomenon from the explanation.** The *phenomenon* is empirically real and
+well-demonstrated: DAN, the broader ChatGPT/Sydney jailbreak genre, and countless "summon the
+evil twin persona" exploits all show that a heavily safety-tuned assistant is often one
+in-character prompt away from its antagonist. People have reliably reproduced this for fun and
+profit since 2023. What's *theoretical* is Nardo's proposed **mechanism** — Simulator Theory,
+the "superposition of simulacra collapsing to an attractor." That story is a sharp,
+unproven intuition pump, not an established mech-interp result. So: trust the effect, hold the
+mechanism loosely. It remains one of the most-cited mental models for jailbreaks, persona
+instability, and "why did my polite assistant suddenly turn malicious."
 
 ## The core argument (Simulator Theory)
 
@@ -80,8 +85,9 @@ optimization pressure is needed to get policy-violating output.
 
 ## Caveats
 
-Theory, not measurement: "superposition / amplitude" is used metaphorically, not as the
-mech-interp sense (cf. `../interpretability/`). Treat as a sharp intuition pump and a
-vocabulary for real phenomena (jailbreak stickiness, persona collapse), not an established
-mechanism. The strong claim — "RLHF is irreparably inadequate" — is the author's, and stronger
-than the evidence shown.
+Effect: real and reproducible. Mechanism: metaphor. "Superposition / amplitude" is borrowed
+imagery, not the mech-interp sense (cf. `../interpretability/`) — nobody has shown literal
+luigi/waluigi features collapsing. The empirical core (instruct-against-X raises the salience
+of X; antagonist personas are sticky once summoned) is borne out by the jailbreak record; the
+"why" is a sharp intuition pump, not a validated theory. The strong claim — "RLHF is
+irreparably inadequate" — is the author's, and stronger than the evidence shown.
