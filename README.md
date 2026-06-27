@@ -15,6 +15,13 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/misc/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
 | `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
 
+## Writing principle
+
+> "Strive to make my writing unsummarizable, in the sense that it has so little fluff left in it that if you take any words out, as summaries by definition do, you lose a lot of interesting ideas."
+> — Paul Graham
+
+This applies to paper notes too. Every sentence should earn its place.
+
 ## How notes are structured
 
 Each paper note is a markdown file with YAML frontmatter:
