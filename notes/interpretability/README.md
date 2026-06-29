@@ -16,6 +16,19 @@ The Anthropic/Olah lineage of mechanistic interpretability work. Four papers tha
 4. **Attribution Graphs / Circuit Tracing** (Anthropic, 2025) — Tracing how features connect into computational graphs (circuits) inside the model. Open-sourced circuit-tracing tools. Maps the flow from input → features → output for specific behaviors.
    - Source: https://www.anthropic.com/research/open-source-circuit-tracing
 
+## The control side
+
+Reading the model and steering it are the same coin. Once features are directions, you can
+*add* a direction back in and bend behavior at inference — no retraining. That lineage
+(Activation Addition → Representation Engineering → Function Vectors → Contrastive Activation
+Addition → Golden Gate Claude) lives in:
+
+- **[steering-vectors-and-activation-engineering.md](./steering-vectors-and-activation-engineering.md)**
+
+It also notes the double edge: the same steering machinery Anthropic markets as a safety tool
+showed up in 2026 as a *covert* capability-suppressor (Fable 5). Transparency and control are
+the same capability from two ends.
+
 ## The gap
 
 All of this work is on static models — weights, activations, features in isolation. **None of it has been done on live agents**: agents with tools, memory, multi-turn conversations, environment interaction. The interpretability of an *agent* (why did it choose this tool? why did it remember that? why did it take 12 steps instead of 3?) is a different and unsolved problem.
