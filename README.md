@@ -10,6 +10,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 9 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
+| `notes/harness/` | 2 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, behavior→code maps |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 3 | Foundational agent papers — ReAct, CodeAct, RLM |
 | `notes/interpretability/` | 1 | Mechanistic interpretability |
