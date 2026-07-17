@@ -2,14 +2,15 @@
 
 This folder is a **systematic working corpus** for papers on **deployed / inference-time memory** in AI agents, LLM agents, conversational agents, and embodied agents.
 
-It currently contains **47 paper notes**:
+It currently contains **48 paper notes**:
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
 - **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
+- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (1 so far)
 
 ## Scope
 - **Source:** arXiv only
-- **Date window:** 2023-01-01 through 2026-04-04
+- **Date window:** systematic passes cover 2023-01-01 through 2026-04-04; explicitly requested later papers are listed as post-cutoff targeted additions
 - **Preference:** ICL-style or prompt-time memory (retrieved experiences, workflows, summaries, skills)
 - **Also included:** other live-agent memory mechanisms (episodic / semantic / hierarchical / personalization memory)
 - **Pass-two expansion:** benchmark, survey, taxonomy, and security papers that are directly useful for understanding or evaluating deployed memory systems
@@ -123,6 +124,9 @@ A few files are tagged as **borderline include** because they are clearly about 
 ### Pass-three security / privacy papers
 - [SuperLocalMemory](./superlocalmemory-privacy-preserving-multi-agent-memory-with-bayesian-trust-defense-against-memory-poisoning.md)
 - [Mind Your HEARTBEAT](./mind-your-heartbeat-claw-background-execution-inherently-enables-silent-memory-pollution.md)
+
+### Post-cutoff targeted additions
+- [Can a Language Model Learn Facts Continually in Its Weights?](./can-a-language-model-learn-facts-continually-in-its-weights.md)
 
 ## Still likely candidates for a future pass
 This corpus is broad after pass three, but it is still not literally exhaustive. Good future targets include:
