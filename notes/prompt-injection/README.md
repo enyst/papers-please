@@ -13,6 +13,12 @@ For agents specifically, this is worse than for chatbots because:
 - Agents have **memory** — an injection can persist across sessions (see [memory security](../memory/) papers)
 - Agents have **autonomy** — they browse, read, and process untrusted content without human oversight
 
+### Mechanistic picture: role confusion
+
+[Prompt Injection as Role Confusion](prompt-injection-as-role-confusion.md) provides evidence for a specific mechanism. Models do not reliably preserve architectural role provenance in latent space: attacker-controlled style, position, and plain-text role declarations can override user/tool/reasoning tags. Linear role probes show that injected text moves into the representational space of the role it imitates, and the degree of confusion predicts attack success before generation.
+
+This strengthens the case for enforcing provenance and authority outside the model. Pattern detection can suppress known attacks, but it does not repair a role boundary that dissolves inside the representation.
+
 ## Defense Approaches — Overview
 
 ### 1. Detection/Classification (Pre-filter)
