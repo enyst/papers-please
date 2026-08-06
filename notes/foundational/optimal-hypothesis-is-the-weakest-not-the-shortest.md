@@ -97,6 +97,17 @@ of Intelligence*. Builds on Bennett's own enactive-cognition line ("Symbol Emerg
 and the Solutions to Any Task," "Computational Dualism") and formalises intuitions
 behind DeepMind's Apperception Engine (Evans' formalisation of Kant).
 
+## Operational companion
+
+There's a skill that turns this principle into an agent procedure —
+[`Umaraslam66/ml-superpowers` → `skills/weakest-hypothesis`](https://github.com/Umaraslam66/ml-superpowers/blob/main/skills/weakest-hypothesis/SKILL.md)
+(MIT). It reframes the idea as: enumerate candidates → discard insufficient →
+adopt the weakest sufficient (delete any attribute that still explains
+everything) → state what's open. Adopted into smolpaws at
+`.agents/skills/weakest-hypothesis/`. Directly useful for reflection / lesson
+encoding (scope a memory to the weakest sufficient explanation, not the
+incident) and for diagnosing from a few failure reports.
+
 ## Bottom line
 
 A genuinely interesting reframing: **generalisation power comes from a hypothesis
