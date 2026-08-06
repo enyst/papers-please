@@ -97,6 +97,14 @@ of Intelligence*. Builds on Bennett's own enactive-cognition line ("Symbol Emerg
 and the Solutions to Any Task," "Computational Dualism") and formalises intuitions
 behind DeepMind's Apperception Engine (Evans' formalisation of Kant).
 
+## Follow-up
+
+Bennett's sequel — [Why the Third Axis Is Freedom](why-the-third-axis-is-freedom.md)
+(Zenodo 21795317, Aug 2026) — applies this "weakness = freedom" idea to *pretraining*,
+arguing best-of-K "Explorative Modeling" implicitly optimises for freedom (weakness),
+and that a freedom selector reading unlabelled context beats validation selection
+under distribution shift (29/30 worlds).
+
 ## Operational companion
 
 There's a skill that turns this principle into an agent procedure —

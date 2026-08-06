@@ -12,7 +12,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/skills/` | 9 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 2 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, behavior→code maps |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
-| `notes/foundational/` | 4 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis |
+| `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 1 | Mechanistic interpretability |
 | `notes/verification/` | 1 | Formal verification of generated code |
 | `notes/misc/` | 4 | Everything that doesn't fit a category yet (evaluation, survey simulation, ensembling) |
