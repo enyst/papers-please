@@ -42,6 +42,21 @@ X" lives in:
   weakly tied to access consciousness. A case study in not over-reading a readable space into a
   causal-functional claim — "vectors in X beat vectors outside X" ≠ "X is *the* mechanism."
 
+## The entanglement side (read+write meets philosophy-of-mind)
+
+Where the control lineage and the philosophy-of-mind thread collide on a safety-relevant target:
+
+- **[kim-consciousness-vector-safety-entanglement.md](./kim-consciousness-vector-safety-entanglement.md)** —
+  Kim et al. (Google Paradigms of Intelligence + UChicago, arXiv 2607.28607, 2026): safety
+  fine-tuning that stops a model claiming *its own* consciousness also suppresses its mind
+  attribution to animals/tech/nature and its spiritual belief, pushing it below human survey
+  baselines — while leaving Theory-of-Mind intact. Two training-free difference-of-means vectors
+  reverse it: **ablating** the safety-refusal direction and **adding** a consciousness vector. A
+  geometric analysis shows instruction tuning rotates the mind/consciousness directions *into
+  opposition with safety* but not the ToM direction. The concrete "double edge" of the steering
+  note, applied to a worldview edit — and a real entanglement/polysemanticity case: a "local"
+  safety objective is not isolable.
+
 ## The gap
 
 All of this work is on static models — weights, activations, features in isolation. **None of it has been done on live agents**: agents with tools, memory, multi-turn conversations, environment interaction. The interpretability of an *agent* (why did it choose this tool? why did it remember that? why did it take 12 steps instead of 3?) is a different and unsolved problem.
