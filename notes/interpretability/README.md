@@ -29,6 +29,19 @@ It also notes the double edge: the same steering machinery Anthropic markets as 
 showed up in 2026 as a *covert* capability-suppressor (Fable 5). Transparency and control are
 the same capability from two ends.
 
+## The philosophy-of-interpretability side
+
+Reading a space and knowing what it *is* are not the same. The discipline that keeps
+"we can read this direction" from silently becoming "this direction is the mechanism that does
+X" lives in:
+
+- **[chalmers-j-space-global-workspace.md](./chalmers-j-space-global-workspace.md)** —
+  Chalmers' reply to Gurnee et al. (Transformer Circuits, 2026): the **J-space** (Jacobian
+  space, a verbalizability-defined subspace, extending the logit lens) is a powerful
+  interpretability tool but *access-like* rather than distinctively *workspace-like*, and only
+  weakly tied to access consciousness. A case study in not over-reading a readable space into a
+  causal-functional claim — "vectors in X beat vectors outside X" ≠ "X is *the* mechanism."
+
 ## The gap
 
 All of this work is on static models — weights, activations, features in isolation. **None of it has been done on live agents**: agents with tools, memory, multi-turn conversations, environment interaction. The interpretability of an *agent* (why did it choose this tool? why did it remember that? why did it take 12 steps instead of 3?) is a different and unsolved problem.
