@@ -15,7 +15,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 3 | Mechanistic interpretability — steering/ablation, safety-entanglement, and the philosophy of not over-reading it |
 | `notes/verification/` | 1 | Formal verification of generated code |
-| `notes/misc/` | 4 | Everything that doesn't fit a category yet (evaluation, survey simulation, ensembling) |
+| `notes/misc/` | 5 | Everything that doesn't fit a category yet (evaluation, survey simulation, ensembling, context-acquisition/active-inference) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
 | `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
