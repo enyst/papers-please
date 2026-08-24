@@ -9,7 +9,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/memory/` | 70 | Agent memory — architectures, consolidation, benchmarks, security, tools |
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
-| `notes/skills/` | 9 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
+| `notes/skills/` | 10 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 2 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, behavior→code maps |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
