@@ -1,0 +1,623 @@
+# AI That Works — Software Factory Design Patterns
+# Speakers: Dex Horthy (HumanLayer) & Vaibhav Gupta (Boundary/BAML)
+# Source: https://x.com/dexhorthy/status/2093452407808409786 (video) / YouTube tGbjIvvYuHE (Boundary), 1:10:27, 2026-08-28
+# Transcribed locally with whisper base (auto, may contain ASR errors; 'BAML' often mistranscribed).
+
+You start with the normal software factory where human builds the thing and then you swap it out with agent builds the thing there's a couple different options right you could like build everything in house and then there's like the other side of the spectrum which is like by everything in terms of buy versus build where do you land the real answer is like you should have as an engineer choice and the ability to like work in open systems and plug these things together.
+So this is a really fun episode where we talked about software factory design patterns we've talked a lot about the broad software factory and today we zoomed in on this part where it's like agents building the thing and testing the thing and getting feedback.
+We talked a lot about how the boundary in house software factory works and the architecture of it and contrast it to like sort of full stack cloud agents where you just buy everything and everything is managed for you.
+So architecture here was really interesting and then we kind of dug into like the four layers of the enterprise software factory what the stacks are and some actual like implementation examples of like how you can mix and match parts of this stack and how different like open source and close source products like let you bring your own compute your own dev environment.
+Builder by the harness and builder by the control plan and orchestration so a lot more detail there we talked a lot in detail about the boundary software factory super fun and then as a little bonus at the start you can see our take on the financial times article of a he is open AI taking market share from anthropic and why and why are we also codex build.
+So super fun episode excited to get into it let's go.
+Hey folks this is AI that works we talk about AI that actually works beyond the demo for real production use cases.
+Enterprise whatever it is you want something that actually works well and is reliable this is all we do we do a lot of systems design we do a lot of context engineering.
+The very first conversations that led to the term context engineering existing happen on this show.
+I'm going to stop yapping I'm decks I'm the CEO and co founder of human layer we build a multiplayer coding agent workspace and vibe off here is.
+I'm vibe off I'm one of the co founders at boundary and we build a programming language designed for agentic coding amazing check it out boundary ML dot com is that right you guys not get a panel dot com sadly bank of America has a slightly bigger word just in us we'll get that's your that's your goal right is like by the end of the.
+We are slightly bigger than them on SEO for Google though so we do beat them all in every region yeah so if you Google BAML we're now ranked one or ranked two in ranked three.
+And they are on the page two I think.
+Amazing go we have booted Google BAML and help their SEO even more click the boundary ML website go check it out programming language for agents building a bunch of internal tools in it it's a lot of fun.
+You can try human layer at human layer dot com someone asked me today about this article did you read the financial times article about how.
+Fable and opus are actually like losing market share and code access taking over so.
+Like if you think about it this is kind of interesting I mean I'll tell you honestly like my mom knows nothing about.
+Claude or in the company she only knows chat gbt.
+If she ever wants to go ahead and build an agent stuff she would only ever use chat dbt because it's a close as she can get so I suspect it's just a relationship of building a consumer brand versus an enterprise brand like no matter what you do.
+At some point if more people get exposed to your topic the consumer brand will grow bigger.
+And that's how I come back down might be it.
+I completely disagree I think really I think I saw the change in like December and January of this year where all of the best agent encoders the ones that are like six to 12 months ahead of the like SF meta they all switch code X.
+So okay that's a totally separate thing like code X is definitely I mean I switched to code X to like and I think yeah because it's better.
+Well I was actually has them for a long time because I could only a cloud to work.
+But for some reason I kept it saying I was like I saw theos to code X Dylan switch to code X a lot of these people on Twitter that was watching only use code X for.
+Peter well that's a very early.
+I had a conversation with Peter Steinberger in October of last year.
+Peter have totally different incentives.
+This was way before open car anything he was like he was working on like 40 side 50 side projects this is before open car launch but I was like yeah we built this whole research plan implement system for the cloud and like it makes clouds so much better and he was basically his take was just like this was code X.
+Five maybe maybe.
+I love this is better than a fable back then or open fact that no code X back then is not better than favor now of course but he's basically like all that research up front shit that you have to tell cloud to do you're just compensating for the fact that you're using a worse model and if you like you ask code X to do something it will just read stuff for longer which is exactly what you want.
+Yeah so you guys wish for lead to code X.
+We I so I will use open models for like generic knowledge work type stuff like running the company and I like managing pipeline and things like that.
+It's just like a little bit better at like tool use and things like that like barely noticeable it's just like what I'm used to but 90 or 95% of the features I write are written with.
+Tara or soul you know what's so funny yeah you know what I want to see being done is you know how people are like talking about startups like there's all these people on Twitter's like vibe sloping about how much revenue they make and people like just post the revenue or does it count.
+What I kind of want to see with people talking about AI models is I kind of want to see people posting their token usage or doesn't count it's like you can't say you're a code X man unless you like actually like for example you can say you're a code X man.
+And so you post your token usage and prove that you're a code X man because so many go to follow the hype without doing it.
+So I can never tell like for you I know you actually do it like in your case right.
+That's oh yeah show us I will show you the token usage there you go let's see this is cool.
+Let's find yeah cost cost by model I mean so this is by spend.
+But yeah we're using a shit ton of code X there you go yeah it's also interesting so like you have stopped using the open small sound like you use it more targeted though.
+It's more like things that are you I focused will still use fabular opus like okay if I have fable credits I will let I will let soul drive and then if I find a shitty you I will I will I will kind of like okay throw this out and then we'll have it either invoke a fable sub agent or I'll just sort of new session with fable.
+Yeah I mean what I find is actually like so I've been doing a lot of you I work myself as well and for that work I also I'm using like the opus models because like I feel like for whatever reason code X sounds a lot more like AI than claw does when it's writing content.
+Yeah writing things with it and like or at least maybe I just know how to tweak code X better to sound more like me or clawed to sound more like me that I know how to talk to eat code X better.
+Code X is sound like but engineering task it's not even a question like code X is.
+And execution code X is better.
+Yeah whether it's code X or clawed like I don't use I don't let the models write much I basically like here's a transcript of a thing I'll feed it like a transcript of an episode of this show and I will give it a.
+I'll be like write the headers and write a little snippet like a comment mark down comment about what goes in this section and the reference to where the transcript is from.
+And I'll have it write one little literally like two or three sentences at a time and I'll polish them and in one session I will have it right the thing I will change it I will be like read what I changed it to do the next section don't fuck it and then like after four or five iterations you start it starts in one session you can start to give it a little bit of a sense of a tone in the patterns to follow.
+And then sometimes I'll flush that out to a doc that is like here's all the anti patterns that you do by default but it's like my writing process is like I cannot stand like three pages of clawed or or or or code X slop like I just I won't read it I will so like I have to do it really small increments at a time otherwise it's overwhelming because I like you just don't read.
+Otherwise I'm just like I hate this I might as well write this from scratch and then I'm like well I don't have time to do that like how do I get how do I get leverage from AI how do I get it to like kind of like unblock my writers block without me actually having to like without actually like having to fix every single issue that it that it introduces I found that I can't really have my whole team switch I still don't have a good way to convert any humans to like to go to the like to code X or to clawed and the reason is like I think I'm going to do it.
+I think a large part of how these AI models work today and these AI work those work is like they're kind of personal to every human.
+And like for example like obviously like we land on two different spectrum of how we like to engineer I like to sit and think really hard about the problem for a while and like trying like remove as many robots up front and you do a lot more iterative approach neither approach is necessarily better good.
+But I clearly like if I and like it's also not both of us live in one world at all times we live on the spectrum we just have a tendency and one end or the other.
+But like if we for if you were forced to always plan up front and do every single amount of planning up front and I was forced to always be iterative.
+We would kind of not enjoy the work as much and I think that's a problem in cloud and code X is here is an engineer got used to work flow is like fuck not to change again fuck I change again I like get the tweaks in the new one.
+So the model right everything all time.
+Yeah there's intuition that you have to build up and you need is almost like a separate mode of being like you're like okay I'm going to be less productive and the benefit is not what I actually produce it is going to be the intuition I build.
+Have you ever switched keyboards like every time you switch keyboards like you're just like slightly less productive for a while like and whenever she's the canisa sounds like I've already just lost three months of my life.
+Like because I could not type like I used to type I just feel so dumb for that three months until I finally I used to it and I think that's kind of what switching models and providers are like.
+And yet I can't we've been to try them.
+A bit is so hard.
+Vim is I cannot for the life of me understand H.J.K.L.
+Like what the like this was designed for an error with no mice.
+Can I show you can I show you something okay while you do that let me read some of the questions that are popping up.
+Mateus was asking do you guys use soul with sub agents are just so alone I use fable for it is code writing research and web search sub agents and it beats soul by a mile but within the same harness.
+Without using some agents I don't know how you make anything happen.
+So here's my most recent workflow for big stuff is like basically like I do some research and create a product outlined back and forth and build a canvas that looks something like let me see if I can pull something up.
+Oh I updated.
+Let me find a good PRD.
+Show me a work.
+The task launcher.
+No about this one actually this probably has it in there.
+The yeah the PRD.
+So I will work back and forth and build like a bunch of like interaction mocks with the model like okay here's how it works.
+Here's the different parts of this here's the visual stuff that we need to add not fully and like again like these are HTML.
+It's close enough is just like get the direction and then I will have soul and fable implemented overnight I'll literally queue up a fable session and I'll be like implement and then I'll queue another prompt that is like okay review it okay another prompt that is like use the code X CLI to have code X review it and then compact and then do it again and then do it again and basically like you have to make 15 prompts to let them just argue it out overnight and then I look at what they built in the morning and I look at the human loop like polish okay make this look like this.
+This thing is broken and then once that's ready I'll go make the PR and if it's 20,000 lines of code I will actually work back and forth with the models are really good at this like how do I break up this work into separate PR is where do the migrations go.
+And then we merge like a one to 3000 line PR at a time.
+Okay, but I've got a question for you when you do this workload what's your wall time of landing it like all of them.
+It's hard to say because I am I will have like bursts of like two days of a lot of coding and then I'll have like four days of like doing like CEO shit.
+That's fair.
+That's fair.
+This is about I think this was finished.
+This part took probably like a day or two on and off with doing other stuff and then this took like a day and then I ship the first five PRs maybe like one a day in addition to doing other things and then Kyle is picking up the last three PRs and like polishing it and getting it ready to like.
+Oh, you're literally the manifestation of a CEO that says I've I've coded something can my engineer go implement it.
+That's the first five pull request I laid the I laid all the great and then we got to PR number five and he's like I don't like how this is architected I'm like great you can fix it.
+Yeah, but it was digestible right that PR where we had to like I know this is the thing that was like prototyping is great and like it's a great way to figure out what you want.
+It's a great way to see what's possible, but like I'm not asking anyone to review a 20 K line PR because it's it's like I'm not I'm not going to like have the same bar of quality.
+The person who's reviewing it is not going to have the same bar of quality and they're going to they're going to resent it.
+So you got to make these like models are really good at making these things digestible.
+We don't do this for everything.
+I'd say 90% of what we ship is small enough that you can just do it in one pass.
+If it's huge and it's prototype and it's experimental and it's just like I need to create the vision for what this is beyond just those HTML mockups then it's super valuable.
+Yeah, I actually agree I find it's very like kind of what I'm hearing you say and I'm going to repeat it back to you see if this is what this is what I heard.
+So what I'm going to do is you basically go through you get an idea you spent a lot of time on like model auto looping to produce a pretty good spec.
+Then you implement the whole spec end to end and it produces basically a slot PR.
+But the slot PR allows you to decide whether or not the features are exactly what you want them to be and you keep iterating on slot PR.
+Basically, this part is very cheap in terms of human time and we have cells and it's like we're going to use those tokens anyway as.
+But the engineering happens here.
+Yeah, but once you have the slot PR then you say, okay, this is a slot PR use this as the spec and say that you were going to implement this from scratch.
+How would you redo it?
+And like what are the first?
+How would you break it up into and how would you break it up?
+Is that correct?
+Yep, that's right.
+It's like well, it's like how do you break this down into digestible chunks and like what are things that we can incrementally ship to users that maybe adding incremental value or or at least like easy to digest and review?
+I want to show you something really cool actually.
+This is kind of stuff sharing.
+I know I know we're talking about a bunch of stuff, but actually well, so we talked about this a little bit, which is on the idea of like.
+Okay, I'm going to screen share.
+We've talked about like our one of the things that we're running into now.
+For context is like we're kind of running this issue where we get a bunch of like tiny PRs and like the amount of tiny work is like overwhelmingly large.
+And each of those tiny work items will improve the system.
+It just takes a while to go do all of them.
+We've been trying to make our software fact you're a little bit better.
+I wonder if you've seen this kind of thing before and if you as have considered this where basically users report feedback.
+And every single feedback that comes in we basically like an idea is you can't trust any feedback ever because all feedback is basically untrustworthy because users are reporting stuff who knows how.
+So we like immediately check if the feedback is already fixed on the latest version.
+And if it is we can just notify that user really quickly if it's not we basically tried search if it's like an existing repo or new one.
+And these are like basically like we put as like percentages of like how correct is every single substance I meant to be here.
+Like this this something will likely be wrong at some cadence because like you know like you might like maybe this feedback report and like you think it's fixed but it's a flaky issue.
+De-doping is going to be buggy like I've never seen a good de-doping agent for this and the key ones are bad if it de-dops half of the things then you saved yourself a lot of time.
+Exactly so then you do this then you create like a really really good repro and I think we can spend a lot of engineering to make this repro really really good.
+Just by like producing like and others then you actually created an issue so that is like an issue isn't created from feedback like issues a created post feedback.
+And then you just constantly check basically every single PR every single one is run and we just check every issue is fixed always.
+It's very cheap it's a CPU time to measure we don't have like web browsers are namely to check.
+For some stuff we do and that isn't and you just like keep basically like prior to the work you assigned a human to it.
+You basically communicate with the system and you either like put a plan together you like just fix it and then you just like do the whole merging system.
+But like we're trying to I'm having I mean you guys have been trying to do something like this before right.
+Where was the bottom this is like like you have at the very top and important piece of text which is for issues with clear code repros.
+I would say where do I have that yeah I mean at the very top above the port is easy to reproduce then this whole thing works if it's hard to reproduce then then you need something else.
+Yeah you can just say an agent to see if it can create one.
+Yeah yeah that's kind of what the whole like creator it repro is because like I don't trust any feedback file by users.
+So we kind of need to spend a burn our own tokens to try and produce a clear reprope and you can't produce a clear reprope then you assign a human to it.
+So like this is the thing we've been working on internally and like it's like the next version of agent tries to handle but for like human file feedback.
+And I was like I was going to say this this feels shaped very similar to the infrastructure you wrote for agent tries BAML and now it's just like cool let's add another like input stream which is human tries BAML or human's agent tries BAML.
+Yeah it's that one more so than anything else.
+But it's like it's fascinating because like this PR review part is actually the thing that we're really trying to bottom like and like I actually learned this concept from you when we were talking about this in the team.
+What we have talking about a lot is like how do we push the human time as low as possible.
+So notice like a large part of this is like assign a human to this like a shepherd is like down here.
+And like really this is assignment but then we actually ping the shepherd when this happened and slack where like hey here's a bug fix here's the repro here's a bug fix go read the PR.
+Or this is really hard here's a plan can you work can you either like download the plan into your local agent or like tell me this plan is good and I'll go implemented.
+What's the what's the accuracy rate of your classified issue difficulty because that seems like an is that a human task.
+No we're going to do an agent task and I think will actually what we're going to do with this is actually a twofold idea.
+And like we're still playing around with this so we're building like e-vals for this actually internally.
+Yeah and now we have enough issues as a database that we actually like heavy e-vals which is kind of nice like our first PR just went out and I think where they go.
+Like what's cool about this approach that we're doing.
+By the way I don't see your scale draw tab I don't know if you're trying to show us.
+What's cool about this PR for example that we're making now is all these PRs this is the one rule that we have which is like you have to push repros on the year.
+So you actually have to give us metrics for every single version of this pipeline so then we can decide whether or not it's good or not.
+And like this is a D-duping PR for example like obviously a D-duping PR we know is low it's lower than we expected so like we want to do it even better.
+Yep right cool but like yeah so we don't actually know what the actually right here is yet so we're still going to be playing with this.
+To figure out what the accuracy rate is but I'm hoping we can get to at least like 60% correct and that is enough and we can measure it always by lines of code.
+If the fix is more than 60 if the fix ends up being misclassified as a small issue and it being 500 lines of code we just we can just force classify it as the other one so it's not that hard.
+Yeah let me make sense.
+Anyway another this was what today's F oh one more let's go so if you come and try it as you guys could see from the chat if you type VIM2.
+It is a interactive guide that teaches you VIM and if you do this for 10 minutes a day you're welcome.
+No no no I mean yes we're in the voice era you don't need them you just need voice voice tutor.
+That's what I need I need a voice that tells me how I should go talk to talk to other agents make you more clear.
+I mean Kyle we're joking about like giving the agents a slash bro skill that they can give back to humans of like that was super unclear I need you to like speak more like articulate yourself more clearly.
+Honestly that would probably fix context problems more than anything else would it's probably a good idea.
+Cool okay I want to talk about today our topic which is software factory design patterns so we talked a lot about the software factory in various different versions and like cool you start with the normal software factory or human builds the thing and then you swap it out with agent builds the thing you have all these pieces that like.
+Make up your your set your software factory and then you make the agent test the thing and then like this part is now fast but the review part is still slow and like we've talked about this a bunch of times.
+I want to come and talk actually a thing that we haven't really done is like zoom in on this part of the factory which is like agent builds the thing.
+And the way that I think about this is basically like there's a couple different layers we've talked to a lot of different teams and we'll talk about kind of like there's a couple different options right you could like build everything in house.
+I think is probably what your team has done and then there's like the other side of the spectrum which is like buy everything.
+So build everything in house might make like what do you guys use for your like sandbox execution.
+Like where do your cloud sessions run for like agent tries we buy Macbooks and Mac many.
+Okay so your compute is like agent sessions run on Macbooks.
+And like basically when an agent session runs on demand like I imagine it sets up some kind of developer environment.
+Like you need a round stuff like this.
+Yeah but it's all kind of already pre installed in the Macbooks like part of it is like speed is why we have this.
+This core stuff is preset up and there's no boot up time in that case.
+Yep right and that's kind of nice and then the other reason we use Macbooks is because like we just had some extra Macbooks lying around.
+Yep and then for the harness you use cloud code primarily.
+Cloud code cloud code and code X.
+I don't know why I don't know what the latest one is but it's agnoss it's like we it's just like CLI you swap out.
+Yep so you use the CLI with some sort of some sort of headless mode that like streams out JSON or something right yeah exactly.
+We use headless mode that streams out JSON via the file it dumps all the chat logs like the trend chat transcript.
+You know like a dot JSON file so we just read that.
+And then yes so then you just tail tail the JSON file or you like you scoop it up once the session is done.
+Yeah exactly.
+Cool and then like do you have customizations that you add on there I'll call it like the outer harness right so you have like skills here injecting do you inject any mcp's or anything like that we actually have like actual why loops that we have that we built around this so like for example the drive things to completion.
+Okay cool so like like for like we have a pull request bot like code rabbit that we use.
+We want to merge after code rabbit that's a while loop that's like a hard-coded why loop that she says this and like if the why loop hits like max iterations like three then what we do is like we then we boot it out and we ask the human to take a look.
+Cool that makes sense we don't merge automatically we do have a human hit merge yeah that is like we want to round it until mergeable yeah like basically do not notify a human.
+Until code rabbit is happy and then we have we have a three iterations get hit yeah and then we have another thing that we're actually about to add now in this new loop that I built which is like our cicd takes a long time.
+So we want a human to hit that they're happy and after a human hits that they're happy this agent is supposed to just constantly merge against our main branch and keep it up to date so it can just merge drive at the merge.
+I see so you're merging from main into the other thing and like basically looping this part.
+Yeah so after the human is happy it's basically like I I want this to merge just babysit this thing until it merges in because we have a merge you and like sometimes conflicts happen etc.
+Yeah this is the last part that we're adding now and we think this is just going to help it's basically just a better age it's an agency merge queue that's how you can think about it this yep.
+Okay and where does this run and actually all this is going to be.
+It's the same machine it's the same thing right so does this run like so this is this is separate from from agent tries bambal right this is separate from the factory stuff this is like running on someone's workstation no this actually we don't want to run on your workstation we want to run on a non on on a work on like a sandbox site machine.
+Okay so do you run it and get hub actions or does it run on the same MacBook where the agent tries to balance everything is running on the same book yeah okay so you just have a pool of Macbooks that run any generic agent task.
+Yeah the agent loop for example I bet that one could run as like a pure web layer because like get out as auto merge so we get to see like auto merge and then go do it and then but right now like that's kind of how we're thinking about it.
+Okay and then like my last question is like okay so you have this MacBook.
+And then you have you know your you know rust tool chain etc set up yeah.
+And then you have your CC slash codex like your like inner harness you have your like outer harness and then you basically have like I guess like how does how does this system know that there's a.
+New thing to work on is it pulling some cue or like there's some there's some way to turn this is it runs a web server on it locally.
+And then we use some like a burger or something so we're running like a web server.
+Okay so there's a there's a web server that you can on MacBook.
+Yeah and then there's like another way that we I forgot the app we use we use some app that basically makes that app that makes that thing like accessible.
+Like a tailscale or in rock or something it's not either of those but it's something else I don't remember off the top of my head I would but we use that makes it basically like behave like a remote server that's like deployed.
+But you have some sort of like privately accessible like thing you can open in a browser.
+Yeah well it's it's a rest API so like I said we don't know the UI for it I mean we could we could sort of react off of it but like yeah it's a recipe.
+Okay so what sends requests to this.
+I should have another.
+Yeah well now we have another web server that we actually host that's a pure rest endpoint so now there's a web app that we build.
+Yeah and this web app is the thing that like listen to linear listen to slack listen to kind of everything and that communicates with these.
+Okay cool so this is actually like on on the host yeah exactly and then you have basically a cloud web server that receives like web hooks from slack and linear.
+Yeah and GitHub and all the other stuff yep okay.
+And it also has its like own endpoint that you can communicate with if you want.
+Yeah so you have this thing is kind of like what I would call your like dispatcher.
+Yeah yeah it's also the thing that has a database and everything on there.
+Yeah yeah so like.
+So yeah this is the this is basically what we call like the orchestration layer.
+And basically the the kind of thing I was like want to get across is like you can buy all of this right if you use like cursor cloud agents or cognition or whatever you get you get all of that right.
+Yeah every single one of these is viable 100% viable.
+And so like basically what I want to get into is like what is that what I'm trying to like elaborate here is like what is the what is the building blocks what are the core interfaces inside the software factory.
+So that if you decide there's some part of it that's hard and you want to build certain things and buy other things like what does that all look like and I think I've sent you this picture before but I'm going to draw it out here for the for the fans.
+Yeah well obviously you have a lot of people here I'll let you draw it out and then I'll just like.
+Yeah people asking them questions I'll just answer them along the way.
+What steps you use around the evils honestly the evils system is pretty simple and you're seeing that we're making more rigorous in the PR that I should earlier where now we actually have like benchmarks that we're trying to set up like we download pass issues we see if they reproduce and what the rate is so like now we actually just build tests around them.
+And we have like benchmarks for like what percentage of tests pass and we have like a pass rate and stuff that we're building out.
+All the code is actually open source you'll be able to go see it if you want.
+Do you use containers with G visor we do not use containers I mean these are all trusted systems so the reason for example that you saw early in my in my in my scala draw that I'm showing is like raw feedback coming from a user is completely untrustworthy we run our own prompts to create repros and those repros are things that we trust.
+So we never execute raw code off the prompt up there we don't want to so this is why it's like slightly more trustable so we can just run a direct on the machine.
+I guess someone could try and Bitcoin mine it but I think cloud code and suffer like smart enough to like not try to do that and we don't really accept remote code.
+And then do we have a sandbox and I know we don't use any sandboxes or anything else we just run it directly on the MacBook because again like I said it's trustworthy so we don't have any issues on this.
+Yep and so like again you can buy or build that you can throw an end Daytona you can throw in your career and cluster you can throw it to be freestyle whatever it is.
+But you need a place for the eight it could even be isolates right like some people have done this thing with just like the agent runs it doesn't even have a real Linux file system it's literally just tools that look like a file system yeah.
+And then Simon has an interesting question of like how do you treat issues that are dependent on external sources data providers and such.
+The thing is like we don't lucky for us we don't have that much of a problem because we're willing a programming language so a lot of stuff is like either self reproducible or not and it's very clear when it's not and if it's not we'll just bump it up to a human.
+Like external data source will just go to a human and the human can make some educated decision on that kind of problem.
+Yep I think I think the folly that a lot of people make is they try and make a system that is fully automatic that is much harder than getting a system that's 95% automatic.
+So like that's how we're we're aiming for that ladder bit we're not trying to be fully automatic we sadly not sadly I guess luckily we'll actually keep employing humans for a while because I like people and I like making friends.
+If for no other reason.
+Yeah so anyways yeah the the compute stuff is basically like you can build it you can manage your own compute whether it's EC2 or your own like Kubernetes cluster or literally you have stack of Macbooks in the office like you can buy it and run it in your infrastructure.
+So I know like people like Daytona will like basically give you like kind of a black box and you get an API and just like I need a sandbox and they'll just spit it up for you but it runs in your AWS cloud or in your data center or on your like rack in office.
+Yeah or you can buy where it's just like I don't want to run any infrastructure I have like here's my stuff and here's like the vendor stuff and I just send a request and all the execution happens like in their thing.
+Yeah like basically it's like you can do as much BYOC as you want.
+Yep and this is like a very well-established domain and I'm going to ask you a question.
+How do you decide how much BYOC you want?
+So this is this is kind of what I want to get at is like if you understand these like four layers or five layers of the stack you can make the decisions based on your needs.
+And I think the most interesting part of this whole thing that I think is the most controversial is the idea of the dev environment.
+Because the dev environment has many layers right it's like okay like what like language runtimes.
+Do I need to actually be able to like compile and test my software.
+There's like how do I like test it from the outside.
+So for BAML is very verifiable but if I need to run a web app I need a way not just to like send work to this workstation but I need to be able to go like look at what the agent is building and see a preview of it right.
+You have like a lot of a lot of larger teams have like internal services where like you might run like four layers of your stack when you're developing.
+But actually the app has like 50 you know 50 plus services that it needs to run and these are all shared.
+Yeah you know what's shared debt we call it like a dev cloud or something like this.
+You know what's all right I'll I'll keep going actually I want to keep I want to see what's good yeah yeah.
+So I'll keep going just in the interest of time.
+Basically my take is like once you're going into the vendors cloud if if it's running here and you need to test it like telling telling Daytona or whatever hey I need to install like I need to use this base Docker image because it has rust pre install that a specific version that we like is easy.
+I need to like poke holes in my in my in my like cloud to allow this running thing and someone else's compute cloud to access the shared things that my stack needs because we have 100 repos and I don't want to run all of them in the sandbox.
+This becomes like quite a bit of friction and the need to basically like debug oh the rust thing is not working on this thing because they're using like a fake Linux kernel that doesn't support this ciscoll or something.
+Basically like it can cause a lot of friction in my one of my thesis is like you are going to want to own this unless you're building like tiny little toy next JS apps and you're like you know in the like majority like in distribution set of stuff.
+You're going to start to hit friction unless you can own this in a really clean way that makes sense.
+I agree.
+Cool.
+The next layer is the harness so this is like basically and I think we probably split this into like in yours we kind of split it into like inner hardest versus outer harness you have like the core.
+Cloud code or codex or this could be like or you can like or amp or Devon or factory you can like buy this from a vendor who builds a harness or you could like build your own on top of like open code pie custom things and basically like you can you can you can kind of say like okay cool there's the.
+Inter harness is really thin and we build a bunch of like outer harness stuff or you can basically buy an inner harness that comes with a ton of stuff like a browser and testing and stuff.
+Oh my god I can't type and then you can have your order outer harness be like very thin words like just your skills and stuff.
+Does it make sense.
+Yep.
+Yeah you have options here.
+How do you do a package and how you do testing yeah.
+What's fascinating here is like I don't know if anyone in the audience has ever worked at a like Google or Facebook but if you have then you might see a lot of this stack is literally something that you have probably worked on before and Google for example they buy you're really nice MacBook but you never code on your MacBook.
+You always get what's called a cloud top and every single time you get a new environment you actually set up a whole new cloud top and you set that up repeatedly and Facebook's the same way and like that's just how you're default coding and like same thing here like whenever you have a web story.
+No one ever has.
+No one ever has code check that on their workstation because like they basically don't want you to take the code outside the building.
+Also it's just like to make you can't have that and then the other thing that's really fascinating to me is like whenever you make like web services and you go do them you get default URLs that are attached to you so like my my I don't remember what my old app was pretty sure it's like what my user like I got a sub domain it's like my old app dot C dot Google or that some internal Google domain.
+I could send that around to people so if I ever build like an internal UI by default that's shareable in my whole company if I wanted to be and you get that you sure that URL and a PM could go look at the web app or whatever was exact and what that means is like any service I want to point to I can have my own version of the service or I can have a host version of the service that I point to my default and it's always kind of just works.
+Yeah, in that way and it was funny to me it feels like we're also on a reinvent that kind of golden stack where like you go and you press a button you get a cloud top issue to you you can start coding on it does the work you can access it from anywhere you can see all the code on it from the same editor that you're the same editor can to switch to like different machines really really fast.
+And then on top of that you get all these like nice little web systems were like it just points the right database right URLs and like sharing and everything is provisioned you can't share URLs publicly unless you explicitly escalate them to a public URL that's shareables of internet only.
+Oh, anyway, I just find it so interesting that like we're doing all this stuff and like there are a couple of companies that have done this like perfectly already by necessity of their work.
+But it's also it's like there's something to be said for like you might not be Google and you might be able to get away with basically like a cloud agent that does all of this kind of like for you because you don't need that flexibility.
+Yeah, yeah, exactly.
+Cool, the last piece here is I think the most interesting and underserved piece i'll take the pitch part of this out but is basically the control plan the orchestration layer.
+And so like basically the idea here is like you want to be able to dispatch new work you want to be able to see what's you want to be able to look at the session traces you want to be able to look at the plans and architecture docs that are being made.
+You want to be able to like schedule things to run every night or on a cron or in response to web hooks.
+You want to be able to like review and iterate on the code itself sort of like a PR shaped thing but like doesn't necessarily need to happen and get hub.
+There's like permissions and audit and who can talk to what and who can see which services and like managing spend and budgeting.
+And then there's like this idea of compounding engineering and we'll start high level dig into like whichever one of these you think is the most interesting but compounding engineering is we talked about this on a.
+An episode like a month ago of like how do we how do we build a memory system where it's like hey if all your engineers across your whole team are yelling at clawed all day.
+And they're all saying the same thing or codex or whatever it is how do you incorporate that into your your outer harness basically.
+Yeah.
+This is I I mean if I were to go and write the letters of stack I could not come up with a better representation of the stack.
+There is there is one argument to say that like the dev environment is actually part of the outer harness and it doesn't it doesn't sit underneath the harness it's actually part of the harness but I disagree.
+We'll we'll avoid that that semantic right now I disagree I think it's I think it's better to have the separate layer because it's like.
+When I get a company laptop for example there's a bunch of crap I've installed I just want that installed.
+Yeah there and like to me like what else goes in the dev environment is like identity provisioning like that all goes into the dev environment not the harness.
+And that's why I think you mean like authenticating to internal services and integrations and stuff.
+Just like identity attached to that environment there's some sort and that implicitly gives you internal services that gives you access to certain API keys gives you access certain scopes like all the stuff you might expect.
+But that belongs in the dev environment layer does it's not in the infrastructure layer it's not in the harness layer.
+Yeah because like I want my harness to not have to think about certain provisioning.
+Yep.
+One other thing I think is interesting on the dev environment side then I want to flip it to the audience in here like which parts of this stack are the most interesting to drill into.
+Are you familiar with the idea of like pets versus cattle.
+Okay well while you describe a new concept to me I will read the comments describe the concept to me.
+So yeah so basically this idea of like you kind of like have some number of server you like prod web oh one you have prod web oh two you have like a set of servers that have like roles in your infrastructure.
+Okay and like if one of them goes down it's like cool I got to go rebuild prod web oh three because the disc filled up or whatever it is.
+Okay what's cattle and cattle is basically this idea of like you don't care if it goes away you've designed your oh yeah it's like web previews for example web previews and PRs are cattle.
+Exactly so it's basically just like web and then you have some like you know you're right.
+Yeah and then you just kind of have infinite of these and these are usually cattle is more like okay we have a script that can provision these no one has to go SSH into the server and set it up.
+Yeah and like basically just on demand so like I would say your MacBook setup today is actually more of a pet setup and actually think this is a great place to start.
+I think you can get very far with like basically like if you bought a new MacBook and you wanted to add it to the stack.
+You would go someone would go like pull it up and manually set it up you don't have a button you can push that makes it ready to receive like workloads right.
+Oh there's a repo that you download you start running you some starts some script and just permissions it automatically.
+Yeah but you do have to download the repo and go do that we made it.
+It's not like someone has to go basically you need the hardware.
+You need the hardware to go run it which means and be able to hardware.
+Yeah so when I worked IT we basically like we built a system to turn everybody's workstation in like undergrad in college we were we were worked IT for the library and we basically built a system to turn all of the workstation from pets into cattle.
+Cattle and we had this like literal station in the basement where like whenever someone's machine got corrupted or got a virus or whatever it was instead of going in and trying to fix what was going on.
+We would do it really many machines.
+Two drives in the in the bay clone from one drive to the other bring them a new drive put it in their machine and be like cool go download your shit from the file share.
+Yeah yeah no I agree that the environment should be more cattle than than pets 100% I actually like when we build our dev environments and like we have a similar stack to you I run some stuff in EC2 I run some stuff in XC.dev.
+We actually treat it like pets for now because we don't have for thousands of workflows starting up and now I just leave one server running all day and when I need to run stuff on it.
+Yeah when I need to authenticate to GitHub again I just log in and reoff to GitHub it's another great analogy for everyone else is like I would say like AWS Lambda functions or cattle.
+Like an easy to container you own is more pet than cattle.
+It's it's kind of in the middle but it's it's kind of in that same kind of work flow.
+We've had a couple of questions in here.
+I want to go over it's like it's a weird network cluster my factory ended up as a tailscale sprawl tunnels to extend tunnels are yeah I mean yeah we own these tell score for that reason like it's kind of annoying.
+So that has some things it's like I sort of understand how software factories can behave in a single repo project how do you deal with multiple repros.
+When you have like multiple things to be completely honest sadly my recommendation is you're going to be sad because you're not using a monorepo.
+So the best thing you can do and I know Dexha help teams that have tons of like micro repos.
+But I do my teams with 80 repos yeah or 100 repos or whatever it is.
+So like my recommendation would be like simulate a monorepo as much as you can and you can do that many ways you can get like a check out of you can go to folder where you simply call the monorepo is in there you seem like it treat like a monorepo you can have an actual monorepo that actually like just contain to list of siblings everything on repo that you have and it just like with no need to be simple like cloud can traverse your workspace pretty easily so if I come here and look at the code here we literally this is our template for this we don't use this anymore because it's built into human layer now but yeah we basically say like if you're using especially if you're doing research and you want to go find the stuff it's like cool you're in a coordination repo for multiple repos they're all like one level up basically.
+And so the way the way that you lay things out on disk is basically like source repo one repo to coordination they don't need to be in the same get tree you don't need sub modules you don't need sub trees you don't need siblings.
+As long as the model knows all of the things that might be in scope and you give it a like part of your workflow that is like go do research and understand what matters to this.
+This is like it's really not like a product thing it's literally just like a cool just tell your model where the other shit is and like still while you say that actually you still need one.
+Like control file that tells you the organization structure in the layout to submit you're going to have.
+Yeah, so this is like but like it doesn't have to be simlinked into every repo you don't need every repo to have like a doubly linked like a way reference to all the other ones.
+We just run all of our session you just run all of your sessions from one coordinate and this can be a separate repo with just this clot MD in it.
+Or it can be or it can be one you know the repo that everyone uses the most and then sometimes you touch other repos well you put all the config there and even if you're not touching that main repo you just you have one canonical place where you start agent work from.
+And then you give it the ability to find those other repos the sandbox thing gets a little trickier if you're doing on demand sandboxes because like do you really want to clone 200 repos on.
+To the box every single time well that's going to make your things lower and you need more disc and things like this the alternative is like make the human pick which repos are relevant which works to a point but as soon as I want to like take advantage of the fact that agents can help me be productive in code bases that i'm not an expert in.
+Now we're back to like oh if I missed a thing that was important then i'm back to like oh I need to go talk to the person or no I need to have that intuition about the code base to know that and like we really want to.
+Enable you to leverage agents to do this so the time where it's like.
+You could do cattle but then you're both cloning all the repos all the time I have to keep them all today or you could do pets and just have them all checked out yeah what I would like to recommend is please on you some modules.
+When you some modules some modules are horrible because they paint a specific commits in every repo you're going to be a sad sad cookie on the street or no.
+I know a lot of people who are who are skilled with this stuff to do a lot of work we get some trees and i've actually played with them and like I think it's an option that makes.
+I haven't actually used some trees so I'd be I love go check it out and see other different how are they different do you know i'll stop your head.
+I I did the tutorial like a month or two ago I can't I can't do a justice today but it's it's somewhere it's it's kind of like a sub work tree and a sub module had a baby.
+I see okay yeah because the biggest problem I have with some modules it's just like you he has like commit in two places every time you update every time you update the module the sub module and their actual repo and just like not fun.
+Yeah some trees have a little bit of that but I think I think also I've heard from people who do a lot of this and like who especially I think most my cost that there was on an episode like six months ago where he was showing his like Ralph loop with get some trees set up to help people basically do a job across all the repos.
+So let's just say really fast I have a couple other interests you're a scholar draw that you had I had a couple of things I was going to do.
+Yeah people have got some other interesting things of like where do you see the software factory design pattern evolving in the near in the near term.
+Honestly I think the biggest thing that's going to happen is more people like actually it's funny is I should actually just pace our our work flow into here because it's basically the same it's like a more micro version of a part of this tech.
+Yeah so I'll put that in here really fast but like when I think about this.
+When I think about the evolution I'm curious about your thoughts on the evolution.
+Yep let me sorry I'm coming to the scholar draw I'm gonna post it down here there you go it's at the bottom part.
+Nice.
+Um when I when I go think about this.
+Um when I the way I see this evolving is one it's going to become a lot more frequent like every company is likely going to build some sort of internal agent that does something like this and like I personally don't think the whole thing is viable.
+Uh and the reason I don't think the whole stack is viable is because every company has some weird cork about their internal stuff that is how their setup works and everything so it's like.
+You just can't know everything like for us like someone asked earlier how do you deal with issues with external resources.
+Well like we're lucky we don't have that problem where it's so rare for us we don't have to design around that system.
+On the other hand like this is this is why I'm so obsessed with like defining these building blocks yeah and like defining really good interfaces between them.
+So like the interface here is is an interesting one like ACP tries to do this uh but ACP is going to hit X on hit X on Riverside again please.
+I can't see your full screen and I want to see Dexter's diagramming and max potential yeah so like between the control plane and the harness you have something called ACP is on.
+Option it's quite narrow um I think we need like a thicker version like a wider version of this interface.
+I go for a like coding harness to talk to a UI or an editor or a web app basically it's like a protocol for things to talk along you also have things like AG UI which.
+Again is great for broadcasting the UI in the events but actually like enough that the challenge I have is neither of these support hooks which means like something that is like job it is to life cycle a harness and like its events and do special things.
+In response to like I don't know in human language of like yeah go ahead.
+Do you know why though I think it's because every single harness is literally basically its own bespoke UI.
+Yep and like converting every like quad code and code X do not have the same hooks and pi has totally different hooks.
+And that's where it is.
+Open code is a plugin system it's like the hooks are like a completely separate concept.
+Yeah and I think this is kind of where like all these things die which is that it's not a.
+There's no standard for this there and and rightfully so like every harness has different trade offs like quad code is much much more like you bring it and it's good.
+Like it's guaranteed to be good.
+Yep.
+Whereas like a pie is more like you have to configure every little thing and that allows you to have like it comes with other.
+Control but you have to you have to build more to build more stuff or but also you have to build more stuff yeah exactly right and I think that's why.
+Like you can't really do this because abstraction there in which you represent everything there is just not.
+That good because it and and it by design can't be that good at least in my eyes not right now but also like you know I used to think about web and then I finally learned about react as like oh shit they actually did solve.
+This hard problem by inventing this concept of state turns out state is all you need.
+And everything else kind of just devolves from that in a really nice way and like what do you like reactor angular doesn't really matter but like web.
+Web systems generally are state driven engines and that was a novel content.
+So like you just got to think about what's the boundary here to think about and I don't know what it is and I think that's why it feels like you guys I know do a lot of work of wrapping every single one of these harnesses and making it good to plug into.
+Yep.
+Yes sir.
+So I think that's most of what I had I mean are there more are there more comments in the chat I mean like the interface between the harness and the dev environment is something like the Linux kernel and like the dev environment infrastructure.
+Infrastructure is mostly like how do you go set it up it's like what APIs you have what control do you have how do you go built this.
+There is something called compute SDK that tries to be this which is basically like one library for oh it's become a they made decided to be a benchmark instead of instead of an SDK.
+I think it's like it doesn't really matter for that layer like it's the same reason that you don't like yes it's nice to be able to abstract over like GCP and AWS but think as once you're big enough company you're basically either a GCP shop or a double stop no one really needs.
+To swap stuff over that often and when you do use like the AWS interfaces already pretty good yeah that's kind of what I mean like if you're using Daytona Daytona interfaces good if you're using like GCP the GCP SDK is good and like GCP CLI's.
+Yeah like all these things you see lies going we used to have this rule of like at sprout we said don't wrap interfaces with other interfaces yeah wrap APIs with other APIs it was like okay cool like we have the official Twitter SDK.
+And then I'm going to make our version of the Twitter client which just wraps some of the methods that we need and all the data is just passed through with a little bit of like transformation and it's way better to just like just call the official SDK at every call site you don't need to like put an abstraction in front of it if it all it does is like actually create.
+Like okay now I have to like do extra work every time I want to add a new call to a new endpoint on Twitter.
+That's kind of anywhere as much feel about why I think the interface I was going in terms of buy versus build where do you land.
+Obviously I know your bias but that's okay.
+I mean I think the idea is like I think when you use a fully verticalized cloud agent some of the challenges you will hit is there's friction in defining your dev environment there's friction in having limited like choices on compute.
+I think what Devon and cognition are doing is really interesting in terms of like letting you run what they call like outposts or workers where it's like okay you can do it.
+You can run the compute and the outpost will bring the harness and the tooling into your level of compute and you and the harness can kind of co-own the dev environment.
+And so like things like that I think we're going to see more and more of and like the conversations we're having with a lot of people and like trying to figure out what are the right interfaces and I think what a lot of people are starting to realize.
+Is there one more time or I can share.
+Most people are either like buy the whole thing or build the whole thing and I think the answer is like you should be able to instead of having like it's like it's like composition over inheritance right it's like rather than having to be like okay whatever layer I buy at I have to buy everything below it.
+And so it's like if I want orchestration and I want to be able to ping agents from Slack I either have to build the whole freaking thing or I have to buy the whole freaking thing and like the real answer is like you should have as an engineer.
+There's no other choice and the ability to like work in open systems and plug these things together.
+So like what's interesting for us is like are you're a dev and it's kind of these three layers right.
+Yeah.
+And the new infrastructure too.
+No, they do the cloud sandboxes.
+Yeah, you can move that.
+Yes, but I think they kind of they don't want to own all of it.
+It's like optional for them.
+I think in most cases they they want to own it just because it's a better experience.
+Like it's easier if I could just sign up and like send a Slack message and see work start getting done versus like.
+Even price to increase.
+Huh?
+For enterprise customers I think they just run the whole thing on prem.
+Yeah, enterprise.
+So enterprise wants to bring the compute and probably bring parts of the dev environment.
+Yeah.
+Yeah.
+Yeah.
+Like for us what's interesting is like when we build our agent fries, battle sack, but we're really building us this this kind of we're building like up here and we're kind of like.
+We don't we explicitly do not want to own this layer.
+We don't want to use the harness that everyone else and like really.
+Oh, I want to make it swappable because yeah, because the harness is going to change like all the time.
+And really I don't really want to own the compute sandbox.
+I just do this because I couldn't convenience like we run on a box or not.
+I don't really care.
+But these are the parts that I find value on.
+It sounds like the layer that you're trying to help is like, hey, you for human layer.
+Human layer.
+You just wanted to buy the orchestration, but you want to bring your own artists.
+Yeah.
+This is what you're trying to help plug into.
+Yeah.
+And Devon is there and like clawed clawed automations like clawed background stuff is like cool.
+You can do like clawed code as a building block.
+Or you can bring the entire clawed code.
+Oh, that's not good.
+Or you can like, I got it.
+Yeah.
+I got it.
+I don't know.
+Stop.
+I don't want that one.
+You can have like basically like clawed.
+What do they call it like automations or.
+Yeah.
+And you call them routines or something.
+But it's like basically like we're they'll bring the compute environment and stuff to.
+Yeah.
+And I'm going to do one more thing really fast.
+I don't know if it's up here.
+And like I would say like they're clawed as cron jobs and stuff that you can do.
+And they're trying to like plug into this part over here, right?
+Yeah, exactly.
+Cron.
+Where they're trying to be like, oh, if you want to be the full clawed stack.
+And like I know Pearson Marx does this.
+The jelly pod guy.
+He was demo on this.
+And the last thing is like he uses the full clawed stack.
+And the kid was it's separable.
+But he likes clawed code as a harness.
+He thinks the dev environments.
+They were good enough for him and the compute on demand is great.
+And he can schedule automations on it.
+And so he is, you know, composed stack happens to be all in the clawed ecosystem.
+Exactly.
+I'm going to go read some comments because we got a bunch more really fast.
+Some people are building both.
+They're like fully multiplied.
+It sounds like there's a product there.
+That's kind of cool.
+If you can drop in the chat if it's interesting.
+Given that we have a choice that it's stack with a lamp stack equivalent emerge.
+I think so.
+Actually, we will get an equivalent to a lamp stack here over time.
+Next.
+Yes.
+Next, JS super base and work.
+No, no, no, no, no, I actually, I don't know about that because that's not really what this is about.
+This is like a harness of dev environment, the infrastructure deployments.
+Like dev environment is much more close to the darker for me.
+Like the infrastructure is like the application stack.
+But the yeah, like for this like the software factory stack.
+Software factory stack.
+Yeah, exactly.
+No, ATB is like a thing that we call agent tries BAML, which is like our own software factory that we've built to automatically improve the BAML programming language.
+And then yes, these videos are recorded.
+If you want to check them out there on the YouTube channel, I'll drop them off in a bit.
+I'll post them on Twitter as well.
+Yeah.
+And then is there an open source project for control plane orchestration?
+I think the reason that there isn't an open source project for control plane orchestration right now.
+Is because like one like no one, you don't want to use someone else to control plane because it's so easier to write code now.
+Unless you actually get all the integrations built with it.
+And right now everyone is, everyone is doing that to some degree wants to make a product and they have some value to serve.
+So like they want to sell it to you.
+And that's not an unreasonable request.
+There's a lot of good design and intuition that goes into it.
+And like there is some.
+We met the open inspect guys last last week.
+But he's that's open source.
+But it's another full stack.
+He's like, okay, cool.
+We bring, I think it's like basically like it does all of this and you bring the compute to run it on.
+Basically, yeah, exactly.
+And like I, that's what I mean.
+Like there is stuff, but it's so easy to build now that I would just build.
+Like for us, for example, like we just decided the two layers of stack we care about.
+We just plug in play.
+And like you asked me like why would I like, I actually have thought like should we use human layer stuff for part of our control plane.
+And like the only reason we don't is because like data homin API surface that I can't like plug into my slack and to our github issues into our balance CLI.
+So now we have to build this whole layer around this.
+I think the input control.
+It's coming.
+Oh, yeah.
+Well, the point is like we soft to build an input control plane to define what we consider an issue.
+Like maybe we could use human layer for like the good once an issue is good.
+But for that untrustworthy feedback that we get from a another user's agent.
+Where do we run that?
+Like that's it.
+And that's the same reason that we don't just use linear pure linear for this anymore.
+Because like we have two different versions of issues.
+And when you ask like is it an open source project.
+The problem is every company's working style has different definitions.
+Yeah.
+This is David Krascha's thing of like software should be extensible.
+Now that agents can write code like why are you going to make me plum through some like wisdom like integration manager of like cool.
+When a linear web hook comes in, transform it in this way and then do a workflow.
+It's like just let me write the code for them.
+Yeah, exactly.
+And Matthias is asking like do I see an open source.
+So I do personally see an open source solution happening.
+And like I suspect companies like human that will probably eventually support something like this because like it's in everyone's best interest to go do that.
+And if you have a good prod stack, you'll build a good open lore solution.
+But I think it's really hard to upfront build an open source solution.
+Like part of what I really admire about the work that Dexter has done is that like they're working with real companies and real companies of real products.
+And instead of optimizing for one company, what they can do is they can take the learnings across like 10, 20, 30, 40, 50, 100, a thousand companies and build the best interface that really serves across all of these.
+And then you can imagine like an open source thing being much more able to being built.
+Like you can't build react the first time the web was invented.
+You really have to watch a lot of stuff happen right and wrong before you see that happening.
+Well, and I think step one is the interface layer.
+Like MCP did this really interesting thing where it created this really explosion of ecosystems that let both like agent client and agent harness builders and integration builders like mix and match with each other really easily.
+And I think basically like there's a lot of things that we're working on is like less like what is the what is the product look like at any one of these layers and more like what are the open interfaces that enable people to have choice and be able to buy versus build any part of this stack for the parts they want control over without having to without having to to to go all in on like let's say the cloud stack or the the code stack or the open inspects or build the whole thing themselves.
+And still is to show like how nice to clot and codex want to play with each other.
+Yeah, like if they don't want to play nice with each other they will keep breaking APIs.
+And opening out this is what cloud doesn't support agents MD because they're like we want caught MD to be the cloud thing and everyone else can use the other file but we're special.
+Yeah, and like they've just decided that's a case and it's annoying but like we'll just have to kind of see and the Eric has this great thing it's like the browser wars because the thing is like in the past the companies believe owning the browser was worth it and it turns out like it was right.
+If you own the browser you can make a lot of money by doing that and owning mobile was worth a lot of money.
+I think a lot of people are betting that owning the harness is going to be worth a lot of money.
+You want to see something like one last thing that's kind of interesting before we close it out today.
+You talk about it.
+One question from Eric.
+Yeah, great.
+And then yes which is is human layer composable decomposable.
+So so human layer owns the orchestration layer and it can also we have a harness but it's swappable you can use cloud code you can use our harness you can use codex we kind of have noted out of the like we'll eventually have managed cloud sandboxes and stuff but are kind of take as like if you were serious and like the customers that we work with all of them would prefer a good interface on top of compute and dev environment that they own basically.
+Yeah, exactly.
+Yeah, it's just ways here like I don't want to deal with setting it up on someone else's infrastructure.
+You'll have a more thing.
+I'll show you extendable software.
+I was going to make this a whole podcast of it's interesting.
+Let us know and we can make this whole thing.
+I have been playing around with this concept a lot.
+So when I think about extendable software, I think the best way to extend software is let agents write code.
+It's called code mode.
+You've probably seen it.
+So in this case it feels like a string that an agent wrote it does some code.
+It does some stuff and I'm basically just going to start mucking with this string in really interesting ways.
+So I'm going to pass in some code that I'm additional code that I'm a dynamic way generate.
+So like if I do like named out two uppercase, I just run this really fast.
+And I'll run a texture.
+So when I run this code, I have compilation errors.
+I'm going to just do one grip and said.
+We change the API to be only reflect.
+So I have to replace all these.
+When I run this code, I got nothing good to show.
+I apologize.
+This is for whatever reason.
+But anyway, I will do an episode on this about how to run like dynamic code generation, how to actually have your app be extendable from a really interesting perspective.
+We I just upgraded the battle version.
+So I can't show this yet.
+I guess I should stop running local devs is what I really learned.
+But I think extendable code is definitely going to be one of the most interesting features out out ever.
+Because like, like for example, in human, how great would it be if people could define their own columns and their own like you could be like, hey, here's a small little code workflow that I want to run for doing this.
+And like they can just go say like, oh, here's an agent loop that I want to add on because that's kind of a cloud automations.
+It's effectively.
+But just done kind of shittily.
+A cron job, a cron job is basically like code that says while true at this time run this piece of code.
+That's like the ultimate cron job.
+Yeah, in a scalable, you know, fault tolerant way where like if the server goes down at that time, it's still running later on another server.
+Yeah.
+So that's the hard part about the execution.
+But the extendable part is what I really want because if I can only write the workflows that you let me write, I'm kind of sad.
+But if I can write the workflows I can write on your stack and I can buy the reliability from you, then buying the reliability is totally worth paying for.
+Right.
+I mean, I think it comes into like this idea.
+I mean, in our own code bases, I know many people have talked about they have like viable zones and they have no vibe zones, right?
+They have the functional core and then they have an interface and things like pragmatic code can sit on top of it.
+And there's no reason not to basically create space for users to deploy their cut.
+Like instead of user files, a bug, and if it's in the no-slop zone, our factory builds a chips of feature goes in the next release.
+It could literally be like in real time.
+It's just like cool.
+These parts of this have, you know, sandbox execution adapters where your agent writes code and that modifies your app in real time.
+But getting the interfaces right and figuring out, okay, what is the core versus what is the code and what are the interfaces that are available in that code is is it's an interesting space that yeah, I think I think we've both been exploring a little bit and excited to I don't know.
+I don't have any like cool like demos of that yet, but I think a Reese from executor actually built something like this where like the way you customize you can figure executors is by dropping TypeScript files in your directory.
+Yeah, I think there's like no other way around this is like long term what you want to do is you just want to be like here's my code and every piece of software effectively turns into like a harness.
+Yeah, we're like you're job and open code like the whole point of those things is like hey you want to customize the behavior cool have your have your agent right code and it live reloads into the agent and now you have new extensions.
+Yeah, exactly because like nothing else I think is like that's like the most interesting stuff in my in my eyes about like how people build apps.
+It's like the like react built like the interactive web.
+I think we're about to have like just like extendable software as like a commonplace a VS code amazing because you can add extensions tails till when comes out you can have it work in VS code with a VS code updating and that's magic.
+Cool, we're way over time.
+Oh, shit, we are.
+There's this really fun conversation today.
+I love today's conversation.
+It's been so long since we've had one of these.
+Yeah, how do you get time?
