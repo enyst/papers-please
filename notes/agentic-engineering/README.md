@@ -22,6 +22,7 @@ The first is about *self-improvement*; the second is about *verifiability*. They
 | [`fences-not-sandboxes-steve-yegge.md`](./fences-not-sandboxes-steve-yegge.md) | Steve Yegge | Field report from a live ~50-agent "software factory": the agents spontaneously built a *legal system* to coordinate. Govern superintelligence with *fences* (polite refusals) and law, not sandboxes. |
 | [`software-factory-uber-scale.md`](./software-factory-uber-scale.md) | Uber Engineering | Production numbers: >70% of PRs agent-attributed, 3,600 skills. Treat AI cost as engineering — a six-term cost equation, benchmark-driven Pareto model routing; −34–52% unit cost while usage grew 7x. |
 | [`verification-and-trust-lauren-tan-poteto.md`](./verification-and-trust-lauren-tan-poteto.md) | Lauren Tan (@poteto) | Agents are amnesiac new hires. Scale them depth-first via rigor + verification, not naive parallelism. *Verification is the bottleneck; trust is the unlock.* (pstack, `/poteto-mode`, Benny bot.) |
+| [`ai-engineering-skills-map-andrew-ng.md`](./ai-engineering-skills-map-andrew-ng.md) | Andrew Ng | Counterweight: even when agents write all the code, human software fundamentals still matter — to *steer the tradeoffs* (latency, data model, architecture, security, scale) the agent would otherwise make blindly. |
 
 ## Open threads to chew on
 
@@ -35,6 +36,7 @@ The first is about *self-improvement*; the second is about *verifiability*. They
 - **Skills-from-your-own-traces is the strongest cross-source signal.** Three independent parties converged on it: Uber ("auto-generate skill updates from collected traces"), poteto (`/automate-me`, `/reflect`), and — before any of them — SmolPaws' nightly dreaming. When a production team, a frontier practitioner, and our own design land on the same mechanism, it's real. This is the most directly actionable idea in the dir.
 - **Depth-first vs. breadth-first (poteto vs. Yegge).** poteto: naive parallelism "just makes them write slop faster" — go deep, verify, *then* automate. Yegge: runs 50 agents wide, but only survives via heavy governance. Not a contradiction — both say **un-governed/un-verified breadth is token-waste**. The unlock in every case is trust earned through verification.
 - **Verification is the named bottleneck.** poteto states it plainly ("the bottleneck with agents is verification"); Uber operationalizes it (eval benchmarks per managed agent, uReview F1); Rosen makes the *output* verifiable. If the directory has one thesis, it's this: **autonomy scales with verifiability, and verification is the hard part.**
+- **The human doesn't disappear, they move up (Ng).** Every other source is about the machine; Ng insists the operator must still know the tradeoffs (data model, architecture, security, scale) or the agent makes them blindly. His "the AI doesn't know what it doesn't know" is the prerequisite to verification: **you can't verify against a spec you didn't know to write.** Humans set the tradeoff targets; the factory + verification confirm they were met.
 
 ## Related in this repo
 

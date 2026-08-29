@@ -11,7 +11,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 10 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 2 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, behavior→code maps |
-| `notes/agentic-engineering/` | 5 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
+| `notes/agentic-engineering/` | 6 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 3 | Mechanistic interpretability — steering/ablation, safety-entanglement, and the philosophy of not over-reading it |
