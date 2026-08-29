@@ -6,7 +6,7 @@ It currently contains **48 paper notes**:
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
 - **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
-- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (1 so far)
+- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (2 so far)
 
 ## Scope
 - **Source:** arXiv only
@@ -127,6 +127,7 @@ A few files are tagged as **borderline include** because they are clearly about 
 
 ### Post-cutoff targeted additions
 - [Can a Language Model Learn Facts Continually in Its Weights?](./can-a-language-model-learn-facts-continually-in-its-weights.md)
+- [WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](./wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution.md) — Google; three-layer raw/wiki/skills workspace; ablations show the persistent wiki (not the skill edits) carries most of the gain.
 
 ## Still likely candidates for a future pass
 This corpus is broad after pass three, but it is still not literally exhaustive. Good future targets include:
