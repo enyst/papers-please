@@ -15,7 +15,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 3 | Mechanistic interpretability — steering/ablation, safety-entanglement, and the philosophy of not over-reading it |
-| `notes/verification/` | 1 | Formal verification of generated code |
+| `notes/verification/` | 2 | Formal verification of generated code — function-level and repository-level benchmarks (vericoding) |
 | `notes/misc/` | 9 | Everything that doesn't fit a category yet (evaluation, survey simulation, ensembling, context-acquisition/active-inference, multi-agent emergence) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
