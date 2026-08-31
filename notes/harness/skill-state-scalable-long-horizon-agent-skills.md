@@ -61,6 +61,10 @@ Models: Gemini-3-Flash, Gemma-4-31B, Qwen-3-8B (temp 0 for reproducibility). Ben
 - **"Discard all intermediate reasoning" risks losing genuinely reusable insight** across steps if the schema under-captures it — the schema *is* the memory, so a bad schema silently drops signal. (Contrast WikiSkill, which keeps immutable raw traces precisely so nothing is lost.)
 - **Benchmarks include a self-authored one (SkillExecBench).** Public results (CTF, τ-Bench) are the load-bearing evidence; weight those.
 
+## See also (one-liner, not yet a full note)
+
+- **Prime Agent: A Self-Improving RLM Harness** ([arXiv:2608.23552](https://arxiv.org/abs/2608.23552), Prime Intellect, 2026-08-24) — **open-source** long-horizon harness and the runnable reference implementation of the "compounding harness" idea: a persistent IPython REPL (Recursive Language Model abstraction) for programmatic context processing, plus a **Continual Harness** that persists histories/memories/skills/prompts/subagent specs *across* trajectories so improvements accumulate. Raises ARC-AGI-3 RHAE Best@1 30% → 95.5% holding the model fixed; matches/beats native harnesses on long-context coding, GPU-kernel gen, nanoGPT speedruns. Same family as this note + Scroll (`../memory/context-as-an-environment-scroll-programmatic-context-management.md`); if we want code to actually run for the state-out-of-prompt idea, start here.
+
 ## Related
 
 - `code-as-agent-harness.md`, `harness-handbook.md` — same "harness = what makes an agent operational" lens; this is a concrete harness-runtime design.

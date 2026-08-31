@@ -6,7 +6,7 @@ It currently contains **48 paper notes**:
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
 - **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
-- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (2 so far)
+- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (5 so far)
 
 ## Scope
 - **Source:** arXiv only
@@ -128,6 +128,9 @@ A few files are tagged as **borderline include** because they are clearly about 
 ### Post-cutoff targeted additions
 - [Can a Language Model Learn Facts Continually in Its Weights?](./can-a-language-model-learn-facts-continually-in-its-weights.md)
 - [WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](./wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution.md) — Google; three-layer raw/wiki/skills workspace; ablations show the persistent wiki (not the skill edits) carries most of the gain.
+- [The Compaction Cliff in Long-Running AI Agent Memory](./the-compaction-cliff-in-long-running-ai-agent-memory.md) — compaction summarizes safety rules at the same rate as logs (53%→10% over 5 rounds); Knowledge Triage routes each knowledge type through its own retention policy.
+- [Context as an Environment (Scroll)](./context-as-an-environment-scroll-programmatic-context-management.md) — Alibaba; session = append-only event log + persistent Python kernel; model programs its own context, only printed projections enter the prompt; eviction is recoverable.
+- [Recuris: Recursive Experiential-Working Memory Evolution](./recuris-recursive-experiential-working-memory-evolution.md) — split working/experiential memory grounds skill selection in current state and localizes failures to a memory component; validation-gated meta-agent updates.
 
 ## Still likely candidates for a future pass
 This corpus is broad after pass three, but it is still not literally exhaustive. Good future targets include:

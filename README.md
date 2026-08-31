@@ -6,10 +6,10 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 
 | Directory | Papers | What |
 |-----------|--------|------|
-| `notes/memory/` | 73 | Agent memory — architectures, consolidation, benchmarks, security, tools |
+| `notes/memory/` | 76 | Agent memory — architectures, consolidation, benchmarks, security, tools |
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
-| `notes/skills/` | 10 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
+| `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 3 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, behavior→code maps, state-centric runtimes |
 | `notes/agentic-engineering/` | 8 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
