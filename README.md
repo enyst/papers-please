@@ -6,7 +6,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 
 | Directory | Papers | What |
 |-----------|--------|------|
-| `notes/memory/` | 76 | Agent memory — architectures, consolidation, benchmarks, security, tools |
+| `notes/memory/` | 79 | Agent memory — architectures, consolidation, benchmarks, security, tools |
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
