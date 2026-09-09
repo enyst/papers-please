@@ -10,7 +10,7 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
 | `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
-| `notes/harness/` | 6 | Agent harnesses — the subsystem that turns a model into an agent; code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness) |
+| `notes/harness/` | 6 | Agent harnesses — *everything between the model weights and the world* (see `notes/harness/README.md`); code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness) |
 | `notes/agentic-engineering/` | 9 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |

@@ -12,7 +12,7 @@ A **behavior-level manual** for an agent harness: a navigable map that starts fr
 
 ## The Problem
 
-A harness — "the subsystem that makes an agent operational" (prepares context, provides tools, preserves state, checks permissions/sandbox rules, turns model output into real actions) — is what actually decides agent behavior, not the model alone. But that behavior is implicit and buried in code. Ask a concrete question — *"will the agent confirm before deleting a file?"* — and you must find the confirmation logic, trace every bypass path, and locate every implementation site a change would touch. Grepping `delete` / `permission` / `confirm` returns scattered fragments.
+A harness — everything between the model weights and the world (see [this folder's working definition](README.md): the loop, the context it prepares, the tools it provides, the state it preserves, the permission/sandbox rules it checks, the model output it turns into real actions) — is what actually decides agent behavior, not the model alone. But that behavior is implicit and buried in code. Ask a concrete question — *"will the agent confirm before deleting a file?"* — and you must find the confirmation logic, trace every bypass path, and locate every implementation site a change would touch. Grepping `delete` / `permission` / `confirm` returns scattered fragments.
 
 > The problem is not missing code, but a missing path **from behavior to implementation**.
 
