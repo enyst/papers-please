@@ -99,20 +99,61 @@ With a flag on whether a later full read looks worth it:
 
 ---
 
-## The classics (not part of the issue, but its bedrock)
+## Foundations & the LLM-understanding debate (not in the issue, but its bedrock)
 
-Two foundational philosophy-of-mind papers this whole issue stands on — added because
-every "does it *understand*?" / "is there an 'I'?" argument here is downstream of them:
+Companion classics — added because every "does it *understand*?" / "is there an 'I'?" /
+"is it just statistics?" argument in the issue is downstream of these. Full texts were
+pulled where reachable; each note links its source. Grouped by role:
 
+**The founding question**
+- **Turing, "Computing Machinery and Intelligence" (1950)** (`turing-computing-machinery-and-intelligence.md`)
+  — swaps "can machines think?" for the operational imitation game; rebuts nine
+  objections; proposes the *child machine* (learning). The behavioural standard the whole
+  debate contests.
+
+**Consciousness / the "I"** (phenomenal side)
 - **Nagel, "What Is It Like to Be a Bat?" (1974)** (`nagel-what-is-it-like-to-be-a-bat.md`)
-  — consciousness is irreducibly *subjective* ("something it is like to be"); objective
-  description can't capture it. The phenomenal-consciousness anchor. Foil to Levin's
-  substrate-neutral functionalism (#9).
-- **Searle, "Minds, Brains, and Programs" — the Chinese Room (1980)**
-  (`searle-minds-brains-and-programs-chinese-room.md`) — running the right program
-  (syntax) isn't sufficient for understanding (semantics). The direct ancestor of the
-  grounding/understanding papers (the l33t task is an empirical Chinese Room; "Is there
-  an 'I' in AI?" inverts it).
+  — consciousness is irreducibly *subjective*; objective description can't capture it.
+- **Chalmers, "Facing Up to the Problem of Consciousness" (1995)** (`chalmers-facing-up-hard-problem.md`)
+  — names the *hard problem* (why functions are accompanied by experience). Systematizes Nagel.
+- **Block, "On a Confusion about a Function of Consciousness" (1995)** (`block-two-concepts-of-consciousness.md`)
+  — splits *access* vs *phenomenal* consciousness — the precision tool for talking about
+  machine minds without equivocating.
+- **Dennett, "Real Patterns" (1991)** (`dennett-real-patterns.md`) — the deflationary
+  counter-pole: a pattern is real iff it compresses the data; minds are real patterns, not
+  fundamental things. Underpins "emergence" done rigorously.
+
+**Meaning, syntax, grounding** (the "does it understand?" lineage)
+- **Searle, "Minds, Brains, and Programs" — the Chinese Room (1980)** (`searle-minds-brains-and-programs-chinese-room.md`)
+  — syntax isn't sufficient for semantics.
+- **Harnad, "The Symbol Grounding Problem" (1990)** (`harnad-symbol-grounding-problem.md`)
+  — formalizes Searle into a research problem; proposes grounding symbols bottom-up in
+  perception (neurosymbolic). The load-bearing classic for the grounding thread.
+- **Bender & Koller, "Climbing towards NLU" — the octopus test (2020)** (`bender-koller-climbing-towards-nlu-octopus.md`)
+  — meaning can't be learned from form alone. The modern, linguistics-grade version.
+- **Bender, Gebru et al., "Stochastic Parrots" (2021)** (`stochastic-parrots.md`) — the
+  "illusion of meaning" (partly *our* projection) + the cost/bias critique.
+
+**The live debate + the constructive (world-models / concept-formation) reply**
+- **Mitchell & Krakauer, "The Debate Over Understanding in AI's LLMs" (2023)** (`mitchell-krakauer-debate-over-understanding.md`)
+  — the best survey of the fault line (statistics vs causal mechanism); by two of this
+  issue's editors. Read right after the issue intro.
+- **Li et al., "Emergent World Representations" — Othello-GPT (2023)** (`othello-gpt-emergent-world-representations.md`)
+  — empirical: a next-token model builds a probeable, *causally-usable* board model. The
+  strongest reply to the skeptics.
+- **Lake, Ullman, Tenenbaum & Gershman, "Building Machines That Learn and Think Like People" (2017)** (`lake-building-machines-that-learn-and-think-like-people.md`)
+  — the manifesto behind theory-based RL: intuitive physics/psychology + compositional,
+  causal, learning-to-learn model-building.
+- **Lake, Salakhutdinov & Tenenbaum, "Human-level concept learning through probabilistic program induction" (2015)** (`lake-human-level-concept-learning-program-induction.md`)
+  — the empirical one-shot concept-learning result (BPL / Omniglot). Concept formation as
+  program synthesis. *Most on-target for Engel's concept-formation interest, with Lake 2017.*
+
+How they line up against the issue: **Turing** sets the behavioural bar; **Searle → Harnad
+→ Bender&Koller → Parrots** build the "no meaning without grounding" case (the l33t-task
+paper is their empirical echo); **Othello-GPT + the two Lake papers** are the constructive
+"structured/emergent world models" reply (parents of the theory-based-RL and
+representation-complexity notes); **Nagel/Chalmers/Block/Dennett** frame the
+consciousness/"I" axis (Nagel↔Levin, Chalmers↔Dennett as the poles).
 
 ---
 
