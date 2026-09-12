@@ -99,6 +99,23 @@ With a flag on whether a later full read looks worth it:
 
 ---
 
+## The classics (not part of the issue, but its bedrock)
+
+Two foundational philosophy-of-mind papers this whole issue stands on — added because
+every "does it *understand*?" / "is there an 'I'?" argument here is downstream of them:
+
+- **Nagel, "What Is It Like to Be a Bat?" (1974)** (`nagel-what-is-it-like-to-be-a-bat.md`)
+  — consciousness is irreducibly *subjective* ("something it is like to be"); objective
+  description can't capture it. The phenomenal-consciousness anchor. Foil to Levin's
+  substrate-neutral functionalism (#9).
+- **Searle, "Minds, Brains, and Programs" — the Chinese Room (1980)**
+  (`searle-minds-brains-and-programs-chinese-room.md`) — running the right program
+  (syntax) isn't sufficient for understanding (semantics). The direct ancestor of the
+  grounding/understanding papers (the l33t task is an empirical Chinese Room; "Is there
+  an 'I' in AI?" inverts it).
+
+---
+
 ## Why this issue is in the corpus (relevance to our work)
 
 It's the philosophy-and-cognitive-science backbone for the questions SmolPaws/Engel care
