@@ -1,5 +1,19 @@
 # Interesting Blog Posts
 
+## 2026-04-04 - [LLM Wiki — a pattern for LLM-maintained personal knowledge bases](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (Andrej Karpathy, gist; from his [X post](https://x.com/karpathy/status/2039805659525644595), 2026-04-02)
+Karpathy's "idea file" (meant to be copy-pasted into your coding agent, which then builds the specifics with you). The core claim: **RAG doesn't accumulate** — the LLM rediscovers knowledge from scratch every query, nothing is built up. Replace it with a **persistent, compounding wiki that the LLM writes and maintains** while you do sourcing, exploration, and asking good questions. "Obsidian is the IDE; the LLM is the programmer; the wiki is the codebase."
+
+**Three-layer architecture:**
+1. **Raw sources** — your curated source docs. *Immutable*; the LLM reads, never edits. Source of truth.
+2. **The wiki** — a directory of LLM-generated markdown (summaries, entity pages, concept pages, comparisons, an overview/synthesis). LLM owns it entirely: creates pages, updates on new sources, maintains cross-refs and consistency.
+3. **The schema** — a `CLAUDE.md`/`AGENTS.md` telling the LLM how the wiki is structured + the workflows. "What makes the LLM a disciplined wiki maintainer rather than a generic chatbot." Co-evolved over time.
+
+**Three operations:** **Ingest** (drop a source → LLM summarizes, files, updates 10–15 pages, appends to log), **Query** (search wiki → synthesize with citations → *file good answers back as new pages so explorations compound*), **Lint** (periodic health-check: contradictions, stale claims superseded by newer sources, orphan pages, missing concept pages / cross-refs, data gaps).
+
+**Two navigation files:** `index.md` (content catalog — page + one-line summary + metadata, by category; read first on a query; "works surprisingly well at ~100 sources / hundreds of pages and avoids embedding-based RAG") and `log.md` (append-only chronological, consistent prefix like `## [2026-04-02] ingest | Title` so `grep "^## \[" log.md | tail -5` works). Optional: a local markdown search engine ([qmd](https://github.com/tobi/qmd), hybrid BM25/vector, CLI + MCP) once the index isn't enough.
+
+**Relevance to us (high):** this is the external, battle-tested version of the "make our knowledge a wiki" idea (Engel, 2026-09-12) and it maps almost 1:1 onto how we already work — `papers-please` is *already* an LLM-maintained wiki (per-topic READMEs = `index.md`; frontmatter + one-line takes; the world-models-agi README even groups + cross-links). What we lack is Karpathy's **schema** file (an `AGENTS.md` codifying the ingest/query/lint workflow so it's consistent across sessions), the **log.md** timeline, and the **query-answers-filed-back** habit. Also the "index-over-embeddings" point validates our no-RAG, plain-markdown-in-git approach. Community writeup: [starmorph guide](https://blog.starmorph.com/blog/karpathy-llm-wiki-knowledge-base-guide). Ties directly to Letta's context-constitution "index, don't copy" principle we already use in dreaming.
+
 ## 2026-09-09 - [Harness Engineering — a 21-paper genealogy](https://academy.dair.ai/papers/collections/harness-engineering) (DAIR.AI, from YC Paper Club: Harness Edition, 2026-08-26)
 A curated reading list that defines a **harness** as *everything between the model weights and the world* — the loop, the context it assembles, the tools/skills it can reach, the sub-agents it can spawn, and lately the harness code itself. The spine of the list is one claim we care about a lot: **the same weight file scores 30% or 95% on the same benchmark depending only on what surrounds it** (their running example: Prime Agent takes ARC-AGI-3 from 30% → 95.5% on identical weights). It's organized as a genealogy in five acts — read-in-order, each stage "gives the loop something new it is allowed to do":
 
