@@ -6,8 +6,10 @@ Issue: <https://royalsocietypublishing.org/rsta/issue/384/2320>
 
 18 primary articles (one further item in the issue is an unrelated *correction* to a
 2024 packaging-films paper and is intentionally not noted here). Every article gets a
-note; the 8 I judged most interesting were **read in full**, the other 10 are recorded
-at **abstract depth** with an honest flag on whether they're worth a later full read.
+note; **11 were read in full** (the original 8, plus narrative world models, brain
+inner-time, and unconventional embodiments — the latter three promoted at Engel's
+request on 2026-09-12), and the remaining 7 are recorded at **abstract depth** with an
+honest flag on whether they're worth a later full read.
 
 ## What the issue is about
 
@@ -24,9 +26,10 @@ Read `world-models-agi-life-mind-continuity.md` first — it's the editors' own 
 
 ---
 
-## Final list A — read in full (8)
+## Final list A — read in full (11)
 
-Ranked by how much they earned the full read (most compelling first):
+Ranked by how much they earned the full read (most compelling first). The last three
+were promoted from abstract-depth at Engel's request (2026-09-12).
 
 1. **AI for science: the easy and hard problems** (`ai-for-science-easy-and-hard-problems.md`)
    — the "easy problem" = optimize a given objective; the **"hard problem = the problem
@@ -56,9 +59,21 @@ Ranked by how much they earned the full read (most compelling first):
    as self-regularization.
 8. **World models, AGI and the hard problems of life–mind continuity** (the intro)
    (`world-models-agi-life-mind-continuity.md`) — the editorial / conceptual map. Read
-   first for orientation even though it's ranked last as "new content."
+   first for orientation even though it's ranked last among the original 8.
+9. **Brains and where else? Theories of consciousness to unconventional embodiments**
+   (`theories-of-consciousness-unconventional-embodiments.md`) — Levin: a substrate audit
+   of the major consciousness theories; almost nothing in them actually requires neurons,
+   so continuity/"mind everywhere" is the null hypothesis. The issue's substrate-independence pole.
+10. **What physics offers for AI: the brain's inner time** (`what-physics-offers-ai-brain-inner-time.md`)
+    — Northoff: the brain's spontaneous, scale-free "inner time" actively entrains to the
+    world; machines lack it and are "locked out of time and world." The temporality pole
+    (and the direct foil to #9).
+11. **Two kinds of narrative world models** (`two-kinds-of-narrative-world-models.md`)
+    — Breithaupt: an "experience-focused" world model defined by *not knowing*, enabling a
+    **self-update**; AI's missing ingredient is a *standpoint*/positionality. Ties to
+    memory/identity revision.
 
-## Final list B — recorded at abstract depth (10)
+## Final list B — recorded at abstract depth (7)
 
 With a flag on whether a later full read looks worth it:
 
@@ -74,18 +89,11 @@ With a flag on whether a later full read looks worth it:
 - **On the representation complexity of model-based vs model-free RL**
   (`representation-complexity-model-based-vs-model-free-rl.md`) — formal proof: model
   cheap to represent, optimal Q-function exponentially expensive. The theory companion to #2.
-- **What physics offers for AI: the brain's inner time** (`what-physics-offers-ai-brain-inner-time.md`)
-  — Dreyfus-flavoured "AI is locked out of time and world." The temporality/embodiment argument.
-- **Two kinds of narrative world models** (`two-kinds-of-narrative-world-models.md`)
-  — narrative models of past episodes vs future transformative experience → self-update.
 - **A 'good' regulator may provide a world model** (`good-regulator-world-model.md`)
   — the cybernetic Every Good Regulator Theorem recast for modern AI.
 - **Topological constraints on self-organization** (`topological-constraints-on-self-organization.md`)
   — stat-mech of when local interactions sustain global order; bonus: a physics reason
   autoregressive models struggle with long sequences.
-- **Brains and where else? Theories of consciousness to unconventional embodiments**
-  (`theories-of-consciousness-unconventional-embodiments.md`) — Levin: minds may precede
-  brains; most ToC principles aren't brain-specific.
 - **Cognitive glues are shared models of relative scarcities** (`cognitive-glues-economics-collective-intelligence.md`)
   — the price system as the economy's "cognitive glue"; template for all collective-mind coordination.
 
@@ -103,6 +111,6 @@ It complements `notes/memory/` (a learned world model *is* a compact reusable me
 
 ## Method note
 
-Table of contents + abstracts + the 8 full texts were read via the browser (the
+Table of contents + abstracts + the 11 full texts were read via the browser (the
 publisher is behind Cloudflare; direct fetch/jina were blocked). Abstract text is quoted
 from the article pages; the "why it matters" commentary is mine.
