@@ -29,6 +29,21 @@ format and the ingest / query / lint workflows. Maintenance history is in
 
 *(Counts drift as notes are added; refresh the row you touch — `ls notes/<topic>/*.md | wc -l`.)*
 
+## Two layers: notes and the synthesized wiki
+
+- **`notes/**`** — the raw layer: one note per paper/source, plus per-topic `README.md` indexes
+  and the cross-cutting `atlas-*.md` pages. This is the source of truth and where most work
+  happens.
+- **[`wiki/`](./wiki/)** — the published *prose synthesis* layer: full topic articles that read
+  as a coherent whole, built across many notes (currently covering agent **memory**). Start at
+  [`wiki/index.md`](./wiki/index.md).
+- **[`sources/`](./sources/)** — the pattern itself: Karpathy's original
+  [LLM Wiki instructions](./sources/karpathy-llm-wiki.md) (saved verbatim) and our
+  [article-generation methodology](./sources/METHODOLOGY.md).
+
+*(The `wiki/` and `sources/` layers were folded in from the separate `llm-wiki` prototype on
+2026-09-13.)*
+
 ## The wider atlas — our knowledge lives in four stores
 
 This wiki (external research) is one of four knowledge stores. They stay **federated, not

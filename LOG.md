@@ -5,6 +5,7 @@ Append-only timeline of wiki maintenance. Newest first. One line per action; kee
 Ops: `ingest` (added a source), `query` (filed an answer/synthesis back), `lint`
 (health-check), `meta` (schema/structure change).
 
+## [2026-09-13] meta | Folded the separate `llm-wiki` prototype in: added `sources/` (karpathy-llm-wiki.md verbatim + METHODOLOGY.md) and `wiki/` (3 prose syntheses: what-is-agent-memory, memory-consolidation, memory-security, + index/sources). Fixed dead links to never-written articles; wired README/AGENTS "two layers". llm-wiki repo retired to a tombstone.
 ## [2026-09-13] ingest | Prompt-injection arXiv sweep (2607–2609) → 8 notes in notes/prompt-injection/ (CapScope, test-time-search, ECLIPSE, AgentDrift, DriftNet, No-Box/MCP, Semantic Overlays, CoRL, MMPIBench multimodal) + Simon Willison tag tracker in README
 ## [2026-09-13] query  | atlas: grounding & understanding → filed notes/atlas-grounding-understanding.md
 ## [2026-09-13] query  | atlas: agent harness → filed notes/atlas-harness.md

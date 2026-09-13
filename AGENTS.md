@@ -1,7 +1,8 @@
 # AGENTS.md — how to maintain this wiki
 
-This repo is an **LLM-maintained knowledge wiki** (Karpathy's "LLM Wiki" pattern:
-`blogs/interesting-posts.md` → 2026-04-04). You (the agent) write and maintain the notes;
+This repo is an **LLM-maintained knowledge wiki** (Karpathy's "LLM Wiki" pattern — original
+saved at `sources/karpathy-llm-wiki.md`; also noted in `blogs/interesting-posts.md` →
+2026-04-04). You (the agent) write and maintain the notes;
 the human does sourcing, exploration, and asks the questions. This file is the **schema**:
 the conventions and workflows that make you a disciplined maintainer instead of a generic
 chatbot. Read it before ingesting a source, answering a query against the corpus, or
@@ -23,9 +24,11 @@ markdown catalog you read first, then drill into. No RAG infra.
 ## Three layers
 
 1. **Raw sources** — `pdfs/`, `transcripts/`. Immutable; read, never edit. Source of truth.
-2. **The wiki** — `notes/**` + `blogs/interesting-posts.md`. You own this entirely.
-3. **The schema** — this file, plus the top-level `README.md` (catalog) and each
-   `notes/<topic>/README.md` (per-topic index).
+2. **The wiki** — `notes/**` + `blogs/interesting-posts.md` (per-source notes + atlas pages),
+   and `wiki/**` (published prose syntheses, currently agent-memory). You own this entirely.
+3. **The schema** — this file, plus the top-level `README.md` (catalog), each
+   `notes/<topic>/README.md` (per-topic index), and `sources/METHODOLOGY.md` (how to write a
+   `wiki/` article) + `sources/karpathy-llm-wiki.md` (the pattern, verbatim).
 
 ## Layout
 
@@ -38,8 +41,13 @@ notes/<topic>/                one directory per topic
   <slug>.md                   one note per paper/source
 notes/<single-file>.md        legacy flat reading lists (long-context-and-prompting.md, ...)
 blogs/interesting-posts.md    dated notes on blog posts / tweets / talks (newest first)
+wiki/                         published prose syntheses (index.md + topic articles)
+sources/                      the pattern itself: karpathy-llm-wiki.md + METHODOLOGY.md
 pdfs/ transcripts/            raw sources (immutable)
 ```
+
+When a memory note materially changes the synthesis, update the relevant `wiki/` article too
+(see `sources/METHODOLOGY.md`) — don't let the prose layer drift from the notes.
 
 ## Note format (keep it consistent)
 
