@@ -5,6 +5,8 @@ Append-only timeline of wiki maintenance. Newest first. One line per action; kee
 Ops: `ingest` (added a source), `query` (filed an answer/synthesis back), `lint`
 (health-check), `meta` (schema/structure change).
 
+## [2026-09-13] query  | atlas: grounding & understanding → filed notes/atlas-grounding-understanding.md
+## [2026-09-13] query  | atlas: agent harness → filed notes/atlas-harness.md
 ## [2026-09-13] query  | "make our knowledge a wiki" → filed notes/atlas-agent-memory.md (first cross-store atlas page)
 ## [2026-09-13] meta | Adopted Karpathy LLM-Wiki schema: added AGENTS.md + this LOG.md; README "wider atlas" section
 ## [2026-09-12] ingest | Karpathy "LLM Wiki" pattern → blogs/interesting-posts.md

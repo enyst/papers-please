@@ -43,10 +43,12 @@ merged** — each has a different owner and change-rate. Link across them; don't
 | **Letta / memory philosophy** | `smolpaws/docs/context-constitution.md`, `letta-constitution-original.md` | Context-management principles; applied in SmolPaws' dreaming/heartbeat | smolpaws repo |
 | **Private durable memory** | `~/.smolpaws/memory/` | SmolPaws' own facts/daily memory (not in git) | heartbeat/dreaming |
 
-Cross-cutting threads worth an atlas page when they earn one (e.g. **agent memory**: Letta
-constitution ↔ `notes/memory/` ↔ SmolPaws dreaming ↔ the concept-formation papers in
-`notes/world-models-agi/`). Build these as *query answers filed back* (see `AGENTS.md` →
-Query), not up front.
+**Atlas pages** — cross-cutting threads mapped across the stores (links + synthesis, not
+copies). Built as *query answers filed back* (see `AGENTS.md` → Query), only when a real
+question earns one:
+- [`notes/atlas-agent-memory.md`](./notes/atlas-agent-memory.md) — Letta principles ↔ `notes/memory/` ↔ SmolPaws dreaming ↔ concept-formation.
+- [`notes/atlas-harness.md`](./notes/atlas-harness.md) — "everything between weights and world"; research corpus ↔ skills ↔ SmolPaws as a live harness.
+- [`notes/atlas-grounding-understanding.md`](./notes/atlas-grounding-understanding.md) — does fluent output = understanding? Turing → Searle/Harnad/Bender → Othello-GPT/Lake → Mitchell&Krakauer.
 
 ## Writing principle
 
