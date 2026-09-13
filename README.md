@@ -2,13 +2,19 @@
 
 Curated research paper notes. Each paper has structured frontmatter (title, authors, arXiv link, mechanism summary, one-line take) and a short analysis.
 
+This is an **LLM-maintained knowledge wiki** (Karpathy's "LLM Wiki" pattern). If you are an
+agent working here, read **[`AGENTS.md`](./AGENTS.md)** first — it's the schema: the note
+format and the ingest / query / lint workflows. Maintenance history is in
+**[`LOG.md`](./LOG.md)**.
+
 ## Topics
 
 | Directory | Papers | What |
 |-----------|--------|------|
 | `notes/memory/` | 79 | Agent memory — architectures, consolidation, benchmarks, security, tools |
+| `notes/world-models-agi/` | 31 | World models, understanding, consciousness, concept formation — RSTA 384(2320) theme issue + the foundational classics (Turing, Nagel, Searle, Harnad, Chalmers, Dennett, Block, Bender, Mitchell&Krakauer, Othello-GPT, Lake) |
 | `notes/prompt-injection/` | 13 | Prompt injection attacks and defenses — approaches with pros/cons |
-| `notes/prompt-enforcement/` | 9 | Deterministic enforcement of agent instructions (Prompt Shield research) |
+| `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 6 | Agent harnesses — *everything between the model weights and the world* (see `notes/harness/README.md`); code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness) |
 | `notes/agentic-engineering/` | 9 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
@@ -20,6 +26,27 @@ Curated research paper notes. Each paper has structured frontmatter (title, auth
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
 | `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
+
+*(Counts drift as notes are added; refresh the row you touch — `ls notes/<topic>/*.md | wc -l`.)*
+
+## The wider atlas — our knowledge lives in four stores
+
+This wiki (external research) is one of four knowledge stores. They stay **federated, not
+merged** — each has a different owner and change-rate. Link across them; don't copy
+(Letta's "index, don't copy"). The map:
+
+| Store | Location | What | Maintained by |
+|-------|----------|------|---------------|
+| **Research wiki** *(here)* | `papers-please/` | External papers, blogs, talks, digested for reuse | this repo (`AGENTS.md`) |
+| **Identity + system** | `smolpaws/docs/` | SmolPaws identity/soul/ops + architecture (SPEC, agent-server, ingress) | smolpaws repo |
+| **OpenHands** | [docs.openhands.dev](https://docs.openhands.dev/) + the SDK | The agent platform SmolPaws is built on | upstream (link, don't snapshot — it moves) |
+| **Letta / memory philosophy** | `smolpaws/docs/context-constitution.md`, `letta-constitution-original.md` | Context-management principles; applied in SmolPaws' dreaming/heartbeat | smolpaws repo |
+| **Private durable memory** | `~/.smolpaws/memory/` | SmolPaws' own facts/daily memory (not in git) | heartbeat/dreaming |
+
+Cross-cutting threads worth an atlas page when they earn one (e.g. **agent memory**: Letta
+constitution ↔ `notes/memory/` ↔ SmolPaws dreaming ↔ the concept-formation papers in
+`notes/world-models-agi/`). Build these as *query answers filed back* (see `AGENTS.md` →
+Query), not up front.
 
 ## Writing principle
 
