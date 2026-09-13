@@ -109,6 +109,48 @@ This strengthens the case for enforcing provenance and authority outside the mod
 | **Fundamental limit** | Can only enforce constraints that are expressible as deterministic checks. Many safety properties (tone, relevance, correctness) are not. |
 | **Papers** | [AgentSpec](../prompt-enforcement/agentspec-customizable-runtime-enforcement-for-safe-and-reliable-llm-agents.md), [VeriGuard](../prompt-enforcement/veriguard-enhancing-llm-agent-safety-via-verified-code-generation.md) |
 
+## September 2026 additions — the agent-trajectory wave (arXiv sweep, 2607–2609)
+
+A coherent 2026 cluster shifting from "is this text malicious?" to **the agent's tool-call
+trajectory** as the unit of attack, detection, and defense — plus two root-cause defenses.
+All recorded at abstract depth (flagged for full reads).
+
+**Attacks / threat-model reframes (static defenses are a mirage against adaptive attackers):**
+- [Rethinking IPI as a Test-Time Search Problem](rethinking-indirect-prompt-injection-as-test-time-search.md) — attack success scales with attacker *compute*; evaluate resistance vs a search budget, not pass/fail.
+- [CoRL: Co-Evolutionary RL for adaptive attacks & defenses](corl-co-evolutionary-rl-adaptive-indirect-injection-attacks-defenses.md) — co-train attacker+defender as a Markov game; keep the evolved attackers as a red-team bank.
+- [ECLIPSE: self-evolving stealthy PI on long-horizon agents](eclipse-self-evolving-stealthy-prompt-injection-long-horizon.md) — sandbox-verify a tool chain, deliver as one clean prompt; beats single-instruction detectors.
+- [Multimodal PI on agentic frameworks (MMPIBench)](multimodal-prompt-injection-agentic-frameworks-mmpibench.md) — image + **audio** carriers; the *model*, not the framework, decides; planning step is where most attacks die; audio is under-defended.
+
+**Detection / localization (trajectory-level):**
+- [AgentDrift: step-labeled benchmark of injection-hijacked trajectories](agentdrift-step-labeled-benchmark-injection-hijacked-trajectories.md) — 71k steps labeled benign/injection-point/hijacked/failed.
+- [DriftNet: dual-head trajectory Transformer](driftnet-dual-head-trajectory-transformer-detect-localize.md) — model-agnostic; is-it-compromised + which-steps in one pass (synthetic-benchmark caveat).
+
+**Root-cause defenses (beyond detection):**
+- [CapScope — Authority Is Not a String (capability-scoped harness)](capscope-authority-is-not-a-string-capability-scoped-harness.md) — kill injection at the **authorization** layer: typed capabilities held outside the model context, checked per tool call; injected effect 33–47/75 → 3/75. *Best-aligned for our multi-agent/automation setup; strong full-read candidate.*
+- [Semantic Overlays — annotations beyond tokens & steering](semantic-overlays-annotations-beyond-tokens-and-steering.md) — an out-of-band span-identity channel (learned adapters on the residual stream) that tokens can't forge; the representation-level answer to role confusion.
+- [No-Box vulnerability analysis for MCP servers](no-box-vulnerability-analysis-indirect-injection-mcp-servers.md) — audit a third-party MCP server for injection risk from its *description alone*.
+
+Where they land in the defense taxonomy: CapScope + No-Box strengthen layer 4 (infra/tool
+boundaries) and the "hard boundary, not soft guardrail" thesis; DriftNet/AgentDrift are a new
+layer-2 (trajectory detection); Semantic Overlays is a model-internal layer-3 fix; the
+attack papers are the arms-race evidence behind the "still unsolved" status.
+
+## Field reports — Simon Willison's `prompt-injection` tag (external tracker)
+
+Simon Willison ([simonwillison.net/tags/prompt-injection](https://simonwillison.net/tags/prompt-injection/),
+**162 posts**) is the best running feed of real-world incidents and lab responses — the
+practitioner complement to the arXiv corpus. Related tags worth watching:
+[`lethal-trifecta`](https://simonwillison.net/tags/lethal-trifecta/) (private data + untrusted
+content + exfiltration = the danger combo), [`exfiltration-attacks`](https://simonwillison.net/tags/exfiltration-attacks/),
+[`jailbreaking`](https://simonwillison.net/tags/jailbreaking/). Notable recent items (2026):
+- *Breaking Claude Code Opus 5 Auto Mode* (Johann Rehberger) — ~80% attack via zip→`struct.py` shadowing; debated as "confused environment" vs classic PI.
+- *Stealing Reasoning Traces from Proprietary LLM APIs* — replay encrypted CoT into a weaker sibling to recover plaintext reasoning; models treat their own reasoning traces as sacrosanct.
+- The PromptArmor incident stream: Copilot Cowork / Claude Cowork / Superhuman / Google Antigravity / Snowflake Cortex — all *exfiltration/sandbox-escape* field reports.
+- *MCP Colors* (Tim Kellogg) — systematically color-tag trust to manage injection risk (design pattern).
+
+(Not filed as individual notes — they're a live feed; check the tag directly. The lethal-trifecta
+frame is the one to internalize for SmolPaws' own untrusted-inbound handling.)
+
 ## The Honest Assessment
 
 No single defense solves prompt injection. The fundamental issue is that LLMs process instructions and data in the same modality (natural language), and there is no way to create a perfect separation within the model.
