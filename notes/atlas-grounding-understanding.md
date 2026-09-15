@@ -104,6 +104,13 @@ and exactly the risk when we present a charming agent like SmolPaws.
 - Reconcile Othello-GPT (structure emerges from form) with Bender & Koller (meaning can't
   come from form) — where exactly is the line?
 
+## Related outside the corpus
+- Dileep George, **"Amelia Bedelia and AGI Safety. Part 1"** (blog, note in
+  `blogs/interesting-posts.md` → 2026-09-15). Frames the *situated-commonsense* gap as an AGI-
+  safety issue: misunderstanding intent (Amelia dressing a raw chicken) is not value-
+  misalignment, and human-like causal world-models buy *both* capability and controllability.
+  Same concept-formation thread; opinion essay, not evidence.
+
 ## How to extend this atlas
 Maps, not copies. Add `notes/atlas-<thread>.md` only when a real question earns it; log a
 `query` entry in `LOG.md`.
