@@ -105,11 +105,17 @@ and exactly the risk when we present a charming agent like SmolPaws.
   come from form) — where exactly is the line?
 
 ## Related outside the corpus
-- Dileep George, **"Amelia Bedelia and AGI Safety. Part 1"** (blog, note in
-  `blogs/interesting-posts.md` → 2026-09-15). Frames the *situated-commonsense* gap as an AGI-
-  safety issue: misunderstanding intent (Amelia dressing a raw chicken) is not value-
-  misalignment, and human-like causal world-models buy *both* capability and controllability.
-  Same concept-formation thread; opinion essay, not evidence.
+Dileep George blog pair (notes in `blogs/interesting-posts.md` → 2026-09-15), same
+concept-formation thread; opinion essays, not evidence:
+- **"Ingredients of understanding"** (2023) — the *constructive* statement: understanding =
+  mental simulation on a **causal, counterfactual, rapidly-modifiable sensorimotor
+  world-model**; language is a "thin index into a shared sensorimotor codebook," not the
+  model itself. Four ingredients (build world-models, modify by thinking, seek info, hypothesize-
+  and-test). Directly restates Harnad grounding + Bender & Koller "not from form alone" as a
+  mechanism; explicitly caveats Othello-GPT and Winograd-pass-≠-commonsense-solved.
+- **"Amelia Bedelia and AGI Safety. Part 1"** (2024) — the same gap as a safety argument:
+  misreading intent (dressing a raw chicken) is *not* value-misalignment, and human-like
+  causal world-models buy *both* capability and controllability.
 
 ## How to extend this atlas
 Maps, not copies. Add `notes/atlas-<thread>.md` only when a real question earns it; log a
