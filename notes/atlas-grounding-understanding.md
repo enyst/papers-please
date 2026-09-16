@@ -105,7 +105,7 @@ and exactly the risk when we present a charming agent like SmolPaws.
   come from form) — where exactly is the line?
 
 ## Related outside the corpus
-Dileep George blog set of four (notes in `blogs/interesting-posts.md` → 2026-09-15/16),
+Dileep George blog set of five (notes in `blogs/interesting-posts.md` → 2026-09-15/16),
 same concept-formation thread; opinion essays and mechanism write-ups, not evidence:
 - **"Ingredients of understanding"** (2023) — the *constructive* statement: understanding =
   mental simulation on a **causal, counterfactual, rapidly-modifiable sensorimotor
@@ -127,6 +127,12 @@ same concept-formation thread; opinion essays and mechanism write-ups, not evide
   with a **finite runway**; searching for the principles is a real path too, and both deserve
   support. His own strongest counter-argument: maybe the transformer already *is* the
   aerodynamics. Plus the caution language's ELIZA effect "makes us see more than there is."
+- **"AI consciousness, qualia, and personhood"** (2025) — the position paper of the set:
+  consciousness as substrate-independent information processing, consciousness ≠ qualia, and
+  personhood defined by mortality + remembered lived experience (AIs don't qualify, and he
+  argues we shouldn't fake it). Asserted rather than argued; the sharpest content is in the
+  comments (Chalmers-zombie + fast-abacus arguments against substrate independence). Read it
+  with Block's access-vs-phenomenal seam in mind.
 
 ## How to extend this atlas
 Maps, not copies. Add `notes/atlas-<thread>.md` only when a real question earns it; log a

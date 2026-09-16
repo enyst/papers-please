@@ -5,6 +5,7 @@ Append-only timeline of wiki maintenance. Newest first. One line per action; kee
 Ops: `ingest` (added a source), `query` (filed an answer/synthesis back), `lint`
 (health-check), `meta` (schema/structure change).
 
+## [2026-09-16] ingest | Dileep George "AI consciousness, qualia, and personhood" (2025) → blogs/interesting-posts.md (consciousness = substrate-independent info processing; qualia partially shared; personhood = mortality + remembered experience; comment thread carries the zombie/abacus counter-argument) — cross-linked in atlas-grounding-understanding
 ## [2026-09-16] ingest | Dileep George "Space is a sensory-motor sequence in the hippocampus" (2024) → blogs/interesting-posts.md (CSCG latent graph from aliased sensory-motor sequences; place fields are the experimenter's projection; clones resolve ambiguity by temporal context; schemas) — cross-linked in atlas-grounding-understanding
 ## [2026-09-16] ingest | Dileep George "Welcome to the exciting dirigibles era of AI" (2023) → blogs/interesting-posts.md (balloon-vs-airplane: scaling is a real path with a finite runway; the source analogy both other George pieces cite) — cross-linked in atlas-grounding-understanding
 ## [2026-09-15] ingest | Dileep George "Ingredients of understanding" (2023) → blogs/interesting-posts.md (world-model = mental simulation, not text; language as thin index; 4 ingredients of the understanding machinery) — companion to the Amelia essay; cross-linked in atlas-grounding-understanding
