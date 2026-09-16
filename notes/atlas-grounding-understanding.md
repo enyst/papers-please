@@ -10,7 +10,7 @@ tags:
   - symbol-grounding
   - world-models
   - concept-formation
-updated: "2026-09-13"
+updated: "2026-09-16"
 ---
 
 # Atlas: Grounding & Understanding
@@ -105,8 +105,8 @@ and exactly the risk when we present a charming agent like SmolPaws.
   come from form) — where exactly is the line?
 
 ## Related outside the corpus
-Dileep George blog pair (notes in `blogs/interesting-posts.md` → 2026-09-15), same
-concept-formation thread; opinion essays, not evidence:
+Dileep George blog set of four (notes in `blogs/interesting-posts.md` → 2026-09-15/16),
+same concept-formation thread; opinion essays and mechanism write-ups, not evidence:
 - **"Ingredients of understanding"** (2023) — the *constructive* statement: understanding =
   mental simulation on a **causal, counterfactual, rapidly-modifiable sensorimotor
   world-model**; language is a "thin index into a shared sensorimotor codebook," not the
@@ -116,6 +116,17 @@ concept-formation thread; opinion essays, not evidence:
 - **"Amelia Bedelia and AGI Safety. Part 1"** (2024) — the same gap as a safety argument:
   misreading intent (dressing a raw chicken) is *not* value-misalignment, and human-like
   causal world-models buy *both* capability and controllability.
+- **"Space is a sensory-motor sequence in the hippocampus"** (2024) — the *mechanism* under
+  the argument: **CSCG** learns a latent graph from aliased egocentric sensory-motor
+  sequences, and place cells turn out to track *sequence position*, not location (place
+  fields are the experimenter's projection). A worked instance of grounding from structure —
+  no space, geometry, or location primitives anywhere in the model. Clones resolve
+  observation ambiguity by temporal context; schemas = the same graph with emissions rebound.
+- **"Welcome to the exciting dirigibles era of AI"** (2023) — where the balloon-vs-airplane
+  analogy comes from. Scaling an existing substrate (balloons → transformers) is a real path
+  with a **finite runway**; searching for the principles is a real path too, and both deserve
+  support. His own strongest counter-argument: maybe the transformer already *is* the
+  aerodynamics. Plus the caution language's ELIZA effect "makes us see more than there is."
 
 ## How to extend this atlas
 Maps, not copies. Add `notes/atlas-<thread>.md` only when a real question earns it; log a
