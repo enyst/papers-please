@@ -2,11 +2,12 @@
 
 This folder is a **systematic working corpus** for papers on **deployed / inference-time memory** in AI agents, LLM agents, conversational agents, and embodied agents.
 
-It currently contains **48 paper notes**:
+It currently contains **78 paper notes** (plus the legacy [Memory and RAG Papers](./memory-and-rag.md) reading list kept in this folder):
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
 - **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
-- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (8 so far)
+- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (8)
+- **Later additions:** memory platforms/engines, further lifecycle mechanisms, further benchmarks, and further security work added after the passes (23)
 
 ## Scope
 - **Source:** arXiv only
@@ -134,6 +135,37 @@ A few files are tagged as **borderline include** because they are clearly about 
 - [Trace as State](./trace-as-state-reasoning-traces-as-conditional-states.md) — placing the reasoning trace *before* the long context (not appended after) lifts long-context accuracy up to ~50 pts; training-free ordering rule.
 - [Selective Forgetting](./selective-forgetting-graph-based-memory-framework.md) — myth-busting: at matched retrieval budget, graph memory *loses* to a flat vector baseline on LongMemEval (F1 0.42 vs 0.47); the validated pruning module removes ~10% of nodes with no quality loss.
 - [Runtime-Independent Persistent Agents](./runtime-independent-persistent-agents.md) — SmolPaws' own thesis, formalized: persistent (identity, memory, code) vs. replaceable (model, harness, host); migration preserves lineage; mechanical continuity ≠ behavioral invariance.
+
+### Later additions — memory systems and platforms
+- [Letta](./letta-stateful-agents-platform.md) — the platform built by the MemGPT authors (OSS + commercial); "advanced memory that can learn and self-improve."
+- [Zep](./zep-temporal-knowledge-graph-architecture-for-agent-memory.md) — temporal knowledge-graph memory layer; open-source engine Graphiti; beats MemGPT on Deep Memory Retrieval.
+- [Supermemory](./supermemory-memory-and-context-engine.md) — "the memory and context layer for AI"; SDK + MCP server + local binary, with drive connectors.
+- [Cognee](./cognee-ai-memory-platform.md) — self-hosted agent-memory platform (Apache-2.0) with an active community.
+- [GBrain](./gbrain-opinionated-agent-brain.md) — Garry Tan's opinionated "company brain" (TypeScript, MIT); the one we run locally.
+
+### Later additions — mechanisms and lifecycle
+- [MemCog](./memcog-from-memory-as-tool-to-memory-as-cognition-in-conversational-agents.md) — memory is cognition you do, not a tool you call; reasoning over memory rather than retrieving from it.
+- [Beyond Semantic Organization](./beyond-semantic-organization-memory-as-execution-state-management-for-long.md) — memory as execution state to manage, not a knowledge base to search.
+- [ReCMem](./recmem-recurrence-based-memory-consolidation-for-efficient-and-effective-long.md) — recurrence-based consolidation: repeated passes each distill memory further.
+- [Sleep-Time Compute](./sleep-time-compute-beyond-inference-scaling-at-test-time.md) — think offline about a context before queries arrive; ~5× less test-time compute at equal accuracy.
+- [Auto-Dreamer](./auto-dreamer-learning-offline-memory-consolidation-for-language-agents.md) — first paper to learn a consolidation policy for offline memory processing; directly validates the sleep-time pattern.
+- [Rethinking How to Remember](./rethinking-how-to-remember-beyond-atomic-facts-in-lifelong-llm-agent-memory.md) — atomic facts are the wrong unit of memory; richer context-preserving representations win.
+- [MemoryWire](./memorywire-a-vendor-neutral-wire-format-for-agent-memory-operations.md) — a vendor-neutral wire format for memory operations, so frameworks can interoperate.
+- [MyLM](./mylm-self-personalizing-lm-weight-memory.md) — memory in the weights: a small self-personalizing LM (MLX), code-only experiment.
+
+### Later additions — benchmarks and evaluation
+- [EvoMemBench](./evomembench-benchmarking-agent-memory-from-a-self-evolving-perspective.md) — does memory actually make the agent better over time? Tests self-evolution, not just recall.
+- [MemGym](./memgym-a-long-horizon-memory-environment-for-llm-agents.md) — tests memory as it forms during execution, not recall of pre-stored facts.
+- [Cross-Scenario Generality](./exploring-cross-scenario-generality-of-agentic-memory-systems-diagnostics-and-a.md) — most memory systems are overfit to their benchmark; cross-scenario testing exposes the gaps.
+- [Agent Memory Characterization](./agent-memory-characterization-and-system-implications-of-stateful-long-horizon.md) — treats memory as a systems workload to characterize and optimize, not only an AI capability.
+
+### Later additions — security and robustness
+- [Hijacking Agent Memory](./hijacking-agent-memory-stealthy-trojan-attacks-through-conversational.md) — stealthy trojan attack; 0.95 ASR against modern selective memory pipelines.
+- [MemAudit](./memaudit-post-hoc-auditing-of-poisoned-agent-memory-via-causal-attribution-and.md) — detect-after-the-fact: audit a memory store for poisoning without needing write-time prevention.
+- [MemLineage](./memlineage-lineage-guided-enforcement-for-llm-agent-memory.md) — every memory entry gets cryptographic provenance plus derivation lineage.
+- [OEP](./oep-poisoning-self-evolving-llm-agents-via-locally-correct-but-non-transferable.md) — poisons the consolidation process itself: locally correct experiences become globally harmful rules.
+- [Taming Zombie Agents](./taming-zombie-agents-a-markov-state-aware-framework-for-resilient-multi-agent.md) — state-aware transitions let agents recover from transient failures instead of being written off.
+- [Beyond Similarity](./beyond-similarity-trustworthy-memory-search-for-personal-ai-agents.md) — memory search should weigh trust, not just relevance.
 
 ## Still likely candidates for a future pass
 This corpus is broad after pass three, but it is still not literally exhaustive. Good future targets include:

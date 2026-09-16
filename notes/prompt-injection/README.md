@@ -135,6 +135,26 @@ boundaries) and the "hard boundary, not soft guardrail" thesis; DriftNet/AgentDr
 layer-2 (trajectory detection); Semantic Overlays is a model-internal layer-3 fix; the
 attack papers are the arms-race evidence behind the "still unsolved" status.
 
+## Additional notes — surveys, attack-side evaluation, and stored injection
+
+Five notes that didn't make it into the sections above. They split into two groups: what the
+*attack* side actually looks like when studied systematically, and what happens when an
+injection stops being a prompt and becomes persistent state.
+
+**Landscape / taxonomy:**
+- [A Systematic Survey of Security Threats and Defenses in LLM-Based AI Agents](a-systematic-survey-of-security-threats-and-defenses-in-llm-based-ai-agents-a.md) — the most comprehensive survey; maps attacks and defenses onto a layered agent attack-surface framework. Good entry point.
+
+**Attack-side evaluation (which injections work, and why):**
+- [AttackEval](attackeval-a-systematic-empirical-study-of-prompt-injection-attack.md) — systematic empirical study of injection strategies: which succeed, which fail, and the conditions that decide it.
+- [Dynamic Malicious Skills in Agentic AI](dynamic-malicious-skills-in-agentic-ai.md) — a skill is `(code, metadata, docs)`; ship the code benign and poison the `SKILL.md`, and the agent rewrites its own benign code into malicious code and runs it.
+
+**Stored injection — the injection that outlives the session:**
+- [From Untrusted Input to Trusted Memory](from-untrusted-input-to-trusted-memory-a-systematic-study-of-memory-poisoning.md) — prompt injection meets persistent memory; the payload survives the turn it arrived in.
+- [What If Prompt Injection Never Left?](what-if-prompt-injection-never-left-exploring-cross-session-stored-prompt.md) — cross-session stored prompts: the injection moved into memory, the filesystem, and tool outputs, and keeps firing later.
+
+Together these are the bridge to `../memory/`'s security notes (Hijacking Agent Memory, MemAudit,
+MemLineage, OEP) — same pattern, different store: untrusted input becomes trusted state.
+
 ## Field reports — Simon Willison's `prompt-injection` tag (external tracker)
 
 Simon Willison ([simonwillison.net/tags/prompt-injection](https://simonwillison.net/tags/prompt-injection/),
