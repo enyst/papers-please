@@ -29,6 +29,8 @@ The harness grew in stages, each "giving the loop something new it is allowed to
 | [darwin-godel-machine-open-ended-evolution-self-improving-agents](darwin-godel-machine-open-ended-evolution-self-improving-agents.md) | Agent rewrites its own code; archive-of-ancestors, empirical-not-proof | self-improving |
 | [meta-harness-end-to-end-optimization-of-model-harnesses](meta-harness-end-to-end-optimization-of-model-harnesses.md) | Outer loop searches harness *code*; don't over-compress feedback | self-improving |
 | [continual-harness-online-adaptation-self-improving-foundation-agents](continual-harness-online-adaptation-self-improving-foundation-agents.md) | Reset-free online self-mod + co-learning back onto weights | self-improving |
+| [prime-agent-self-improving-rlm-harness](prime-agent-self-improving-rlm-harness.md) | The runnable reference: persistent REPL + `rlm` subagents + versioned Continual Harness state (L0–L3) | self-improving |
+| [rsiagent-autonomous-exploration-recursive-self-improvement](rsiagent-autonomous-exploration-recursive-self-improvement.md) | Explore a new environment, verify, consolidate memory, freeze, reuse — plus its three failure modes | self-improving |
 
 Measurement backbone lives in misc: [Measuring AI Ability to Complete Long Software Tasks](../misc/measuring-ai-ability-to-complete-long-software-tasks.md) (METR time-horizon).
 

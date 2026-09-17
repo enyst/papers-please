@@ -31,7 +31,7 @@ Two nested loops:
 The far end of the DAIR.AI [Harness Engineering](../../blogs/interesting-posts.md) genealogy — "the last step before online learning." Where Meta-Harness (`meta-harness-end-to-end-optimization-of-model-harnesses.md`) and Darwin Gödel Machine (`darwin-godel-machine-open-ended-evolution-self-improving-agents.md`) optimize a harness **between** runs, Continual Harness mutates it **during** the run and then feeds experience back into the weights. Two takeaways for OpenHands:
 - **Reset-free online adaptation** is a different regime from our current condense/summarize loop — it argues for treating the harness (skills, sub-agent specs, memory) as live, mutable state during a single long task, not just across tasks. Rhymes with SKILL.state (`skill-state-scalable-long-horizon-agent-skills.md`) and our notes+retrieval condensation idea.
 - **Teacher-relabeled rollouts → weight update** is the bridge from harness engineering to actual training; relevant to the Liberty-Labs open-weight thesis (close the gap on an open model using a frontier teacher + a good harness, cf. OpenJarvis' ~800× cost argument).
-- Same lead author (Seth Karten) as **Prime Agent** (pointered in `skill-state-...md`); Continual Harness is the embodied/online sibling of that coding-harness work.
+- Same lead author (Seth Karten) as **Prime Agent** (`prime-agent-self-improving-rlm-harness.md`); Continual Harness is the embodied/online sibling of that coding-harness work.
 
 ## Caveats / Limits
 

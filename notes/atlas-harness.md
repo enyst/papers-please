@@ -9,7 +9,7 @@ tags:
   - skills
   - self-improving
   - scaffolding
-updated: "2026-09-13"
+updated: "2026-09-17"
 ---
 
 # Atlas: Agent Harness
@@ -61,7 +61,17 @@ The "static harness / grow the verbs" stage lives across topics:
 - `continual-harness-online-adaptation-self-improving-foundation-agents.md` — mutate
   history/memory/skills/prompts/sub-agent specs *while running*, then update weights.
 - `skill-state-scalable-long-horizon-agent-skills.md` — keep state out of the prompt for long
-  horizons (+ Prime Agent pointer).
+  horizons.
+- `prime-agent-self-improving-rlm-harness.md` — the *runnable* reference for this stage: a
+  persistent REPL, async `rlm` subagents, and a versioned **Continual Harness** store; the
+  paper's L0–L3 state cache (weights / context / REPL+sessions / disk-backed skills+memory) is
+  the cleanest vocabulary we have for "what state is an agent made of". Also our sharpest
+  warning about self-improvement: an exploit it found got *promoted to a reusable skill*.
+- `rsiagent-autonomous-exploration-recursive-self-improvement.md` — training-free adaptation to
+  a new environment: curriculum/actor/verifier, broad-then-deep exploration, then **freeze the
+  memory and reuse it read-only**. Its failure-mode audit (untargeted practice, incomplete
+  verification, unreliable consolidation) is the most directly applicable part for our own
+  memory/dreaming loop.
 - Prompt-level self-improvement: `skills/gepa-reflective-prompt-evolution-can-outperform-reinforcement-learning.md`.
 
 ### 4. Skills as a harness layer — `notes/skills/`
@@ -88,6 +98,12 @@ SmolPaws is a running harness, so the research above is its improvement backlog:
   between runs — a small "continual harness" move (cross-links to `atlas-agent-memory.md`).
 
 ## Open questions (seeds for future notes)
+- **Exploit laundering.** Prime Agent's agent found an RCON shortcut, used it, and kept it as a
+  skill; RSIAgent's actor kept rules that read missing data as a negative answer. Both are the
+  same failure: a locally successful action becomes a durable rule. What would our equivalent
+  guard be for SmolPaws' skills/memory — provenance + rollback, an independent check on the
+  *rule* (not just the run), or a rule that every consolidated entry carries its conditions and
+  uncertainty?
 - Which self-improving-harness result is safe + cheap enough to try on SmolPaws first —
   GEPA-style prompt evolution, or Meta-Harness-style code search over a trace filesystem?
 - `evomal` (self-poisoning) vs SmolPaws' skill/automation self-editing: what guardrails does
