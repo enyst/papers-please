@@ -20,7 +20,7 @@ format and the ingest / query / lint workflows. Maintenance history is in
 | `notes/agentic-engineering/` | 9 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
-| `notes/interpretability/` | 3 | Mechanistic interpretability — steering/ablation, safety-entanglement, and the philosophy of not over-reading it |
+| `notes/interpretability/` | 4 | Mechanistic interpretability — steering/ablation, safety-entanglement, the philosophy of not over-reading it, and the pain axis (functional tests of a steerable state) |
 | `notes/verification/` | 2 | Formal verification of generated code — function-level and repository-level benchmarks (vericoding) |
 | `notes/misc/` | 10 | Everything that doesn't fit a category yet (evaluation, capability measurement / task time-horizon, survey simulation, ensembling, context-acquisition/active-inference, multi-agent emergence) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |

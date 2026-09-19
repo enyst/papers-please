@@ -5,6 +5,7 @@ Append-only timeline of wiki maintenance. Newest first. One line per action; kee
 Ops: `ingest` (added a source), `query` (filed an answer/synthesis back), `lint`
 (health-check), `meta` (schema/structure change).
 
+## [2026-09-19] ingest | Tagliabue, Dung & Berg "The Pain Axis" (arXiv 2609.16247, via @camhberg) → notes/interpretability/tagliabue-dung-berg-pain-axis.md (full read; PDF saved). Filed by smolpaws at Engel's request.
 ## [2026-09-17] ingest | Prime Agent: A Self-Improving RLM Harness (arXiv 2608.23552) → notes/harness/prime-agent-self-improving-rlm-harness.md (persistent IPython REPL + async rlm subagents + versioned Continual Harness; L0–L3 state cache; ARC-AGI-3 30%→95.5% with caveats; a spec exploit preserved as a reusable skill) — cross-linked atlas-harness + continual-harness + skill-state
 ## [2026-09-17] ingest | RSIAgent: Autonomous Exploration for Recursive Self-improvement in New Environments (arXiv 2609.15364) → notes/harness/rsiagent-autonomous-exploration-recursive-self-improvement.md (curriculum/actor/verifier; BRS then DRS; memory governance: one owner, disposable copies, sequential canonical updates; three failure modes) — cross-linked atlas-harness
 ## [2026-09-16] ingest | Dileep George "AI consciousness, qualia, and personhood" (2025) → blogs/interesting-posts.md (consciousness = substrate-independent info processing; qualia partially shared; personhood = mortality + remembered experience; comment thread carries the zombie/abacus counter-argument) — cross-linked in atlas-grounding-understanding
