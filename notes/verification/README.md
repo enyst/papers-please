@@ -25,6 +25,6 @@ suite. Two benchmarks, at two granularities: function-level and repository-level
 
 ## Related in this repo
 
-- `../agentic-engineering/` — "verification is the bottleneck"; the guardrail tier (architecture > static analysis > tests > LLM checks).
+- `../agentic-engineering/` — "verification is the bottleneck"; the guardrail tier (architecture > static analysis > tests > LLM checks); and the **two-gap framework** ([reality-is-the-final-verifier-two-gap-framework](../agentic-engineering/reality-is-the-final-verifier-two-gap-framework.md)) — a sound proof closes the *evaluation* gap inside the loop, but the requirement and model gaps outside it are what these benchmarks cannot touch.
 - `../prompt-enforcement/` — runtime enforcement of constraints, a lighter-weight cousin.
 - `../misc/` — evaluation methodology, including [METR time-horizon](../misc/measuring-ai-ability-to-complete-long-software-tasks.md).

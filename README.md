@@ -17,7 +17,7 @@ format and the ingest / query / lint workflows. Maintenance history is in
 | `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
 | `notes/harness/` | 8 | Agent harnesses — *everything between the model weights and the world* (see `notes/harness/README.md`); code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness, Prime Agent, RSIAgent) |
-| `notes/agentic-engineering/` | 9 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops (sources from everywhere: tweets, blogs, papers) |
+| `notes/agentic-engineering/` | 10 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops, and the two-gap assurance framework (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 4 | Mechanistic interpretability — steering/ablation, safety-entanglement, the philosophy of not over-reading it, and the pain axis (functional tests of a steerable state) |
