@@ -31,6 +31,7 @@ The harness grew in stages, each "giving the loop something new it is allowed to
 | [continual-harness-online-adaptation-self-improving-foundation-agents](continual-harness-online-adaptation-self-improving-foundation-agents.md) | Reset-free online self-mod + co-learning back onto weights | self-improving |
 | [prime-agent-self-improving-rlm-harness](prime-agent-self-improving-rlm-harness.md) | The runnable reference: persistent REPL + `rlm` subagents + versioned Continual Harness state (L0–L3) | self-improving |
 | [rsiagent-autonomous-exploration-recursive-self-improvement](rsiagent-autonomous-exploration-recursive-self-improvement.md) | Explore a new environment, verify, consolidate memory, freeze, reuse — plus its three failure modes | self-improving |
+| [empirical-study-harness-design-coding-agents](empirical-study-harness-design-coding-agents.md) | 176 matched settings: context elision→summary, persistent planning and workspace interfaces; effects depend on model, workload and context budget | component measurement |
 
 Measurement backbone lives in misc: [Measuring AI Ability to Complete Long Software Tasks](../misc/measuring-ai-ability-to-complete-long-software-tasks.md) (METR time-horizon).
 

@@ -9,7 +9,7 @@ tags:
   - skills
   - self-improving
   - scaffolding
-updated: "2026-09-17"
+updated: "2026-10-11"
 ---
 
 # Atlas: Agent Harness
@@ -86,6 +86,17 @@ themselves). Directly relevant because SmolPaws ships a large skills library.
 The org/process layer around a harness: software factories, immutable-artifact receipts,
 verification/trust, fences-not-sandboxes. Where harness design meets how humans actually run
 fleets of agents.
+
+### Component-level evidence — model, workload and budget
+- [An Empirical Study of Harness Design for Coding Agents](harness/empirical-study-harness-design-coding-agents.md)
+  separates context policy, persistent planning and action interfaces in 176 matched settings.
+  Most small-window context gains prevent overflow; staged elision→summary is cheapest on
+  aggregate; optional event recall is seldom used. Planning sustains weak models and trims
+  stronger models' verification tails. Shell composition helps a bash-capable model, while
+  Mistral's shell-only preference reverses between repository repair and terminal work.
+  These are conditional effects, with file safeguards/diagnostics bundled into the tool
+  comparison. Retaining raw traces for harness engineering remains a different objective
+  from expecting a task-solving model to call a recall tool.
 
 ### 6. Our live harness — SmolPaws (`smolpaws/`)
 SmolPaws is a running harness, so the research above is its improvement backlog:
