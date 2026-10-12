@@ -25,7 +25,7 @@ format and the ingest / query / lint workflows. Maintenance history is in
 | `notes/misc/` | 11 | Everything that doesn't fit a category yet (evaluation, capability measurement / task time-horizon, survey simulation, ensembling, context-acquisition/active-inference, multi-agent emergence) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
-| `blogs/interesting-posts.md` | — | Curated blog posts and articles on AI/agents |
+| `blogs/interesting-posts.md` | — | Blog notes and bookmarks — interesting essays, talks, tools and scenarios to revisit, with source type and read depth labeled |
 
 *(Counts drift as notes are added; refresh the row you touch — `ls notes/<topic>/*.md | wc -l`.)*
 
