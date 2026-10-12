@@ -39,3 +39,7 @@ Directly the "meta harness: a harness whose job is producing harnesses" node in 
 ## Beyond the paper
 
 Reference code (the harness that searches over harnesses) is open-sourced; linked from the collection's "Beyond the papers" section.
+
+## Follow-up: learning the revision procedure
+
+- [Harness Learning Enables Generalizable Test-Time Adaptation](harness-learning-generalizable-test-time-adaptation.md) (2026-09-28; full read) trains a small proposer with execution-based RL, then repeatedly revises a frozen solver’s harness on unseen task families. This adds transfer of a **learned editing procedure**, alongside Meta-Harness’s agentic code-search approach. Its supplied reports are externally generated; it does not test replacing an agentic optimizer’s trace filesystem with compressed reports. Strong fixed-tool-loop baselines and unmatched feedback/compute budgets limit claims about general superiority.

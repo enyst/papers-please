@@ -9,7 +9,7 @@ tags:
   - skills
   - self-improving
   - scaffolding
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 
 # Atlas: Agent Harness
@@ -58,6 +58,11 @@ The "static harness / grow the verbs" stage lives across topics:
   own code; archive-of-ancestors; empirical validation replaces the proof requirement.
 - `meta-harness-end-to-end-optimization-of-model-harnesses.md` — outer loop searches harness
   *code*; **don't over-compress feedback**.
+- [harness-learning-generalizable-test-time-adaptation](harness/harness-learning-generalizable-test-time-adaptation.md) — train the revision
+  rule itself, then adapt executable code with both models frozen. Transfers across held-out
+  reasoning families and QA benchmarks; single-revision training already supports repeated
+  refinement. Learned mean still trails a fixed tool loop on the headline reasoning subset;
+  graded feedback and total adaptation compute constrain deployment claims.
 - `continual-harness-online-adaptation-self-improving-foundation-agents.md` — mutate
   history/memory/skills/prompts/sub-agent specs *while running*, then update weights.
 - `skill-state-scalable-long-horizon-agent-skills.md` — keep state out of the prompt for long
