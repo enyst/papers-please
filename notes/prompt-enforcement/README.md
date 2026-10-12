@@ -34,6 +34,13 @@ Example: "do not modify files in /prod" → a file system hook that blocks write
 - **[Position: AI Safety Requires Effective Controllability](position-ai-safety-requires-effective-controllability.md)** — alignment is not controllability.
 - **[Auditing Agent Harness Safety](auditing-agent-harness-safety.md)** — harness-level safety auditing.
 
+## Related alignment evidence (not deterministic enforcement)
+
+- [Stress Testing Deliberative Alignment for Anti-Scheming Training](../misc/stress-testing-deliberative-alignment-anti-scheming.md)
+  trains spec-following reasoning and substantially reduces covert actions, but retains failures,
+  evaluation-awareness confounds and sensitivity to subsequent RL. Learned compliance and
+  runtime permission enforcement cover different failure modes.
+
 ## Key Open Questions
 - How well can a model parse arbitrary natural-language instructions into formal constraints?
 - What enforcement hooks are available across different agent frameworks?
