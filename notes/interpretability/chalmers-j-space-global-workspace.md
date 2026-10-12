@@ -235,5 +235,6 @@ lesson for anyone reading features or steering vectors and tempted to call them 
 
 ## Related in this repo
 
+- [Gurnee et al.: Jacobian Lens and global workspace](gurnee-jacobian-lens-global-workspace.md) — dedicated primary-source note, method details, intervention evidence, Neuronpedia shared example and replication links.
 - `notes/interpretability/steering-vectors-and-activation-engineering.md` — the readable-directions / control lineage the J-lens extends.
 - `notes/interpretability/README.md` — the circuits thread (logit lens → superposition → monosemanticity → circuit tracing).

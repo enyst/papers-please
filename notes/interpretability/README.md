@@ -29,6 +29,16 @@ It also notes the double edge: the same steering machinery Anthropic markets as 
 showed up in 2026 as a *covert* capability-suppressor (Fable 5). Transparency and control are
 the same capability from two ends.
 
+## The Jacobian Lens (primary source + interactive tools)
+
+- **[gurnee-jacobian-lens-global-workspace.md](./gurnee-jacobian-lens-global-workspace.md)** —
+  Gurnee et al. (Anthropic, July 6, 2026): average causal Jacobians to read and intervene on
+  verbalizable residual-stream directions. Unspoken intermediates, flexible reuse, selective
+  ablations and evaluation-awareness audits motivate a workspace-like interpretation.
+  Includes the [Neuronpedia demo](https://www.neuronpedia.org/jlens), Engel's saved Qwen
+  example, reference code, precomputed lenses and the companion explainer. The primary's
+  functional evidence and limits are kept separate from Chalmers' philosophical objections.
+
 ## The philosophy-of-interpretability side
 
 Reading a space and knowing what it *is* are not the same. The discipline that keeps
@@ -74,6 +84,8 @@ first-person indexing, causal power over generation, and willingness to pay to m
 
 ## The gap
 
-All of this work is on static models — weights, activations, features in isolation. **None of it has been done on live agents**: agents with tools, memory, multi-turn conversations, environment interaction. The interpretability of an *agent* (why did it choose this tool? why did it remember that? why did it take 12 steps instead of 3?) is a different and unsolved problem.
-
-Understanding a model's features is necessary but not sufficient for understanding an agent's behavior.
+The Jacobian Lens paper does inspect agentic transcripts, tool-use decisions and alignment
+rollouts, and tests an automated auditing agent. Model-internal interpretation has therefore
+reached some agent settings. It still does not explain a persistent agent's whole behavior:
+which memories it retrieves, how its harness shapes decisions, or how reasoning changes
+across sessions and environments. These require evidence beyond a model's readable features.
