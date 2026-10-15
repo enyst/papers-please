@@ -2,6 +2,17 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-10-16 - [Neural Networks Are Already Clean](https://already-clean.goodfire.com/) (Nick Cammarata / Goodfire; 2026)
+
+**Research essay / working hypothesis:** native neurons and circuits may already be directly legible. Cammarata revisits canonical cat/car and car/dog examples, separates tool and architecture failures from **recursive generalization**, and argues for scaling ordinary, intervention-driven science rather than requiring a learned decomposition first.
+
+- Full reading note: **[Neural Networks Are Already Clean](../notes/interpretability/cammarata-neural-networks-already-clean.md)** — vision compression experiments, signed/SwiGLU regimes, preliminary language-neuron audits, blind-max/near-miss tests, weak-activation limits and the developmental circuit-ecology hypothesis.
+- Keep definitions straight: this challenges **arbitrary packing of unrelated computations** as an explanation of natural models. It accepts the synthetic results in *Toy Models of Superposition* and does not refute every meaning of “more features than dimensions.”
+- Cammarata helped establish the early examples he now revisits and started OpenAI’s automated-neuron-interpretability project. His change of view deserves close attention. The supplied experiments and proposed tests carry the argument; preliminary cleanliness estimates and trillion-parameter examples should not be mistaken for complete audits. A fuller technical companion paper is promised.
+- [Interactive microscope](https://already-clean.goodfire.com/microscope/medium.html), [circuit atlas](https://already-clean.goodfire.com/circuit-atlas/index.html), [training map](https://already-clean.goodfire.com/training-map.html) and [1,000 neuron investigations](https://already-clean.goodfire.com/neuron-scientist/papers/) retained for exploration, not independently audited.
+
+**Read depth:** complete [author-provided text](https://already-clean.goodfire.com/essay.md), all appendices, footnotes and references. HTML checked for provenance/artifact links; interactive experiments not reproduced. Source archived. Exact publication day not stated; 2026-10-16 is retrieval/catalog date.
+
 ## 2026-10-12 - [How can LLM RL Work Despite Information-Theoretic Inefficiency](https://www.beren.io/2026-07-26-How-Can-LLM-RL-Work-Despite-Information-Theoretic-Inefficiency/) (Beren Millidge; published 2026-07-26)
 
 **Take:** sparse outcome rewards can be useful because they target task success directly, while dense next-token supervision spends much of its signal on other objectives. A useful hypothesis about RL after pretraining, explicitly offered as speculation.

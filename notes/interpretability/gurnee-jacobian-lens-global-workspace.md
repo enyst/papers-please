@@ -91,6 +91,7 @@ tags: [interpretability, jacobian-lens, j-space, logit-lens, verbalizability, gl
 
 ## Related
 
+- [Cammarata: Neural Networks Are Already Clean](cammarata-neural-networks-already-clean.md): native-neuron/circuit interpretation and recursive generalization as an alternative to arbitrary-packing explanations. This is a complementary measurement perspective and a disputed developmental hypothesis, not proof of the J-space workspace claim.
 - [Steering vectors and activation engineering](steering-vectors-and-activation-engineering.md): readable directions used for causal control.
 - [Consciousness-vector / safety entanglement](kim-consciousness-vector-safety-entanglement.md): consciousness-related language and safety interventions can share geometry; not independent proof of experience.
 - [Grounding and understanding atlas](../atlas-grounding-understanding.md): reportable representations versus semantic/mechanistic understanding.

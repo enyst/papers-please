@@ -1,13 +1,13 @@
 # Interpretability — The Circuits Thread
 
-The Anthropic/Olah lineage of mechanistic interpretability work. Four papers that build on each other:
+The Anthropic/Olah lineage of mechanistic interpretability work, plus current challenges to its explanations. Start with the historical progression; keep the evidence for each method separate from claims that it is the necessary route to understanding networks.
 
 ## The progression
 
 1. **Zoom In** (Olah et al., 2020) — Introduction to Circuits. Neural networks contain meaningful features and circuits connecting them. You can understand networks by zooming in and finding interpretable structure.
    - Source: https://distill.pub/2020/circuits/zoom-in/
 
-2. **Toy Models of Superposition** (Elhage et al., 2022) — Why interpretability is hard: networks represent more features than they have neurons by superimposing them. Features are not aligned to individual neurons. Understanding when and how superposition happens.
+2. **Toy Models of Superposition** (Elhage et al., 2022) — Synthetic demonstrations of how sparse predefined features can outnumber dimensions, with interference and nonlinear recovery. Their generalization to natural-model polysemanticity is a hypothesis; Cammarata challenges that extrapolation below while accepting the toy experiments.
    - arXiv: https://arxiv.org/abs/2209.10652
 
 3. **Scaling Monosemanticity** (Templeton et al., 2024) — Extracting interpretable features from Claude 3 Sonnet using sparse autoencoders at scale. Found millions of monosemantic features including abstract concepts (Golden Gate Bridge, code errors, deception). Proved the approach works on production-scale models, not just toys.
@@ -15,6 +15,17 @@ The Anthropic/Olah lineage of mechanistic interpretability work. Four papers tha
 
 4. **Attribution Graphs / Circuit Tracing** (Anthropic, 2025) — Tracing how features connect into computational graphs (circuits) inside the model. Open-sourced circuit-tracing tools. Maps the flow from input → features → output for specific behaviors.
    - Source: https://www.anthropic.com/research/open-source-circuit-tracing
+
+## A challenge to the superposition explanation
+
+- **[cammarata-neural-networks-already-clean.md](./cammarata-neural-networks-already-clean.md)** —
+  Nick Cammarata / Goodfire (2026), *Neural Networks Are Already Clean*: a long research
+  essay arguing that native mechanisms are often legible once tools, architecture and
+  recursive generalization are understood. Reexamines canonical examples, presents vision
+  bottleneck tests and preliminary language-neuron audits, and proposes automated,
+  intervention-driven investigation. **A working hypothesis, not a refutation of the toy
+  results or a complete frontier-model audit.** Includes the source, microscope, training
+  map, circuit atlas and individual neuron investigations.
 
 ## The control side
 
