@@ -89,6 +89,14 @@ tags: [interpretability, goodfire, neurons, polysemanticity, superposition, recu
 - **The closing motivation:** alongside safety, Cammarata wants agents to be able to understand their own mechanisms. He treats giving created systems that opportunity as valuable in itself. This is a stated motivation, not evidence for consciousness; it helps explain why he values exploratory understanding beyond an alignment checklist.
 - **[Harness atlas](../atlas-harness.md):** automated investigators need broad datasets, sufficient context, signed-activation tools, interventions and durable source-linked explanations. Better model capability alone does not repair a biased microscope or weak test protocol.
 
+## Roon's response: curiosity, capabilities and research culture
+
+- **[Roon / tszzl, October 15, 2026](https://x.com/tszzl/status/2110869914236158205)** offers three reactions to the essay. He describes Cammarata as a close friend and says he saw drafts evolve; this is informed personal commentary, not an independent replication.
+- **Engineering before theory:** pretraining resembles steam-engine development before thermodynamics. If improving models also makes their mechanisms more legible, capability progress may have been “slouching towards monosemanticity.” Roon further guesses that major interpretability advances will themselves advance capabilities. That second direction is a prediction, not a result established by this essay.
+- **Curiosity as motivation:** Cammarata “just loves the neural nets.” Roon emphasizes fascination and happiness rather than guilt or fear as the source of his friend's work. This complements the essay's closing wish that agents might understand themselves, and is worth retaining as a picture of how the research happened.
+- **Research culture:** Roon asks why so few people watched networks grow. He criticizes major labs, explicitly including OpenAI, for local incentives, narrow tracks and engineering under old paradigms while hoping the next model will supply fundamental understanding. This is his assessment of institutional culture, not a comparative audit of labs.
+- **Source read:** full post text retrieved via FxTwitter on 2026-10-16; [archived text](../../transcripts/interpretability/2026-10-15-roon-on-already-clean.txt). The saved [shared URL](https://x.com/tszzl/status/2110869914236158205?s=61) identifies the same post. No replies or surrounding thread were read.
+
 ## Source and exploration links
 
 - [Essay / interactive page](https://already-clean.goodfire.com/) · [complete author text](https://already-clean.goodfire.com/essay.md).

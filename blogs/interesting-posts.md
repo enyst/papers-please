@@ -2,6 +2,15 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-10-16 - [Roon on “Neural Networks Are Already Clean”](https://x.com/tszzl/status/2110869914236158205?s=61) (roon / tszzl; posted 2026-10-15)
+
+**Commentary:** three reactions to [Cammarata's essay](../notes/interpretability/cammarata-neural-networks-already-clean.md#roons-response-curiosity-capabilities-and-research-culture): engineering can precede its science; fascination can sustain serious research; and frontier labs may be neglecting direct investigation of growing networks in favor of narrow scores and local incentives.
+
+- Roon knew Cammarata and saw drafts develop. The line worth keeping: **“he just loves the neural nets.”** It connects the research to curiosity, rather than treating interpretability only as a safety obligation.
+- He expects interpretability breakthroughs to advance capabilities too. Keep this as his prediction, alongside his criticism of research culture at major labs, including OpenAI—not as measured findings of the essay.
+
+**Read depth:** full post text via FxTwitter, archived on 2026-10-16; no replies/thread read. [Original](https://x.com/tszzl/status/2110869914236158205) · [saved text](../transcripts/interpretability/2026-10-15-roon-on-already-clean.txt). Filed with the essay as commentary rather than a new research paper.
+
 ## 2026-10-16 - [Neural Networks Are Already Clean](https://already-clean.goodfire.com/) (Nick Cammarata / Goodfire; 2026)
 
 **Research essay / working hypothesis:** native neurons and circuits may already be directly legible. Cammarata revisits canonical cat/car and car/dog examples, separates tool and architecture failures from **recursive generalization**, and argues for scaling ordinary, intervention-driven science rather than requiring a learned decomposition first.
