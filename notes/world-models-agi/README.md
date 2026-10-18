@@ -157,6 +157,19 @@ consciousness/"I" axis (Nagel↔Levin, Chalmers↔Dennett as the poles).
 
 ---
 
+## Current experiments: identity and conscious access (outside the theme issue)
+
+- **[Cochinescu: Entropy in Conversational AI](cochinescu-entropy-conversational-ai-accumulated-selection.md)** —
+  identity as accumulated selection, with frozen twin-divergence tests. A small fixed-model
+  wrapper improves lexical novelty; joint novelty–consistency and history-dependent
+  divergence criteria fail. Full read; machine-side tests, no human perception study.
+- **[Hesse, Tsao et al.: Rapid alternation of conscious and suppressed representations](hesse-tsao-temporal-multiplexing-conscious-suppressed.md)** —
+  Neuropixels recordings reveal ~60 ms alternation between rich seen/suppressed face codes
+  in the same IT and PFC populations. Held-out-neuron and alternative-model controls support
+  temporal multiplexing; selective downstream access remains the mechanism to find. Full read.
+
+---
+
 ## Why this issue is in the corpus (relevance to our work)
 
 It's the philosophy-and-cognitive-science backbone for the questions SmolPaws/Engel care

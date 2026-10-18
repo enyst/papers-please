@@ -1,0 +1,885 @@
+                                               Entropy in Conversational AI: Structured Unpredictability as
+                                                                  Inferrable Interiority
+                                             Identity as Accumulated Selection: A Formal Model, a Mechanism, and a Prospectively
+                                                                                     Frozen Divergence Test
+
+                                                                                  Sebastian Cochinescu
+
+
+
+
+arXiv:2609.19044v1 [cs.CL] 20 Jul 2026
+                                                                                 University of Bucharest
+                                                                        Email: sebastian.cochinescu@drd.unibuc.ro
+                                                                                              July 2026
+
+
+                                                                                               Abstract
+                                                   Sampling can increase response diversity without producing history-dependent behavior. We formalize
+                                               a different design target, structured unpredictability, as conditional dependence between an output and a
+                                               persistent hidden state beyond what an observer can infer from the transcript. A selection layer updates
+                                               a low-dimensional style-and-attention state from a capacity-limited stream, generates several responses
+                                               with a fixed base model, and selects for novelty and state affinity. Evaluation uses scripted sequences
+                                               of independent prompt turns: the base model receives the current turn and rendered state, but not
+                                               the preceding dialogue; cross-turn dependence resides in the wrapper state and response selector. A
+                                               synthetic implementation validates the pipeline and matches four prospectively hash-frozen divergence
+                                               features at point level. In the final real-model grid (mlx-community/Qwen2.5-1.5B-Instruct-4bit; 56
+                                               sequences per arm), the mechanism increased lexical novelty over the low-variance and consistency-only
+                                               controls by 0.073 and 0.023, respectively. Its stylometric-consistency contrast with novelty-matched
+                                               sampling was equivalent to zero under the registered smallest-effect rule, so the joint novelty–consistency
+                                               criterion failed. The original two-part accumulation criterion also failed; a revised final-grid contrast,
+                                               frozen after the powered grid, found higher consistency than the memory-reset ablation (0.028, 95% CI
+                                               [0.018, 0.039]), but does not establish path dependence. Twin separation was not established (0.003, 95%
+                                               CI [−0.011, 0.019]); the mean curve’s saturating curvature matched the frozen prediction, which without
+                                               separation does not support path dependence. Probe-level capability equivalence held within ±0.10 on a
+                                               near-ceiling battery, while output quality was not evaluated. All outcomes are machine-scored; no claims
+                                               about perceived mind or consciousness are tested.
+
+                                            Keywords: Conversational AI, Believability, Text Generation, Decoding Strategies, Persona Consis-
+                                         tency, Anthropomorphism, Identity.
+
+
+                                         1     The Problem: Noise Is Not Depth
+                                         Conversational systems often obtain variation by changing decoding parameters. That variation need not
+                                         reflect any state acquired through interaction. The series’ framework paper calls the relevant stance entropy:
+                                         structured, identity-consistent variation over time, distinct from output diversity alone [3]. This paper asks
+                                         whether that stance can be specified as a stateful selection mechanism and evaluated without attributing
+                                         mental states to the system. Because apparent interiority can affect attachment, the mechanism and its
+                                         negative results should be inspectable and tested against fixed criteria (Section 8).
+                                             Likelihood-based decoding exhibits two familiar failure modes: maximization can produce bland or repet-
+                                         itive text, while less restrictive sampling can increase variation without preserving a stable pattern [10].
+                                         Temperature, top-k, and nucleus mass move generation along a quality–diversity trade-off [1, 8]; repetition
+                                         is itself a controllable dialogue attribute with measurable effects on human judgments [20]. When these
+
+
+                                                                                                   1
+decoders are used without retained interaction state, as in the sampling controls evaluated here, each turn
+is generated without conversational history. Increased temperature then changes sampling variance, not
+cross-turn state.
+    The proposed alternative is observer-relative: outputs remain difficult to predict from the transcript alone
+but become more predictable when conditioned on a persistent hidden state. This is the paper’s operational
+meaning of structured unpredictability. Whether people interpret that pattern as character or mind is a
+separate empirical question that is not tested here.
+    The contribution is narrower than a general account of adaptive identity. We define identity as accu-
+mulated selection: a low-dimensional state changes as the wrapper selects from a capacity-limited stream
+and from current-turn features; that state then conditions candidate generation and response selection. The
+model yields an observer-conditional entropy gap and a prospectively frozen twin-divergence prediction (Sec-
+tion 2). The mechanism is evaluated in seven arms over a fixed base model (Sections 3–4). The evidence
+consists of synthetic pipeline validation and staged real-model experiments (Sections 5–5.7). Relative to the
+closest prior systems, authored-persona and trained-character approaches fix the identity target before inter-
+action, and decoding-time steering or best-of-n reranking carries no persistent target at all; here the selection
+target is constituted by the interaction history itself, and that construction is converted into a prospectively
+frozen quantitative prediction rather than a post-hoc consistency score. On the tested real model most reg-
+istered criteria fail; the durable contributions are the formal target, the frozen twin-divergence methodology,
+and the registered negative results, which later work can rerun against larger or more style-pliable base
+models. All measurements are machine-side; the proposed human-perception effect remains for a separate
+study.
+
+
+2     The Model: Identity as Accumulated Selection
+The model is a design specification, not a cognitive theory: its role is to make “structured unpredictability”
+a definable property and to emit a falsifiable quantitative prediction, not to describe how identity works in
+humans.
+
+2.1    State, stream, selection, drift
+An agent carries a persistent hidden state Ht ∈ RK . Its coordinates are operational selection parameters—
+style weights and topical attention weights. Where we gloss coordinates with psychological words (a “mood,”
+a “value,” an “attention bias”), the gloss is interpretive only; nothing in the mathematics depends on it.
+    At each step the environment offers an ambient stream Et : a set of m candidate experience items,
+represented in the same feature space as Ht , of which the agent can attend to at most b < m. The strict
+inequality is necessary for selective exposure. Under the model, differences in admitted items can accumulate
+even when agents begin from the same state; “identity” refers only to that selection-history construct.
+    A selection function makes the choice: st = σ(Ht , Et ∪ {turnt }) scores the stream items together with
+the current conversational turn and admits at most b, combining two pressures whose joint optimization is
+the mechanism’s signature: identity pressure (affinity between an item and the current state, computed on
+deviations from a neutral point—a fixed constant of the featurization, style coordinates at 0.5 and topics
+at the uniform mixture—so affinity is rich-get-richer and selection genuinely path-dependent) and novelty
+pressure (a penalty on similarity to recently selected experience).
+    The state then drifts:
+
+                   Ht+1 = f (Ht , st , Ot , εt ) = clip[(1 − λ) Ht + λ st + γ Ot u + εt ] ,                  (1)
+
+an exponentially weighted accumulation of selected experience st , perturbed by small noise εt and modulated
+by an internal oscillation term Ot , imported from the series’ time paper’s Van der Pol architecture
+for endogenous temporal state [4] and entering here as a fixed-parameter oscillator coupled to the style
+coordinates through a unit pattern u. Concretely, Ot is the position of a Van der Pol unit ẍ = µ(1 −
+x2 )ẋ − ω 2 x with µ = 0.5 and ω = 2π/40 (one cycle per forty turns), integrated open-loop by fixed-step
+RK4 from a seeded uniform-random initial phase and normalized to [−1, 1]. Two properties matter for
+the divergence experiment. It is open-loop—evolving autonomously, decoupled from Ht and εt , so agents
+
+
+                                                       2
+sharing an initialization share its phase exactly—and therefore common-mode: an observer can fit a fixed-
+parameter periodic signal from a long enough transcript, so asymptotically it contributes no observer-side
+unpredictability (over finite prefixes it can), and at every horizon it contributes no identity differentiation and
+no residual entropy-gap term in the sense of Section 2.2. Its role is temporal texture and series continuity;
+the drift model is well-defined with it ablated, and none of the evaluation contrasts depend on it.
+
+2.2    Structured unpredictability, formalized
+Let (Ht , Tt , Yt ) be the hidden state, the transcript prefix, and the next response, jointly distributed under
+the mechanism’s stochastic dynamics (stream, selection, noise, decoding). Define
+
+                             ∆t = H(Yt | Tt ) − H(Yt | Tt , Ht ) = I(Yt ; Ht | Tt ).                           (2)
+
+As a conditional mutual information [5], ∆t ≥ 0, with equality exactly when the response is conditionally
+independent of the state given the transcript. Strict positivity, the design target, holds when the state
+carries information about the response beyond what the transcript reveals. A stateless randomizer has
+∆t = 0 under this definition even when its marginal output entropy is high; a deterministic script has little
+marginal output entropy to explain. The proposed target is high marginal variation together with nonzero
+conditional dependence on Ht . Positivity alone also does not distinguish accumulated state from fixed hidden
+conditioning—a static persona vector or a per-agent seed satisfies it equally; separating accumulation from
+fixed conditioning is the twin experiment’s burden (Section 2.4). No human interpretation follows from this
+quantity alone.
+    We are explicit about what this definition does and does not do. ∆t > 0 is a design target that the
+mechanism of Section 3 is built to satisfy: the construction supplies the causal path (the state exists, drifts,
+and conditions generation) but not a guarantee—the response could still be conditionally independent of Ht ,
+the equality case above, and the pilot’s transmission failure (Section 5.4) is exactly the case where the path
+carries nothing—so positivity is a property to be earned per model, never assumed from the architecture. It
+is also not measured here: conditional-entropy estimation for text is estimator-dependent, and no claim rests
+on such an estimate. The measured axes of Section 2.3 are observable proxies motivated by the gap’s two
+regimes—they are not its mathematical sides, neither estimates a conditional entropy, and the evaluation
+never treats them as if they did.
+    Accordingly, entropy here denotes structured behavioral variation, not token-level surprisal, consistent
+with the framework paper’s definition [3].
+
+2.3    The two axes
+The gap’s two regimes suggest two positively oriented, [0, 1]-valued observables, computed always against
+the agent’s own history, never against an authored script.
+    The novelty axis Nt operationalizes observer-side unpredictability as non-repetition: one minus the
+fraction of the current turn’s word bigrams already present in the agent’s pooled prior outputs, length-
+normalized—the Self-BLEU/distinct-n family [14, 32]. A pre-specified semantic variant (topic-vector simi-
+larity against recent turns) is computed alongside; under recurring-intent scripts the semantic channel sits
+near zero by design (topic recurrence is the controlled repetition opportunity), so the operative test is lexical
+and the semantic variant serves as a guard, not a second effect channel.
+    The consistency axis Ct operationalizes coherence-given-state as the stability of the agent’s outputs
+around its own accumulated stylometric profile: function-word distributions, sentence-length statistics, and
+type–token ratio—authorship-verification-class features [25]. The representation choice is a designed defense
+against the confound that would otherwise collapse the two axes: semantic embeddings track content, me-
+chanically coupling consistency to novelty, whereas content-independent style representations exist precisely
+to separate the two [28]. A semantic-embedding variant of Ct is reported only as a secondary robustness
+check.
+    The entropy stance is the joint property: high Nt and high Ct , sustained as t grows—the high/high
+quadrant of a plane whose axes the sampling literature usually treats as a trade-off. Because the axes
+could fail to be two axes at all, the protocol builds in validity controls rather than asserting separation:
+
+
+
+                                                        3
+perturbation arms that move one axis at a time, a pure-sampling grid tracing the knob frontier, a topic-
+permutation check (stylometric Ct recomputed over topic-permuted transcripts must not move if it measures
+voice rather than content), a between-agent distinctiveness test (an agent’s turn should match its own history
+better than another agent’s), and a deliberately bland control (coherent boilerplate must expose, through
+the joint criterion, why stability alone is not voice).
+
+2.4    The twin-divergence prediction
+The model makes a quantitative prediction before text generation is measured. We simulate Eq. (1) directly
+in state space—without a language model—for two agents with identical H0 and oscillator phase. Different
+histories use different stream and turn sequences; same history uses the same sequences with independent
+εt and defines the comparison floor. The simulation produces a divergence-versus-horizon band (ℓ2 state
+distance) over seeded pairs.
+    To prevent arbitrary rescaling from determining agreement, the comparison uses four dimensionless fea-
+tures computed on raw curves: monotonicity; curvature class (saturating, linear, or accelerating); the half-
+to-full-horizon ratio after baseline subtraction; and the ratio of median final divergence under different versus
+same history. The last feature is discriminating: a static persona or per-turn reranker predicts no above-
+floor history effect. The remaining features are compatible with many accumulating processes, so agreement
+would support only path-dependent divergence of the specified shape, not the particular function f .
+    The prediction is generated first and frozen—file hash recorded, regeneration byte-identical from the seed,
+the reproduction script refusing to run if the file drifts—before any generation run. For visualization only,
+the predicted band is overlaid on measurements through a strictly affine map (scale positive, no warping) fit
+on pilot pairs and applied once; confirmatory shape features are computed on raw curves.
+
+
+3     Mechanism: A Selection Layer over a Fixed Base Model
+The mechanism instantiates the model on top of an unmodified base language model, continuing the series’
+pattern of realizing a stance as a layer over a fixed model rather than as a capability change [4]. Nothing is
+trained; the base model is identical in every experimental arm.
+     Each turn proceeds in four steps. (1) The ambient-stream simulator emits m candidate experience items;
+the current turn’s features join the pool. Items come from a fixed world of topic clusters shared by every
+agent and stream seed: each item carries a Dirichlet-concentrated topic mixture around its cluster and the
+cluster’s style center perturbed by small noise; the real runs use m=12 items per turn and budget b=3.
+(2) The selection function admits b items by the joint objective—identity affinity on centered features minus
+a damped novelty penalty on similarity to recently selected experience—and the state drifts by Eq. (1).
+(3) The base model generates n candidate responses conditioned on a mixture of the state and the turn.
+(4) The response selector picks the candidate maximizing the joint objective at the output level: novelty
+pressure against the agent’s own past outputs at full weight, plus identity affinity between the candidate’s
+features and Ht . The asymmetry—novelty damped on experience selection, primary on response selection—is
+recorded in the protocol: attention is where identity locks in, output where repetition is policed.
+     Decoding-time control methods steer generation toward an attribute by gradient steering [6], discrimi-
+nator guidance [12, 29], contrastive objectives [16], or control codes and repetition penalties [11]. Best-of-n
+selection scores candidates against a criterion [26]; persona-grounded dialogue supplies an authored pro-
+file [30]; trained role-play agents encode character behavior during training [22]. The memory-reset and
+single-objective arms instantiate close controls for these static or per-turn alternatives.
+     Interaction-dependent systems make a categorical novelty claim untenable. Generative agents use episodic
+memory, reflection, and planning [18]; PersonaAgent revises a user-specific persona prompt from interaction-
+derived memory [31]; and TMEM changes an agent’s within-episode policy through online low-rank parameter
+updates [19]. These systems target memory, personalization, or task adaptation. The present mechanism
+instead retains a low-dimensional control state with no retrievable episodes and leaves model weights fixed.
+Its distinctive evaluation target is whether capacity-limited selection produces the pre-specified novelty–
+consistency contrasts and above-floor twin divergence. This is a difference in mechanism and estimand, not
+a claim that earlier systems cannot adapt.
+
+
+
+                                                       4
+    Persona-stability work measures a complementary phenomenon: departure from an authored persona is
+treated as failure. Instruction-stability experiments study shorter dialogues [15]; agent–agent conversation
+exhibits echoing, agents abandoning assigned roles to mirror their partners [23]; SPASM reduces role and
+persona drift in generated multi-turn dialogue [17]; and ContextEcho audits drift across thousands of turns
+in agentic coding sessions [7]. Here, movement induced by selected history is the hypothesized signal, but
+the real-model experiment does not reproduce those long-context settings: it uses independent prompt
+turns to isolate the wrapper. The twin prediction is related to trajectory analysis in nonlinear recurrent
+systems [24, 27], but the test concerns four pre-specified curve features rather than identification of the
+particular drift function.
+
+
+4     Evaluation Protocol
+The protocol proceeds from a synthetic stand-in to a real-model pilot, a renderer manipulation check, a
+powered grid, and a final grid (Sections 5–5.7). Constants and decision rules are versioned as frozen, pro-
+visional, or pending in the artifact protocol. The divergence prediction was hash-frozen before any text-
+generation run. The final-grid design and analysis were committed before execution; the OSF registration
+(https://osf.io/dyt3w) was created after the registered calibration and matching steps but before con-
+firmatory outputs (Section 5.7). We therefore distinguish the prospective repository freeze from the later
+independent-registry timestamp; the freeze-and-registry discipline is adapted from registered-report method-
+ology [2].
+
+4.1     Arms
+Seven arms, all sharing one base model and one seeded pipeline, differing only in configuration:
+
+    1. mechanism — the full selection layer (novelty + identity pressure, persistent state, ambient stream);
+    2. low-variance control — greedy/low-temperature pure sampling: the bland floor, a fixed point, not
+       a tunable budget;
+    3. novelty-matched randomness control — pure sampling with temperature tuned so its measured
+       Nt matches the mechanism’s, without which the consistency contrast would be a tautology at unequal
+       diversity budgets;
+    4. memory-reset ablation — the full selection layer with the hidden state returned to H0 every turn; the
+       oscillator phase, the recent selected-experience record, and the selector’s own-output novelty history
+       persist, so the ablation removes H-accumulation specifically: the stateful, non-accumulating rerank
+       baseline;
+    5. novelty-only selector — identity weight zero: the repetition-penalty / single-objective class;
+    6. consistency-only selector — novelty weight zero: the static-attribute class;
+    7. pure-sampling grid — a temperature × nucleus-mass sweep tracing the knob frontier that the
+       mechanism is claimed to escape.
+
+    The archived implementation fixes the constants: K = 12 features (six style groups, six topics); n = 4
+candidate responses per turn in the real runs’ selection arms (a run configuration; sampling arms emit a
+single response); drift learning rate λ = 0.08, oscillator coupling γ = 0.05, state-noise scale 0.002, clipping
+to [0, 1]K ; selection weights 1.0 for both pressures in the mechanism arm, zeroed per single-objective arm;
+low-variance control at temperature 0.1, top-p 0.7; grid sweep over temperatures {0.4, 0.9, 1.5} at nucleus
+mass 0.9 plus (0.9, 0.7); 12-turn sequences with a 6-turn final window in the real grids, 24 turns for twins.
+Csty is one minus the normalized L1 distance between the current turn’s stylometric profile and the mean
+profile of the agent’s own history; Nlex is the pooled-bigram non-overlap of Section 2.3.
+
+
+
+
+                                                      5
+4.2    Estimand, matching, and statistics
+The statistical unit is a scripted turn sequence (called a “conversation” in the archived code and filenames).
+Each sequence cycles recurring intents to create controlled repetition opportunities. Crucially, every base-
+model call contains only the current rendered system instruction and current user prompt; the preceding
+dialogue is not supplied. Cross-turn dependence in selection arms is carried by Ht , recent selected-experience
+features, and the selector’s record of its own prior outputs. Sampling controls carry no semantic history.
+Prompts and seeds are crossed factors, and intervals resample whole sequences to avoid turn-level pseu-
+doreplication. Each arm runs the same fixed script battery under a shared per-script seed schedule, one
+sequence per script, and arms are paired by script index. Contrast tests use sign flips of within-script paired
+differences, exact for the sharp null that two configurations are behaviorally equivalent: within a script block
+the arms share the script and seed schedule, so exchanging arm labels is a symmetry of that null and the
+paired difference is symmetric about zero. Hypothesis tests are therefore conditional on the fixed battery
+and seed schedule; bootstrap intervals additionally treat scripts as exchangeable draws, so they describe
+uncertainty across scripts like those in the battery rather than a wider prompt population. The estimand is
+the mean of each metric over the fixed final window.
+    The joint manipulation check (C2) is a conjunction: the absolute N and C thresholds, four directional
+contrasts with Holm multiplicity control [9], and a position outside the tested pure-sampling envelope must
+all pass. The original accumulation criterion (C3) separately required an arm-specific rise in Ct and loss of
+that rise under memory reset. After the powered grid, the final-grid registration added a different paired
+contrast, mechanism versus memory reset on Csty . The same registration fixed a smallest effect of interest [13]
+for consistency, SMEC = 0.02—approximately two pilot sequence-level standard deviations, about twice the
+powered grid’s cross-arm spread—declaring a null consistency contrast equivalent to zero when its paired
+bootstrap 95% upper bound lies below SMEC . The registered rule is one-sided—it excludes a beneficial
+consistency gain of SMEC or more; the observed matched-sampling interval also lies within the symmetric
+±0.02 band (Section 5.7). We report the original C3 and this later state-retention contrast separately.
+    Matched temperature is estimated by bisection on a calibration split and then applied to untouched con-
+firmatory seeds; an out-of-bracket target uses the nearest endpoint and is flagged as unmatched. Capability
+parity is evaluated against prospectively specified ±0.10 equivalence margins—a stipulated one-item-in-ten
+accuracy band, not an externally derived threshold—on a fixed battery of ten short keyword-scored factual
+questions crossed with generation seeds. The battery is near ceiling for the grid model, so equivalence within
+the margin bounds gross accuracy loss only. The protocol also proposed machine-scored output quality, but
+that component was not run; all capability statements are therefore restricted to the probes and latency.
+
+4.3    Twin-divergence protocol
+Twin pairs share the base model, code, H0 , and open-loop oscillator phase. The different-history condition
+uses independent stream and script sequences; the same-history condition shares streams, scripts, and gen-
+eration seeds and differs only in the state-noise seed. Because neither condition supplies dialogue history
+to the base model, the comparison is between the same closed-loop wrapper dynamics, not between autore-
+gressive conversations. State-dependent candidate generation and output-history-dependent selection can
+still amplify small state differences. A fixed-candidate diagnostic was reserved for a floor large enough to
+threaten the comparison.
+     At fixed checkpoints both twins are probed with shared generation seeds, each probe conditioning on
+the agent’s state alone—rendered, as on every turn, through the fixed voice-instruction template, never as
+raw numbers—so the probe asks the agent about its own current dominant interest, and whatever the two
+histories have made different is what carries the signal. The divergence estimator is deliberately not a single
+sampled response—the generator consumes randomness data-dependently, so any nonzero state difference
+desynchronizes the random streams, turning a single-response comparison into a near-binary chaos detector
+rather than a distance. Instead each agent’s probe voice profile is the mean stylometric profile over a batch
+of candidates generated from its conditioning, and the reported divergence subtracts a split-half estimate of
+the estimator’s own noise floor. The estimator is fully specified: per probe (three per checkpoint, batches of
+twelve candidates per agent in the real runs), the coordinatewise absolute difference
+                                                                                    √ of the two agents’ mean
+profiles, minus the agents’ averaged within-batch split-half difference divided by 2 (the scaling matching
+the null expectation of the between-agent difference), clipped at zero, averaged over coordinates and probes.
+
+
+                                                       6
+Revision                             Stage                     Freeze status                   Direction
+Twin-ratio tolerance ±0.15 →         synthetic   valida-       provisional constant; before    widens pass region; ratio
+±0.20                                tion                      any real-model run              also passes at ±0.15
+Probe conditioning mixed →           pilot                     instrument revision before      restores muted signal
+state-only                                                     powered grid
+Per-variant calibration thresholds   pilot                     specification tightening be-    neutral
+                                                               fore powered grid
+Inflection-tolerant lexicon match-   renderer gate             instrument revision             raises gate topic scores
+ing
+Ecological topic measurement         renderer gate             instrument revision             aligns gate with pipeline
+Sign-flip exchangeability group      powered grid              post-data reanalysis, la-       decisions unchanged
+                                                               beled
+Original C3 → paired reset con-      after powered grid        frozen before final grid; re-   detects effect C3 missed
+trast                                                          ported separately
+Memory-reset capability TOST         powered grid              post-review       addendum;     expands coverage
+                                                               frozen probes,       margin,
+                                                               seeds
+Semantic threshold → non-            final registration        frozen before final grid        vacuous conjunct be-
+inferiority guard                                                                              comes guard
+Twin primary statistic median →      final registration        frozen before final grid        avoids clip zero-inflation
+mean
+
+Table 1: Disclosed protocol revisions across stages. “Direction” states how each revision could bias outcomes
+relative to the original specification.
+
+     √
+The 2 scaling assumes independent, equal-variance half-batches under the null; shared seeds correlate the
+agents’ batches, shrinking the raw difference—erring conservative—and the paired twin analysis differences
+two identically corrected conditions, cancelling most residual bias. The clip is what produces exact zeros at
+the floor; the estimator is marked provisional in the protocol, and a simulation-based calibration archived
+with the final grid’s sizing (Gaussian profiles at batch twelve) measures a null mean ≈0.006, 95th percentile
+≈0.010, and downward bias under true separation—conservative rather than anti-conservative under the
+simulated conditions, a model-based calibration that does not certify other coordinate distributions; twin
+statistics are read within that resolution throughout. Divergence is stylometric-primary with a semantic
+robustness row, for the same anti-confound reason as Ct ; probes are excluded from the agents’ histories;
+and the same-history “floor” is itself a gently rising curve, not a flat constant—independent state noise
+accumulates too—so it is reported as a distribution over seed pairs and every floor comparison is an inequality
+on intervals, never points.
+    Table 1 consolidates the protocol revisions disclosed at their points of use in Sections 5–5.7, each with its
+stage, freeze status, and the direction in which it could bias outcomes. None alters a hash-frozen artifact.
+Most of the listed revisions are pass-favorable in direction; the bound on this risk is that the anchors—the
+hash-frozen prediction and the pre-execution repository freezes—were never revised.
+
+
+5    Results: A Synthetic Reference Implementation
+Everything measured in this section uses a seeded synthetic generator designed to expose low-temperature
+repetition and high-temperature incoherence. These results validate code paths, metrics, arms, matching, and
+twin analysis; they are not evidence about an open-weight language model. The ancillary artifact contains
+the implementation, tests, inputs, and generated results files. Synthetic-run metadata specify master seed
+20260711, eight 24-turn sequences per arm, twelve twin pairs per condition over 40 turns, and a prediction
+band over 48 pairs. The archived powered-run prose summary contains two stale labels documented in
+results powered/ERRATA.md; numeric files are unaffected.
+
+
+
+
+                                                           7
+   Arm                            Nlex                  Nsem                   Csty                   Csem
+   mechanism              0.931 [0.887, 0.965]   0.156 [0.114, 0.221]   0.594 [0.566, 0.679]   0.752 [0.704, 0.802]
+   low-variance           0.509 [0.441, 0.579]   0.000 [0.000, 0.000]   0.660 [0.598, 0.714]   0.587 [0.483, 0.748]
+   randomness-matched     0.939 [0.911, 0.974]   0.126 [0.096, 0.201]   0.627 [0.542, 0.672]   0.745 [0.705, 0.828]
+   memory-reset           0.998 [0.978, 1.000]   0.192 [0.117, 0.222]   0.621 [0.573, 0.643]   0.731 [0.662, 0.794]
+   novelty-only           1.000 [0.994, 1.000]   0.191 [0.122, 0.276]   0.579 [0.547, 0.654]   0.720 [0.635, 0.784]
+   consistency-only       0.830 [0.747, 0.912]   0.114 [0.073, 0.142]   0.666 [0.602, 0.705]   0.829 [0.767, 0.890]
+   bland boilerplate             0.000                  0.500                  1.000                  0.000
+
+Table 2: Synthetic validation: per-arm sequence-level summaries (median with central 95% band over eight
+confirmatory sequences; the boilerplate control is deterministic). These validate instruments and arm ma-
+chinery, not open-weight-model performance. The pure-sampling grid’s N –C correlation is r = −0.735.
+
+
+5.1    Instrument validation
+The stylometric metric is invariant under topic permutation on mechanism transcripts (maximum shift
+0.0). Between-agent distinctiveness is positive for mechanism agents (self-match minus cross-match = 0.029)
+and zero for boilerplate twins. The boilerplate control has Csty = 1.000 and Nlex = 0.000, showing why
+consistency alone cannot satisfy the joint criterion. Novelty matching converged: the calibration target was
+Nlex = 0.934; temperature 2.275 achieved 0.932 on calibration and 0.939 on the confirmatory split (Table 2).
+Selection overhead was 652 [590, 705] microseconds per turn versus 1101 [999, 1220] for synthetic generation.
+
+5.2    Limits of the synthetic validation
+The synthetic sampling sweep shows a negative N –C association (r = −0.735), and the mechanism has
+high novelty. Selection and sampling arms do not separate on Csty , however, and the accumulation curves
+do not distinguish mechanism from memory reset. The stand-in is strongly style-conditioned in every arm,
+producing a ceiling on the consistency metric. Consequently, these results validate the metric and code paths
+but do not evaluate C2 or C3 on a real model.
+
+5.3    The twin experiment: prediction versus measurement
+The divergence prediction was generated by the LLM-free state-space simulator and frozen—SHA-256
+dd7a5d81... recorded in the artifact, regeneration byte-identical, the reproduction script hard-failing on
+any drift—before any generation run. The frozen prediction: monotone fraction 0.972; saturating curvature;
+half-to-full-horizon ratio 0.558; floor-separation factor 3.25.
+    The measured twins (twelve pairs per condition, 40 turns, two pilot pairs reserved for the figure’s affine
+overlay, ten confirmatory) reproduce the predicted shape on all four point criteria (Table 3, Figure 2): the
+confirmatory divergence curve is monotone (fraction 1.000), saturating, with a half-to-full ratio of 0.662 and
+a floor-separation factor of 1.87. Different-history twins diverge; same-history twins, differing only in state
+noise, diverge less by the pre-stated margin; the competitor classes predict a factor of one (Section 2.4).
+Per the intervals-not-points commitment: final divergences 0.019 [0.007, 0.054] against 0.010 [0.004, 0.034],
+and the floor-factor bootstrap interval [0.85, 5.07] at ten pairs does not yet exclude one—the point criterion
+passes; the interval question passed to the real grids. The same compressive-transform argument applies to
+the floor factor’s level: both measured features sit closer to one than their state-space counterparts (1.87
+vs. 3.25) without that being evidence against path dependence. In the synthetic setting, the model’s central
+prediction—identity accumulated from selection makes initially identical agents diverge as a function of what
+happened to them, along a curve of the predicted shape—is corroborated at point level : the discriminating
+feature’s interval question stays open at ten pairs, under the same intervals discipline the real-model grid is
+later held to.
+    Three disclosures accompany the agreement verdict. First, the ratio tolerance was widened during vali-
+dation from ±0.15 to ±0.20 once the shift’s source was understood—the probe measures a bounded profile
+distance, a compressive transform, so measured curves saturate slightly early; the widening is recorded in
+the protocol as a validation-stage calibration of a provisional constant, the widened tolerance still fails a flat
+
+
+                                                         8
+Figure 1: Synthetic quadrant. Grey points are the pure-sampling temperature × nucleus-mass grid; markers
+are the six core arms and boilerplate control. The synthetic arms do not separate on Csty ; the real-model
+comparison was prospectively specified.
+
+
+or generic-memory process (ratio near one), and the measured ratio passes at the original ±0.15 anyway.
+Second, the probe instrument was revised once during piloting—probes now condition on the agent’s state
+alone (Section 4.3); mixed conditioning had let the probe question pin the topic channel—and all numbers
+here are from the revised instrument, documented in the protocol. Third, the affine overlay in Figure 2 (fit
+on the two pilot pairs) is presentation only; every number in Table 3 is computed on raw curves.
+
+5.4    A real-model pilot: the transmission risk, realized
+The first open-weight run used mlx-community/Qwen2.5-0.5B-Instruct-4bit: six confirmatory 12-turn
+sequences per arm, four twin pairs per condition over 24 turns, real topic lexicons, and a fixed voice renderer.
+Pilot constants were frozen in the protocol. Calibration produced θN = 0.95 and θC = 0.70 under the floor-
+to-0.05 rule; the semantic threshold was 0.0 and therefore uninformative. The frozen divergence band was
+evaluated on its pilot-horizon prefix without refitting.
+    The mechanism meets the informative thresholds (Nlex = 0.975 [0.925, 0.984], Csty = 0.774 [0.739, 0.810]),
+lies outside the tested sampling envelope, and has positive novelty contrasts: +0.139 [+0.091, +0.234] against
+the low-variance control and +0.054 [+0.008, +0.075] against consistency-only selection. Probe accuracy
+ranges from 0.85 to 0.90 with overlapping Wilson intervals, but n = 20 per arm is insufficient for the planned
+equivalence test. Selection costs 598 [560, 702] microseconds per turn versus 1.56 seconds for generation.
+    Both consistency contrasts are null. Against matched sampling, the difference is −0.007 (95% CI
+[−0.047, +0.032]). Against novelty-only selection, it is −0.014 (95% CI [−0.057, +0.033]). All arms lie
+near Csty = 0.77–0.80, accumulation curves plateau within two turns, and neither twin channel exceeds the
+estimator floor. The results are consistent with weak transmission through the 0.5B model and minimal
+renderer: hidden states diverge in the wrapper, but measured function-word rates, sentence lengths, and
+topic mixtures do not. Before a powered grid, the protocol therefore required a renderer-level manipulation
+check on the measured channels. The protocol documents two pilot-stage instrument revisions—per-variant
+
+
+                                                       9
+              Shape feature        Predicted (frozen)       Measured      Criterion       Pass
+              monotone fraction           0.972               1.000         ≥ 0.80          yes
+              curvature class           saturating          saturating       equal          yes
+              half-to-full ratio          0.558               0.662      within ±0.20       yes
+              floor separation             3.25                1.87          ≥ 1.5      yes (point)
+
+Table 3: Synthetic twin-divergence agreement against prospectively hash-frozen shape features. All four
+point criteria pass, including the original ±0.15 ratio tolerance, but the floor-separation interval at ten pairs
+includes one. Agreement is therefore point-level pipeline validation.
+
+
+
+
+Figure 2: Predicted band versus measured twin divergence, synthetic validation. Shaded: the frozen state-
+space band (5th–95th percentile) and its median, mapped through the pilot-fit affine overlay; dashed: the
+model’s same-history floor. Points: measured different-history divergence (median with band over confirma-
+tory pairs); squares: the measured same-history floor. The confirmatory shape comparison uses raw curves;
+the overlay is presentation only.
+
+
+thresholds and state-only probe conditioning—made before the powered grid.
+
+5.5    The renderer gate: a manipulation check on the transmission channel
+The gate varies one block of H at a time and asks whether the corresponding surface channel responds
+(n=24 generations per cell, fixed decoding). Three channels match what the instruments read: sentence
+length (high-vs-low gap of at least two words, bootstrap interval excluding zero), function-word group rates
+(one-hot a group; its rate must rise, two of three groups), and topic (argmax matches H’s dominant topic
+at ≥ 0.8, measured through the pipeline’s actual carrier, the question renderer). Two check-stage revisions
+are documented in the protocol: inflection-tolerant lexicon matching (“stars” counts for “star”) and the
+ecological topic measurement just described.
+   The 0.5B model fails the style channels (length gap 3.33 words, interval [−0.46, 7.09]; all function-word
+groups null) while passing topic (0.90). The question renderer largely carries the topic signal, whereas the
+model must realize style. mlx-community/Qwen2.5-1.5B-Instruct-4bit passes all three channel rules:
+length gap 5.74 words [3.35, 8.13]; positive effects for two of three function-word groups; and topic accuracy
+0.88. It was the smallest tested model to pass and was frozen for both grids.
+
+
+                                                       10
+Claim                                    Evidence class     Real-model verdict
+Formal model, entropy gap (Section 2)    argument           design target; not measured
+Joint novelty×consistency check (C2)     measurement        fail: consistency null (one equiv. to zero)
+Original accumulation criterion (C3)     measurement        fail: arm-specific rise not observed
+Final-grid state-retention contrast      measurement        positive on C; not evidence of path dependence
+Capability neutrality                    measurement        established at probe level, item-paired
+Twin path dependence and shape           measurement        decided: separation not estab.; curvature as predicted
+Handoff to the perception study          conditional        withheld: manipulation-check condition not met
+
+Table 4: Results at a glance: the paper’s central claims, their evidence class, and the verdicts after the
+powered and final grids (Sections 5.6–6).
+
+
+5.6     The powered grid: novelty without joint consistency
+Across the two grids, the response selector increases lexical novelty without a detected loss on the fixed
+capability probes. The joint criterion fails because consistency does not improve over sampling. The original
+C3 fails, while a later registered state-retention contrast is positive. Twin separation is not established; the
+final mean curve is classified as saturating. Table 4 separates these outcomes.
+    Powered-grid constants were frozen before execution: 24 confirmatory sequences per arm; eight 24-
+turn twin pairs per condition (two overlay pilots, six confirmatory); and n = 150 probes per arm with a
+±0.10 equivalence margin. Calibration produced θN = 0.95, θC = 0.70, and an uninformative semantic
+threshold of 0.0; novelty matching gave temperature 1.000 (target 0.984, achieved 0.972). The registered
+permutation specification did not state the exchangeability group, and the run-time analysis permuted arm
+labels without preserving script pairs. After outcome access, this was corrected and labeled as a post-data
+reanalysis: medians of within-script differences were tested by script-level sign flips, with Holm correction.
+Both analyses give the same qualitative decisions; Table 5 reports the paired reanalysis. The powered-grid
+sizing calculation was an unadjusted normal approximation, not a Holm-aware guarantee. The final grid
+replaced it with simulation-based sizing.
+    Probe accuracy is 0.99–1.00 in every arm, and the planned normal-approximation TOSTs pass at the
+±0.10 margin. Because the same near-ceiling items are shared across arms and item-level outcomes were not
+archived for this grid, the final grid provides the stronger paired analysis. Selection costs 604 microseconds per
+turn versus 2.11 seconds for generation; output quality was not assessed. Both lexical novelty contrasts pass in
+the paired reanalysis: +0.092 [+0.059, +0.111] against the low-variance control and +0.021 [+0.007, +0.033]
+against consistency-only selection, pholm = 0.0012 for both. The semantic threshold of 0.0 makes the regis-
+tered two-variant novelty conjunct non-evaluable at this stage. Memory reset retains the same lexical novelty
+(−0.008 [−0.019, 0.000] relative to mechanism), locating the effect in per-turn response selection rather than
+state accumulation. Twin divergence is suggestive at point level, but its paired interval includes zero; no
+path-dependent separation is established in this grid.
+    Two boundaries emerge. First, both consistency contrasts are null, so the joint criterion fails. The
+mechanism-minus-control estimates are −0.019 (95% CI [−0.030, +0.005]) for matched sampling and 0.000
+(95% CI [−0.018, +0.026]) for novelty-only selection; both Holm-adjusted p-values equal 1.0 (raw 0.996
+and 0.507). These superiority tests do not themselves establish equivalence; that rule was added to the
+final grid. House-style dominance is one interpretation, but attenuation of the function-word metric or a
+weak realized state signal remain possible. The original accumulation criterion (C3) also fails: Ct plateaus
+within roughly three turns in every arm, and the memory-reset ablation does not fall below the mechanism
+(0.000 [−0.016, +0.018], descriptive). The final grid evaluates a revised paired state-retention contrast, de-
+fined after this powered result and frozen before the final grid; it does not change the original C3 verdict.
+The renderer gate shows that the model can change style under direct one-hot instructions but does not sep-
+arate the tested arms under independent-turn prompting. Second, the twin point estimate has accelerating
+rather than saturating curvature (half-to-full ratio 0.434 versus 0.772 ± 0.20, the frozen band’s ratio on the
+real runs’ 24-turn checkpoint prefix; the full 40-turn synthetic horizon gives the 0.558 of Table 3), but its
+pairs-bootstrap interval [0.10, 3.18] is too wide to establish either agreement or disagreement. The final grid
+supplies the registered interval-based twin decisions.
+
+
+
+                                                       11
+Specified outcome                        Value                          Criterion                  Result
+Nlex ≥ θN                                0.984 [0.926, 1.000]           ≥ 0.95                     pass
+Csty ≥ θC                                0.745 [0.692, 0.814]           ≥ 0.70                     pass
+Outside sampling envelope                yes                            required                   pass
+N vs. greedy floor                       +0.092 [+0.059, +0.111]        pholm =0.0012              pass
+N vs. consistency-only                   +0.021 [+0.007, +0.033]        pholm =0.0012              pass
+C vs. matched randomness                 −0.019 [−0.030, +0.005]        pholm =1.0                 fail
+C vs. novelty-only                       +0.000 [−0.018, +0.026]        pholm =1.0                 fail
+Joint manipulation check (conjunction)   —                              all of the above           fail
+Accum.: memory-reset collapse (descr.)   0.000 [−0.016, +0.018]         collapse below mechanism   fail
+Accum.: arm-specific Ct rise (descr.)    plateau by ∼turn 3, all arms   sustained, arm-specific    fail
+TOST vs. greedy floor                    0.99 vs. 1.00                  ±0.10, p < 0.0001          equivalent
+TOST vs. matched randomness              0.99 vs. 0.99                  ±0.10, p < 0.0001          equivalent
+TOST vs. memory-reset (addendum)         0.99 vs. 0.99                  ±0.10, p < 0.0001          equivalent
+Twin monotone fraction                   1.000                          ≥ 0.80                     pass (point)
+Twin floor separation (ratio)            unbounded (zero denom.)        ≥ 1.5                      trivial
+Twin floor difference (post hoc)         +0.014 [0.00, +0.044]          CI excludes 0              not met
+Twin curvature class                     accelerating                   saturating                 fail
+Twin half-to-full ratio                  0.434                          0.772 ± 0.20               fail
+
+Table 5: Powered grid, prospectively specified outcomes (mlx-community/Qwen2.5-1.5B-Instruct-4bit;
+24 scripted sequences/arm; twins 8 pairs/condition, 2 overlay pilots, 6 confirmatory; capability n=150/arm).
+The memory-reset TOST is a post-review addendum using the same probes, margin, and seeds. Medians
+have central 95% bands; contrast rows use the archived paired sign-flip reanalysis. Twin point criteria have
+no robust interval verdict at this size.
+
+
+5.7    The final grid: prospectively specified decisions
+The final-grid design, sizing, and analysis script were frozen in repository commit 23c269a at 20:03 EEST
+on 11 July 2026, before execution. Calibration thresholds and novelty matching were generated at 20:06–
+20:07. The OSF registration (https://osf.io/dyt3w) was created at 20:33:17 EEST, after those calibration
+artifacts but before confirmatory arm outputs began at 21:33. Thus the decision rules were prospectively
+fixed in version control, while the independent registration preceded confirmatory outcomes but not the entire
+run. Sizing used simulations based on powered-grid variances: at the chosen sizes—56 confirmatory scripted
+sequences per arm, 16 confirmatory twin pairs plus two overlay pilots, and n=150 capability items per arm,
+including memory reset—the archived simulations put the four contrasts at or above 94% Holm-aware power
+at the planning effects, the equivalence declaration at 86% under a true zero, and the twin separation test
+at 97% under the powered grid’s empirical zero-inflated effect model, which incorporates the estimator’s
+clip. The final run used master seed 20260716, calibration thresholds θN = 0.95 and θC = 0.65 (produced
+by the same frozen floor-to-0.05 calibration rule as the earlier stages, applied to this grid’s own calibration
+split), and matched temperature 1.400 (target 0.990, achieved 0.987); on the confirmatory split the balance
+held—median Nlex 0.984 for the mechanism versus 0.980 for the matched arm, a difference of 0.003 against
+the 0.03 matching tolerance (descriptive, from the archived per-sequence files). Primary inference uses paired
+sign flips, paired bootstrap intervals, a semantic non-inferiority guard, and a mean paired twin statistic. The
+frozen analysis script generates all verdicts from results final/.
+    The lexical novelty contrasts are positive: +0.073 [+0.057, +0.103] against the low-variance control and
++0.023 [+0.018, +0.034] against consistency-only selection, with pholm = 0.0004 for both; both contrasts oper-
+ate near the top of the bounded scale (mechanism median 0.984). The absolute thresholds, sampling-envelope
+rule, and semantic non-inferiority guard also pass. In contrast, mechanism versus novelty-matched sampling
+on Csty is −0.006 [−0.017, +0.008] (raw p = 0.71, pholm = 0.92) and meets the registered equivalence-to-zero
+rule; the novelty-only contrast (raw p = 0.46) is null but does not meet that equivalence rule. The equivalence
+verdict is not sensitive to the margin’s calibration: under the registered one-sided rule, the matched-sampling
+upper bound of +0.008 also satisfies margins of 0.01 and 0.03. The joint novelty–consistency criterion there-
+fore fails.
+    The original C3 remains failed because the required arm-specific rise in Ct is absent. The revised final-
+
+
+                                                      12
+Figure 3: Powered-grid quadrant (1.5B grid model, 24 scripted sequences/arm). The mechanism clears the
+frozen novelty threshold and tested sampling envelope; all arms remain within a narrow consistency band.
+Generated from results powered/.
+
+
+grid state-retention contrast is positive: mechanism exceeds memory reset on Csty by 0.028 [0.018, 0.039]
+(p = 10−4 ), subject to the instrument caveat of Section 7: the stylometric metric’s discriminant validity
+was not separately re-established on real-model outputs. Because this estimand was introduced after the
+powered-grid results, it is a prospectively specified follow-up within the final grid, not confirmation of the
+original C3. It also does not establish path dependence: a fixed nonzero control state could produce the
+same contrast.
+    Twin separation is not established (mean paired difference 0.003 [−0.011, 0.019], p = 0.36, 16 confirmatory
+pairs), the point estimate lying below the estimator’s simulated null mean of ≈0.006; the superseded median
+statistic sits at the clip floor (median paired final difference 0.0 over archived pairs, descriptive). The
+registered 97% power applies to the powered grid’s empirical planning effect (0.039 after the clip), not to
+effects at the estimator’s floor: separations at the observed scale lie below the instrument’s resolution. The
+mean curve is classified as saturating in 99.9% of bootstrap resamples, but its half-to-full ratio 1.33 [0.80, 2.96]
+is not contained within the frozen band. The registered shape rules evaluate the mean curve, the median
+being fragile under the estimator’s zero-clip; monotonicity had no registered mean-curve rule, and the median
+curve plotted in Figure 5 is non-monotone at this scale (monotone fraction 0.333) and carries no registered
+verdict. With no above-floor separation, curvature agreement alone does not support history-dependent
+divergence. Finally, the three item-paired capability comparisons have bootstrap intervals within ±0.10 on
+the fixed 150-item battery (ten keyword-scored factual probes crossed with fifteen seeds; no exclusions; items
+paired across arms by probe and seed; arm accuracies 0.95–1.00, near ceiling); the items bootstrap treats
+the probe×seed cells as exchangeable, so the equivalence intervals are conditional on this fixed battery. The
+widest combined range is [−0.047, +0.067]. Selection overhead is 688 microseconds per turn versus 1.81
+seconds for generation. Conversational output quality was not measured.
+
+
+
+
+                                                        13
+Figure 4: Powered-grid twin divergence against the frozen horizon prefix (affine overlay for presentation
+only). The different-history point curve is monotone and accelerating, but intervals do not establish either
+above-floor separation or shape agreement. Final-grid results appear in Figure 5.
+
+
+6    The Ablation, Packaged for the Perception Study
+The framework paper requires a capability-neutral present-versus-ablated condition pair before the percep-
+tion study [3]. The candidate pair is the full mechanism versus memory reset, with the joint criterion as its
+manipulation check and twin separation as an independent path-dependence signature.
+    The handoff condition was not met. Probe-level capability equivalence holds for the mechanism–memory-
+reset pair, but the joint manipulation check fails on both consistency contrasts. The positive final-grid reset
+contrast shows that the two arms are behaviorally distinguishable on Csty , subject to the instrument caveat of
+Section 7; it does not make the full arm an entropy-present condition because the registered joint definition
+also requires superiority to matched sampling and the novelty-only selector. The leading interpretation
+is a narrow house-style band under the tested independent-turn renderer, with metric attenuation and
+weak realized state signal remaining alternatives. A human study would still require its own manipulation
+check, output-quality validation, participant sample, perceived-mind measure, and disclosure conditions. No
+machine-judge result is used as a substitute for human perception.
+
+
+7    Scope and Limitations
+Inferrable interiority, not interiority. The object of this paper is the evidence structure from which an
+observer could infer a hidden state—unpredictable-yet-coherent outputs—not the possession of one in any
+phenomenal sense. This is perception engineering, not a theory of machine consciousness; the register is
+the framework paper’s [3], consonant with reading an LLM’s apparent inner states as role-play rather than
+report [21]. Nothing here claims the mechanism increases perceived mind, believability, or any human rating:
+those are the perception study’s questions, and the bridge—does the high/high quadrant move perceived
+mind—is the framework’s prediction P2, which this paper’s deliverable makes pre-registrable without testing
+it. The title names the design target, not the real-model result: on real models the evidence reaches the
+novelty channel, at the selector level, and the paper claims nothing further.
+    No human subjects; independent-turn evaluation. Every result is machine-scored on one com-
+puter. The synthetic generator was designed to transmit conditioning, so its positive twin result validates
+
+
+                                                      14
+  Registered outcome                     Value                          Criterion                Result
+  Nlex ≥ θN                              0.984 [0.959, 1.000]           ≥ 0.95                   pass
+  Csty ≥ θC                              0.764 [0.689, 0.825]           ≥ 0.65                   pass
+  Outside sampling envelope              yes                            required                 pass
+  Semantic guard (non-inferiority)       −0.004 [−0.016, 0.000]         lower bound > −0.05      holds
+  N vs. greedy floor                     +0.073 [+0.057, +0.103]        pholm =0.0004            pass
+  N vs. consistency-only                 +0.023 [+0.018, +0.034]        pholm =0.0004            pass
+  C vs. matched randomness               −0.006 [−0.017, +0.008]        pholm =0.92              fail; equiv. to 0
+  C vs. novelty-only                     +0.001 [−0.009, +0.021]        pholm =0.92              fail
+  Joint manipulation check               —                              all conjuncts            fail
+  Original C3 (two-part criterion)       no arm-specific rise           both parts required      fail
+  Final-grid reset contrast (C)          +0.028 [+0.018, +0.039]        p<.05, CI > 0            positive
+  Twin separation (mean paired diff)     +0.003 [−0.011, +0.019]        p<.05, CI > 0            not estab.
+  Twin curvature (mean curve)            saturating (99.9% resamples)   = predicted              established
+  Twin half-to-full ratio (mean curve)   1.33 [0.80, 2.96]              CI inside 0.772 ± 0.20   not estab.
+  Capability (item-paired, 3 pairs)      all within [−0.047, +0.067]    CIs inside ±0.10         equivalent
+
+Table 6: Final-grid outcomes (mlx-community/Qwen2.5-1.5B-Instruct-4bit; 56 scripted sequences/arm;
+twins 18 pairs/condition, 16 confirmatory; capability n=150/arm including memory reset). Paired medians,
+except the twin mean, have pairs-bootstrap 95% intervals; sign-flip tests are Holm-corrected where specified.
+Repository rules were frozen before execution; OSF registration followed calibration and preceded confirma-
+tory outputs.
+
+
+the pipeline but does not predict open-weight-model performance. The real-model renderer gate established
+large one-hot style effects, yet arm-level consistency remained within a narrow band. Most importantly, the
+base model never receives the preceding dialogue: each call contains only the current rendered state and
+prompt. The experiment therefore isolates wrapper state and selection under a scripted sequence; it is not
+evidence about long-context dialogue, memory retrieval, or persona drift in sustained interaction. The am-
+bient stream is also simulated. Because stream items and current-turn features enter the same state update,
+their separate contributions are not identified.
+    Proxy outcomes. Nt and Ct measure non-repetition and stylometric stability, not the entropy gap or
+a human perception. “Identity” denotes a selection-history construct, not a psychological property. Scripts,
+thresholds, metric definitions, per-sequence and per-item outcome files, and deterministic analysis code are
+included in the submission ancillary files and archived independently at https://doi.org/10.5281/zenodo.
+21462383; per-turn response text is not retained, so the topic-permutation and distinctiveness checks ran
+in-pipeline at the synthetic stage and were not recomputed on the real grids—the stylometric instrument’s
+discriminant validity on real outputs rests on the renderer gate. The operative novelty result is lexical and
+could reflect surface substitution rather than substantive variation. The novelty metric and the response
+selector’s novelty objective are aligned by construction, so the positive lexical contrasts show the selector
+operating as designed rather than providing independent evidence of substantive unpredictability. The final-
+grid semantic non-inferiority guard rules out a specified decrement relative to matched sampling; it is not
+evidence of positive semantic novelty.
+    The controls limit interpretation. “More consistent than randomness” refers to novelty-matched
+sampling; “noveler than the floor” refers to the fixed low-variance control. The original C3 means an arm-
+specific rise in consistency plus loss under reset and is not supported. The later mechanism–reset contrast is
+evidence that retained state affects Csty , not that the state follows a path-dependent trajectory. The twin
+comparison was intended to test that stronger claim and did not establish separation. Capability equivalence
+applies only to the fixed probes and measured latency; output quality was not evaluated.
+    Model and software scope. The powered and final grids use the 4-bit MLX conversion of Qwen2.5-
+1.5B-Instruct from the mlx-community repository. Its Hugging Face revision is 8b403126fc14f14cfc99b
+b4cfa72ecbc129ea677; inference uses mlx-lm 0.31.3 and mlx 0.32.0. The artifact records seeds, scripts,
+thresholds, per-sequence and per-item outcome files, and analysis code. This single model, quantization,
+renderer, and software stack do not support claims about other model families or deployment settings.
+
+
+
+                                                       15
+Figure 5: Final-grid twin divergence vs. the frozen band’s horizon prefix (affine overlay, presentation only;
+16 confirmatory pairs). Points are the median with band over confirmatory pairs and are noisy at this
+scale; the registered verdicts (Section 5.7) are computed on the mean curve: above-floor separation not
+established and tightly bounded; curvature established saturating, as the drift model predicted. Generated
+from results final/.
+
+
+8    Series Context
+This is Paper 2 of a series whose framework defines time, truth, entropy, and love as candidate behavioral
+stances for perceived mind [3]. The time paper supplies the open-loop oscillator used here [4]; companion
+manuscripts address truth and love with distinct mechanisms and evidence. The present results support
+only a lexical-novelty effect and a post-powered state-retention contrast under the tested wrapper. They do
+not establish the joint entropy condition, history-dependent twin divergence, output-quality neutrality, or a
+perceptual effect. The condition pair required by the later human study therefore remains unavailable.
+
+
+Editorial assistance disclosure
+OpenAI Codex was used for editorial review and LaTeX revision. It did not generate experimental data or
+run the reported analyses. The author takes responsibility for the manuscript.
+
+
+References
+ [1] Massimo Caccia, Lucas Caccia, William Fedus, Hugo Larochelle, Joelle Pineau, and Laurent Charlin.
+     Language GANs falling short. In 8th International Conference on Learning Representations (ICLR
+     2020), 2020. arXiv:1811.02549.
+ [2] Christopher D. Chambers and Loukia Tzavella. The past, present and future of registered reports.
+     Nature Human Behaviour, 6(1):29–42, 2022.
+
+ [3] Sebastian Cochinescu. Perceived AGI: Believability as dimensional completeness, not capability. arXiv
+     preprint arXiv:2607.15883, 2026. Companion framework paper, Paper 0 of the series.
+
+
+
+                                                     16
+ [4] Sebastian Cochinescu. SCN-LLM: A suprachiasmatic-nucleus-inspired temporal architecture for large
+     language models. Unpublished revised manuscript, 2026. Reference implementation, including the Van
+     der Pol oscillator used here, archived at https://doi.org/10.5281/zenodo.21286077.
+ [5] Thomas M. Cover and Joy A. Thomas. Elements of Information Theory. Wiley-Interscience, 2nd
+     edition, 2006.
+
+ [6] Sumanth Dathathri, Andrea Madotto, Janice Lan, Jane Hung, Eric Frank, Piero Molino, Jason Yosinski,
+     and Rosanne Liu. Plug and play language models: A simple approach to controlled text generation. In
+     8th International Conference on Learning Representations (ICLR 2020), 2020. arXiv:1912.02164.
+ [7] Xianzhong Ding, Yangyang Yu, Changwei Liu, and Bill Zhao. ContextEcho: A benchmark for persona
+     drift in long agentic-coding sessions. arXiv:2605.24279, 2026.
+ [8] Angela Fan, Mike Lewis, and Yann Dauphin. Hierarchical neural story generation. In Proceedings of
+     the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),
+     pages 889–898, 2018.
+ [9] Sture Holm. A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics,
+     6(2):65–70, 1979.
+[10] Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, and Yejin Choi. The curious case of neural
+     text degeneration. In 8th International Conference on Learning Representations (ICLR 2020), 2020.
+     arXiv:1904.09751.
+
+[11] Nitish Shirish Keskar, Bryan McCann, Lav R. Varshney, Caiming Xiong, and Richard Socher. CTRL:
+     A conditional transformer language model for controllable generation. arXiv:1909.05858, 2019.
+[12] Ben Krause, Akhilesh Deepak Gotmare, Bryan McCann, Nitish Shirish Keskar, Shafiq Joty, Richard
+     Socher, and Nazneen Fatema Rajani. GeDi: Generative discriminator guided sequence generation. In
+     Findings of the Association for Computational Linguistics: EMNLP 2021, pages 4929–4952, 2021.
+
+[13] Daniël Lakens. Equivalence tests: A practical primer for t tests, correlations, and meta-analyses. Social
+     Psychological and Personality Science, 8(4):355–362, 2017.
+[14] Jiwei Li, Michel Galley, Chris Brockett, Jianfeng Gao, and Bill Dolan. A diversity-promoting objective
+     function for neural conversation models. In Proceedings of the 2016 Conference of the North American
+     Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-
+     HLT), pages 110–119, 2016.
+[15] Kenneth Li, Tianle Liu, Naomi Bashkansky, David Bau, Fernanda Viégas, Hanspeter Pfister, and Martin
+     Wattenberg. Measuring and controlling instruction (in)stability in language model dialogs. In First
+     Conference on Language Modeling (COLM 2024), 2024. arXiv:2402.10962.
+[16] Xiang Lisa Li, Ari Holtzman, Daniel Fried, Percy Liang, Jason Eisner, Tatsunori Hashimoto, Luke
+     Zettlemoyer, and Mike Lewis. Contrastive decoding: Open-ended text generation as optimization. In
+     Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1:
+     Long Papers), pages 12286–12312, 2023.
+[17] Han Luo and Guy Laban. SPASM: Stable persona-driven agent simulation for multi-turn dialogue
+     generation. arXiv:2604.09212, 2026.
+
+[18] Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and Michael S.
+     Bernstein. Generative agents: Interactive simulacra of human behavior. In Proceedings of the 36th
+     Annual ACM Symposium on User Interface Software and Technology (UIST ’23), 2023.
+[19] Tao Ren, Weiyao Luo, Hui Yang, Rongzhi Zhu, Xiang Huang, Yuchuan Wu, Bingxue Chou, Jieping
+     Ye, Jiafeng Liang, Yongbin Li, and Yijie Peng. Scaling self-evolving agents via parametric memory.
+     arXiv:2606.04536, 2026.
+
+
+                                                      17
+[20] Abigail See, Stephen Roller, Douwe Kiela, and Jason Weston. What makes a good conversation? How
+     controllable attributes affect human judgments. In Proceedings of the 2019 Conference of the North
+     American Chapter of the Association for Computational Linguistics: Human Language Technologies
+     (NAACL-HLT), pages 1702–1723, 2019.
+[21] Murray Shanahan, Kyle McDonell, and Laria Reynolds. Role play with large language models. Nature,
+     623:493–498, 2023.
+[22] Yunfan Shao, Linyang Li, Junqi Dai, and Xipeng Qiu. Character-LLM: A trainable agent for role-
+     playing. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing
+     (EMNLP), pages 13153–13187, 2023.
+
+[23] Sarath Shekkizhar, Romain Cosentino, Adam Earle, and Silvio Savarese. Echoing: Identity failures
+     when LLM agents talk to each other. arXiv:2511.09710, 2025.
+[24] H. Sompolinsky, A. Crisanti, and H. J. Sommers. Chaos in random neural networks. Physical Review
+     Letters, 61:259–262, 1988.
+[25] Efstathios Stamatatos. A survey of modern authorship attribution methods. Journal of the American
+     Society for Information Science and Technology, 60(3):538–556, 2009.
+[26] Nisan Stiennon, Long Ouyang, Jeff Wu, Daniel M. Ziegler, Ryan Lowe, Chelsea Voss, Alec Radford,
+     Dario Amodei, and Paul Christiano. Learning to summarize from human feedback. In Advances in
+     Neural Information Processing Systems 33 (NeurIPS 2020), 2020. arXiv:2009.01325.
+
+[27] David Sussillo and Omri Barak. Opening the black box: Low-dimensional dynamics in high-dimensional
+     recurrent neural networks. Neural Computation, 25(3):626–649, 2013.
+[28] Anna Wegmann, Marijn Schraagen, and Dong Nguyen. Same author or just same topic? Towards
+     content-independent style representations. In Proceedings of the 7th Workshop on Representation Learn-
+     ing for NLP (RepL4NLP), pages 249–268, 2022.
+
+[29] Kevin Yang and Dan Klein. FUDGE: Controlled text generation with future discriminators. In Pro-
+     ceedings of the 2021 Conference of the North American Chapter of the Association for Computational
+     Linguistics: Human Language Technologies (NAACL-HLT), pages 3511–3535, 2021.
+[30] Saizheng Zhang, Emily Dinan, Jack Urbanek, Arthur Szlam, Douwe Kiela, and Jason Weston. Person-
+     alizing dialogue agents: I have a dog, do you have pets too? In Proceedings of the 56th Annual Meeting
+     of the Association for Computational Linguistics (Volume 1: Long Papers), 2018.
+[31] Weizhi Zhang, Xinyang Zhang, Chenwei Zhang, Liangwei Yang, Jingbo Shang, Zhepei Wei, Henry Peng
+     Zou, Zijie Huang, Zhengyang Wang, Yifan Gao, Xiaoman Pan, Lian Xiong, Jingguo Liu, Philip S.
+     Yu, and Xian Li. PersonaAgent: Bridging memory and action for personalized LLM agents.
+     arXiv:2506.06254, 2025.
+
+[32] Yaoming Zhu, Sidi Lu, Lei Zheng, Jiaxian Guo, Weinan Zhang, Jun Wang, and Yong Yu. Texygen: A
+     benchmarking platform for text generation models. In The 41st International ACM SIGIR Conference
+     on Research & Development in Information Retrieval (SIGIR ’18), 2018.
+
+
+
+
+                                                    18
+

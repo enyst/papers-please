@@ -12,7 +12,7 @@ format and the ingest / query / lint workflows. Maintenance history is in
 | Directory | Papers | What |
 |-----------|--------|------|
 | `notes/memory/` | 79 | Agent memory — architectures, consolidation, benchmarks, security, tools |
-| `notes/world-models-agi/` | 31 | World models, understanding, consciousness, concept formation — RSTA 384(2320) theme issue + the foundational classics (Turing, Nagel, Searle, Harnad, Chalmers, Dennett, Block, Bender, Mitchell&Krakauer, Othello-GPT, Lake) |
+| `notes/world-models-agi/` | 33 | World models, understanding, consciousness, concept formation — RSTA 384(2320) theme issue + the foundational classics (Turing, Nagel, Searle, Harnad, Chalmers, Dennett, Block, Bender, Mitchell&Krakauer, Othello-GPT, Lake) |
 | `notes/prompt-injection/` | 22 | Prompt injection attacks and defenses — approaches with pros/cons; + the 2026 agent-trajectory wave (CapScope, DriftNet/AgentDrift, ECLIPSE, CoRL, multimodal) |
 | `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |

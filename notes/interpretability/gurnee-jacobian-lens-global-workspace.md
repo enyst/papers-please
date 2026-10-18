@@ -91,6 +91,7 @@ tags: [interpretability, jacobian-lens, j-space, logit-lens, verbalizability, gl
 
 ## Related
 
+- [Hesse, Tsao et al.: temporal multiplexing of conscious and suppressed face representations](../world-models-agi/hesse-tsao-temporal-multiplexing-conscious-suppressed.md): biological evidence that the same neurons can carry rich seen and unseen content in alternating epochs. Held-out-neuron validation separates genuine coordinated dynamics from circular decoding. This motivates distinguishing content readout from selective access; it does not establish a shared mechanism with J-space.
 - [Cammarata: Neural Networks Are Already Clean](cammarata-neural-networks-already-clean.md): native-neuron/circuit interpretation and recursive generalization as an alternative to arbitrary-packing explanations. This is a complementary measurement perspective and a disputed developmental hypothesis, not proof of the J-space workspace claim.
 - [Steering vectors and activation engineering](steering-vectors-and-activation-engineering.md): readable directions used for causal control.
 - [Consciousness-vector / safety entanglement](kim-consciousness-vector-safety-entanglement.md): consciousness-related language and safety interventions can share geometry; not independent proof of experience.
