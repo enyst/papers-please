@@ -1,0 +1,114 @@
+SRE book second edition | Google Cloud BlogJump to Content
+Cloud
+Blog
+Contact sales Get started for free
+Cloud
+Blog
+Solutions & technology
+AI & Machine Learning
+API Management
+Application Development
+Application Modernization
+Chrome Enterprise
+Compute
+Containers & Kubernetes
+Data Analytics
+Databases
+DevOps & SRE
+Maps & Geospatial
+Security
+Security & Identity
+Threat Intelligence
+Infrastructure
+Infrastructure Modernization
+Networking
+Productivity & Collaboration
+SAP on Google Cloud
+Storage & Data Transfer
+Sustainability
+Ecosystem
+IT Leaders
+Industries
+Financial Services
+Healthcare & Life Sciences
+Manufacturing
+Media & Entertainment
+Public Sector
+Retail
+Supply Chain
+Telecommunications
+Partners
+Startups & SMB
+Training & Certifications
+Inside Google Cloud
+Google Cloud Next & Events
+Google Cloud Consulting
+Google Maps Platform
+Google Workspace
+Developers & Practitioners
+Transform with Google Cloud
+Contact sales Get started for free
+DevOps & SRE
+10 Years of the SRE book: Announcing the second edition of "Site Reliability Engineering”
+October 13, 2026
+Betsy Beyer
+SRE Program Manager
+David Huska
+Software Engineer, Site Reliability Engineer
+How Google runs production systems, rewritten for the modern cloud and AI era
+Try Gemini today
+The front door to AI in the workplace
+Try now
+A decade ago, Google released Site Reliability Engineering: How Google Runs Production Systems with O'Reilly Media. What began as a collection of our practices for managing large-scale infrastructure became a bestselling book, and inspired many organizations to adopt the reliability practices it outlined: applying software engineering to operations to build systems that are scalable, reliable, and sustainable.
+Over the past ten years, computing landscapes have undergone profound shifts. AI, microservices, multi-cloud deployments, serverless paradigms, and platform engineering have all reshaped how we build and operate software. To mark the 10th anniversary of the book's release, we are excited to announce the completely rewritten second edition of the Google SRE book, reflecting a decade of lessons learned both inside Google and across the broader industry, to offer fresh guidance tailored for today's operational challenges.
+Why update the book?
+When we published the first edition, many organizations were focused on early cloud migrations and just starting to transition from monolithic architectures. Today, with organizations delivering software at a high velocity and at global scale, the challenge is no longer adopting cloud infrastructure, but maintaining high reliability in the face of the immense complexity.
+Modern production environments operate under constant change. System boundaries are more complex, dependencies are deep, and failure modes are more complex and damaging than ever before. The explosion of resource-intensive workloads like generative AI has changed the economics and operational requirements of infrastructure management.
+Writing this second edition required us to take a step back and evaluate what it takes to successfully implement SRE today.
+A decade of evolution: How SRE practices have progressed
+The second edition takes a deep dive into how foundational site reliability engineering practices have matured over the last ten years, shifting from manual, task-specific work toward automated, platform-wide capabilities. Consider, for example:
+SLOs and error budgets: In 2016, teams relied on basic availability metrics and manual error budget policies. Today, practices have matured into user-centric, multi-tiered SLOs with dynamic burn-rate alerting and automated policy enforcement.
+Monitoring and observability: Early setups centered on static dashboards, basic logs, and manual alert triage. Modern observability leverages OpenTelemetry, distributed tracing, and automated anomaly correlation to find root causes quickly.
+Automation and platforms: Operations have shifted from writing custom scripts for isolated tasks to using declarative infrastructure as code, internal developer platforms, and resilient, self-healing systems.
+Reliability testing: Rather than relying solely on scheduled game days and synthetic load tests, modern engineering embeds continuous resilience checks, automated pipeline testing, and live production canary verification.
+Capacity and resource management: Manual provisioning and static forecasting have been replaced by dynamic auto-scaling, cloud FinOps alignment, and dedicated cost and cluster optimization for GPU and TPU workloads.
+Organizational models: SRE has expanded beyond dedicated teams assigned to specific applications. Today's organizations use hybrid models, platform engineering integrations, and reliability champions embedded across product teams.
+SRE in the age of AI
+Then there’s the dual relationship between SRE and artificial Intelligence: how SRE supports AI infrastructure, and how SRE teams use AI to enhance operational reliability.
+Running large language models (LLMs) and foundation models introduces novel reliability challenges. The book outlines methodologies for operating AI infrastructure at scale:
+Managing massive GPU and TPU hardware cluster reliability and network topologies
+Monitoring non-deterministic outputs and latency characteristics unique to AI
+Ensuring pipeline reliability for continuous model training, fine-tuning, and data processing
+AI is also rapidly becoming a force multiplier for reliability engineers. The second edition shares practical frameworks for enhancing human operational efficiency:
+Using generative AI tools to assist in real-time incident triage and postmortem generation
+Interrogating complex system telemetry using natural language queries
+Using predictive machine learning models to identify resource bottlenecks before outages occur
+What hasn’t changed? The importance of culture
+While technologies and architectures continuously evolve, the core principles of SRE remain intact, and are key to establishing a reliability-focused culture. Accordingly, the second edition re-emphasizes and expands upon the human elements of system engineering, and how to get there.
+Whether you’re new to the field, a practitioner, an engineering manager, or a technology executive, the rewritten second edition of Site Reliability Engineering serves as your definitive roadmap for the next era of production systems.
+You can order your copy today in physical format (see Google Books) or digital format from  [LINK: https://www.oreilly.com/library/view/site-reliability-engineering/9798341607675/] O'Reilly.
+Posted in
+DevOps & SRE
+Developers & Practitioners
+Related articles
+Developers & Practitioners
+Best practices for handling cloud reliability incidents
+By Flemming Christensen • 14-minute read
+Management Tools
+Anomaly detection using dynamic thresholds and two-year-long alerts in Cloud Monitoring
+By Lee Yanco • 6-minute read
+Management Tools
+From query to action: Introducing SQL alerting in Cloud Monitoring Observability Analytics
+By Joy Wang • 4-minute read
+DevOps & SRE
+AI in SRE: Where and how Google is deploying agentic AI to improve operations
+By Stevan Malesevic • 9-minute read
+Footer Links
+Follow us
+Google Cloud
+Google Cloud Products
+Privacy
+Terms
+Cookies management controls
+Help
+Language‪English‬‪Deutsch‬‪Français‬‪한국어‬‪日本語‬

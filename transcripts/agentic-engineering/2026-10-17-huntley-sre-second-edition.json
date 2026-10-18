@@ -1,0 +1,87 @@
+{
+  "code": 200,
+  "message": "OK",
+  "tweet": {
+    "url": "https://x.com/GeoffreyHuntley/status/2111324796197785728",
+    "id": "2111324796197785728",
+    "text": "sre v2 book is out https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition",
+    "raw_text": {
+      "text": "sre v2 book is out https://t.co/pY0s2qfFVp",
+      "display_text_range": [
+        0,
+        42
+      ],
+      "facets": [
+        {
+          "type": "url",
+          "indices": [
+            19,
+            42
+          ],
+          "original": "https://t.co/pY0s2qfFVp",
+          "replacement": "https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition",
+          "display": "cloud.google.com/blog/products/…"
+        }
+      ]
+    },
+    "author": {
+      "screen_name": "GeoffreyHuntley",
+      "url": "https://x.com/GeoffreyHuntley",
+      "id": "14961859",
+      "followers": 90226,
+      "following": 2256,
+      "likes": 48380,
+      "media_count": 2740,
+      "name": "geoff",
+      "description": "proudly does not sell llm tokens for a living",
+      "raw_description": {
+        "text": "proudly does not sell llm tokens for a living",
+        "facets": []
+      },
+      "location": "Barangaroo, Australia",
+      "banner_url": "https://pbs.twimg.com/profile_banners/14961859/1791293141",
+      "avatar_url": "https://pbs.twimg.com/profile_images/2042464755483373569/X-duvuat_200x200.jpg",
+      "joined": "Sat May 31 09:05:00 +0000 2008",
+      "protected": false,
+      "website": {
+        "url": "https://ghuntley.com",
+        "display_url": "ghuntley.com"
+      },
+      "verification": {
+        "verified": true,
+        "verified_at": null,
+        "type": "individual"
+      },
+      "avatar_color": null
+    },
+    "replies": 5,
+    "retweets": 50,
+    "likes": 493,
+    "bookmarks": 654,
+    "quotes": 3,
+    "created_at": "Sat Oct 17 05:13:52 +0000 2026",
+    "created_timestamp": 1792214032,
+    "possibly_sensitive": false,
+    "views": 47581,
+    "is_note_tweet": false,
+    "community_note": null,
+    "lang": "en",
+    "replying_to": null,
+    "replying_to_status": null,
+    "card": {
+      "url": "https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition",
+      "title": "SRE book second edition | Google Cloud Blog",
+      "description": "The second edition of the Site Reliability Engineering book reflects the shifts in infrastructure management from AI, microservices, serverless, etc.",
+      "domain": "cloud.google.com",
+      "image": {
+        "width": 800,
+        "height": 419,
+        "url": "https://pbs.twimg.com/card_img/2108923627920150528/gZ--j4Pk?format=jpg&name=800x419"
+      }
+    },
+    "twitter_card": "tweet",
+    "color": null,
+    "provider": "twitter",
+    "reposted_by": null
+  }
+}

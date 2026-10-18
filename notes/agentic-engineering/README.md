@@ -28,6 +28,10 @@ The first is about *self-improvement*; the second is about *verifiability*. They
 | [`harness-of-harness-multi-day-autonomous-development.md`](./harness-of-harness-multi-day-autonomous-development.md) | Haoyang Yan et al. (Shanghai AI Lab) | A portable **outer loop** over any coding harness: plan → code → QA increments that run for *days*. Key idea: **separate the agent's own tests from an independent evaluator**; constrain outputs, not workflow. +52% avg over standalone harnesses; a 70+-iteration run builds a playable game. |
 | [`reality-is-the-final-verifier-two-gap-framework.md`](./reality-is-the-final-verifier-two-gap-framework.md) | Krentsel, Agarwal, Cemri, Liu, Sankhe, Mao, Zaharia, Stoica (UC Berkeley) | The **two-gap framework**: reward hacking exploits *requirement* and *model* gaps that no inner-loop verification can close; hallucination widens them from within. Answer is an **outer assurance–revision loop** (treat agent output as possibly compromised, defense in depth, lessons with provenance), with assurance framed as allocating human judgment vs evaluation cost. |
 
+## Reliability and production operations
+
+- [Google SRE, second edition: agents and reliable operations](google-sre-second-edition-agent-era.md) — book bookmark plus full public companion-report reading. Separate reasoning from actuation; enforce scoped autonomy, dry runs and emergency stops; evaluate against human incident trajectories; validate agent-written releases in production. Book contents not read.
+
 ## Open threads to chew on
 
 - **Factory vs. receipts are complementary, not rival.** Lloyd optimizes the *loop*; Rosen hardens the *evidence*. A factory that emits immutable artifacts is stronger than either alone — the scorer agents in Lloyd's loop would grade Rosen's receipts.

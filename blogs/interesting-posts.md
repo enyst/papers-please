@@ -2,6 +2,16 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-10-18 - [Site Reliability Engineering, second edition](https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition) (Google; announced 2026-10-13)
+
+**Book bookmark + agent-era reading note:** a complete rewrite covering modern reliability practice and AI. Saved after [Geoffrey Huntley's post](https://x.com/GeoffreyHuntley/status/2111324796197785728). **The book itself has not been read or acquired.** [Official catalog/purchase links](https://sre.google/books/).
+
+- [Detailed note: what SRE brings to agents](../notes/agentic-engineering/google-sre-second-edition-agent-era.md) separates the announcement from Google's public companion engineering report.
+- The concrete mechanism is **separate reasoning and actuation**: AI Operator investigates; Actus enforces production safety, dry runs, permissions, risk-based human approval and an emergency stop. Human incident trajectories feed nightly evaluations; exact action parameters get deterministic scoring.
+- The agent-written-software angle is independent testing/review, progressive rollout and granular recovery when many intervening PRs make a broad rollback costly. These are described in the **separate report**, not verified book chapters.
+
+**Read depth:** full announcement, companion Cloud post and public [AI-in-SRE report](https://sre.google/resources/practices-and-processes/ai-engineering-reliable-operations/); official catalog checked. Book full text unavailable in this check. Sources archived; implementation and reported operational gains not independently audited.
+
 ## 2026-10-16 - [Roon on “Neural Networks Are Already Clean”](https://x.com/tszzl/status/2110869914236158205?s=61) (roon / tszzl; posted 2026-10-15)
 
 **Commentary:** three reactions to [Cammarata's essay](../notes/interpretability/cammarata-neural-networks-already-clean.md#roons-response-curiosity-capabilities-and-research-culture): engineering can precede its science; fascination can sustain serious research; and frontier labs may be neglecting direct investigation of growing networks in favor of narrow scores and local incentives.

@@ -1,0 +1,370 @@
+https://sre.google/resources/practices-and-processes/ai-engineering-reliable-operations/
+[link: /]
+Site Reliability Engineering
+[link: #page-content]
+Jump to Content
+[link: #]
+[link: /]
+Home
+[link: #]
+Resources
+[link: /resources/]
+Latest resources
+[link: /books/]
+Site Reliability Engineering, 2nd Edition
+New!
+[link: /resources/practices-and-processes/ai-engineering-reliable-operations/]
+AI Engineering Reliable Operations
+New!
+[link: /resources/videos/]
+Google SRE Video Gallery
+New!
+[link: /resources/practices-and-processes/product-focused-reliability-for-sre/]
+Product-Focused Reliability for SRE
+[link: /20/]
+Twentieth Anniversary
+[link: https://goo.gle/sre-20-ll]
+Twenty years of SRE lessons learned
+[link: /prodverbs/]
+Prodverbs
+[link: /resources/practices-and-processes/sre-fundamentals-course/]
+SRE Fundamentals
+[link: /resources/practices-and-processes/measuring-reliability/]
+Measuring Reliability
+[link: /resources/practices-and-processes/no-heroes/]
+Why Heroism is Bad
+[link: /resources/practices-and-processes/stpa/]
+System Theoretic Process Analysis
+[link: /next26/]
+Ask an SRE at Next '26
+[link: /books/]
+Books
+[link: https://www.google.com/books/edition/_/iXnw0QEACAAJ?sa=X&ved=2ahUKEwif56ffvpaXAxX3UaQEHVMxA0QQ8fIDegQILBAd]
+Site Reliability Engineering, 2nd Edition
+[link: /books/building-secure-reliable-systems/]
+Building Secure & Reliable Systems
+[link: /workbook/table-of-contents/]
+The Site Reliability Workbook
+[link: /sre-book/table-of-contents/]
+Site Reliability Engineering
+[link: /mobaa/]
+Mobaa
+[link: /mobaa/2024/]
+2024 Gallery
+[link: /mobaa/2022/]
+2022 Gallery
+[link: /mobaa/frayed/]
+2020 Gallery
+[link: /mobaa/methods/]
+Vector Methods
+[link: /classroom/]
+Classroom
+[link: /classroom/distributed-pubsub/]
+Distributed PubSub
+[link: /classroom/imageserver/]
+Distributed Image Server
+[link: /resources/practices-and-processes/art-of-slos/]
+The Art of SLO
+[link: #]
+Latest resources
+[link: /resources/]
+Resources overview
+[link: /books/]
+Site Reliability Engineering, 2nd Edition
+New!
+[link: /resources/practices-and-processes/ai-engineering-reliable-operations/]
+AI Engineering Reliable Operations
+New!
+[link: /resources/videos/]
+Google SRE Video Gallery
+New!
+[link: /resources/practices-and-processes/product-focused-reliability-for-sre/]
+Product-Focused Reliability for SRE
+[link: /20/]
+Twentieth Anniversary
+[link: https://goo.gle/sre-20-ll]
+Twenty years of SRE lessons learned
+[link: /prodverbs/]
+Prodverbs
+[link: /resources/practices-and-processes/sre-fundamentals-course/]
+SRE Fundamentals
+[link: /resources/practices-and-processes/measuring-reliability/]
+Measuring Reliability
+[link: /resources/practices-and-processes/no-heroes/]
+Why Heroism is Bad
+[link: /resources/practices-and-processes/stpa/]
+System Theoretic Process Analysis
+[link: /next26/]
+Ask an SRE at Next '26
+[link: #]
+Books
+[link: /books/]
+Books overview
+[link: https://www.google.com/books/edition/_/iXnw0QEACAAJ?sa=X&ved=2ahUKEwif56ffvpaXAxX3UaQEHVMxA0QQ8fIDegQILBAd]
+Site Reliability Engineering, 2nd Edition
+[link: /books/building-secure-reliable-systems/]
+Building Secure & Reliable Systems
+[link: /workbook/table-of-contents/]
+The Site Reliability Workbook
+[link: /sre-book/table-of-contents/]
+Site Reliability Engineering
+[link: #]
+Mobaa
+[link: /mobaa/]
+Mobaa overview
+[link: /mobaa/2024/]
+2024 Gallery
+[link: /mobaa/2022/]
+2022 Gallery
+[link: /mobaa/frayed/]
+2020 Gallery
+[link: /mobaa/methods/]
+Vector Methods
+[link: #]
+Classroom
+[link: /classroom/]
+Classroom overview
+[link: /classroom/distributed-pubsub/]
+Distributed PubSub
+[link: /classroom/imageserver/]
+Distributed Image Server
+[link: /resources/practices-and-processes/art-of-slos/]
+The Art of SLO
+[link: /books/]
+Books
+[link: /careers/]
+Careers
+[link: /cloud/]
+Cloud
+[link: /local/]
+Local
+[link: /prodcast/]
+Prodcast
+[link: /spotlight/]
+Spotlight
+[link: /]
+Site Reliability Engineering
+[link: #page-content]
+Jump to Content
+New!
+Site Reliability Engineering, 2nd Edition
+In this completely rewritten edition, we explore current SRE practices and how they've evolved in the decade since the book's initial publication—including how AI is redefining modern production environments.
+[link: https://goo.gle/SREbook]
+Buy from Google Books
+Quick Look
+Site Reliability Engineering
+Edited by:
+Betsy Beyer, Chris Jones, Christof Leng, David Huska, Jennifer Petoff  Niall Richard Murphy
+In this completely rewritten edition of Site Reliability Engineering, key members of Google's Site Reliability Engineering team explore the company's current SRE practices and explain how they've evolved in the decade since the initial publication. New updates cover the value of reliability, cloud reliability, and the impact of AI. You'll learn the principles and practices that enable Google engineers to make some of the world's largest systems scalable, reliable, and efficient--lessons directly applicable to your organization.
+[link: https://goo.gle/SREbook]
+Buy from Google Books
+AI in SRE: How Google is Engineering the Future of Reliable Operations
+Author: Ioannis Papapanagiotou, Stevan Malesevic, Chris Heiser & Ruslan Meshenberg
+Abstract
+Site Reliability Engineering (SRE) is facing a paradigm shift driven by the rapid adoption of AI throughout the software development lifecycle (SDLC). As AI coding assistants dramatically accelerate code generation and deployment velocity—with organizations targeting up to a 4x increase in productivity—traditional, manual practices are becoming unsustainable. Human code review cannot scale linearly with machine-generated code volume, and standard operational responses are increasingly outpaced by the resulting system complexity. This paper presents Google's approach to reinventing SRE for the AI era. Rather than merely applying AI to automate conventional tasks, we detail how SRE is architecting a new foundation for reliability. By developing autonomous mitigation agents (AI Operator), strict execution guardrails (Actus), and continuous evaluation pipelines grounded in human operational memory (IRM Analyzer), Google is engineering the autonomous control planes required to safely govern high-velocity, agentic software development.
+Introduction
+Site Reliability Engineering (SRE) was born at Google over two decades ago to manage the scale and complexity of our distributed systems. While the core philosophies of SLOs, error budgets, and toil reduction—detailed extensively in our  [link: https://sre.google/books/] foundational SRE book series—remain the industry standard, the operational landscape has reached a new inflection point.
+The "planetary scale" of modern services, combined with the unpredictable workloads of multi-tenant platforms like Google Cloud, has created a level of complexity that traditional, deterministic automation can no longer fully address. Today, SREs operate in an environment where production mistakes are costly, the rate of change is accelerated by AI-assisted development, and observability gaps are filled with petabytes of unstructured data.
+To meet these challenges, Google is integrating Artificial Intelligence (AI) not just as a tool, but as a transformative layer across the entire service lifecycle. By leveraging AI’s ability to process semantic signals, infer intent, and operate probabilistically, we are augmenting human expertise with intelligent systems capable of managing complexity. In this paper, we will examine the development of autonomous agents designed to handle complex on-call responsibilities and intelligent command-line interfaces that enable SREs to interact with production systems using natural language. We will also discuss alert enrichment frameworks that provide real-time context during incidents and the broader integration of Large Language Models (LLMs) into daily engineering workflows. Beyond the tools, we will address the governance and risk frameworks required for high-stakes production environments and reflect on how the SRE role is evolving in this AI-driven paradigm.
+To address the challenges of this high-velocity agentic era, this paper details Google’s architectural and operational evolution. First, we establish the strict governance frameworks and Agentic Safety Guardrails required to securely bound AI behavior in production. Next, we explore the foundational evaluation pipelines—capturing human operational memory and leveraging continuous 'Nightly Evals'—that rigorously prove an agent's readiness. We then demonstrate how these principles are applied across the incident lifecycle, culminating in the deployment of reasoning engines (AI Operator) and physical execution control planes (Actus) for safe, autonomous mitigation. Finally, we project the future of SRE within an agentic SDLC, illustrating how human expertise must scale up the abstraction ladder from manual operations to architectural governance.
+Governing AI in Production Operations (AI-Ops)
+While the potential benefits of AI in SRE are significant, deploying AI systems into Google's live production environments introduces unique and substantial risks that demand careful management. Mistakes in production are costly–unlike development sandboxes where failures are contained, an AI agent making an incorrect decision or taking a faulty action in production can lead to immediate and widespread service disruptions. The speed and scale at which AI can operate mean that the blast radius of a failure can be far larger and propagate far more quickly than with human operators.
+Key Challenges in Applying AI to Production Operations
+Google SRE has identified several key challenges in deploying AI technologies safely and effectively in production:
+Evolving Human Expertise: From Operator to Architect: As AI assumes responsibility for low-level mitigation, attempting to artificially preserve unscalable manual intervention skills is counterproductive. Instead, SREs must move up the abstraction ladder, transitioning from direct incident responders to architects of AI safety. Future human expertise will focus on defining rigid system guardrails, curating "Golden Data" for evaluation, and governing autonomous agent behavior.
+Enhancing Explainability and Building Trust: Rather than accepting AI models as opaque "black boxes," SRE must enforce strict observability over agentic reasoning and execution. By exposing an agent's Chain of Thought (CoT) in real-time UIs and persisting deterministic actuation traces through control planes, every autonomous decision becomes fully auditable, debuggable, and subject to continuous evaluation.
+Ensuring Data Integrity and Mitigating Bias: AI systems are heavily reliant on data. A significant challenge is ensuring the high quality, completeness, and impartiality of the training data and real-time input within Google's intricate production landscape to prevent skewed or harmful outcomes.
+Addressing Model Drift in Dynamic Environments: Google's production systems are constantly evolving. A key challenge is designing AI systems that can adapt to these changes, ensuring models remain accurate and effective as system behaviors and patterns shift over time.
+Mitigating Security Vectors: AI introduces novel security considerations. Challenges include developing defenses against adversarial attacks, data poisoning, and prompt injection that could manipulate AI behavior and compromise systems.
+Preventing Unintended Automation Consequences: Ensuring AI systems, particularly those designed to react to anomalies, do not inadvertently amplify problems or trigger cascading failures. This is a challenge in Google's large-scale, interconnected systems, requiring careful design to prevent feedback loops and misinterpretations.
+The Safety Trifecta
+To address these risks, Google SRE is pioneering an AI-Ops governance model built around a "Safety Trifecta":
+Transparency: AI actions and decisions must be observable and understandable. This means AI agents must log their "chain of thought"—the signals used, the hypotheses considered, the reasons for choosing a particular action, and the confidence level.
+Real-time Risk Evaluation: Every action proposed by an AI agent undergoes a risk assessment. This evaluation considers the current production context, such as ongoing deployments, error budget status, active incidents, and time of day. An action like draining a cell (removing an entry from the Load Balancer) might be low-risk under normal conditions but high-risk during a regional peak.
+Progressive Authorization: AI agents are not granted full production access from day one. We release agents to lower levels of autonomy (human approved) and scale up based on the SRE Autonomy Levels described below.
+To support the Safety Trifecta and safely progress through the Autonomy Levels, SRE enforces strict architectural guardrails for any AI agent interacting with production:
+No Ambient Access & Least Privilege: Agentic systems must not operate with the standing, human-like credentials of their developers, which poses a severe reliability risk (e.g., a single errant prompt bringing down global serving infrastructure). Agent identities must be distinct from human users, strongly authenticated, and granted access only on-demand with the necessary permissions.
+Agentic Circuit Breakers: Systems must implement strict, agent-specific rate limits and automated circuit breakers to prevent runaway loops or excessive resource consumption. Any action performed by an agent must be highly interruptible.
+Mandatory Dry-Run Support: Any system or API intended for agent interaction must support a declarative dry_run=true mode. This allows the agent, the safety framework, and human reviewers to accurately predict the outcome and blast radius of a proposed action before any production state is mutated.
+Zero-Trust, Safe-by-Default Actuation: Agents must only interface with zero-trust tooling that possesses intrinsic, deterministic safety mechanisms. The underlying infrastructure tools must be incapable of single-handedly taking down production, regardless of who or what is calling them. For example, if an Investigation agent wants to drain a cell, it cannot directly execute a raw script; it must route the request through a delegated control plane (detailed later in this paper). Mitigation Agent deterministically verifies available capacity and enforces global rate limits. It does not care if the caller is an agent or a human; it simply ensures the action aligns with predefined safety principles before actuation occurs.
+SRE AI Autonomy Levels
+Adopting AI in SRE is not a binary switch; it is a structured journey from standard human-operated tooling to fully autonomous systems. It involves progressing from human-operated systems to potentially more autonomous ones. To guide this evolution safely and effectively, we use a maturity model. The levels are defined by the degree of automation across key operational functions: Monitoring, Investigation, Approval, Actuation, and Self-Directed operations.
+Action →
+Level ↓
+Monitor
+Investigate
+Mitigate
+Actuate
+Self Direct
+L0 - Manual
+Automation
+Human
+Human
+Human
+Human
+L1 - Assisted
+Automation
+Automation
+Human
+Human
+Human
+L2 - Partial
+Automation
+Automation
+Human
+Automation
+Human
+L3 - High
+Automation
+Automation
+Automation
+Automation
+Human
+L4 - Full
+Automation
+Automation
+Automation
+Automation
+Automation
+Table 1: Levels of Autonomy
+Here are five levels of increasing autonomy:
+L0: Manual Execution: All activities are human-driven. Humans must Investigate alerts, Approve any course of action, Actuate the changes, and handle any Multi-Step Resolution required.
+L1: Assisted: Automation extends to Monitoring and Investigation. The AI agent can analyze data and provide insights or suggestions (AI driven Incident Hypothesis), but a human is still required to Approve any action, manually Actuate it.
+L2: Partial Autonomy (Human Approval): Systems can Monitor, Investigate, and even Actuate changes. However, a human must explicitly Approve any plan before the system proceeds with an actuation. This state can happen either when a safety check fails or it is a state that is short-lived as a means to build trust in humans that safety nets are appropriate.
+L3: High Autonomy: Automation covers Monitoring, Investigation, Approval, and Actuation for specific, well-defined scenarios. The AI agent can independently detect, decide, and act without human approval for bounded actions, though humans are often notified. Humans still handle novel situations requiring Multi-Step Resolution. Safety relies heavily on technical controls and guardrails.
+L4: Full Autonomy: A system can:
+Devise and execute a sequence of actions to diagnose, mitigate, and resolve incidents—especially those not covered by simple, linear playbooks.
+Continuously monitor the impact of its interventions on the system's state and performance.
+Adapt its strategy in real-time based on the observed outcomes. This includes the ability to attempt alternative mitigations if initial actions are ineffective, or to initiate rollbacks if an action has adverse effects.
+Manage the entire incident lifecycle until the system is confirmed to be back in a stable and desired state, going beyond just the initial trigger and actuation.
+Progression and Appropriate Autonomy:
+L0 to L1 (Assisted): Often gated by the mere existence and adoption of tools that can automate monitoring and investigation, providing insights to humans.
+L1 to L2 (Partial Autonomy): Requires a higher level of confidence in the system's ability to reliably identify and propose correct actions, and the implementation of safe actuation pathways, even though a human still provides final approval.
+L2 to L3 (High Automation): This is a critical step, gated by establishing trust and robust safety controls for the system to act autonomously for well-defined scenarios. This involves demonstrating high precision and reliability to overcome human hesitancy, as the system will be making changes without real-time human approval. The rigor here is substantially higher, proportional to the risk of unsupervised actions.
+L3 to L4 (Full Automation):The transition is gated by the system's ability to perform "Multi-Step Resolution," handling complex, dynamic situations beyond single, predefined actions, and managing them end-to-end.
+Evaluation Data and Memory
+Before AI agents can safely operate at higher levels of autonomy, they require a deep, structured understanding of production environments and rigorous frameworks for evaluation. At Google, this foundation is built on capturing human operational memory and translating it into high-quality evaluation datasets.
+Generating Human Trajectories
+Understanding the step-by-step actions and decisions made by human responders during an incident is invaluable for learning and improving our incident management processes. This "human trajectory" is often fragmented across various unstructured sources like chat messages, incident notes, and command line entries. Manually reconstructing this timeline for analysis is time consuming and often incomplete.
+To address this, we have built an AI-powered system that automatically parses and structures these disparate data sources. Leveraging Natural Language Processing, the system identifies key events, actions taken (e.g., "drained cell xx", "restarted task y"), tools used, and even hypotheses considered by the oncallers. This creates a rich, time-ordered sequence of events, effectively reconstructing the human response trajectory.
+This structured timeline data is crucial for several reasons. It provides high-quality human trajectories for AI systems learning and Reinforcement Loop for our Agents. It also enables deeper analysis of incident response patterns to refine playbooks.
+Figure 1: IRM-Analyzer with timeline and human trajectories
+Ensuring AI Quality: The Evaluation Data Pipeline
+The trajectories captured by IRM-Analyzer (IRMA) feed directly into our continuous evaluation pipelines. AI agent performance is constantly assessed against structured datasets categorized by quality:
+Bronze: Heuristically generated by autolabelers.
+Silver: Programmatically generated but mathematically calibrated for confidence against Gold data with a minimum quality threshold.
+Gold: Verified by human experts.
+Because evaluating an autonomous agent against imperfect Bronze data creates an "accuracy gap," Google SRE uses stratified sampling to continuously surface a diverse subset of incidents for manual review, creating Gold data. This Gold dataset mathematically calibrates the Silver dataset, helping to ensure our evaluation pipelines measure True Precision versus Observed Precision, enabling statistically significant safety margins before an agent acts in production.
+Continuous Nightly Evals and LLM-as-a-Judge
+To monitor agent quality and safely gate new releases, we run automated Nightly Evaluations integrated directly with Google's Everest evaluation platform. This process continuously tests agent responses against a dynamic, rolling dataset of recent, real-world Google incidents. During these runs, we employ a hybrid evaluation methodology combining "LLM-as-a-Judge" (or LLM Raters) with strict deterministic scoring. The LLM Rater systematically grades the qualitative aspects of the agent's intermediate reasoning, investigation trajectory, and specific tool calls against freshly curated Golden trajectories. In parallel, we use strict deterministic scoring to evaluate the final mitigation output to ensure the agent executed exactly the right action. We measure this final output using rigid precision and recall—for example, a mitigation is only scored as "correct" if the agent's output deterministically matches the fully actionable, exact parameters of the Golden data (e.g., the specific binary and version), rather than providing a vague, LLM-generated suggestion to "rollback".
+Generating Golden Data
+Generating Golden data is traditionally tedious. To prevent annotator fatigue, we integrate data collection directly into the incident management workflow. When an oncaller declares an incident mitigated, the system proactively generates structured suggestions of the exact mitigations applied. By simply accepting, modifying, or rejecting these hints during their standard workflow, SREs continuously feed high-quality Golden labels back into the system, refining models and identifying edge cases without overhead.
+Figure 2: Structured suggestions of mitigations
+AI Across the SRE Lifecycle
+At Google, SRE's engagement spans the entire software development lifecycle (SDLC). Recognizing the increasing complexity and scale of its services, Google SRE has actively developed and integrated Artificial Intelligence to enhance reliability, efficiency, and the pace of innovation across this lifecycle. This section details the AI-powered tools and systems Google SRE has successfully implemented.
+Observing Production
+Incident detection has traditionally relied on well-established telemetry—metrics, logs, and traces. While essential, these methods are inherently limited to detecting known failure modes, as alerting logic often accumulates reactively. This conventional approach struggles to detect new issues and doesn't always capture the actual customer experience. Applying AI or traditional Machine Learning to this type of telemetry for anomaly detection has also proven challenging. Statistical anomalies in system metrics within noisy production environments don't always equate to user impact, largely because these signals lack a deep understanding of user intent. For example, a new feature launch or standard traffic shifts can easily be misread as a failure.
+Modern agentic AI harnesses are able to collect different, richer sources. This can also be combined with user intent: customer feedback from support tickets or external posts, and forums. Historically, the unstructured nature of this data made it too slow to process for real-time operational signals. However, LLMs have overcome this barrier. AI can now analyze and cluster this qualitative feedback in near real-time, identifying emerging outages by piecing together fragmented user reports. The volume of related feedback naturally indicates severity, while the inherent effort required for a user to submit feedback acts as a filter against noise. This provides a reliable, context-rich signal for issues often missed by traditional, telemetry-based monitoring.
+Case Study: Detectr
+To illustrate how these concepts move from theory to production, we look at Detectr, Google SRE’s Gemini-powered platform that analyzes and organizes user feedback to detect user-reported outages. Detectr aggregates signals across social media, customer support, product forums, and other human sources. It functions as a critical backstop to traditional monitoring and is designed to catch novel issues that slip through the metric-based net.
+This is done through a multi-pass AI pipeline which generates structured outage reports:
+Filter: irrelevant posts are removed, and data is categorized.
+Cluster: related reports are grouped together to identify potential outages.
+De-noise: irrelevant or noisy clusters are filtered out.
+Report: a structured report is generated for triage.
+This process transforms messy, unstructured user feedback into structured, actionable outage notifications that can be sent to the appropriate teams.
+Figure 3: A pipeline for scalably processing unstructured data
+Detectr has been adopted by teams across Cloud, Ads, YouTube and Search, and has successfully served as the primary method of escalation for many outages. We can measure Detectr’s value: it has reduced the impact of these events on customers by hundreds of cumulative hours thanks to earlier detection and deeper understanding.
+Enriching Alerts
+Raw alerts often signal a problem but lack the immediate context needed for rapid triage and diagnosis. Oncallers can lose valuable time sifting through dashboards and logs to understand the alert's impact and potential causes. To address this, Google is deploying an "AI Alert" system designed to intercept alerts before they reach a human. The core goal is to enrich the alert with a wealth of contextual information, making it more immediately actionable and significantly reducing the initial investigation time.
+Upon intercepting an alert, AI Alert agents spring into action within a very tight time budget (typically around 2 minutes). We have a tight budget constraint; any delay in the mitigation is costly. Leveraging massive parallelism, they query a wide array of data sources – including monitoring systems, logging platforms, production change logs, and dependency graphs – to gather relevant signals and context up to the moment the alert is fired. This information is then synthesized using AI to correlate related anomalies, fetch details on recent rollouts or configuration changes, identify similar past incidents, and even hypothesize potential root causes.
+The enrichment is typically appended to the original alert in our incident management tool. Crucially, AI Alert focuses on providing verifiable facts and evidence-based insights rather than speculative conclusions. All findings are presented with links back to the source data, ensuring transparency and trust. This system operates in a read-only mode, distinguishing it from systems like AI Operator, which may take mitigating actions. AI Alert is designed for speed and breadth in initial data gathering, serving as a powerful first-step analysis to accelerate the human oncaller's response or to provide a rich contextual package for other AI systems like AI Operator to act upon.
+L1: Human-Driven Mitigation
+Incident Hypothesis
+During an incident, oncallers are often inundated with a deluge of monitoring data, alerts, and log entries. Sifting through this information to pinpoint the root cause under time pressure is a significant challenge. The Incident Hypothesis augments the information produced by AI Alert agents. This hypothesis aims to provide the oncaller with a single, credible lead on the potential cause and suggest concrete next steps for verification.
+We have developed AI systems for this purpose that analyze a wide array of contextual data using Large Language Models (LLMs) and Retrieval Augmented Generation (RAG). When an incident is declared, these systems query and synthesize information from various sources. These data sources include real-time monitoring anomalies, service playbooks, application logs, incident management data, and perhaps most importantly, patterns from similar past incidents. By synthesizing these diverse inputs, the AI can often identify likely culprits, such as a problematic rollout, a failing dependency, or a specific type of error, that a human might take much longer to piece together.
+At Google, our immense scale provides the statistical rigor necessary to A/B test SRE practices like Incident Hypothesis, enabling us to measure its significant impact. Our analysis confirms that this informational assistance alone delivered a 10% reduction in Mean Time to Mitigate (MTTM) the incident, underscoring the value of even partial automation (L1) for oncallers.
+Figure 4: Incident hypothesis in Google's incident management platform
+The AI-generated hypothesis, along with suggested verification steps and links to relevant dashboards or logs, is surfaced directly within the oncaller's primary incident response and monitoring tools. This integration ensures the insights are available with minimal context switching. This approach not only speeds up incident response but also reduces cognitive load on oncallers, allowing them to focus on mitigation.
+Investigation Dashboard
+During a production incident, oncallers can waste valuable time on a manual "scavenger hunt" for data across disparate, static monitoring dashboards. Sifting through this fragmented tooling to manually correlate metrics, logs, and traces elevates cognitive load and delays root cause identification.
+To address this, Google SRE has developed Investigation Dashboards (InvD) - dynamic, AI-powered systems that generate an incident-specific "single pane of glass" on demand. Instead of forcing engineers to hunt for information, InvD automatically synthesizes the alert context, data from similar past incidents, and relevant playbook content to present the most pertinent evidence. This dynamic UI continuously adapts to both the oncaller and the specific nature of the outage, reducing the friction of the diagnostic phase.
+Figure 5: Automated troubleshooting graph
+The intelligence powering InvD is structured across hierarchical analysis capabilities to systematically evaluate system behavior. It progresses from basic Anomaly Detection (Capability 1), where machine learning models flag visual deviations in time-series data, to Correlating changes with alert signals (Capability 2), and assessing Investigation Worthiness (Capability 3). Ultimately, InvD aims for the highest standard: Root Cause Identification (Capability 4). By applying AI reasoning, the system scrutinizes whether a promising anomaly - such as a recent rollout, experiment, or capacity shift - is genuinely the underlying cause of the incident. These InvD analysis capabilities enhance the 'Investigate' function described within the SRE Autonomy Levels. Achieving Root Cause Identification (Capability 4) provides a crucial input for systems aiming for higher SRE Autonomy Levels, but it is distinct from SRE Autonomy L4 itself, which also includes autonomous actuation and complex planning.
+InvD operates as an extensible ecosystem rather than a monolithic tool. It integrates over a hundred customized, domain-specific "troubleshooters" built by various product teams to execute automated symptom checks in parallel. Once a high-confidence root cause is identified, InvD facilitates rapid recovery by bridging the gap to mitigation, enabling the execution of remedial actions directly from integrated playbooks.
+The operational impact of this AI-curated approach has been meaningful. By replacing manual data gathering with ML-based anomaly detection - which alone increased overall findings by 195% - Investigation Dashboards have delivered a roughly 44% reduction in Mean Time to Mitigate (MTTM) for supported incidents. This empowers SREs to move from initial detection to service restoration with unprecedented speed and confidence.
+Gemini-Powered CLI
+While incident information goes to Google's internal UI, SREs at Google primarily use command line interface to manage production.  [link: https://antigravity.google/product/antigravity-cli] Antigravity CLI is connected to production systems via a standardized agent interface called the  [link: https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages] Production Agent. Gemini uses the Production Agent Model Context Protocol (MCP) servers to interact with our issue tracker:
+Create Bugs: It files the Action Items as real bugs in the issue tracker.
+Assign Owners: It assigns them to the relevant engineers.
+Export Doc: It pushes the final Postmortem to Google Docs.
+The power of this setup is significantly enhanced by a rich and growing library of Skills. These Skills encapsulate specific expertise and workflows, endowing the Production Agent with the ability to interact with various systems and data sources. Google SRE is actively developing and curating a common set of these production-focused Skills. This initiative ensures that SREs have a consistent, powerful, and safe way to leverage AI for complex tasks. These modular Skills act as building blocks, maintained with clear guidelines and risk considerations, allowing for sophisticated interactions with production.
+This setup allows SREs oncallers to interact with production and perform L1 investigation:
+Query real-time monitoring data.
+Analyze system and application logs.
+Fetch incident details and updates from our incident management systems.
+Inspect service dependencies and configurations.
+Initiate safe, policy-compliant mitigations, such as traffic drains, which are gated by a central Mitigation Safety Verification Service.
+This interactive AI assistant, accessed via Antigravity CLI, lowers the barrier to entry for complex debugging tasks, speeds up information retrieval, and helps engineers quickly form and test hypotheses during outages.
+Figure 6: Antigravity CLI after competition of a subagent for incident response, proposing a mitigation action with safety evaluation passed
+L3: Autonomous Mitigation
+While AI-assisted diagnostic tools (L1 Autonomy) significantly reduce cognitive load and Mean Time to Mitigate (MTTM), achieving true operational scalability requires moving beyond recommendation to direct actuation. To hold the cost of operations steady while supporting a projected 4x increase in development velocity, SRE must adopt L2+ Autonomous Mitigation—where AI agents actively mutate production state to resolve incidents. Because the cost of an erroneous action in a live production environment is exceptionally high, this phase relies heavily on our established "Safety Trifecta" and evaluation data pipelines. Agents are not granted full autonomy immediately. Instead, they operate within a framework of Progressive Authorization. They begin at Level 2 Autonomy, where they investigate, propose, and stage mitigations, but require explicit human approval to execute them. They only advance to Level 3 or Level 4 (High/Full Autonomy) for specific, well-bounded scenarios after demonstrating sustained, statistically significant success rates against our human-verified "Golden" evaluation data. The ultimate goal of this phase is to autonomously remediate routine, predictable incidents—such as localized capacity constraints or known transient task failures—freeing human SREs to focus on novel, complex systemic risks.
+Case Study: AI Operator
+Investigate & Mitigate
+AI Operator functions as an AI agent designed to be the first responder to production alerts. It ingests alert signals, and its Harness leverages a set of extensible modules to perform multiple parallel investigations. Its reasoning process is guided by examples derived from how human experts have effectively investigated similar past incidents. This allows the agent to form and test hypotheses to perform Root Cause Analysis (RCA). Once the RCA is complete, AI Operator can opportunistically select from a structured catalog of context: a) enrichers, which are deterministic signal boosters (e.g., an observability tool identifying an anomaly, an alert description, or a playbook); b) specialized skills defining how to mitigate the problem; and c) few-shot prompts encoded in text protos that guide the agent’s investigation strategy. AI Operator does not need all three to perform an investigation, but consumes available context dynamically.
+Upon completing the investigation and RCA, AI Operator selects the appropriate mitigation to resolve the incident. Currently, the system operates at L2 Autonomy (Partial Automation), requiring a human SRE to review and accept the mitigation suggestion for critical operations and in L3 Autonomy (High Automation), where AI Operator will safely execute mitigations autonomously for minor incidents. Following a mitigation attempt, AI Operator waits for a predefined period to determine if the incident has been resolved. If the alert clears, the agentic loop finishes; if the incident is still ongoing, AI Operator initiates a post-actuation investigation to formulate a new mitigation strategy.
+AI Operator presents its Chain of Thought (CoT) in a centralized UI. For each agentic step, the human on-caller has the ability to provide further comments or direct the agent's focus. These steps involve various investigative actions, such as processing logs, analyzing production state, and inspecting dependent jobs. To handle complex scenarios, AI Operator has the ability to spawn specialized sub-agents for deeper analysis. Crucially, the architectural design focuses on utilizing the minimum set of tokens per step; because an incident's CoT can have a very long horizon, strict token management prevents the LLM from losing context or hallucinating over time. If AI Operator cannot identify the root cause, or if the scenario falls outside its safe operating boundaries, it immediately escalates to a human operator. In parallel, it synthesizes its entire investigation history and posts it directly into Google's incident UI platform, allowing the human SRE to seamlessly pick up the investigation without starting from scratch.
+Figure 7: AI Operator chain of thought
+AI Operator has successfully run across thousands of incidents, with every execution trace stored in Spanner for rigorous debugging and continuous improvement. We have built an evaluation framework that analyzes this incident metadata and compares the agent's automated actions against ideal human responses (our "Golden Data"). Using an "LLM-as-a-Judge" technique, the system evaluates the agent's performance to identify areas for improvement, creating a continuous, self-improving feedback loop.
+Figure 8: AI Operator - LLM-as-a-Judge
+The figure above demonstrates this evaluation loop in practice. On the left, the agent correctly diagnosed and mitigated the problem. On the right, the agent incorrectly diagnosed the root cause and failed to mitigate it. In response to the failure, the LLM-as-a-Judge automatically generated a critique of the agent's logic and filed a bug containing a concrete implementation plan to improve the AI Operator's future performance.
+Mitigation Safety Verification Agent
+While agents like AI Operator possess the reasoning capabilities to diagnose and propose mitigations, granting them direct, unilateral access to low-level infrastructure tooling presents an unacceptable reliability risk. To safely bridge the gap between an AI agent’s investigation and the physical execution of production changes, we have built an Actuation Agent.
+A Mitigation Safety Verification Agent or else called an Actuation Agent serves as a unified control plane and safety gateway for all autonomous production changes. When an agent formulates a mitigation strategy, it does not execute scripts directly; instead, it interfaces with Actuation Agent, which standardizes the actuation lifecycle into three phases:
+Standardized Discovery and Planning: The Actuation Agent provides agents with a curated, dynamically filtered registry of available mitigation tools (e.g., traffic draining, capacity upsizing). When an agent submits an EvaluateAction request, Actus hydrates the necessary parameters and translates the LLM’s intent into a concrete, verifiable execution plan.
+Dynamic Autonomy and Safety Guardrails: The Actuation Agent acts as the physical enforcer of our Progressive Authorization framework. Before executing any plan, the agent runs a suite of pre-flight safety validations, including mandatory dry-runs, justification verification (ensuring the action targets an open incident), and concurrent action checks. Crucially, Actus manages the caller's autonomy level in real-time. If an agent requests an L3 (High Automation) execution, but the agent detects an elevated risk score or an anomalous production state, it will automatically downgrade the request to L2 (Partial Automation), intercepting the execution and routing an approval request to a human SRE.
+Post-Actuation Guardians and the "Red Button": The Actuation Agent maintains long-running operation (LRO) state, polling the infrastructure to verify if the mitigation succeeded or failed. Furthermore, it provides a centralized "Guardian" layer for human operators. This includes emergency "Red Button" endpoints that allow SREs to instantly pause all in-flight agentic actions, block new actions, or globally revoke L3 permissions across the fleet during catastrophic, complex outages.
+By decoupling the AI's reasoning engine (AI Operator) from the execution engine, we ensure that no matter how rapidly AI models evolve, their ability to mutate production remains strictly governed by deterministic, human-controlled safety boundaries.
+Enabling Technologies for AI-Ops
+The successful deployment of AI in SRE at Google relies on a robust foundation of key technologies and data platforms:
+High-Quality Production Data and Metadata: The efficacy of AI-Ops systems is directly dependent on the quality, timeliness, and accessibility of production data. This includes:
+Real-time telemetry (metrics, logs, traces).
+Accurate service topology and dependency graphs.
+Historical incident data.
+Engineering playbooks and technical documentation.
+Service Level Objectives (SLOs) and error budget status.
+A catalog of available production tools and their effects. Google has invested heavily in making this data available and queryable in real-time.
+Retrieval Augmented Generation (RAG) Platforms: To provide AI models with the most current context, Google SRE extensively uses internal RAG platforms. These systems allow Large Language Models (LLMs) to query real-time data sources and internal documentation, grounding their responses and actions in the current state of production, rather than just their training data.
+Fine-tuning Models: While general-purpose LLMs provide a strong base, Google SRE fine-tunes models with domain-specific knowledge, including Google's internal tooling, production principles, and common failure patterns. This specialization significantly improves the accuracy and relevance of AI assistance.
+AI-Friendly Tool Interfaces (MCP): For AI agents to interact safely and effectively with production, tools need to expose their capabilities in a way that AI can understand and use. Google is standardizing on the Model Context Protocol (MCP), an open specification for providing natural language interfaces to APIs. This allows AI agents to dynamically discover and invoke tools, from simple diagnostic commands to complex mitigation actions. A key component of our AI-Ops ecosystem is a "Production Agent" server. This server implements the Model Context Protocol to expose a comprehensive suite of tools for interacting with Google's production environment, including:
+Observability: Querying time-series monitoring data, searching logs, and using automated analysis tools for anomaly detection and root cause suggestion.
+Incident Management: Interacting with our incident tooling to retrieve incident data or update status.
+Traffic Control: Initiating traffic shifts or service capacity changes.
+Infrastructure: Inspecting compute jobs and tasks.
+This Production Agent server is a key enabler for interactive AI use cases, such as the engineer-driven investigations using the AI-powered CLI. Importantly, any tools exposed via this server that can alter production state are integrated with safety systems, including a Mitigation Safety Verification Agent, to ensure policy compliance and prevent unintended consequences. This standardized interface approach is crucial for both human-in-the-loop AI assistance and fully autonomous systems like the AI Operator.
+Robust agent identity management: A core foundational element for safe AI-Ops is the robust management of agent identity. Agent principals must have unique, machine-distinguishable identities separate from human principals, ensuring that human-only actions are never performed by agents. This distinction is critical for maintaining auditability and non-repudiation: every autonomous agent action must be attributed to a unique agent principal with a complete, immutable record that authorized parties can use to reconstruct its activity.
+Inter-Agent Communication Protocols  [link: https://github.com/a2aproject/A2A] (A2A): Recognizing that different AI agents will specialize in various domains (e.g., monitoring, rollouts, capacity), Google is adopting inter-agent communication protocols like Agent2Agent (A2A). This enables the creation of composite AI-Ops systems where specialized agents collaborate to achieve larger goals, similar to how microservices interact.
+The Future of SRE: Scaling Oversight in an Agentic SDLC
+The integration of AI into SRE is fundamentally evolving the nature of production operations. However, the most profound shift is occurring within the Software Development Lifecycle (SDLC) itself. As the SDLC transitions to an agentic model—where AI plans, writes, reviews, and submits code—engineering organizations are targeting massive productivity increases, aiming to quadruple the volume of Changelists (CLs) generated. SRE practices must adapt to manage this high-velocity, largely black-box development process.
+Scaling Human Oversight: Moving Up the Abstraction Ladder
+Traditional line-by-line code review does not scale with a 4x to 10x increase in code volume. Attempting to maintain this practice leads to reviewer fatigue and rubber-stamping. Instead, human oversight must "shift left" and move up the abstraction ladder. Engineers must focus on reviewing Designs, Intent, and Policies. By co-authoring and approving detailed specifications with AI before code generation, engineers validate the architecture and safety constraints.
+To maintain the integrity of this process, SRE mandates the use of Independent Harnesses. The AI agent that generates the source code must be strictly isolated from the AI agent that defines the test cases or reviews the output. This separation prevents the transmission of cross-bias and helps to ensure that untested correctness requirements are caught mechanically rather than assumed by the authoring LLM.
+Rethinking Release: Adaptive Progressive Rollouts
+With the increased rate of change, traditional soak times and standard canarying methods will become bottlenecks. SRE must invest in Adaptive Progressive Rollouts, utilizing sensitive, automated "continuous production validation" techniques that can evaluate system health at machine speed. This applies not just to high-QPS RPC systems, but also to complex data-producing pipelines where anomalies must be caught before propagating to downstream consumers.
+The Intervening Pull Request Problem and AI-Assisted Fix-Forward
+The sheer volume of rapid, AI-generated deployments complicates traditional mitigation strategies. A simple binary rollback to a "last known good" version becomes highly risky when dozens of changes have been submitted in rapid succession; rolling back might inadvertently remove critical bug fixes or security patches introduced in the interim. This is known as the Intervening Pull Request Problem.
+To counter this, SRE must adopt ultra-fast, granular mitigation strategies. This includes aggressive reliance on dynamic configuration and feature flags to instantly disable problematic code paths. Furthermore, as AI accelerates the creation of code, it must also accelerate resolution through AI-Assisted Fix-Forward capabilities—automatically generating and deploying targeted patches to resolve incidents safely without unwinding concurrent progress.
+Ultimately, by shifting human oversight to architectural intent and building machine-speed compensating controls, SRE is transitioning from operating systems to architecting the safe boundaries within which autonomous agents can continuously innovate.
+References
+[link: https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages] https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages
+[link: https://sre.google/books/] https://sre.google/books/
+Follow us
+[link: https://www.twitter.com/googlesre/]
+[link: https://www.youtube.com/google]
+[link: https://www.google.com]
+[link: https://about.google/] About Google
+[link: https://about.google/products/] Google products
+[link: https://policies.google.com/privacy] Privacy
+[link: https://policies.google.com/terms] Terms
+[link: https://support.google.com/?hl=en]
+Help

@@ -1,0 +1,162 @@
+How Google SRE is using agentic AI to improve operations | Google Cloud Blog [link: ./#content] Jump to Content
+[link: https://cloud.google.com/]
+Cloud
+[link: https://cloud.google.com/blog/] Blog
+[link: https://cloud.google.com/contact/] Contact sales  [link: https://console.cloud.google.com/freetrial/] Get started for free
+[link: https://cloud.google.com/]
+Cloud
+[link: https://cloud.google.com/blog/] Blog
+[link: ] Solutions & technology
+[link: https://cloud.google.com/blog/products/ai-machine-learning] AI & Machine Learning
+[link: https://cloud.google.com/blog/products/api-management] API Management
+[link: https://cloud.google.com/blog/products/application-development] Application Development
+[link: https://cloud.google.com/blog/products/application-modernization] Application Modernization
+[link: https://cloud.google.com/blog/products/chrome-enterprise] Chrome Enterprise
+[link: https://cloud.google.com/blog/products/compute] Compute
+[link: https://cloud.google.com/blog/products/containers-kubernetes] Containers & Kubernetes
+[link: https://cloud.google.com/blog/products/data-analytics] Data Analytics
+[link: https://cloud.google.com/blog/products/databases] Databases
+[link: https://cloud.google.com/blog/products/devops-sre] DevOps & SRE
+[link: https://cloud.google.com/blog/topics/maps-geospatial] Maps & Geospatial
+[link: ] Security
+[link: https://cloud.google.com/blog/products/identity-security] Security & Identity
+[link: https://cloud.google.com/blog/topics/threat-intelligence] Threat Intelligence
+[link: https://cloud.google.com/blog/products/infrastructure] Infrastructure
+[link: https://cloud.google.com/blog/products/infrastructure-modernization] Infrastructure Modernization
+[link: https://cloud.google.com/blog/products/networking] Networking
+[link: https://cloud.google.com/blog/products/productivity-collaboration] Productivity & Collaboration
+[link: https://cloud.google.com/blog/products/sap-google-cloud] SAP on Google Cloud
+[link: https://cloud.google.com/blog/products/storage-data-transfer] Storage & Data Transfer
+[link: https://cloud.google.com/blog/topics/sustainability] Sustainability
+[link: ] Ecosystem
+[link: https://cloud.google.com/transform] IT Leaders
+[link: ] Industries
+[link: https://cloud.google.com/blog/topics/financial-services] Financial Services
+[link: https://cloud.google.com/blog/topics/healthcare-life-sciences] Healthcare & Life Sciences
+[link: https://cloud.google.com/blog/topics/manufacturing] Manufacturing
+[link: https://cloud.google.com/blog/products/media-entertainment] Media & Entertainment
+[link: https://cloud.google.com/blog/topics/public-sector] Public Sector
+[link: https://cloud.google.com/blog/topics/retail] Retail
+[link: https://cloud.google.com/blog/topics/supply-chain-logistics] Supply Chain
+[link: https://cloud.google.com/blog/topics/telecommunications] Telecommunications
+[link: https://cloud.google.com/blog/topics/partners] Partners
+[link: https://cloud.google.com/blog/topics/startups] Startups & SMB
+[link: https://cloud.google.com/blog/topics/training-certifications] Training & Certifications
+[link: https://cloud.google.com/blog/topics/inside-google-cloud] Inside Google Cloud
+[link: https://cloud.google.com/blog/topics/google-cloud-next] Google Cloud Next & Events
+[link: https://cloud.google.com/blog/topics/consulting] Google Cloud Consulting
+[link: https://mapsplatform.google.com/resources/blog/] Google Maps Platform
+[link: https://workspace.google.com/blog] Google Workspace
+[link: https://cloud.google.com/blog/topics/developers-practitioners] Developers & Practitioners
+[link: https://cloud.google.com/transform] Transform with Google Cloud
+[link: https://cloud.google.com/contact/] Contact sales  [link: https://console.cloud.google.com/freetrial/] Get started for free
+DevOps & SRE
+AI in SRE: Where and how Google is deploying agentic AI to improve operations
+May 29, 2026
+[link: https://x.com/intent/tweet?text=AI%20in%20SRE:%20Where%20and%20how%20Google%20is%20deploying%20agentic%20AI%20to%20improve%20operations%20@googlecloud&url=https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations]
+[link: https://www.linkedin.com/shareArticle?mini=true&url=https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations&title=AI%20in%20SRE:%20Where%20and%20how%20Google%20is%20deploying%20agentic%20AI%20to%20improve%20operations]
+[link: https://www.facebook.com/sharer/sharer.php?caption=AI%20in%20SRE:%20Where%20and%20how%20Google%20is%20deploying%20agentic%20AI%20to%20improve%20operations&u=https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations]
+[link: mailto:?subject=AI%20in%20SRE:%20Where%20and%20how%20Google%20is%20deploying%20agentic%20AI%20to%20improve%20operations&body=Check%20out%20this%20article%20on%20the%20Cloud%20Blog:%0A%0AAI%20in%20SRE:%20Where%20and%20how%20Google%20is%20deploying%20agentic%20AI%20to%20improve%20operations%0A%0AWith%20SRE%20AI,%20Google%20plans%20to%20fully%20adopt%20AI%20and%20agentic%20technologies,%20leveraging%20AI%20as%20a%20force%20multiplier%20while%20also%20maintaining%20control.%0A%0Ahttps://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations]
+Stevan Malesevic
+Distinguished Software Engineer
+Christopher Heiser
+Distinguished Site Reliability Engineer
+Try Gemini today
+The front door to AI in the workplace
+[link: https://business.gemini.google/?utm_source=cloud.google.com/blog&utm_medium=et&utm_campaign=FY26-Q2-GLOBAL-GLO27877-physicalevent-er-next26-mc-105752] Try now
+Since its inception over 20 years ago, Google has used  [link: https://sre.google/] Site Reliability Engineering (SRE) to keep services like Search, Gmail, Maps, YouTube and Google Cloud reliable and highly available, adhering to the  [link: https://sre.google/sre-book/table-of-contents/] principles and  [link: https://sre.google/workbook/table-of-contents/] practices of the reliability-first mindset.
+Recently though, the emergence of AI has driven multiple step-changes in system complexity. Interactions between components are now more complicated due to a variety of factors:
+With microservice architectures, systems are distributed across wider geographical locations and data centers that have greater hardware diversity.
+Enterprise cloud products offer an extensive array of capabilities with an incredibly complex set of products.
+Google services now cover more unique business and regulatory requirements, making the overall topology and taxonomy much more complex and difficult to understand, a challenge amplified by the constant stream of system changes resulting from continuous deployment pipelines.
+AI code generation capabilities have enabled software developers to deliver orders of magnitude more code, resulting in more opportunities to introduce reliability issues.
+While AI is in some ways making the SRE team’s work more challenging, it also provides new ways to understand and improve software development lifecycles, including production operations. Google SRE is on the path to fully adopt AI and agentic technologies, leveraging AI as a force multiplier while also maintaining control. We call this SRE AI.
+Read on for a summary of considerations when thinking about this topic, or you can dive straight into our comprehensive whitepaper,  [link: https://goo.gle/4uUxy4y] AI in SRE Practice: Moving Beyond Automation at Google, for an in-depth look at how Google SRE is navigating the transition from deterministic automation to agentic AI.
+The SRE AI opportunity landscape
+To help define our SRE AI strategy, we considered the overall software development lifecycle (SDLC) for areas of opportunity.
+The above diagram shows each of the phases where SRE is involved, and that could be improved with SRE AI.
+Perhaps the most obvious SRE area that could benefit from agentic AI is investigation and mitigation, sometimes referred to as root cause analysis (RCA), a cornerstone of the traditional SRE discipline. But RCA is by no means the whole SRE AI. Our plans for SRE AI go far beyond RCA and troubleshooting, and address the entire SDLC. Here are a few areas we are working on:
+Reliability design
+SRE has been working on the policies, tooling and procedures you need to ensure reliability is an integral part of system design through the design, launch, and deployment phases. An agentic approach does not necessarily imply removing people from the process, specifically for higher-risk services and features, but it does significantly reduce the time people need to spend, as a number of issues can be detected and auto-addressed before they need to be reviewed by a person.
+Runbooks (playbooks) and other documentation to be used during incidents are important production artifacts. Google SRE has developed AI agents to continuously monitor and improve playbooks and production documentation based on their usage during incidents. AI agents can also generate new playbooks from incidents.
+Anomaly detection and alerting
+A core SRE practice is to define  [link: https://cloud.google.com/blog/products/devops-sre/sre-fundamentals-sli-vs-slo-vs-sla?e=48754805] service level indicators (SLIs) and service level objectives (SLOs), and to configure alerts for them. This approach tends to be ok if service use cases are fairly uniform, and if it is possible to define objectives that align to customers' expectations.
+However, for products that support a range of customer use cases and workloads, like many in Google Cloud, it can be difficult to define a static threshold that works across a variety of workloads. With AI, Google SRE is augmenting our more traditional approaches with anomaly detection, with alerts based on detecting anomalies in regular behavior rather than statically predefined thresholds. This approach relies on agents to collect signals and feed them to a model (e.g.,  [link: https://docs.cloud.google.com/bigquery/docs/timesfm-model] TimesFM) to perform anomaly detection. Historical signals from prior customer cases help the AI agent to predict customer-oriented SLOs. Further, AI-based anomaly detection can consult sources beyond signals produced by service itself — for instance, customer feedback.
+In this model, when the SRE AI agent detects an anomaly, it triggers an alert. Then, the SRE AI alerting agent groups, pre-processes, and enriches the alerts with the necessary context and information. These alerts in turn are run through autonomous AI alert handlers, which can address or mitigate a multitude of issues. The outcome of this system is faster issue resolution and a likely significant reduction in the number of alerts that SREs need to review.
+What's key in this ecosystem of agents is to be consistently transparent about what the data agents are evaluating — and how — and having consistent controls to prevent unwanted mutations of production state.
+Incident management
+Within Google SRE, incident management, or  [link: https://sre.google/resources/practices-and-processes/incident-management-guide/] IMAG, is a well-established process with clear roles and responsibilities, as well as tooling. SRE AI includes an agentic orchestration layer on top of the current IMAG process, which consists of agents that:
+Monitor the communication surfaces used during the incident (incident response tools, chat spaces, videos, tracking documents), and consolidate/summarize data to improve communication and information sharing during the incident
+Support handoff between SREs participating in the incident, by creating handoff documents with necessary context
+Automatically create drafts of incident postmortems, improving their quality, reducing SRE effort, and ensuring that relevant information is included
+Manage internal and external incident communications
+Incident investigation
+The Google SRE team has also created agents to investigate incidents, and in some cases to autonomously mitigate issues.
+Before they can proceed to form hypotheses and propose mitigation steps, these agents use observability data (logging, motoring, tracing), as well as system topology, taxonomy, and dependency data to establish domain and intent. A few other building blocks that these agents use are distinct agents the team has created for navigating and executing playbooks, accessing alerting, performing anomaly detection, and deriving incident insights.
+Insights and risk management
+SRE requires an understanding of the end-to-end system and effective mitigation solutions, experience and lessons learned from past incidents, and the ability to perform risk management. Autonomous AI agents need similar skills to be able to manage production environments.
+While a common topology or taxonomy system can teach agents about the end-to-end system, and well-documented and described production  [link: https://modelcontextprotocol.io/docs/getting-started/intro] Model Context Protocol (MCP) tools and skills can teach them about available tooling, there needs to be a way to continuously teach agents about historical issues and their associated risks. To solve that problem, the Google SRE team created AI Insights, a system that continuously reviews known incidents and extracts meaningful information from them, then makes it available to agents to drive better investigations and mitigation steps.  [link: https://ai.google.dev/gemini-api/docs/embeddings] Gemini embedding models and  [link: https://cloud.google.com/discover/what-is-a-vector-database] vector-enabled databases power this system.
+The other part of the system is risk insights. The AI system marks each incident with appropriate risk categories that can be used both by agents before applying mitigations, and by SREs to determine critical areas to address.
+Design considerations
+Before building out these agents, Google SRE defined a few high level principles for their adoption:
+Processes and operations that are already successfully automated, or that can be easily automated with classic non-AI based systems, do not need to be replaced (as long as they meet business needs).
+Any new AI-based system must comply with existing and upcoming policies and procedures to keep the strong promises we have to our customers.
+An SRE AI agent needs to meet security, safety, and privacy requirements the same way as current systems and humans.
+SRE AI agents must have a strong identity (agents have roles and permissions assigned).
+SRE AI agents need to provide a high level of reliability SLOs and have well-defined backup options (automated or manual).
+SRE AI agents must be able to explain and reason about why and how they performed an action, as well as what options were considered and rejected. In other words, we favor transparency over black-box automation.
+Business continuity plans must include contingencies for potential AI failures.
+AI-based systems need continuous access to production data to make correct decisions.
+AI systems need to be continuously evaluated against a quality framework, as well as to support auditing and reporting to enable security tooling like detection and response.
+In addition, we stipulated that SRE AI systems should make Google services even better for users and customers by accomplishing at least one of the following:
+Relieve engineers from laborious and repetitive operations
+Help engineers improve the quality and speed of decision making and execution
+Allow SREs to better prevent, detect, and/or mitigate problems than they could address before
+Enable autonomous agentic feedback loops that drive toward service reliability improvements
+Reduce overall operational costs
+Built on proven infrastructure
+Google SRE AI is built on proven Google infrastructure:
+[link: https://ai.google.dev/gemini-api/docs/models] Gemini: The base foundational model behind Google SRE AI. The SRE team also depends heavily on custom fine-tuned Gemini models based on internal Google data and knowledge.
+[link: https://cloud.google.com/vertex-ai] Gemini Enterprise Agent Platform (formerly Vertex AI): A full AI stack for developing solutions.
+Agent Development Kit ( [link: https://google.github.io/adk-docs/] ADK): The development platform.
+MCP servers: Running on top of standard Google API infrastructure, this is the same infrastructure used to provide  [link: https://cloud.google.com/blog/products/ai-machine-learning/announcing-official-mcp-support-for-google-services] external customers with MCP support.
+Standard internal observability infrastructure (monitoring, logging, tracing).
+AI and ML capabilities built into  [link: https://cloud.google.com/bigquery?utm_source=pmax&utm_medium=display&utm_campaign=Cloud-SS-DR-GCP-1713658-GCP-DR-NA-US-en-pmax-Display-pmax-All-BigQuery&utm_content=c--x--9021712-21713147502&gclsrc=aw.ds&gad_source=1&gad_campaignid=22037004910&gclid=Cj0KCQiAyP3KBhD9ARIsAAJLnnbo2-37fR9eOpRLdHeKbvQPLy5r1oGBQcBDoi5rquEdx-JMkX6ryzQaAsShEALw_wcB] Google BigQuery, and  [link: https://cloud.google.com/discover/what-is-a-vector-database] Google vector databases.
+We group these infrastructure components together into autonomous systems. At Google, we’ve been developing and using autonomous systems to manage production for a long time. However, today’s AI-based autonomous systems are very powerful and not always deterministic. To help us understand how autonomous the systems truly are, we developed a way to track autonomous levels.
+Dive deeper: Read the white paper
+For engineers and leaders looking to explore the technical architecture and rigorous governance models behind these innovations, we invite you to read our comprehensive whitepaper, “AI in SRE Practice: Moving Beyond Automation at Google,” which provides an in-depth look at how Google SRE is navigating the transition from deterministic automation to agentic AI. Download the whitepaper  [link: https://goo.gle/4uUxy4y] here.
+Posted in
+[link: https://cloud.google.com/blog/products/devops-sre] DevOps & SRE
+[link: https://cloud.google.com/blog/products/ai-machine-learning] AI & Machine Learning
+Related articles
+[link: https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition]
+DevOps & SRE
+10 Years of the SRE book: Announcing the second edition of "Site Reliability Engineering”
+By Betsy Beyer • 2-minute read
+[link: https://cloud.google.com/blog/topics/developers-practitioners/cloud-reliability-incident-handling-best-practices]
+Developers & Practitioners
+Best practices for handling cloud reliability incidents
+By Flemming Christensen • 14-minute read
+[link: https://cloud.google.com/blog/products/management-tools/cloud-monitoring-adds-long-lookback-alert-policies-for-promql]
+Management Tools
+Anomaly detection using dynamic thresholds and two-year-long alerts in Cloud Monitoring
+By Lee Yanco • 6-minute read
+[link: https://cloud.google.com/blog/products/management-tools/alert-with-sql-in-cloud-monitoring-observability-analytics]
+Management Tools
+From query to action: Introducing SQL alerting in Cloud Monitoring Observability Analytics
+By Joy Wang • 4-minute read
+Footer Links
+Follow us
+[link: https://www.x.com/googlecloud]
+[link: https://www.youtube.com/googlecloud]
+[link: https://www.linkedin.com/showcase/google-cloud]
+[link: https://www.instagram.com/googlecloud/]
+[link: https://www.facebook.com/googlecloud/]
+[link: https://cloud.google.com/]
+[link: https://cloud.google.com/] Google Cloud
+[link: https://cloud.google.com/products/] Google Cloud Products
+[link: https://myaccount.google.com/privacypolicy?hl=en-US] Privacy
+[link: https://myaccount.google.com/termsofservice?hl=en-US] Terms
+[link: #] Cookies management controls
+[link: https://support.google.com] Help
+Language‪English‬‪Deutsch‬‪Français‬‪한국어‬‪日本語‬

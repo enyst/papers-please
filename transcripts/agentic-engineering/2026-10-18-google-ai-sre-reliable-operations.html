@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WVF23W3');
+    </script>
+    
+
+    <meta charset="utf-8">
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport"><title>https://sre.google/resources/practices-and-processes/ai-engineering-reliable-operations/</title>
+    
+    <meta name="description" content="AI in SRE: How Google is Engineering the Future of Reliable Operations">
+    <script async src="https://cse.google.com/cse.js?cx=f3338eeb2ed3c4a7a"></script>
+
+    <link rel="canonical" href="https://sre.google/resources/practices-and-processes/ai-engineering-reliable-operations/">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/dynamic/sre/44a86e936e400508a9a9cb76f60adafd.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/dynamic/sre/44a86e936e400508a9a9cb76f60adafd.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/dynamic/sre/44a86e936e400508a9a9cb76f60adafd.webp">
+    <link rel="shortcut icon" href="/img/dynamic/sre/44a86e936e400508a9a9cb76f60adafd.webp">
+    <link rel="preconnect" href="https://lh3.googleusercontent.com/" crossorigin>
+    <link rel="preconnect" href="https://kstatic.googleusercontent.com/" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com/" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com/" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com/" crossorigin>
+
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en&amp;display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><link rel="preload" href="/css/index.min.css" as="style">
+      <link rel="stylesheet" href="/css/index.min.css"><link as="style" href="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.css" rel="stylesheet">
+    
+    <script defer src="/js/detect.min.js"></script>
+  </head>
+
+  <body class="glue-body">
+    
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVF23W3"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
+
+    
+
+
+
+
+
+
+
+<header class="glue-header glue-header--single header glue-header-stepped-nav-enabled"
+  glue-header-options='{"steppedNav": true}'>
+  <div class="glue-header__bar glue-header__bar--desktop glue-header__drawer" id="header-drawer">
+    
+    <div class="glue-header__tier">
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" aria-label="Google Site Reliability Engineering" title="Google Site Reliability Engineering">
+              <div class="glue-header__logo-container">
+                <svg role="presentation" aria-hidden="true" class="glue-header__logo-svg"
+                  alt="Google">
+                  <use xlink:href="#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product header-product-logo">Site Reliability Engineering</p>
+            </a>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content" aria-label="Jump to Content"
+            title="Jump to Content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="glue-header__container glue-header__stepped-nav">
+        <div class="glue-header__stepped-nav-controls-container">
+          <div class="glue-header__stepped-nav-controls" tabindex="0" role="tabpanel">
+            <div class="glue-header__stepped-nav-controls-arrow">
+              <svg role="presentation" class="glue-icon glue-icon--18px" alt="Previous">
+                <use xlink:href="#chevron-left"></use>
+              </svg>
+              <svg role="presentation" class="glue-icon glue-icon--18px glue-header__stepped-nav-subnav-icon"
+                alt="Next">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </div>
+            <div class="glue-header__stepped-nav-controls-title glue-header__link"></div>
+          </div>
+        </div>
+        <div class="glue-header__stepped-nav-menus"></div>
+      </div>
+
+      <div class="glue-header__container glue-header__container--flex-auto">
+        <nav class="glue-header__link-bar">
+          <ul id="list-1" class="glue-header__list glue-header__link-bar--arrow">
+            <li class="glue-header__item glue-header--is-active" style="display: none;" aria-hidden="true"><a
+                class="glue-header__link" href="#"></a></li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/" title="Home" aria-label="Home" >
+                
+                Home
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link mega-menu-button" href="#" title="Resources" aria-label="Resources"  aria-expanded="false" >
+                
+                <span class="no-event">
+                  Resources
+                  <i class="material-icons new-release-icon" data-release-date="2022-03-31"></i>
+                </span>
+                <svg role="presentation" class="glue-icon glue-icon--20px mega-menu-expand-icon no-event"
+                  alt="Resources">
+                  <use xlink:href="#expand-more"></use>
+                </svg>
+                
+              </a>
+              
+              
+
+
+
+
+
+<section class="glue-mod-elevation-1 mega-menu js-hide">
+  <div class="glue-page">
+    <div class="glue-grid glue-mod-spacer-4-top glue-mod-spacer-4-bottom">
+      
+        
+      
+        
+          
+            <div class="glue-grid__col glue-grid__col--span-3 glue-mod-spacer-4-bottom">
+              <ul class="mega-menu-container">
+                <div class="mega-menu-image">
+                  <svg fill="none" height="24" viewBox="0 0 22 24" width="22" xmlns="http://www.w3.org/2000/svg"><g fill="#1a73e8"><path d="m11.9736 7.42627c-1.0507 0-1.9019.85333-1.9019 1.90667 0 1.05336.8512 1.90666 1.9019 1.90666s1.9019-.8533 1.9019-1.90666c0-1.05334-.8512-1.90667-1.9019-1.90667z"/><path d="m11.9726 0c-4.98758 0-9.04417 3.92-9.28357 8.85333l-2.553663 3.41337c-.332507.44-.0133 1.0666.532013 1.0666h1.99505v4c0 1.4667 1.19702 2.6667 2.66006 2.6667h1.33003v4h9.31018v-6.24c3.1389-1.4933 5.3202-4.7067 5.3202-8.42667 0-5.16-4.163-9.33333-9.3103-9.33333zm3.9901 9.33333c0 .17334-.0133.34667-.0266.52l1.104.87997c.1064.08.133.2134.0665.3334l-1.0641 1.8533c-.0665.12-.2128.16-.3192.12l-1.3167-.5333c-.2793.2133-.5719.3866-.8911.52l-.2128 1.4133c-.0133.1333-.133.2267-.266.2267h-2.1281c-.133 0-.2394-.0934-.266-.2267l-.1995-1.4133c-.3325-.1334-.62511-.3067-.90442-.52l-1.31673.5333c-.1197.04-.266 0-.3325-.12l-1.06403-1.8533c-.0665-.1067-.0399-.2534.0665-.3334l1.11723-.87997c-.0133-.17333-.0266-.34666-.0266-.52 0-.17333.0266-.36.0532-.52l-1.13053-.88c-.1064-.08-.133-.21333-.0665-.34666l1.06403-1.84c.0665-.12.1995-.16.3192-.12l1.33003.53333c.26601-.2.57192-.38667.89112-.52l.1995-1.41333c.0266-.13334.133-.22667.266-.22667h2.1281c.133 0 .2394.09333.266.22667l.1995 1.41333c.3192.13333.6118.30667.8911.52l1.33-.53333c.1197-.04.266 0 .3192.12l1.0641 1.84c.0665.12.0399.26666-.0665.34666l-1.1306.88c.0399.16.0532.33334.0532.52z"/></g></svg>
+                </div>
+                <li class="mega-menu-tile">
+                  <p class="glue-cta mega-menu-title">
+                    <a class="text-decoration"
+                        href="/resources/"
+                        title="Latest resources"
+                        aria-label="Latest resources">
+                      Latest resources
+                    </a>
+                  </p>
+                  
+                    
+                  
+                    
+                      <p class="mega-menu-caption glue-mod-spacer-3-top">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/books/"
+                            title="Site Reliability Engineering, 2nd Edition"
+                            aria-label="Site Reliability Engineering, 2nd Edition"
+                            >
+                          Site Reliability Engineering, 2nd Edition
+                        </a>
+                          <span class="glue-eyebrow new-link-text">New!</span>
+                      </p>
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/ai-engineering-reliable-operations/"
+                            title="AI Engineering Reliable Operations"
+                            aria-label="AI Engineering Reliable Operations"
+                            >
+                          AI Engineering Reliable Operations
+                        </a>
+                        
+                          <span class="glue-eyebrow new-link-text">New!</span>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/videos/"
+                            title="Google SRE Video Gallery"
+                            aria-label="Google SRE Video Gallery"
+                            >
+                          Google SRE Video Gallery
+                        </a>
+                        
+                          <span class="glue-eyebrow new-link-text">New!</span>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/product-focused-reliability-for-sre/"
+                            title="Product-Focused Reliability for SRE"
+                            aria-label="Product-Focused Reliability for SRE"
+                            >
+                          Product-Focused Reliability for SRE
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/20/"
+                            title="Twentieth Anniversary"
+                            aria-label="Twentieth Anniversary"
+                            >
+                          Twentieth Anniversary
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="https://goo.gle/sre-20-ll"
+                            title="Twenty years of SRE lessons learned"
+                            aria-label="Twenty years of SRE lessons learned"
+                            >
+                          Twenty years of SRE lessons learned
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/prodverbs/"
+                            title="Prodverbs"
+                            aria-label="Prodverbs"
+                            >
+                          Prodverbs
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/sre-fundamentals-course/"
+                            title="SRE Fundamentals"
+                            aria-label="SRE Fundamentals"
+                            >
+                          SRE Fundamentals
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/measuring-reliability/"
+                            title="Measuring Reliability"
+                            aria-label="Measuring Reliability"
+                            >
+                          Measuring Reliability
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/no-heroes/"
+                            title="Why Heroism is Bad"
+                            aria-label="Why Heroism is Bad"
+                            >
+                          Why Heroism is Bad
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/stpa/"
+                            title="System Theoretic Process Analysis"
+                            aria-label="System Theoretic Process Analysis"
+                            >
+                          System Theoretic Process Analysis
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/next26/"
+                            title="Ask an SRE at Next &#39;26"
+                            aria-label="Ask an SRE at Next &#39;26"
+                            >
+                          Ask an SRE at Next '26
+                        </a>
+                        
+                      </p>
+                    
+                  
+                </li>
+              </ul>
+            </div>
+          
+            <div class="glue-grid__col glue-grid__col--span-3 glue-mod-spacer-4-bottom">
+              <ul class="mega-menu-container">
+                <div class="mega-menu-image">
+                  <svg fill="none" height="23" viewBox="0 0 22 23" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m0 .087402h21.9868v22h-21.9868z" fill="#fff"/><path d="m17.0624.0874023h-13.05471c-1.19668 0-2.17578.9899977-2.17578 2.1999977v17.6c0 1.21.9791 2.2 2.17578 2.2h13.05471c1.1966 0 2.1757-.99 2.1757-2.2v-17.6c0-1.21-.9791-2.1999977-2.1757-2.1999977zm-13.05471 2.1999977h5.43945v8.8l-2.71973-1.65-2.71972 1.65z" fill="#1a73e8"/></svg>
+                </div>
+                <li class="mega-menu-tile">
+                  <p class="glue-cta mega-menu-title">
+                    <a class="text-decoration"
+                        href="/books/"
+                        title="Books"
+                        aria-label="Books">
+                      Books
+                    </a>
+                  </p>
+                  
+                    
+                  
+                    
+                      <p class="mega-menu-caption glue-mod-spacer-3-top">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="https://www.google.com/books/edition/_/iXnw0QEACAAJ?sa=X&amp;ved=2ahUKEwif56ffvpaXAxX3UaQEHVMxA0QQ8fIDegQILBAd"
+                            title="Site Reliability Engineering, 2nd Edition"
+                            aria-label="Site Reliability Engineering, 2nd Edition"
+                            >
+                          Site Reliability Engineering, 2nd Edition
+                        </a>
+                      </p>
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/books/building-secure-reliable-systems/"
+                            title="Building Secure &amp; Reliable Systems"
+                            aria-label="Building Secure &amp; Reliable Systems"
+                            >
+                          Building Secure & Reliable Systems
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/workbook/table-of-contents/"
+                            title="The Site Reliability Workbook"
+                            aria-label="The Site Reliability Workbook"
+                            >
+                          The Site Reliability Workbook
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/sre-book/table-of-contents/"
+                            title="Site Reliability Engineering"
+                            aria-label="Site Reliability Engineering"
+                            >
+                          Site Reliability Engineering
+                        </a>
+                        
+                      </p>
+                    
+                  
+                </li>
+              </ul>
+            </div>
+          
+            <div class="glue-grid__col glue-grid__col--span-3 glue-mod-spacer-4-bottom">
+              <ul class="mega-menu-container">
+                <div class="mega-menu-image">
+                  <svg fill="none" height="23" viewBox="0 0 22 23" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m0 .087402h21.9354v22h-21.9354z" fill="#fff"/><path d="m19.4981.0874023h-17.06084c-1.34049 0-2.43726 1.0999977-2.43726 2.4444477v17.11115c0 1.3444 1.09677 2.4444 2.43726 2.4444h17.06084c1.3405 0 2.4373-1.1 2.4373-2.4444v-17.11115c0-1.34445-1.0968-2.4444477-2.4373-2.4444477zm-6.0932 17.1110977h-8.53037v-2.4444h8.53037zm3.6559-4.8889h-12.18627v-2.44442h12.18627zm0-4.88886h-12.18627v-2.44445h12.18627z" fill="#1a73e8"/></svg>
+                </div>
+                <li class="mega-menu-tile">
+                  <p class="glue-cta mega-menu-title">
+                    <a class="text-decoration"
+                        href="/mobaa/"
+                        title="Mobaa"
+                        aria-label="Mobaa">
+                      Mobaa
+                    </a>
+                  </p>
+                  
+                    
+                  
+                    
+                      <p class="mega-menu-caption glue-mod-spacer-3-top">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/mobaa/2024/"
+                            title="2024 Gallery"
+                            aria-label="2024 Gallery"
+                            >
+                          2024 Gallery
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/mobaa/2022/"
+                            title="2022 Gallery"
+                            aria-label="2022 Gallery"
+                            >
+                          2022 Gallery
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/mobaa/frayed/"
+                            title="2020 Gallery"
+                            aria-label="2020 Gallery"
+                            >
+                          2020 Gallery
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/mobaa/methods/"
+                            title="Vector Methods"
+                            aria-label="Vector Methods"
+                            >
+                          Vector Methods
+                        </a>
+                        
+                      </p>
+                    
+                  
+                </li>
+              </ul>
+            </div>
+          
+            <div class="glue-grid__col glue-grid__col--span-3 glue-mod-spacer-4-bottom">
+              <ul class="mega-menu-container">
+                <div class="mega-menu-image">
+                  <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg"><path d="m.000977 0h27.9958v27.8329h-27.9958z" fill="#fff"/><path d="m5.09014 15.4092v5.0606l8.90776 4.8328 8.9078-4.8328v-5.0606l-8.9078 4.8329zm8.90776-12.87899-13.9979 7.59079 13.9979 7.5908 11.4528-6.2118v8.7421h2.5451v-10.1211z" fill="#1a73e8"/></svg>
+                </div>
+                <li class="mega-menu-tile">
+                  <p class="glue-cta mega-menu-title">
+                    <a class="text-decoration"
+                        href="/classroom/"
+                        title="Classroom"
+                        aria-label="Classroom">
+                      Classroom
+                    </a>
+                  </p>
+                  
+                    
+                  
+                    
+                      <p class="mega-menu-caption glue-mod-spacer-3-top">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/classroom/distributed-pubsub/"
+                            title="Distributed PubSub"
+                            aria-label="Distributed PubSub"
+                            >
+                          Distributed PubSub
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/classroom/imageserver/"
+                            title="Distributed Image Server"
+                            aria-label="Distributed Image Server"
+                            >
+                          Distributed Image Server
+                        </a>
+                        
+                      </p>
+                    
+                  
+                    
+                      <p class="mega-menu-caption">
+                        <a class="glue-caption text-decoration mega-menu-variant"
+                            href="/resources/practices-and-processes/art-of-slos/"
+                            title="The Art of SLO"
+                            aria-label="The Art of SLO"
+                            >
+                          The Art of SLO
+                        </a>
+                        
+                      </p>
+                    
+                  
+                </li>
+              </ul>
+            </div>
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <button class="mega-menu-close-btn btn-override" title="close" type="button" tabindex="0">
+      <svg role="presentation" class="glue-icon glue-icon--24px" alt="Close">
+        <use xlink:href="#close"></use>
+      </svg>
+    </button>
+  </div>
+</section>
+
+              
+              
+              <ul id="list-2-1" class="glue-header__list glue-header__list--nested">
+                
+                
+                <li
+                  class="glue-header__item">
+                  <a class="glue-header__link" href="#" title="Latest resources"
+                    aria-label="Latest resources">
+                    Latest resources
+                  </a>
+                  
+                  <ul id="list-3-0" class="glue-header__list glue-header__list--nested">
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/" title="Resources overview"
+                        aria-label="Resources overview" >
+                        Resources overview
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/books/" title="Site Reliability Engineering, 2nd Edition"
+                        aria-label="Site Reliability Engineering, 2nd Edition" >
+                        Site Reliability Engineering, 2nd Edition
+                      </a>
+                      <span class="glue-eyebrow new-link-text">New!</span>
+                    </li>
+                    <li
+                      class="glue-header__item glue-header--is-active">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/ai-engineering-reliable-operations/" title="AI Engineering Reliable Operations"
+                        aria-label="AI Engineering Reliable Operations" >
+                        AI Engineering Reliable Operations
+                      </a>
+                      
+                      <span class="glue-eyebrow new-link-text">New!</span>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/videos/" title="Google SRE Video Gallery"
+                        aria-label="Google SRE Video Gallery" >
+                        Google SRE Video Gallery
+                      </a>
+                      
+                      <span class="glue-eyebrow new-link-text">New!</span>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/product-focused-reliability-for-sre/" title="Product-Focused Reliability for SRE"
+                        aria-label="Product-Focused Reliability for SRE" >
+                        Product-Focused Reliability for SRE
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/20/" title="Twentieth Anniversary"
+                        aria-label="Twentieth Anniversary" >
+                        Twentieth Anniversary
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="https://goo.gle/sre-20-ll" title="Twenty years of SRE lessons learned"
+                        aria-label="Twenty years of SRE lessons learned" >
+                        Twenty years of SRE lessons learned
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/prodverbs/" title="Prodverbs"
+                        aria-label="Prodverbs" >
+                        Prodverbs
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/sre-fundamentals-course/" title="SRE Fundamentals"
+                        aria-label="SRE Fundamentals" >
+                        SRE Fundamentals
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/measuring-reliability/" title="Measuring Reliability"
+                        aria-label="Measuring Reliability" >
+                        Measuring Reliability
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/no-heroes/" title="Why Heroism is Bad"
+                        aria-label="Why Heroism is Bad" >
+                        Why Heroism is Bad
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/stpa/" title="System Theoretic Process Analysis"
+                        aria-label="System Theoretic Process Analysis" >
+                        System Theoretic Process Analysis
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/next26/" title="Ask an SRE at Next &#39;26"
+                        aria-label="Ask an SRE at Next &#39;26" >
+                        Ask an SRE at Next '26
+                      </a>
+                      
+                    </li>
+                    
+                  </ul>
+                  
+                </li>
+                
+                
+                <li
+                  class="glue-header__item">
+                  <a class="glue-header__link" href="#" title="Books"
+                    aria-label="Books">
+                    Books
+                  </a>
+                  
+                  <ul id="list-3-1" class="glue-header__list glue-header__list--nested">
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/books/" title="Books overview"
+                        aria-label="Books overview" >
+                        Books overview
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="https://www.google.com/books/edition/_/iXnw0QEACAAJ?sa=X&amp;ved=2ahUKEwif56ffvpaXAxX3UaQEHVMxA0QQ8fIDegQILBAd" title="Site Reliability Engineering, 2nd Edition"
+                        aria-label="Site Reliability Engineering, 2nd Edition" >
+                        Site Reliability Engineering, 2nd Edition
+                      </a>
+                    </li>
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/books/building-secure-reliable-systems/" title="Building Secure &amp; Reliable Systems"
+                        aria-label="Building Secure &amp; Reliable Systems" >
+                        Building Secure & Reliable Systems
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/workbook/table-of-contents/" title="The Site Reliability Workbook"
+                        aria-label="The Site Reliability Workbook" >
+                        The Site Reliability Workbook
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/sre-book/table-of-contents/" title="Site Reliability Engineering"
+                        aria-label="Site Reliability Engineering" >
+                        Site Reliability Engineering
+                      </a>
+                      
+                    </li>
+                    
+                  </ul>
+                  
+                </li>
+                
+                
+                <li
+                  class="glue-header__item">
+                  <a class="glue-header__link" href="#" title="Mobaa"
+                    aria-label="Mobaa">
+                    Mobaa
+                  </a>
+                  
+                  <ul id="list-3-2" class="glue-header__list glue-header__list--nested">
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/mobaa/" title="Mobaa overview"
+                        aria-label="Mobaa overview" >
+                        Mobaa overview
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/mobaa/2024/" title="2024 Gallery"
+                        aria-label="2024 Gallery" >
+                        2024 Gallery
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/mobaa/2022/" title="2022 Gallery"
+                        aria-label="2022 Gallery" >
+                        2022 Gallery
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/mobaa/frayed/" title="2020 Gallery"
+                        aria-label="2020 Gallery" >
+                        2020 Gallery
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/mobaa/methods/" title="Vector Methods"
+                        aria-label="Vector Methods" >
+                        Vector Methods
+                      </a>
+                      
+                    </li>
+                    
+                  </ul>
+                  
+                </li>
+                
+                
+                <li
+                  class="glue-header__item">
+                  <a class="glue-header__link" href="#" title="Classroom"
+                    aria-label="Classroom">
+                    Classroom
+                  </a>
+                  
+                  <ul id="list-3-3" class="glue-header__list glue-header__list--nested">
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/classroom/" title="Classroom overview"
+                        aria-label="Classroom overview" >
+                        Classroom overview
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/classroom/distributed-pubsub/" title="Distributed PubSub"
+                        aria-label="Distributed PubSub" >
+                        Distributed PubSub
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/classroom/imageserver/" title="Distributed Image Server"
+                        aria-label="Distributed Image Server" >
+                        Distributed Image Server
+                      </a>
+                      
+                    </li>
+                    
+                    <li
+                      class="glue-header__item">
+                      <a class="glue-header__link" href="/resources/practices-and-processes/art-of-slos/" title="The Art of SLO"
+                        aria-label="The Art of SLO" >
+                        The Art of SLO
+                      </a>
+                      
+                    </li>
+                    
+                  </ul>
+                  
+                </li>
+                
+              </ul>
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/books/" title="Books" aria-label="Books" >
+                
+                Books
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/careers/" title="Careers" aria-label="Careers" >
+                
+                Careers
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/cloud/" title="Cloud" aria-label="Cloud" >
+                
+                Cloud
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/local/" title="Local" aria-label="Local" >
+                
+                Local
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/prodcast/" title="Prodcast" aria-label="Prodcast" >
+                
+                Prodcast
+                
+              </a>
+              
+              
+            </li>
+            
+            
+            <li class="glue-header__item">
+              <a class="glue-header__link" href="/spotlight/" title="Spotlight" aria-label="Spotlight" >
+                
+                Spotlight
+                
+              </a>
+              
+              
+            </li>
+            
+          </ul>
+        </nav>
+      </div>
+      <div id="mobile-search-drawer-container" class="glue-header__container header-search-container header-search-container-aligned mobile-search-drawer-container">
+        <button type="button" class="header-search-btn" id="header-search-btn" aria-label="Open Search">
+          <svg role="presentation" class="glue-icon glue-icon--24px">
+            <use xlink:href="/img/glue-icons.svg#search"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__bar glue-header__bar--mobile header-bar-mobile">
+    
+    <div class="glue-header__tier">
+      <div class="glue-header__container">
+        <div class="glue-header__lock-up">
+          <div class="glue-header__hamburger glue-header__hamburger--first-tier">
+            <div class="glue-header__hamburger-wrapper">
+              <button type="button" class="glue-header__drawer-toggle-btn" aria-controls="header-drawer"
+                aria-expanded="false" aria-label="Open the navigation drawer">
+                <svg role="presentation" class="glue-icon glue-icon--24px" alt="Header hamburger"
+                  aria-hidden="true" style="pointer-events: none;">
+                  <use xlink:href="#menu"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="glue-header__logo">
+            <a class="glue-header__logo-link" href="/" aria-label="Google Site Reliability Engineering" title="Google Site Reliability Engineering">
+              <div class="glue-header__logo-container">
+                <svg role="presentation" aria-hidden="true" class="glue-header__logo-svg"
+                  alt="Google">
+                  <use xlink:href="#google-color-logo"></use>
+                </svg>
+              </div>
+              <p class="glue-header__logo--product header-product-logo">Site Reliability Engineering</p>
+            </a>
+          </div>
+          <div class="header-search-container-mobile">
+            <button type="button" class="mobile-header-search-btn" id="mobile-header-search-btn" aria-label="Open Search">
+              <svg role="presentation" class="glue-icon glue-icon--24px">
+                <use xlink:href="/img/glue-icons.svg#search"></use>
+              </svg>
+            </button>
+          </div>
+          <a href="#page-content" class="glue-header__skip-content" aria-label="Jump to Content"
+            title="Jump to Content">
+            <p class="glue-header__skip-content-text">Jump to Content</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glue-header__drawer-backdrop"></div>
+  <div class="search-overlay js-hide" id="search-overlay" aria-hidden="true">
+    <div class="search-modal-backdrop" id="search-modal-backdrop"></div>
+    <div class="search-container">
+      <div class="gcse-searchbox-only" data-resultsUrl="/search-results/" data-newWindow="false"></div>
+    </div>
+  </div>
+</header>
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  function updateDrawerHeight() {
+    var activeUl = document.querySelector('.glue-header__stepped-nav-menus ul.glue-is-shown');
+    var menus = document.querySelector('.glue-header__stepped-nav-menus');
+    if (activeUl && menus) {
+      menus.style.minHeight = activeUl.scrollHeight + 'px';
+    }
+  }
+  
+  setTimeout(updateDrawerHeight, 500);
+  
+  
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.glue-header')) {
+      setTimeout(updateDrawerHeight, 350); 
+    }
+  });
+});
+</script>
+<div class="butter-bar js-butter-bar">
+  <div class="butter-bar-inner">
+    <img src="/img/dynamic/sre/sreBook2.jpg"
+      alt="Site Reliability Engineering, 2nd Edition" class="butter-bar-book-image"
+      width="160" height="210">
+    <div class="butter-bar-content">
+      <div class="butter-bar-heading">
+        <span class="butter-bar-badge">New!</span>
+        <strong class="butter-bar-title">Site Reliability Engineering, 2nd Edition</strong>
+      </div>
+      <p class="butter-bar-description">
+        In this completely rewritten edition, we explore current SRE practices and how they&#39;ve evolved in the decade since the book&#39;s initial publication—including how AI is redefining modern production environments.
+      </p>
+      <div class="butter-bar-actions">
+        <a href="https://goo.gle/SREbook" class="glue-button glue-button--high-emphasis glue-button--icon-right butter-bar-primary-btn"
+          title="Buy from Google Books" aria-label="Buy from Google Books" target="_blank"
+          rel="noopener noreferrer">
+          Buy from Google Books
+          <svg role="presentation" aria-hidden="true" class="glue-icon glue-icon--18px">
+            <use xlink:href="#open-in-new"></use>
+          </svg>
+        </a>
+        <button type="button"
+          class="glue-button glue-button--medium-emphasis butter-bar-more-btn js-butter-bar-modal-trigger">
+          Quick Look
+        </button>
+      </div>
+    </div>
+  </div>
+  <button class="dismiss button--bare js-butter-bar-dismiss" aria-label="Dismiss Butter Bar">
+    <span class="dismiss-icon-wrapper">
+      <svg class="glue-icon--18px" role="presentation" aria-hidden="true" alt="">
+        <use xlink:href="#close"></use>
+      </svg>
+    </span>
+  </button>
+</div>
+<div class="glue-modal sre-books-modal js-butter-bar-modal" role="dialog" aria-modal="true"
+  aria-labelledby="butterbar-modal-title">
+  <button class="glue-modal__close-btn close-modal" aria-label="Close"></button>
+  <div class="sre-books-modal-content" id="butterbar-modal-content">
+    <div class="glue-grid">
+      <div class="glue-grid__col glue-grid__col--span-2 glue-grid__col--span-0-md"></div>
+      <div class="glue-grid__col glue-grid__col--span-10 glue-mod-spacer-5-bottom">
+        <h2 class="glue-headline glue-headline--headline-4" id="butterbar-modal-title">Site Reliability Engineering
+        </h2>
+      </div>
+    </div>
+    <div class="glue-grid">
+      <div class="glue-grid__col glue-grid__col--span-2 glue-grid__col--span-0-md"></div>
+      <div class="glue-grid__col glue-grid__col--span-4 glue-grid__col--span-5-md">
+        <img src="/img/dynamic/sre/sreBook2.jpg"
+          alt="Site Reliability Engineering" class="sre-books-image" width="399"
+          height="512">
+      </div>
+      <div class="glue-grid__col glue-grid__col--span-4 glue-grid__col--span-6-md">
+        <p class="sre-books-para"><strong>Edited by:</strong><br>Betsy Beyer, Chris Jones, Christof Leng, David Huska, Jennifer Petoff  Niall Richard Murphy</p>
+        <p class="glue-mod-mt-std glue-mod-spacer-2-bottom sre-books-para">In this completely rewritten edition of Site Reliability Engineering, key members of Google's Site Reliability Engineering team explore the company's current SRE practices and explain how they've evolved in the decade since the initial publication. New updates cover the value of reliability, cloud reliability, and the impact of AI. You'll learn the principles and practices that enable Google engineers to make some of the world's largest systems scalable, reliable, and efficient--lessons directly applicable to your organization.</p>
+        <div class="sre-books-link-wrapper">
+          <a class="glue-button glue-button--high-emphasis sre-books-spacer sre-books-link"
+            href="https://goo.gle/SREbook" title="Buy from Google Books"
+            aria-label="Buy from Google Books" target="_blank" rel="noopener noreferrer">
+            Buy from Google Books
+          </a>
+        </div>
+      </div>
+      <div class="glue-grid__col glue-grid__col--span-2 glue-grid__col--span-0-md"></div>
+    </div>
+  </div>
+</div>
+    <main class="main-content" id="page-content">
+      
+  
+  
+
+  
+  
+  
+    
+
+    <div class="glue-page">
+      <div class="glue-grid">
+        <article class="glue-grid__col glue-grid__col--span-12 sre-article-content">
+          <section class="glue-mod-spacer-3-bottom hero-section">
+            
+              <h1 class="glue-headline glue-headline--headline-2 glue-mod-spacer-5-top glue-mod-spacer-3-bottom">
+                AI in SRE: How Google is Engineering the Future of Reliable Operations
+              </h1>
+            
+            
+              <p class="glue-body-2"><strong>Author:</strong> Ioannis Papapanagiotou, Stevan Malesevic, Chris Heiser &amp; Ruslan Meshenberg</p>
+            
+          </section>
+
+          <section class="content-section">
+            
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Abstract</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Site Reliability Engineering (SRE) is facing a paradigm shift driven by the rapid adoption of AI throughout the software development lifecycle (SDLC). As AI coding assistants dramatically accelerate code generation and deployment velocity&mdash;with organizations targeting up to a 4x increase in productivity&mdash;traditional, manual practices are becoming unsustainable. Human code review cannot scale linearly with machine-generated code volume, and standard operational responses are increasingly outpaced by the resulting system complexity. This paper presents Google's approach to reinventing SRE for the AI era. Rather than merely applying AI to automate conventional tasks, we detail how SRE is architecting a new foundation for reliability. By developing autonomous mitigation agents (AI Operator), strict execution guardrails (Actus), and continuous evaluation pipelines grounded in human operational memory (IRM Analyzer), Google is engineering the autonomous control planes required to safely govern high-velocity, agentic software development.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Introduction</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Site Reliability Engineering (SRE) was born at Google over two decades ago to manage the scale and complexity of our distributed systems. While the core philosophies of SLOs, error budgets, and toil reduction&mdash;detailed extensively in our <a href="https://sre.google/books/">foundational SRE book series</a>&mdash;remain the industry standard, the operational landscape has reached a new inflection point.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">The "planetary scale" of modern services, combined with the unpredictable workloads of multi-tenant platforms like Google Cloud, has created a level of complexity that traditional, deterministic automation can no longer fully address. Today, SREs operate in an environment where production mistakes are costly, the rate of change is accelerated by AI-assisted development, and observability gaps are filled with petabytes of unstructured data.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">To meet these challenges, Google is integrating Artificial Intelligence (AI) not just as a tool, but as a transformative layer across the entire service lifecycle. By leveraging AI&rsquo;s ability to process semantic signals, infer intent, and operate probabilistically, we are augmenting human expertise with intelligent systems capable of managing complexity. In this paper, we will examine the development of <strong>autonomous agents</strong> designed to handle complex on-call responsibilities and <strong>intelligent command-line interfaces</strong> that enable SREs to interact with production systems using natural language. We will also discuss <strong>alert enrichment frameworks</strong> that provide real-time context during incidents and the broader integration of <strong>Large Language Models (LLMs)</strong> into daily engineering workflows. Beyond the tools, we will address the governance and risk frameworks required for high-stakes production environments and reflect on how the SRE role is evolving in this AI-driven paradigm.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">To address the challenges of this high-velocity agentic era, this paper details Google&rsquo;s architectural and operational evolution. First, we establish the strict governance frameworks and Agentic Safety Guardrails required to securely bound AI behavior in production. Next, we explore the foundational evaluation pipelines&mdash;capturing human operational memory and leveraging continuous 'Nightly Evals'&mdash;that rigorously prove an agent's readiness. We then demonstrate how these principles are applied across the incident lifecycle, culminating in the deployment of reasoning engines (AI Operator) and physical execution control planes (Actus) for safe, autonomous mitigation. Finally, we project the future of SRE within an agentic SDLC, illustrating how human expertise must scale up the abstraction ladder from manual operations to architectural governance.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Governing AI in Production Operations (AI-Ops)</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">While the potential benefits of AI in SRE are significant, deploying AI systems into Google's live production environments introduces unique and substantial risks that demand careful management. Mistakes in production are costly&ndash;unlike development sandboxes where failures are contained, an AI agent making an incorrect decision or taking a faulty action in production can lead to immediate and widespread service disruptions. The speed and scale at which AI can operate mean that the blast radius of a failure can be far larger and propagate far more quickly than with human operators.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Key Challenges in Applying AI to Production Operations</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Google SRE has identified several key challenges in deploying AI technologies safely and effectively in production:</p>
+<ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-3-bottom"><strong>Evolving Human Expertise: From Operator to Architect:</strong> As AI assumes responsibility for low-level mitigation, attempting to artificially preserve unscalable manual intervention skills is counterproductive. Instead, SREs must move up the abstraction ladder, transitioning from direct incident responders to architects of AI safety. Future human expertise will focus on defining rigid system guardrails, curating "Golden Data" for evaluation, and governing autonomous agent behavior.</li>
+<li class="glue-mod-spacer-3-bottom"><strong>Enhancing Explainability and Building Trust:</strong> Rather than accepting AI models as opaque "black boxes," SRE must enforce strict observability over agentic reasoning and execution. By exposing an agent's Chain of Thought (CoT) in real-time UIs and persisting deterministic actuation traces through control planes, every autonomous decision becomes fully auditable, debuggable, and subject to continuous evaluation.</li>
+<li class="glue-mod-spacer-3-bottom"><strong>Ensuring Data Integrity and Mitigating Bias:</strong> AI systems are heavily reliant on data. A significant challenge is ensuring the high quality, completeness, and impartiality of the training data and real-time input within Google's intricate production landscape to prevent skewed or harmful outcomes.</li>
+<li class="glue-mod-spacer-3-bottom"><strong>Addressing Model Drift in Dynamic Environments:</strong> Google's production systems are constantly evolving. A key challenge is designing AI systems that can adapt to these changes, ensuring models remain accurate and effective as system behaviors and patterns shift over time.</li>
+<li class="glue-mod-spacer-3-bottom"><strong>Mitigating Security Vectors:</strong> AI introduces novel security considerations. Challenges include developing defenses against adversarial attacks, data poisoning, and prompt injection that could manipulate AI behavior and compromise systems.</li>
+<li class="glue-mod-spacer-3-bottom"><strong>Preventing Unintended Automation Consequences:</strong> Ensuring AI systems, particularly those designed to react to anomalies, do not inadvertently amplify problems or trigger cascading failures. This is a challenge in Google's large-scale, interconnected systems, requiring careful design to prevent feedback loops and misinterpretations.</li>
+</ul>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">The Safety Trifecta</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">To address these risks, Google SRE is pioneering an AI-Ops governance model built around a <strong>"Safety Trifecta":</strong></p>
+<ol class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>Transparency:</strong> AI actions and decisions must be observable and understandable. This means AI agents must log their "chain of thought"&mdash;the signals used, the hypotheses considered, the reasons for choosing a particular action, and the confidence level.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Real-time Risk Evaluation:</strong> Every action proposed by an AI agent undergoes a risk assessment. This evaluation considers the current production context, such as ongoing deployments, error budget status, active incidents, and time of day. An action like draining a cell (removing an entry from the Load Balancer) might be low-risk under normal conditions but high-risk during a regional peak.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Progressive Authorization:</strong> AI agents are not granted full production access from day one. We release agents to lower levels of autonomy (human approved) and scale up based on the SRE Autonomy Levels described below.</li>
+</ol>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">To support the Safety Trifecta and safely progress through the Autonomy Levels, SRE enforces strict architectural guardrails for any AI agent interacting with production:</p>
+<ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>No Ambient Access &amp; Least Privilege:</strong> Agentic systems must not operate with the standing, human-like credentials of their developers, which poses a severe reliability risk (e.g., a single errant prompt bringing down global serving infrastructure). Agent identities must be distinct from human users, strongly authenticated, and granted access only on-demand with the necessary permissions.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Agentic Circuit Breakers:</strong> Systems must implement strict, agent-specific rate limits and automated circuit breakers to prevent runaway loops or excessive resource consumption. Any action performed by an agent must be highly interruptible.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Mandatory Dry-Run Support:</strong> Any system or API intended for agent interaction must support a declarative dry_run=true mode. This allows the agent, the safety framework, and human reviewers to accurately predict the outcome and blast radius of a proposed action before any production state is mutated.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Zero-Trust, Safe-by-Default Actuation:</strong> Agents must only interface with zero-trust tooling that possesses intrinsic, deterministic safety mechanisms. The underlying infrastructure tools must be incapable of single-handedly taking down production, regardless of who or what is calling them. For example, if an Investigation agent wants to drain a cell, it cannot directly execute a raw script; it must route the request through a delegated control plane (detailed later in this paper). Mitigation Agent deterministically verifies available capacity and enforces global rate limits. It does not care if the caller is an agent or a human; it simply ensures the action aligns with predefined safety principles before actuation occurs.</li>
+</ul>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">SRE AI Autonomy Levels</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Adopting AI in SRE is not a binary switch; it is a structured journey from standard human-operated tooling to fully autonomous systems. It involves progressing from human-operated systems to potentially more autonomous ones. To guide this evolution safely and effectively, we use a maturity model. The levels are defined by the degree of automation across key operational functions: Monitoring, Investigation, Approval, Actuation, and Self-Directed operations.</p>
+<div class="sre-table-wrapper glue-mod-spacer-3-bottom glue-mod-text-center">
+<table class="sre-table glue-mod-text-left ">
+<thead>
+<tr class="sre-table-tr">
+<th class="sre-table-th">Action &rarr;<br />Level &darr;</th>
+<th class="sre-table-th">Monitor</th>
+<th class="sre-table-th">Investigate</th>
+<th class="sre-table-th">Mitigate</th>
+<th class="sre-table-th">Actuate</th>
+<th class="sre-table-th">Self Direct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sre-table-tr">
+<td class="sre-table-td">L0 - Manual</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td">Human</td>
+</tr>
+<tr class="sre-table-tr">
+<td class="sre-table-td">L1 - Assisted</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td">Human</td>
+</tr>
+<tr class="sre-table-tr">
+<td class="sre-table-td">L2 - Partial</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td">Human</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td">Human</td>
+</tr>
+<tr class="sre-table-tr">
+<td class="sre-table-td">L3 - High</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td">Human</td>
+</tr>
+<tr class="sre-table-tr">
+<td class="sre-table-td">L4 - Full</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+<td class="sre-table-td automation">Automation</td>
+</tr>
+</tbody>
+</table>
+<p class="glue-body-2 glue-mod-text-center glue-mod-spacer-2-bottom">Table 1: Levels of Autonomy</p>
+</div>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">Here are five levels of increasing autonomy:</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom"><strong>L0: Manual Execution:</strong> All activities are human-driven. Humans must Investigate alerts, Approve any course of action, Actuate the changes, and handle any Multi-Step Resolution required.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom"><strong>L1: Assisted:</strong> Automation extends to Monitoring and Investigation. The AI agent can analyze data and provide insights or suggestions (AI driven Incident Hypothesis), but a human is still required to Approve any action, manually Actuate it.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom"><strong>L2: Partial Autonomy (Human Approval):</strong> Systems can Monitor, Investigate, and even Actuate changes. However, a human must explicitly Approve any plan before the system proceeds with an actuation. This state can happen either when a safety check fails or it is a state that is short-lived as a means to build trust in humans that safety nets are appropriate.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom"><strong>L3: High Autonomy:</strong> Automation covers Monitoring, Investigation, Approval, and Actuation for specific, well-defined scenarios. The AI agent can independently detect, decide, and act without human approval for bounded actions, though humans are often notified. Humans still handle novel situations requiring Multi-Step Resolution. Safety relies heavily on technical controls and guardrails.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom"><strong>L4: Full Autonomy:</strong> A system can:</p>
+<ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list sre-sublist">
+<li class="glue-mod-spacer-2-bottom">Devise and execute a sequence of actions to diagnose, mitigate, and resolve incidents&mdash;especially those not covered by simple, linear playbooks.</li>
+<li class="glue-mod-spacer-2-bottom">Continuously monitor the impact of its interventions on the system's state and performance.</li>
+<li class="glue-mod-spacer-2-bottom">Adapt its strategy in real-time based on the observed outcomes. This includes the ability to attempt alternative mitigations if initial actions are ineffective, or to initiate rollbacks if an action has adverse effects.</li>
+<li class="glue-mod-spacer-2-bottom">Manage the entire incident lifecycle until the system is confirmed to be back in a stable and desired state, going beyond just the initial trigger and actuation.</li>
+</ul>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Progression and Appropriate Autonomy:</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>L0 to L1 (Assisted):</strong> Often gated by the mere existence and adoption of tools that can automate monitoring and investigation, providing insights to humans.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>L1 to L2 (Partial Autonomy):</strong> Requires a higher level of confidence in the system's ability to reliably identify and propose correct actions, and the implementation of safe actuation pathways, even though a human still provides final approval.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>L2 to L3 (High Automation):</strong> This is a critical step, gated by establishing trust and robust safety controls for the system to act autonomously for well-defined scenarios. This involves demonstrating high precision and reliability to overcome human hesitancy, as the system will be making changes without real-time human approval. The rigor here is substantially higher, proportional to the risk of unsupervised actions.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>L3 to L4 (Full Automation):</strong>The transition is gated by the system's ability to perform "Multi-Step Resolution," handling complex, dynamic situations beyond single, predefined actions, and managing them end-to-end.</li>
+</ul>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Evaluation Data and Memory</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Before AI agents can safely operate at higher levels of autonomy, they require a deep, structured understanding of production environments and rigorous frameworks for evaluation. At Google, this foundation is built on capturing human operational memory and translating it into high-quality evaluation datasets.</p>
+<h3 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Generating Human Trajectories</h3>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">Understanding the step-by-step actions and decisions made by human responders during an incident is invaluable for learning and improving our incident management processes. This "human trajectory" is often fragmented across various unstructured sources like chat messages, incident notes, and command line entries. Manually reconstructing this timeline for analysis is time consuming and often incomplete.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">To address this, we have built an AI-powered system that automatically parses and structures these disparate data sources. Leveraging Natural Language Processing, the system identifies key events, actions taken (e.g., "drained cell xx", "restarted task y"), tools used, and even hypotheses considered by the oncallers. This creates a rich, time-ordered sequence of events, effectively reconstructing the human response trajectory.</p>
+<p class="glue-body-1 glue-mod-spacer-5-bottom">This structured timeline data is crucial for several reasons. It provides high-quality human trajectories for AI systems learning and Reinforcement Loop for our Agents. It also enables deeper analysis of incident response patterns to refine playbooks.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/21d84958e6780d5924ee27d0cc497305.webp" alt="Figure 1: IRM-Analyzer with timeline and human trajectories" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 1: IRM-Analyzer with timeline and human trajectories
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Ensuring AI Quality: The Evaluation Data Pipeline</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">The trajectories captured by IRM-Analyzer (IRMA) feed directly into our continuous evaluation pipelines. AI agent performance is constantly assessed against structured datasets categorized by quality:</p>
+<ul class="glue-body-1 glue-mod-spacer-2-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>Bronze:</strong> Heuristically generated by autolabelers.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Silver:</strong> Programmatically generated but mathematically calibrated for confidence against Gold data with a minimum quality threshold.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Gold:</strong> Verified by human experts.</li>
+</ul>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">Because evaluating an autonomous agent against imperfect Bronze data creates an "accuracy gap," Google SRE uses stratified sampling to continuously surface a diverse subset of incidents for manual review, creating Gold data. This Gold dataset mathematically calibrates the Silver dataset, helping to ensure our evaluation pipelines measure True Precision versus Observed Precision, enabling statistically significant safety margins before an agent acts in production.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Continuous Nightly Evals and LLM-as-a-Judge</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">To monitor agent quality and safely gate new releases, we run automated Nightly Evaluations integrated directly with Google's Everest evaluation platform. This process continuously tests agent responses against a dynamic, rolling dataset of recent, real-world Google incidents. During these runs, we employ a hybrid evaluation methodology combining "LLM-as-a-Judge" (or LLM Raters) with strict deterministic scoring. The LLM Rater systematically grades the qualitative aspects of the agent's intermediate reasoning, investigation trajectory, and specific tool calls against freshly curated Golden trajectories. In parallel, we use strict deterministic scoring to evaluate the final mitigation output to ensure the agent executed exactly the right action. We measure this final output using rigid precision and recall&mdash;for example, a mitigation is only scored as "correct" if the agent's output deterministically matches the fully actionable, exact parameters of the Golden data (e.g., the specific binary and version), rather than providing a vague, LLM-generated suggestion to "rollback".</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Generating Golden Data</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">Generating Golden data is traditionally tedious. To prevent annotator fatigue, we integrate data collection directly into the incident management workflow. When an oncaller declares an incident mitigated, the system proactively generates structured suggestions of the exact mitigations applied. By simply accepting, modifying, or rejecting these hints during their standard workflow, SREs continuously feed high-quality Golden labels back into the system, refining models and identifying edge cases without overhead.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/2459af624d3891502981abeff4f3832f.webp" alt="Figure 2: Structured suggestions of mitigations" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 2: Structured suggestions of mitigations
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">AI Across the SRE Lifecycle</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">At Google, SRE's engagement spans the entire software development lifecycle (SDLC). Recognizing the increasing complexity and scale of its services, Google SRE has actively developed and integrated Artificial Intelligence to enhance reliability, efficiency, and the pace of innovation across this lifecycle. This section details the AI-powered tools and systems Google SRE has successfully implemented.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Observing Production</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Incident detection has traditionally relied on well-established telemetry&mdash;metrics, logs, and traces. While essential, these methods are inherently limited to detecting known failure modes, as alerting logic often accumulates reactively. This conventional approach struggles to detect new issues and doesn't always capture the actual customer experience. Applying AI or traditional Machine Learning to this type of telemetry for anomaly detection has also proven challenging. Statistical anomalies in system metrics within noisy production environments don't always equate to user impact, largely because these signals lack a deep understanding of user intent. For example, a new feature launch or standard traffic shifts can easily be misread as a failure.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">Modern agentic AI harnesses are able to collect different, richer sources. This can also be combined with user intent: customer feedback from support tickets or external posts, and forums. Historically, the unstructured nature of this data made it too slow to process for real-time operational signals. However, LLMs have overcome this barrier. AI can now analyze and cluster this qualitative feedback in near real-time, identifying emerging outages by piecing together fragmented user reports. The volume of related feedback naturally indicates severity, while the inherent effort required for a user to submit feedback acts as a filter against noise. This provides a reliable, context-rich signal for issues often missed by traditional, telemetry-based monitoring.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Case Study: Detectr</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">To illustrate how these concepts move from theory to production, we look at Detectr, Google SRE&rsquo;s Gemini-powered platform that analyzes and organizes user feedback to detect user-reported outages. Detectr aggregates signals across social media, customer support, product forums, and other human sources. It functions as a critical backstop to traditional monitoring and is designed to catch novel issues that slip through the metric-based net.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">This is done through a multi-pass AI pipeline which generates structured outage reports:</p>
+<ol class="glue-body-1 glue-mod-spacer-2-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>Filter:</strong> irrelevant posts are removed, and data is categorized.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Cluster:</strong> related reports are grouped together to identify potential outages.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>De-noise:</strong> irrelevant or noisy clusters are filtered out.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Report:</strong> a structured report is generated for triage.</li>
+</ol>
+<p class="glue-body-1 glue-mod-spacer-5-bottom">This process transforms messy, unstructured user feedback into structured, actionable outage notifications that can be sent to the appropriate teams.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/2374f5ffcbc3bbb14a5b078752264181.webp" alt="Figure 3: A pipeline for scalably processing unstructured data" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 3: A pipeline for scalably processing unstructured data
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">Detectr has been adopted by teams across Cloud, Ads, YouTube and Search, and has successfully served as the primary method of escalation for many outages. We can measure Detectr&rsquo;s value: it has reduced the impact of these events on customers by hundreds of cumulative hours thanks to earlier detection and deeper understanding.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Enriching Alerts</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Raw alerts often signal a problem but lack the immediate context needed for rapid triage and diagnosis. Oncallers can lose valuable time sifting through dashboards and logs to understand the alert's impact and potential causes. To address this, Google is deploying an "AI Alert" system designed to intercept alerts before they reach a human. The core goal is to enrich the alert with a wealth of contextual information, making it more immediately actionable and significantly reducing the initial investigation time.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">Upon intercepting an alert, AI Alert agents spring into action within a very tight time budget (typically around 2 minutes). We have a tight budget constraint; any delay in the mitigation is costly. Leveraging massive parallelism, they query a wide array of data sources &ndash; including monitoring systems, logging platforms, production change logs, and dependency graphs &ndash; to gather relevant signals and context up to the moment the alert is fired. This information is then synthesized using AI to correlate related anomalies, fetch details on recent rollouts or configuration changes, identify similar past incidents, and even hypothesize potential root causes.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">The enrichment is typically appended to the original alert in our incident management tool. Crucially, AI Alert focuses on providing verifiable facts and evidence-based insights rather than speculative conclusions. All findings are presented with links back to the source data, ensuring transparency and trust. This system operates in a read-only mode, distinguishing it from systems like AI Operator, which may take mitigating actions. AI Alert is designed for speed and breadth in initial data gathering, serving as a powerful first-step analysis to accelerate the human oncaller's response or to provide a rich contextual package for other AI systems like AI Operator to act upon.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">L1: Human-Driven Mitigation</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Incident Hypothesis</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">During an incident, oncallers are often inundated with a deluge of monitoring data, alerts, and log entries. Sifting through this information to pinpoint the root cause under time pressure is a significant challenge. The Incident Hypothesis augments the information produced by AI Alert agents. This hypothesis aims to provide the oncaller with a single, credible lead on the potential cause and suggest concrete next steps for verification.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">We have developed AI systems for this purpose that analyze a wide array of contextual data using Large Language Models (LLMs) and Retrieval Augmented Generation (RAG). When an incident is declared, these systems query and synthesize information from various sources. These data sources include real-time monitoring anomalies, service playbooks, application logs, incident management data, and perhaps most importantly, patterns from similar past incidents. By synthesizing these diverse inputs, the AI can often identify likely culprits, such as a problematic rollout, a failing dependency, or a specific type of error, that a human might take much longer to piece together.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">At Google, our immense scale provides the statistical rigor necessary to A/B test SRE practices like Incident Hypothesis, enabling us to measure its significant impact. Our analysis confirms that this informational assistance alone delivered a 10% reduction in Mean Time to Mitigate (MTTM) the incident, underscoring the value of even partial automation (L1) for oncallers.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/c11c0ab1d681927bcfa5157366835d1a.webp" alt="Figure 4: Incident hypothesis in Google&#39;s incident management platform" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 4: Incident hypothesis in Google&#39;s incident management platform
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">The AI-generated hypothesis, along with suggested verification steps and links to relevant dashboards or logs, is surfaced directly within the oncaller's primary incident response and monitoring tools. This integration ensures the insights are available with minimal context switching. This approach not only speeds up incident response but also reduces cognitive load on oncallers, allowing them to focus on mitigation.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Investigation Dashboard</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">During a production incident, oncallers can waste valuable time on a manual "scavenger hunt" for data across disparate, static monitoring dashboards. Sifting through this fragmented tooling to manually correlate metrics, logs, and traces elevates cognitive load and delays root cause identification.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">To address this, Google SRE has developed Investigation Dashboards (InvD) - dynamic, AI-powered systems that generate an incident-specific "single pane of glass" on demand. Instead of forcing engineers to hunt for information, InvD automatically synthesizes the alert context, data from similar past incidents, and relevant playbook content to present the most pertinent evidence. This dynamic UI continuously adapts to both the oncaller and the specific nature of the outage, reducing the friction of the diagnostic phase.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/3be69b25812c4ddeb33795f40de4b1b7.webp" alt="Figure 5: Automated troubleshooting graph" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 5: Automated troubleshooting graph
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">The intelligence powering InvD is structured across hierarchical analysis capabilities to systematically evaluate system behavior. It progresses from basic Anomaly Detection (Capability 1), where machine learning models flag visual deviations in time-series data, to Correlating changes with alert signals (Capability 2), and assessing Investigation Worthiness (Capability 3). Ultimately, InvD aims for the highest standard: Root Cause Identification (Capability 4). By applying AI reasoning, the system scrutinizes whether a promising anomaly - such as a recent rollout, experiment, or capacity shift - is genuinely the underlying cause of the incident. These InvD analysis capabilities enhance the 'Investigate' function described within the SRE Autonomy Levels. Achieving Root Cause Identification (Capability 4) provides a crucial input for systems aiming for higher SRE Autonomy Levels, but it is distinct from SRE Autonomy L4 itself, which also includes autonomous actuation and complex planning.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">InvD operates as an extensible ecosystem rather than a monolithic tool. It integrates over a hundred customized, domain-specific "troubleshooters" built by various product teams to execute automated symptom checks in parallel. Once a high-confidence root cause is identified, InvD facilitates rapid recovery by bridging the gap to mitigation, enabling the execution of remedial actions directly from integrated playbooks.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">The operational impact of this AI-curated approach has been meaningful. By replacing manual data gathering with ML-based anomaly detection - which alone increased overall findings by 195% - Investigation Dashboards have delivered a roughly 44% reduction in Mean Time to Mitigate (MTTM) for supported incidents. This empowers SREs to move from initial detection to service restoration with unprecedented speed and confidence.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Gemini-Powered CLI</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">While incident information goes to Google's internal UI, SREs at Google primarily use command line interface to manage production. <a href="https://antigravity.google/product/antigravity-cli" target="_blank" rel="noopener noreferrer">Antigravity CLI</a> is connected to production systems via a standardized agent interface called the <a href="https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages" target="_blank" rel="noopener noreferrer">Production Agent</a>. Gemini uses the Production Agent Model Context Protocol (MCP) servers to interact with our issue tracker:</p>
+<ul class="glue-body-1 glue-mod-spacer-2-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>Create Bugs:</strong> It files the Action Items as real bugs in the issue tracker.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Assign Owners:</strong> It assigns them to the relevant engineers.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Export Doc:</strong> It pushes the final Postmortem to Google Docs.</li>
+</ul>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">The power of this setup is significantly enhanced by a rich and growing library of <strong>Skills</strong>. These Skills encapsulate specific expertise and workflows, endowing the Production Agent with the ability to interact with various systems and data sources. Google SRE is actively developing and curating a common set of these production-focused Skills. This initiative ensures that SREs have a consistent, powerful, and safe way to leverage AI for complex tasks. These modular Skills act as building blocks, maintained with clear guidelines and risk considerations, allowing for sophisticated interactions with production.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">This setup allows SREs oncallers to interact with production and perform L1 investigation:</p>
+<ul class="glue-body-1 glue-mod-spacer-2-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom">Query real-time monitoring data.</li>
+<li class="glue-mod-spacer-2-bottom">Analyze system and application logs.</li>
+<li class="glue-mod-spacer-2-bottom">Fetch incident details and updates from our incident management systems.</li>
+<li class="glue-mod-spacer-2-bottom">Inspect service dependencies and configurations.</li>
+<li class="glue-mod-spacer-2-bottom">Initiate safe, policy-compliant mitigations, such as traffic drains, which are gated by a central Mitigation Safety Verification Service.</li>
+</ul>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">This interactive AI assistant, accessed via <strong>Antigravity CLI</strong>, lowers the barrier to entry for complex debugging tasks, speeds up information retrieval, and helps engineers quickly form and test hypotheses during outages.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/4abe8610b60e52f1a41049f2c83711f2.webp" alt="Figure 6: Antigravity CLI after competition of a subagent for incident response, proposing a mitigation action with safety evaluation passed" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 6: Antigravity CLI after competition of a subagent for incident response, proposing a mitigation action with safety evaluation passed
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">L3: Autonomous Mitigation</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">While AI-assisted diagnostic tools (L1 Autonomy) significantly reduce cognitive load and Mean Time to Mitigate (MTTM), achieving true operational scalability requires moving beyond recommendation to direct actuation. To hold the cost of operations steady while supporting a projected 4x increase in development velocity, SRE must adopt L2+ Autonomous Mitigation&mdash;where AI agents actively mutate production state to resolve incidents. Because the cost of an erroneous action in a live production environment is exceptionally high, this phase relies heavily on our established "Safety Trifecta" and evaluation data pipelines. Agents are not granted full autonomy immediately. Instead, they operate within a framework of Progressive Authorization. They begin at Level 2 Autonomy, where they investigate, propose, and stage mitigations, but require explicit human approval to execute them. They only advance to Level 3 or Level 4 (High/Full Autonomy) for specific, well-bounded scenarios after demonstrating sustained, statistically significant success rates against our human-verified "Golden" evaluation data. The ultimate goal of this phase is to autonomously remediate routine, predictable incidents&mdash;such as localized capacity constraints or known transient task failures&mdash;freeing human SREs to focus on novel, complex systemic risks.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Case Study: AI Operator</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h5 class="glue-headline glue-headline--headline-5 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Investigate &amp; Mitigate</h5>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">AI Operator functions as an AI agent designed to be the first responder to production alerts. It ingests alert signals, and its Harness leverages a set of extensible modules to perform multiple parallel investigations. Its reasoning process is guided by examples derived from how human experts have effectively investigated similar past incidents. This allows the agent to form and test hypotheses to perform Root Cause Analysis (RCA). Once the RCA is complete, AI Operator can opportunistically select from a structured catalog of context: a) enrichers, which are deterministic signal boosters (e.g., an observability tool identifying an anomaly, an alert description, or a playbook); b) specialized skills defining how to mitigate the problem; and c) few-shot prompts encoded in text protos that guide the agent&rsquo;s investigation strategy. AI Operator does not need all three to perform an investigation, but consumes available context dynamically.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">Upon completing the investigation and RCA, AI Operator selects the appropriate mitigation to resolve the incident. Currently, the system operates at L2 Autonomy (Partial Automation), requiring a human SRE to review and accept the mitigation suggestion for critical operations and in L3 Autonomy (High Automation), where AI Operator will safely execute mitigations autonomously for minor incidents. Following a mitigation attempt, AI Operator waits for a predefined period to determine if the incident has been resolved. If the alert clears, the agentic loop finishes; if the incident is still ongoing, AI Operator initiates a post-actuation investigation to formulate a new mitigation strategy.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">AI Operator presents its Chain of Thought (CoT) in a centralized UI. For each agentic step, the human on-caller has the ability to provide further comments or direct the agent's focus. These steps involve various investigative actions, such as processing logs, analyzing production state, and inspecting dependent jobs. To handle complex scenarios, AI Operator has the ability to spawn specialized sub-agents for deeper analysis. Crucially, the architectural design focuses on utilizing the minimum set of tokens per step; because an incident's CoT can have a very long horizon, strict token management prevents the LLM from losing context or hallucinating over time. If AI Operator cannot identify the root cause, or if the scenario falls outside its safe operating boundaries, it immediately escalates to a human operator. In parallel, it synthesizes its entire investigation history and posts it directly into Google's incident UI platform, allowing the human SRE to seamlessly pick up the investigation without starting from scratch.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+    <figure class="glue-mod-spacer-3-bottom glue-mod-text-center single-img">
+      <img src="/img/dynamic/sre/f41bd580b8af49f055f588ef6d0badc7.webp" alt="Figure 7: AI Operator chain of thought" />
+      
+        <figcaption class="glue-body-3 glue-mod-spacer-3-top caption">
+          Figure 7: AI Operator chain of thought
+        </figcaption>
+      
+    </figure>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">AI Operator has successfully run across thousands of incidents, with every execution trace stored in Spanner for rigorous debugging and continuous improvement. We have built an evaluation framework that analyzes this incident metadata and compares the agent's automated actions against ideal human responses (our "Golden Data"). Using an "LLM-as-a-Judge" technique, the system evaluates the agent's performance to identify areas for improvement, creating a continuous, self-improving feedback loop.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="img-container-two glue-mod-spacer-3-bottom">
+      <figure class="img-container-two-img">
+        <img src="/img/dynamic/sre/aa9facc04d8112db3e0ed264e62fc28e.webp" alt="Figure 8: AI Operator - LLM-as-a-Judge" />
+      </figure>
+      <figure class="img-container-two-img">
+        <img src="/img/dynamic/sre/f123050bc109e6127249d51fd63d4c7a.webp" alt="Figure 8: AI Operator - LLM-as-a-Judge" />
+      </figure>
+    </div>
+    
+      <p class="glue-body-3 glue-mod-text-center glue-mod-spacer-3-bottom caption">
+        Figure 8: AI Operator - LLM-as-a-Judge
+      </p>
+    
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">The figure above demonstrates this evaluation loop in practice. On the left, the agent correctly diagnosed and mitigated the problem. On the right, the agent incorrectly diagnosed the root cause and failed to mitigate it. In response to the failure, the LLM-as-a-Judge automatically generated a critique of the agent's logic and filed a bug containing a concrete implementation plan to improve the AI Operator's future performance.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Mitigation Safety Verification Agent</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">While agents like AI Operator possess the reasoning capabilities to diagnose and propose mitigations, granting them direct, unilateral access to low-level infrastructure tooling presents an unacceptable reliability risk. To safely bridge the gap between an AI agent&rsquo;s investigation and the physical execution of production changes, we have built an Actuation Agent.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">A Mitigation Safety Verification Agent or else called an Actuation Agent serves as a unified control plane and safety gateway for all autonomous production changes. When an agent formulates a mitigation strategy, it does not execute scripts directly; instead, it interfaces with Actuation Agent, which standardizes the actuation lifecycle into three phases:</p>
+<ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>Standardized Discovery and Planning:</strong> The Actuation Agent provides agents with a curated, dynamically filtered registry of available mitigation tools (e.g., traffic draining, capacity upsizing). When an agent submits an EvaluateAction request, Actus hydrates the necessary parameters and translates the LLM&rsquo;s intent into a concrete, verifiable execution plan.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Dynamic Autonomy and Safety Guardrails:</strong> The Actuation Agent acts as the physical enforcer of our Progressive Authorization framework. Before executing any plan, the agent runs a suite of pre-flight safety validations, including mandatory dry-runs, justification verification (ensuring the action targets an open incident), and concurrent action checks. Crucially, Actus manages the caller's autonomy level in real-time. If an agent requests an L3 (High Automation) execution, but the agent detects an elevated risk score or an anomalous production state, it will automatically downgrade the request to L2 (Partial Automation), intercepting the execution and routing an approval request to a human SRE.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Post-Actuation Guardians and the "Red Button":</strong> The Actuation Agent maintains long-running operation (LRO) state, polling the infrastructure to verify if the mitigation succeeded or failed. Furthermore, it provides a centralized "Guardian" layer for human operators. This includes emergency "Red Button" endpoints that allow SREs to instantly pause all in-flight agentic actions, block new actions, or globally revoke L3 permissions across the fleet during catastrophic, complex outages.</li>
+</ul>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">By decoupling the AI's reasoning engine (AI Operator) from the execution engine, we ensure that no matter how rapidly AI models evolve, their ability to mutate production remains strictly governed by deterministic, human-controlled safety boundaries.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Enabling Technologies for AI-Ops</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">The successful deployment of AI in SRE at Google relies on a robust foundation of key technologies and data platforms:</p>
+<ul class="glue-body-1 glue-mod-spacer-3-bottom sre-list">
+<li class="glue-mod-spacer-2-bottom"><strong>High-Quality Production Data and Metadata:</strong> The efficacy of AI-Ops systems is directly dependent on the quality, timeliness, and accessibility of production data. This includes:
+<ul class="sre-list glue-mod-spacer-2-bottom" style="list-style-type: circle;">
+<li>Real-time telemetry (metrics, logs, traces).</li>
+<li>Accurate service topology and dependency graphs.</li>
+<li>Historical incident data.</li>
+<li>Engineering playbooks and technical documentation.</li>
+<li>Service Level Objectives (SLOs) and error budget status.</li>
+<li>A catalog of available production tools and their effects. Google has invested heavily in making this data available and queryable in real-time.</li>
+</ul></li>
+<li class="glue-mod-spacer-2-bottom"><strong>Retrieval Augmented Generation (RAG) Platforms:</strong> To provide AI models with the most current context, Google SRE extensively uses internal RAG platforms. These systems allow Large Language Models (LLMs) to query real-time data sources and internal documentation, grounding their responses and actions in the current state of production, rather than just their training data.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Fine-tuning Models:</strong> While general-purpose LLMs provide a strong base, Google SRE fine-tunes models with domain-specific knowledge, including Google's internal tooling, production principles, and common failure patterns. This specialization significantly improves the accuracy and relevance of AI assistance.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>AI-Friendly Tool Interfaces (MCP):</strong> For AI agents to interact safely and effectively with production, tools need to expose their capabilities in a way that AI can understand and use. Google is standardizing on the <strong>Model Context Protocol (MCP)</strong>, an open specification for providing natural language interfaces to APIs. This allows AI agents to dynamically discover and invoke tools, from simple diagnostic commands to complex mitigation actions. A key component of our AI-Ops ecosystem is a "Production Agent" server. This server implements the Model Context Protocol to expose a comprehensive suite of tools for interacting with Google's production environment, including:
+<ul class="sre-list glue-mod-spacer-2-bottom">
+<li class="glue-mod-spacer-2-bottom"><strong>Observability:</strong> Querying time-series monitoring data, searching logs, and using automated analysis tools for anomaly detection and root cause suggestion.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Incident Management:</strong> Interacting with our incident tooling to retrieve incident data or update status.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Traffic Control:</strong> Initiating traffic shifts or service capacity changes.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Infrastructure:</strong> Inspecting compute jobs and tasks.</li>
+</ul>
+<p>This Production Agent server is a key enabler for interactive AI use cases, such as the engineer-driven investigations using the AI-powered CLI. Importantly, any tools exposed via this server that can alter production state are integrated with safety systems, including a <strong>Mitigation Safety Verification Agent</strong>, to ensure policy compliance and prevent unintended consequences. This standardized interface approach is crucial for both human-in-the-loop AI assistance and fully autonomous systems like the AI Operator.</p></li>
+<li class="glue-mod-spacer-2-bottom"><strong>Robust agent identity management:</strong> A core foundational element for safe AI-Ops is the robust management of agent identity. Agent principals must have unique, machine-distinguishable identities separate from human principals, ensuring that human-only actions are never performed by agents. This distinction is critical for maintaining auditability and non-repudiation: every autonomous agent action must be attributed to a unique agent principal with a complete, immutable record that authorized parties can use to reconstruct its activity.</li>
+<li class="glue-mod-spacer-2-bottom"><strong>Inter-Agent Communication Protocols <a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener noreferrer">(A2A)</a>:</strong> Recognizing that different AI agents will specialize in various domains (e.g., monitoring, rollouts, capacity), Google is adopting inter-agent communication protocols like Agent2Agent (A2A). This enables the creation of composite AI-Ops systems where specialized agents collaborate to achieve larger goals, similar to how microservices interact.</li>
+</ul>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h3 class="glue-headline glue-headline--headline-3 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">The Future of SRE: Scaling Oversight in an Agentic SDLC</h3>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">The integration of AI into SRE is fundamentally evolving the nature of production operations. However, the most profound shift is occurring within the Software Development Lifecycle (SDLC) itself. As the SDLC transitions to an agentic model&mdash;where AI plans, writes, reviews, and submits code&mdash;engineering organizations are targeting massive productivity increases, aiming to quadruple the volume of Changelists (CLs) generated. SRE practices must adapt to manage this high-velocity, largely black-box development process.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Scaling Human Oversight: Moving Up the Abstraction Ladder</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">Traditional line-by-line code review does not scale with a 4x to 10x increase in code volume. Attempting to maintain this practice leads to reviewer fatigue and rubber-stamping. Instead, human oversight must "shift left" and move up the abstraction ladder. Engineers must focus on reviewing Designs, Intent, and Policies. By co-authoring and approving detailed specifications with AI before code generation, engineers validate the architecture and safety constraints.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">To maintain the integrity of this process, SRE mandates the use of Independent Harnesses. The AI agent that generates the source code must be strictly isolated from the AI agent that defines the test cases or reviews the output. This separation prevents the transmission of cross-bias and helps to ensure that untested correctness requirements are caught mechanically rather than assumed by the authoring LLM.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">Rethinking Release: Adaptive Progressive Rollouts</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-3-bottom">With the increased rate of change, traditional soak times and standard canarying methods will become bottlenecks. SRE must invest in Adaptive Progressive Rollouts, utilizing sensitive, automated "continuous production validation" techniques that can evaluate system health at machine speed. This applies not just to high-QPS RPC systems, but also to complex data-producing pipelines where anomalies must be caught before propagating to downstream consumers.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">The Intervening Pull Request Problem and AI-Assisted Fix-Forward</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <p class="glue-body-1 glue-mod-spacer-2-bottom">The sheer volume of rapid, AI-generated deployments complicates traditional mitigation strategies. A simple binary rollback to a "last known good" version becomes highly risky when dozens of changes have been submitted in rapid succession; rolling back might inadvertently remove critical bug fixes or security patches introduced in the interim. This is known as the Intervening Pull Request Problem.</p>
+<p class="glue-body-1 glue-mod-spacer-2-bottom">To counter this, SRE must adopt ultra-fast, granular mitigation strategies. This includes aggressive reliance on dynamic configuration and feature flags to instantly disable problematic code paths. Furthermore, as AI accelerates the creation of code, it must also accelerate resolution through AI-Assisted Fix-Forward capabilities&mdash;automatically generating and deploying targeted patches to resolve incidents safely without unwinding concurrent progress.</p>
+<p class="glue-body-1 glue-mod-spacer-3-bottom">Ultimately, by shifting human oversight to architectural intent and building machine-speed compensating controls, SRE is transitioning from operating systems to architecting the safe boundaries within which autonomous agents can continuously innovate.</p>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <h4 class="glue-headline glue-headline--headline-4 glue-mod-spacer-3-top glue-mod-spacer-3-bottom">References</h4>
+  
+
+
+
+                
+              
+                
+                  
+
+
+  
+  
+  
+  
+    <ul class="glue-body-1 sre-list">
+<li class="glue-mod-spacer-1-bottom"><a class="sre-link" href="https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages" target="_blank" rel="noopener">https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages</a></li>
+<li><a class="sre-link" href="https://sre.google/books/" target="_blank" rel="noopener">https://sre.google/books/</a></li>
+</ul>
+  
+
+
+
+                
+              
+            
+          </section>
+        </article>
+      </div>
+    </div>
+  
+
+    </main>
+    
+
+
+
+
+<footer class="glue-footer">
+  <section class="glue-footer__upper">
+    <div class="glue-social glue-social__group">
+      <p class="glue-social__title glue-social__title--inline">Follow us</p>
+      <ul class="glue-social__list glue-no-bullet">
+        
+          <li class="glue-social__item">
+            <a class="glue-social__link" href="https://www.twitter.com/googlesre/" target="_blank" rel="noopener noreferrer"
+              title="Follow us on Twitter">
+              <svg role="presentation" aria-hidden="true" class="glue-icon glue-icon--24px glue-icon--social"
+                alt="Follow us on Twitter">
+                <use xlink:href="#twitter-X"></use>
+              </svg>
+            </a>
+            </li>
+        
+          <li class="glue-social__item">
+            <a class="glue-social__link" href="https://www.youtube.com/google" target="_blank" rel="noopener noreferrer"
+              title="Follow us on YouTube">
+              <svg role="presentation" aria-hidden="true" class="glue-icon glue-icon--24px glue-icon--social"
+                alt="Follow us on YouTube">
+                <use xlink:href="#video-youtube"></use>
+              </svg>
+            </a>
+            </li>
+        
+        </ul>
+    </div>
+    </section>
+
+  <section class="glue-footer__global">
+    <div class="glue-footer__logo">
+      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google"
+        title="Google">
+        <svg role="img" aria-hidden="true" class="glue-footer__logo-img" alt="Google">
+          <use xlink:href="#google-solid-logo"></use>
+        </svg>
+      </a>
+      </div>
+
+    <ul class="glue-footer__global-links glue-no-bullet">
+      
+        <li class="glue-footer__global-links-list-item">
+          <a class="glue-footer__link" href="https://about.google/" target="_blank" rel="noopener noreferrer"
+            aria-label="About Google" title="About Google">About Google</a>
+          </li>
+      
+        <li class="glue-footer__global-links-list-item">
+          <a class="glue-footer__link" href="https://about.google/products/" target="_blank" rel="noopener noreferrer"
+            aria-label="Google products" title="Google products">Google products</a>
+          </li>
+      
+        <li class="glue-footer__global-links-list-item">
+          <a class="glue-footer__link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+            aria-label="Privacy" title="Privacy">Privacy</a>
+          </li>
+      
+        <li class="glue-footer__global-links-list-item">
+          <a class="glue-footer__link" href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
+            aria-label="Terms" title="Terms">Terms</a>
+          </li>
+      
+      </ul>
+
+    <ul class="glue-footer__global-links glue-footer__global-links--extra glue-no-bullet">
+      <li class="glue-footer__global-links-list-item glue-footer__global-links-list-item--extra">
+        <a class="glue-footer__link" href="https://support.google.com/?hl=en" aria-label="Help" title="Help"
+          target="_blank" rel="noopener noreferrer">
+          <svg role="img" aria-hidden="true" class="glue-icon glue-icon--24px glue-icon--footer-help" alt="Help">
+            <use xlink:href="#help"></use>
+          </svg>
+          Help
+          </a>
+          </li>
+
+      
+    </ul>
+  </section>
+</footer>
+<div style="display: none;"><svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <svg id="chevron-left" viewBox="0 0 24 24"><path d="M16.41 5.41L15 4l-8 8 8 8 1.41-1.41L9.83 12"></path></svg>
+    <svg id="chevron-right" viewBox="0 0 24 24"><path d="M7.59 18.59L9 20l8-8-8-8-1.41 1.41L14.17 12"></path></svg>
+    <svg id="expand-less" viewBox="0 0 24 24"><path d="M18.59 16.41L20 15l-8-8-8 8 1.41 1.41L12 9.83"></path></svg>
+    <svg id="expand-more" viewBox="0 0 24 24"><path d="M5.41 7.59L4 9l8 8 8-8-1.41-1.41L12 14.17"></path></svg>
+    <svg id="arrow-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
+    <svg id="arrow-forward" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"></path></svg>
+    <svg id="arrow-upward" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg>
+    <svg id="arrow-downward" viewBox="0 0 24 24"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path></svg>
+    <svg id="arrow-left" viewBox="0 0 24 24"><path d="M14 7l-5 5 5 5V7z"></path></svg>
+    <svg id="arrow-right" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"></path></svg>
+    <svg id="arrow-drop-up" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"></path></svg>
+    <svg id="arrow-drop-down" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5H7z"></path></svg>
+    <svg id="help" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"></path></svg>
+    <svg id="menu" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+    <svg id="more-vert" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+    <svg id="drive-pdf" viewBox="0 0 24 24"><path d="M7 11.5h1v-1H7v1zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm10-1H17v1h1.5V13H17v2h-1.5V9h4v1.5zm-5 3c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm-2.5 0h1v-3h-1v3z"></path></svg>
+    <svg id="file-download" viewBox="0 0 24 24"><path d="M4 15h2v3h12v-3h2v3c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2m11.59-8.41L13 12.17V4h-2v8.17L8.41 9.59 7 11l5 5 5-5-1.41-1.41z"></path></svg>
+    <svg id="open-in-new" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path></svg>
+    <svg id="phone" viewBox="0 0 24 24"><path d="M16.01 14.46l-2.62 2.62a16.141 16.141 0 0 1-6.5-6.5l2.62-2.62a.98.98 0 0 0 .27-.9L9.13 3.8c-.09-.46-.5-.8-.98-.8H4c-.56 0-1.03.47-1 1.03a17.92 17.92 0 0 0 2.43 8.01 18.08 18.08 0 0 0 6.5 6.5 17.92 17.92 0 0 0 8.01 2.43c.56.03 1.03-.44 1.03-1v-4.15c0-.48-.34-.89-.8-.98l-3.26-.65a.99.99 0 0 0-.9.27z"></path></svg>
+    <svg id="email" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.8 2L12 10.8 4.8 6h14.4zM4 18V7.87l8 5.33 8-5.33V18H4z"></path></svg>
+    <svg id="instagram" viewBox="0 0 24 24"><path d="M12,0 C15.3,0 15.7,0 17,0 C18.3,0.1 19.1,0.3 19.9,0.6 C20.7,0.9 21.3,1.3 22,2 C22.7,2.7 23.1,3.4 23.3,4.2 C23.6,5 23.8,5.8 23.9,7.1 C24,8.3 24,8.7 24,12 C24,15.3 24,15.7 23.9,16.9 C23.8,18.2 23.6,19 23.3,19.8 C23,20.6 22.6,21.2 21.9,21.9 C21.3,22.6 20.6,23 19.8,23.3 C19,23.6 18.2,23.8 16.9,23.9 C15.7,24 15.3,24 12,24 C8.7,24 8.3,24 7,24 C5.7,23.9 4.9,23.7 4.1,23.4 C3.3,23.1 2.7,22.7 2,22 C1.3,21.3 0.9,20.6 0.7,19.8 C0.4,19 0.2,18.2 0.1,16.9 C0,15.7 0,15.3 0,12 C0,8.7 0,8.3 0.1,7.1 C0.1,5.8 0.3,4.9 0.6,4.1 C0.9,3.4 1.3,2.7 2,2 C2.7,1.3 3.4,0.9 4.1,0.6 C4.9,0.3 5.8,0.1 7.1,0.1 C8.3,0 8.7,0 12,0 Z M12,2.2 C8.8,2.2 8.4,2.2 7.2,2.2 C6,2.3 5.3,2.5 4.9,2.6 C4.4,2.9 4,3.1 3.5,3.5 C3.1,3.9 2.8,4.3 2.6,4.9 C2.5,5.3 2.3,6 2.3,7.2 C2.2,8.4 2.2,8.8 2.2,12 C2.2,15.2 2.2,15.5 2.3,16.8 C2.3,17.9 2.5,18.6 2.7,19 C2.9,19.6 3.2,20 3.6,20.4 C4,20.8 4.4,21.1 5,21.3 C5.4,21.5 6,21.6 7.2,21.7 C8.4,21.8 8.8,21.8 12,21.8 C15.2,21.8 15.5,21.8 16.8,21.7 C17.9,21.7 18.6,21.5 19,21.3 C19.6,21.1 20,20.8 20.4,20.4 C20.8,20 21.1,19.6 21.3,19 C21.5,18.6 21.6,18 21.7,16.8 C21.8,15.6 21.8,15.2 21.8,12 C21.8,8.8 21.8,8.5 21.7,7.2 C21.7,6.1 21.5,5.4 21.3,5 C21.1,4.4 20.8,4 20.4,3.6 C20,3.2 19.6,2.9 19,2.7 C18.6,2.5 18,2.4 16.8,2.3 C15.6,2.2 15.2,2.2 12,2.2 Z M12,5.8 C15.4,5.8 18.2,8.6 18.2,12 C18.2,15.4 15.4,18.2 12,18.2 C8.6,18.2 5.8,15.4 5.8,12 C5.8,8.6 8.6,5.8 12,5.8 Z M12,16 C14.2,16 16,14.2 16,12 C16,9.8 14.2,8 12,8 C9.8,8 8,9.8 8,12 C8,14.2 9.8,16 12,16 Z M18.4,7 C17.6268014,7 17,6.37319865 17,5.6 C17,4.82680135 17.6268014,4.2 18.4,4.2 C19.1731986,4.2 19.8,4.82680135 19.8,5.6 C19.8,6.37319865 19.1731986,7 18.4,7 Z"></path></svg>
+    <svg id="link" viewBox="0 0 24 24"><path d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5zm-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-2z"></path><path d="M8 11h8v2H8z"></path></svg>
+    <svg id="post-blogger" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4 7v1c0 .55.45 1 1 1s1 .45 1 1v3c0 1.66-1.34 3-3 3H9c-1.66 0-3-1.34-3-3V8c0-1.66 1.34-3 3-3h4c1.66 0 3 1.34 3 3v1zm-6.05 1h2.6c.55 0 1-.45 1-1s-.45-1-1-1h-2.6c-.55 0-1 .45-1 1s.45 1 1 1zM14 13H9.95c-.55 0-1 .45-1 1s.45 1 1 1H14c.55 0 1-.45 1-1s-.45-1-1-1z"></path></svg>
+    <svg id="post-facebook" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 2v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v7h-3v-7h-2v-3h2V7.5C13 5.57 14.57 4 16.5 4H19z"></path></svg>
+    <svg id="post-linkedin" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 19H5v-9h3v9zM6.5 8.31c-1 0-1.81-.81-1.81-1.81S5.5 4.69 6.5 4.69s1.81.81 1.81 1.81S7.5 8.31 6.5 8.31zM19 19h-3v-5.3c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V19h-3v-9h3v1.2c.52-.84 1.59-1.4 2.5-1.4 1.93 0 3.5 1.57 3.5 3.5V19z"></path></svg>
+    <svg id="share" viewBox="0 0 24 24"><path d="M18 16c-.79 0-1.5.31-2.03.81L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.53.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.48.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.05 4.12c-.05.22-.09.45-.09.69 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3zm0-12c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"></path></svg>
+    <svg id="twitter" viewBox="0 0 24 24"><path d="M7.5,21.8c9.1,0,14-7.5,14-14c0-0.2,0-0.4,0-0.6c1-0.7,1.8-1.6,2.5-2.5c-0.9,0.4-1.8,0.7-2.8,0.8c1-0.6,1.8-1.6,2.2-2.7 c-1,0.6-2,1-3.1,1.2c-0.9-1-2.2-1.6-3.6-1.6c-2.7,0-4.9,2.2-4.9,4.9c0,0.4,0,0.8,0.1,1.1C7.7,8.1,4.1,6.1,1.7,3.1 C1.2,3.9,1,4.7,1,5.6c0,1.7,0.9,3.2,2.2,4.1C2.4,9.7,1.6,9.5,1,9.1c0,0,0,0,0,0.1c0,2.4,1.7,4.4,4,4.8c-0.4,0.1-0.8,0.2-1.3,0.2 c-0.3,0-0.6,0-0.9-0.1c0.6,2,2.4,3.4,4.6,3.4c-1.7,1.3-3.8,2.1-6.1,2.1c-0.4,0-0.8,0-1.2-0.1C2.2,20.9,4.8,21.8,7.5,21.8"></path></svg>
+    <svg id="video-youtube" viewBox="0 0 24 24"><path d="M23.74 7.1s-.23-1.65-.95-2.37c-.91-.96-1.93-.96-2.4-1.02C17.04 3.47 12 3.5 12 3.5s-5.02-.03-8.37.21c-.46.06-1.48.06-2.39 1.02C.52 5.45.28 7.1.28 7.1S.04 9.05 0 10.98V13c.04 1.94.28 3.87.28 3.87s.24 1.65.96 2.38c.91.95 2.1.92 2.64 1.02 1.88.18 7.91.22 8.12.22 0 0 5.05.01 8.4-.23.46-.06 1.48-.06 2.39-1.02.72-.72.96-2.37.96-2.37s.24-1.94.25-3.87v-2.02c-.02-1.93-.26-3.88-.26-3.88zM9.57 15.5V8.49L16 12.13 9.57 15.5z"></path></svg>
+    <svg id="video-youtube-white" viewBox="0 0 24 24"><path fill="#fff" d="M23.74 7.1s-.23-1.65-.95-2.37c-.91-.96-1.93-.96-2.4-1.02C17.04 3.47 12 3.5 12 3.5s-5.02-.03-8.37.21c-.46.06-1.48.06-2.39 1.02C.52 5.45.28 7.1.28 7.1S.04 9.05 0 10.98V13c.04 1.94.28 3.87.28 3.87s.24 1.65.96 2.38c.91.95 2.1.92 2.64 1.02 1.88.18 7.91.22 8.12.22 0 0 5.05.01 8.4-.23.46-.06 1.48-.06 2.39-1.02.72-.72.96-2.37.96-2.37s.24-1.94.25-3.87v-2.02c-.02-1.93-.26-3.88-.26-3.88zM9.57 15.5V8.49L16 12.13 9.57 15.5z"></path></svg>
+    <svg id="video-youtube-black" viewBox="0 0 24 24"><path fill="#000" d="M23.74 7.1s-.23-1.65-.95-2.37c-.91-.96-1.93-.96-2.4-1.02C17.04 3.47 12 3.5 12 3.5s-5.02-.03-8.37.21c-.46.06-1.48.06-2.39 1.02C.52 5.45.28 7.1.28 7.1S.04 9.05 0 10.98V13c.04 1.94.28 3.87.28 3.87s.24 1.65.96 2.38c.91.95 2.1.92 2.64 1.02 1.88.18 7.91.22 8.12.22 0 0 5.05.01 8.4-.23.46-.06 1.48-.06 2.39-1.02.72-.72.96-2.37.96-2.37s.24-1.94.25-3.87v-2.02c-.02-1.93-.26-3.88-.26-3.88zM9.57 15.5V8.49L16 12.13 9.57 15.5z"></path><polygon fill="#fff" points="9.6,15.5 9.6,8.5 16,12.1 "></polygon></svg>
+    <svg id="video-youtube-red" viewBox="0 0 24 24"><path fill="#f00" d="M23.74 7.1s-.23-1.65-.95-2.37c-.91-.96-1.93-.96-2.4-1.02C17.04 3.47 12 3.5 12 3.5s-5.02-.03-8.37.21c-.46.06-1.48.06-2.39 1.02C.52 5.45.28 7.1.28 7.1S.04 9.05 0 10.98V13c.04 1.94.28 3.87.28 3.87s.24 1.65.96 2.38c.91.95 2.1.92 2.64 1.02 1.88.18 7.91.22 8.12.22 0 0 5.05.01 8.4-.23.46-.06 1.48-.06 2.39-1.02.72-.72.96-2.37.96-2.37s.24-1.94.25-3.87v-2.02c-.02-1.93-.26-3.88-.26-3.88zM9.57 15.5V8.49L16 12.13 9.57 15.5z"></path><polygon fill="#fff" points="9.6,15.5 9.6,8.5 16,12.1 "></polygon></svg>
+    <svg id="video-youtube-white" viewBox="0 0 24 24"><path fill="#fff" d="M23.74 7.1s-.23-1.65-.95-2.37c-.91-.96-1.93-.96-2.4-1.02C17.04 3.47 12 3.5 12 3.5s-5.02-.03-8.37.21c-.46.06-1.48.06-2.39 1.02C.52 5.45.28 7.1.28 7.1S.04 9.05 0 10.98V13c.04 1.94.28 3.87.28 3.87s.24 1.65.96 2.38c.91.95 2.1.92 2.64 1.02 1.88.18 7.91.22 8.12.22 0 0 5.05.01 8.4-.23.46-.06 1.48-.06 2.39-1.02.72-.72.96-2.37.96-2.37s.24-1.94.25-3.87v-2.02c-.02-1.93-.26-3.88-.26-3.88zM9.57 15.5V8.49L16 12.13 9.57 15.5z"></path></svg>
+    <svg id="close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+    <svg id="expand-all" viewBox="0 0 24 24"><path d="M16.59 9.41L18 8l-6-6-6 6 1.41 1.41L12 4.83l4.59 4.58zM12 19.17l-4.59-4.58L6 16l6 6 6-6-1.41-1.41L12 19.17z"></path></svg>
+    <svg id="play-circle-filled" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path></svg>
+    <svg id="search" viewBox="0 0 24 24"><path d="M20.49 19l-5.73-5.73C15.53 12.2 16 10.91 16 9.5A6.5 6.5 0 1 0 9.5 16c1.41 0 2.7-.47 3.77-1.24L19 20.49 20.49 19zM5 9.5C5 7.01 7.01 5 9.5 5S14 7.01 14 9.5 11.99 14 9.5 14 5 11.99 5 9.5z"></path></svg>
+    <svg id="google-color-logo" viewBox="0 0 74 24"><path fill="#4285F4" d="M9.24 8.19v2.46h5.88c-.18 1.38-.64 2.39-1.34 3.1-.86.86-2.2 1.8-4.54 1.8-3.62 0-6.45-2.92-6.45-6.54s2.83-6.54 6.45-6.54c1.95 0 3.38.77 4.43 1.76L15.4 2.5C13.94 1.08 11.98 0 9.24 0 4.28 0 .11 4.04.11 9s4.17 9 9.13 9c2.68 0 4.7-.88 6.28-2.52 1.62-1.62 2.13-3.91 2.13-5.75 0-.57-.04-1.1-.13-1.54H9.24z"></path><path fill="#EA4335" d="M25 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z"></path><path fill="#4285F4" d="M53.58 7.49h-.09c-.57-.68-1.67-1.3-3.06-1.3C47.53 6.19 45 8.72 45 12c0 3.26 2.53 5.81 5.43 5.81 1.39 0 2.49-.62 3.06-1.32h.09v.81c0 2.22-1.19 3.41-3.1 3.41-1.56 0-2.53-1.12-2.93-2.07l-2.22.92c.64 1.54 2.33 3.43 5.15 3.43 2.99 0 5.52-1.76 5.52-6.05V6.49h-2.42v1zm-2.93 8.03c-1.76 0-3.1-1.5-3.1-3.52 0-2.05 1.34-3.52 3.1-3.52 1.74 0 3.1 1.5 3.1 3.54.01 2.03-1.36 3.5-3.1 3.5z"></path><path fill="#FBBC05" d="M38 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52z"></path><path fill="#34A853" d="M58 .24h2.51v17.57H58z"></path><path fill="#EA4335" d="M68.26 15.52c-1.3 0-2.22-.59-2.82-1.76l7.77-3.21-.26-.66c-.48-1.3-1.96-3.7-4.97-3.7-2.99 0-5.48 2.35-5.48 5.81 0 3.26 2.46 5.81 5.76 5.81 2.66 0 4.2-1.63 4.84-2.57l-1.98-1.32c-.66.96-1.56 1.6-2.86 1.6zm-.18-7.15c1.03 0 1.91.53 2.2 1.28l-5.25 2.17c0-2.44 1.73-3.45 3.05-3.45z"></path></svg>
+    <svg id="google-solid-logo" viewBox="0 0 74 24"><path d="M9.24 8.19v2.46h5.88c-.18 1.38-.64 2.39-1.34 3.1-.86.86-2.2 1.8-4.54 1.8-3.62 0-6.45-2.92-6.45-6.54s2.83-6.54 6.45-6.54c1.95 0 3.38.77 4.43 1.76L15.4 2.5C13.94 1.08 11.98 0 9.24 0 4.28 0 .11 4.04.11 9s4.17 9 9.13 9c2.68 0 4.7-.88 6.28-2.52 1.62-1.62 2.13-3.91 2.13-5.75 0-.57-.04-1.1-.13-1.54H9.24zm15.76-2c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52zm28.58-8.03h-.09c-.57-.68-1.67-1.3-3.06-1.3C47.53 6.19 45 8.72 45 12c0 3.26 2.53 5.81 5.43 5.81 1.39 0 2.49-.62 3.06-1.32h.09v.81c0 2.22-1.19 3.41-3.1 3.41-1.56 0-2.53-1.12-2.93-2.07l-2.22.92c.64 1.54 2.33 3.43 5.15 3.43 2.99 0 5.52-1.76 5.52-6.05V6.49h-2.42v1zm-2.93 8.03c-1.76 0-3.1-1.5-3.1-3.52 0-2.05 1.34-3.52 3.1-3.52 1.74 0 3.1 1.5 3.1 3.54.01 2.03-1.36 3.5-3.1 3.5zM38 6.19c-3.21 0-5.83 2.44-5.83 5.81 0 3.34 2.62 5.81 5.83 5.81s5.83-2.46 5.83-5.81c0-3.37-2.62-5.81-5.83-5.81zm0 9.33c-1.76 0-3.28-1.45-3.28-3.52 0-2.09 1.52-3.52 3.28-3.52s3.28 1.43 3.28 3.52c0 2.07-1.52 3.52-3.28 3.52zM58 .24h2.51v17.57H58zm10.26 15.28c-1.3 0-2.22-.59-2.82-1.76l7.77-3.21-.26-.66c-.48-1.3-1.96-3.7-4.97-3.7-2.99 0-5.48 2.35-5.48 5.81 0 3.26 2.46 5.81 5.76 5.81 2.66 0 4.2-1.63 4.84-2.57l-1.98-1.32c-.66.96-1.56 1.6-2.86 1.6zm-.18-7.15c1.03 0 1.91.53 2.2 1.28l-5.25 2.17c0-2.44 1.73-3.45 3.05-3.45z"></path></svg>
+    <svg id="pdf" viewBox="0 0 24 24">
+      <g id="Resources" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SRE-Resources" transform="translate(-588.000000, -1354.000000)" fill-rule="nonzero">
+          <g id="Group-5" transform="translate(189.000000, 1096.000000)">
+            <g id="Group-9" transform="translate(32.000000, 258.000000)">
+              <g id="x-WebAssets-/-Card-Icons-/-PDF" transform="translate(367.000000, 0.000000)">
+                <g>
+                  <rect id="Rectangle-5-Copy" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="24" height="24"></rect>
+                  <path d="M12,14 L13.3333334,14 L13.3333334,10 L12,10 L12,14 Z M15.3333333,14 C15.3333333,15.1066666 14.44,16 13.3333334,16 L10,16 L10,8 L13.3333334,8 C14.44,8 15.3333333,8.89333337 15.3333333,10 L15.3333333,14 Z M22,10 L18.6666666,10 L18.6666666,11.3333333 L20.6666666,11.3333333 L20.6666666,13.3333334 L18.6666666,13.3333334 L18.6666666,16 L16.6666666,16 L16.6666666,8 L22,8 L22,10 Z M8.66666666,11.3333333 C8.66666666,12.44 7.77333333,13.3333334 6.66666667,13.3333334 L5.33333333,13.3333334 L5.33333333,16 L3.33333333,16 L3.33333333,8 L6.66666667,8 C7.77333333,8 8.66666666,8.89333337 8.66666666,10 L8.66666666,11.3333333 Z M2.66666667,0 C1.19333333,0 0,1.19333333 0,2.66666667 L0,21.3333333 C0,22.8066667 1.19333333,24 2.66666667,24 L21.3333333,24 C22.8066667,24 24,22.8066667 24,21.3333333 L24,2.66666667 C24,1.19333333 22.8066667,0 21.3333333,0 L2.66666667,0 Z M5.33333333,11.3333333 L6.66666667,11.3333333 L6.66666667,10 L5.33333333,10 L5.33333333,11.3333333 Z" id="icon-PDF/one-pager" fill="#1A73E8"></path>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <svg id="slides_icon" viewBox="0 0 32 32">
+      <g id="Resources" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SRE-Resources" transform="translate(-221.000000, -1128.000000)" fill="#FFB800" fill-rule="nonzero">
+          <g id="Group-5" transform="translate(189.000000, 1096.000000)">
+            <path d="M60.442468,32 L35.5397443,32 C33.5831017,32 32,33.6 32,35.5555556 L32,60.4444444 C32,62.4 33.5831017,64 35.5397443,64 L60.442468,64 C62.3991106,64 64,62.4 64,60.4444444 L64,35.5555556 C64,33.6 62.3991106,32 60.442468,32 Z M60.442468,55.1111111 L35.5397443,55.1111111 L35.5397443,40.8888889 L60.442468,40.8888889 L60.442468,55.1111111 Z" id="Shape"></path>
+          </g>
+        </g>
+      </g>
+    </svg>
+    <svg id="video_icon" viewBox="0 0 24 24" fill="#1d72e8"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+    <svg id="rss-feed" xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 0 24 24" width="32px" fill="#1a73e8"><path d="M0 0h24v24H0V0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M5.59 10.23c-.84-.14-1.59.55-1.59 1.4 0 .71.53 1.28 1.23 1.4 2.92.51 5.22 2.82 5.74 5.74.12.7.69 1.23 1.4 1.23.85 0 1.54-.75 1.41-1.59-.68-4.2-3.99-7.51-8.19-8.18zm-.03-5.71C4.73 4.43 4 5.1 4 5.93c0 .73.55 1.33 1.27 1.4 6.01.6 10.79 5.38 11.39 11.39.07.73.67 1.28 1.4 1.28.84 0 1.5-.73 1.42-1.56-.73-7.34-6.57-13.19-13.92-13.92z"/></svg>
+    <svg id="podcast" fill="none" height="32" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg"><path d="m14 12c0 .74-.4 1.38-1 1.72v8.28h-2v-8.28c-.6-.35-1-.98-1-1.72 0-1.1.9-2 2-2s2 .9 2 2zm-2-6c-3.31 0-6 2.69-6 6 0 1.74.75 3.31 1.94 4.4l1.42-1.42c-.83-.73-1.36-1.79-1.36-2.98 0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.19-.53 2.25-1.36 2.98l1.42 1.42c1.19-1.09 1.94-2.66 1.94-4.4 0-3.31-2.69-6-6-6zm0-4c-5.52 0-10 4.48-10 10 0 2.85 1.2 5.41 3.11 7.24l1.42-1.42c-1.55-1.46-2.53-3.53-2.53-5.82 0-4.41 3.59-8 8-8s8 3.59 8 8c0 2.29-.98 4.36-2.53 5.82l1.42 1.42c1.91-1.83 3.11-4.39 3.11-7.24 0-5.52-4.48-10-10-10z" fill="#1a73e8"></path></svg>
+    <svg id="video-yt" width="64px" height="47px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 47" fill="none">
+      <path d="M62.5778 7.29166C61.92 4.43333 59.744 2.16667 56.8889 1.45833C52 0 32 0 32.7111 0C32 0 12 0 7.11111 1.45833C4.256 2.16667 2.08 4.43333 1.42222 7.29166C0 12.5 0 23.3333 0 23.3333C0 23.3333 0 34.1667 1.42222 39.375C2.08 42.2333 4.256 44.5 7.11111 45.2083C12 46.6667 32 46.6667 32.7111 46.6667C32 46.6667 52 46.6667 56.8889 45.2083C59.744 44.5 61.92 42.2333 62.5778 39.375C64 34.1667 64 23.3333 64 23.3333C64 23.3333 64 12.5 62.5778 7.29166Z" fill="#FF0000"/>
+      <path d="M24 32V13.3333L41.3333 23.3846L24 32Z" fill="white"/>
+    </svg>
+    <svg id="article" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+      <path d="M23.0833 56.75H46V51.75H23.0833V56.75ZM23.0833 42.5H56.9167V37.5H23.0833V42.5ZM23.0833 28.25H56.9167V23.25H23.0833V28.25ZM15 70C13.6667 70 12.5 69.5 11.5 68.5C10.5 67.5 10 66.3333 10 65V15C10 13.6667 10.5 12.5 11.5 11.5C12.5 10.5 13.6667 10 15 10H65C66.3333 10 67.5 10.5 68.5 11.5C69.5 12.5 70 13.6667 70 15V65C70 66.3333 69.5 67.5 68.5 68.5C67.5 69.5 66.3333 70 65 70H15ZM15 65H65V15H15V65Z" fill="white"/>
+    </svg>
+    <svg id="filter-tick" xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14" fill="none">
+      <path d="M5.59 11.1698L1.42 6.99984L0 8.40984L5.59 13.9998L17.59 1.99984L16.18 0.589844L5.59 11.1698Z" fill="#1A73E8"/>
+    </svg>
+    <svg id="developer_mode_icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#041E49"><path d="M344-296 160-480l184-184 42 44-140 140 140 140-42 44Zm-144 30h60v76h440v-76h60v166q0 24-18 42t-42 18H260q-24 0-42-18t-18-42v-166Zm60-440h-60v-154q0-24 18-42t42-18h440q24 0 42 18t18 42v154h-60v-64H260v64Zm0 576v30h440v-30H260Zm0-700h440v-30H260v30Zm356 534-42-44 140-140-140-140 42-44 184 184-184 184ZM260-830v-30 30Zm0 700v30-30Z"/></svg>
+    <svg id="play" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="m17 13h16v23h-16z" fill="#202124"/><g fill="#fff"><path d="m0 0h48v48h-48z" fill-opacity=".01"/><path clip-rule="evenodd" d="m24 4c-11.04 0-20 8.96-20 20s8.96 20 20 20 20-8.96 20-20-8.96-20-20-20zm-4 29v-18l12 9z" fill-rule="evenodd"/></g></svg>
+    <svg id="watch-video" fill="none" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m8 .5c-4.14 0-7.5 3.36-7.5 7.5s3.36 7.5 7.5 7.5 7.5-3.36 7.5-7.5-3.36-7.5-7.5-7.5zm-1.5 10.875v-6.75l4.5 3.375z" fill="#1a73e8" fill-rule="evenodd"/></svg>
+    <svg id="modal-play" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="m17 13h16v23h-16z" fill="#202124"/><g fill="#fff"><path d="m0 0h48v48h-48z" fill-opacity=".01"/><path clip-rule="evenodd" d="m24 4c-11.04 0-20 8.96-20 20s8.96 20 20 20 20-8.96 20-20-8.96-20-20-20zm-4 29v-18l12 9z" fill-rule="evenodd"/></g></svg>
+    <svg id="modal-pause" fill="none" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m20 38h-8v-28h8zm8 0v-28h8v28z" fill="#fff" fill-rule="evenodd"/></svg>
+    <svg id="circle-1" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#4285F4"/><text x="14" y="20" font-size="14px" text-anchor="middle" fill="#FFFF">1</text></svg>
+    <svg id="circle-2" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#F9AB00"/><text x="14" y="20" text-anchor="middle" fill="#FFFF">2</text></svg>
+    <svg id="circle-3" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#34A853"/><text x="14" y="20" text-anchor="middle" fill="#FFFF">3</text></svg>
+    <svg id="twitter-X" height="24" viewBox="0 0 23 20" width="24" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="m11.902344 8.464844 7.445312-8.464844h-1.765625l-6.464843 7.347656-5.160157-7.347656h-5.957031l7.808594 11.113281-7.808594 8.875h1.765625l6.824219-7.761719 5.453125 7.761719h5.957031zm-2.417969 2.746094-.789063-1.105469-6.296874-8.804688h2.710937l5.082031 7.105469.789063 1.105469 6.605469 9.238281h-2.710938zm0 0" fill="#000"/></svg>
+    <svg id="read-more-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 9L13.9425 7.9425L9.75 12.1275V3H8.25V12.1275L4.065 7.935L3 9L9 15L15 9Z" fill="white"/></svg>
+    <svg id="open-in-new-white" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" style=""><path fill-rule="evenodd" clip-rule="evenodd" d="M12.25 12.25H1.75V1.75H7V0.25H1.75C0.9175 0.25 0.25 0.925 0.25 1.75V12.25C0.25 13.075 0.9175 13.75 1.75 13.75H12.25C13.075 13.75 13.75 13.075 13.75 12.25V7H12.25V12.25ZM8.5 0.25V1.75H11.1925L3.82 9.1225L4.8775 10.18L12.25 2.8075V5.5H13.75V0.25H8.5Z" fill="white"/></svg>
+    <svg id="load-more-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 9L13.9425 7.9425L9.75 12.1275V3H8.25V12.1275L4.065 7.935L3 9L9 15L15 9Z" fill="#1A73E8"/>
+    </svg>
+    <svg id="show-less-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M3 9L4.0575 10.0575L8.25 5.8725V15H9.75V5.8725L13.935 10.065L15 9L9 3L3 9Z" fill="#1A73E8"/>
+    </svg>
+
+  </defs>
+</svg></div>
+
+
+    <script defer src="https://www.gstatic.com/external_hosted/hammerjs/v2_0_2/hammer.min.js"></script><script defer src="/js/index.min.js"></script><script src="https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.js"
+        data-glue-cookie-notification-bar-category="2B"
+        data-glue-cookie-notification-bar-language="en"
+        data-glue-cookie-notification-bar-site-id="sre.google">
+    </script>
+  </body>
+</html>
