@@ -40,6 +40,10 @@ The harness grew in stages, each "giving the loop something new it is allowed to
 - [Scaling Discovery Requires Forgetting](scaling-discovery-requires-forgetting.md) — restart scored program search from the best artifact; hide session/candidate history but retain the archive; matched-prefix reset test and joint communication/reset caveat.
 - Related memory mechanism: [ReHarness](../memory/reharness-recurrent-agentic-continual-learning.md) — revise retrieved lessons against their original evidence after later feedback; fewer tokens can still cost more.
 
+### Research orchestration and verification
+
+- [The Agentic Scientist](agentic-scientist-orchestrating-coding-agents.md) — typed hypothesis/rubric contracts → parallel experiments → retrospective ablations → artifact-grounded reports; full 88-page paper, human corrections, missed metric changes and judge-dependent figure scores.
+
 Measurement backbone lives in misc: [Measuring AI Ability to Complete Long Software Tasks](../misc/measuring-ai-ability-to-complete-long-software-tasks.md) (METR time-horizon).
 
 ## Related elsewhere
