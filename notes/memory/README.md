@@ -2,11 +2,11 @@
 
 This folder is a **systematic working corpus** for papers on **deployed / inference-time memory** in AI agents, LLM agents, conversational agents, and embodied agents.
 
-It currently contains **78 paper notes** (plus the legacy [Memory and RAG Papers](./memory-and-rag.md) reading list kept in this folder):
+It currently contains **79 paper notes** (plus the legacy [Memory and RAG Papers](./memory-and-rag.md) reading list kept in this folder):
 - **Pass 1:** a core mechanism-focused corpus (21 papers)
 - **Pass 2:** a broader sweep adding more 2026 mechanisms, benchmarks/evaluation papers, surveys/taxonomies, and memory-security papers (16 more)
 - **Pass 3:** a breadth pass adding more personalization, systems, benchmark, and security papers from the remaining 2026 candidate pool (10 more)
-- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (8)
+- **Post-cutoff targeted additions:** requested later papers recorded separately from the systematic three-pass corpus (9)
 - **Later additions:** memory platforms/engines, further lifecycle mechanisms, further benchmarks, and further security work added after the passes (23)
 
 ## Scope
@@ -127,6 +127,7 @@ A few files are tagged as **borderline include** because they are clearly about 
 - [Mind Your HEARTBEAT](./mind-your-heartbeat-claw-background-execution-inherently-enables-silent-memory-pollution.md)
 
 ### Post-cutoff targeted additions
+- [ReHarness](./reharness-recurrent-agentic-continual-learning.md) — later feedback repairs retrieved reflections using their original sources; fixed weights, streaming evaluation, nonzero grounding leakage and output-token cost caveat. Full paper/appendices read.
 - [Can a Language Model Learn Facts Continually in Its Weights?](./can-a-language-model-learn-facts-continually-in-its-weights.md)
 - [WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](./wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution.md) — Google; three-layer raw/wiki/skills workspace; ablations show the persistent wiki (not the skill edits) carries most of the gain.
 - [The Compaction Cliff in Long-Running AI Agent Memory](./the-compaction-cliff-in-long-running-ai-agent-memory.md) — compaction summarizes safety rules at the same rate as logs (53%→10% over 5 rounds); Knowledge Triage routes each knowledge type through its own retention policy.

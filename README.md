@@ -11,12 +11,12 @@ format and the ingest / query / lint workflows. Maintenance history is in
 
 | Directory | Papers | What |
 |-----------|--------|------|
-| `notes/memory/` | 79 | Agent memory — architectures, consolidation, benchmarks, security, tools |
+| `notes/memory/` | 80 | Agent memory — architectures, consolidation, benchmarks, security, tools |
 | `notes/world-models-agi/` | 33 | World models, understanding, consciousness, concept formation — RSTA 384(2320) theme issue + the foundational classics (Turing, Nagel, Searle, Harnad, Chalmers, Dennett, Block, Bender, Mitchell&Krakauer, Othello-GPT, Lake) |
 | `notes/prompt-injection/` | 22 | Prompt injection attacks and defenses — approaches with pros/cons; + the 2026 agent-trajectory wave (CapScope, DriftNet/AgentDrift, ECLIPSE, CoRL, multimodal) |
 | `notes/prompt-enforcement/` | 8 | Deterministic enforcement of agent instructions (Prompt Shield research) |
 | `notes/skills/` | 12 | Agent skill discovery, optimization, benchmarking, and context file evaluation |
-| `notes/harness/` | 10 | Agent harnesses — *everything between the model weights and the world* (see `notes/harness/README.md`); code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness, Prime Agent, RSIAgent) |
+| `notes/harness/` | 12 | Agent harnesses — *everything between the model weights and the world* (see `notes/harness/README.md`); code-as-harness, state-centric runtimes, and the self-improving-harness line (Darwin Gödel Machine, Meta-Harness, Continual Harness, Prime Agent, RSIAgent) |
 | `notes/agentic-engineering/` | 11 | Engineering *with* coding agents — software factories, immutable-artifact receipts, self-improving SDLC loops, and the two-gap assurance framework (sources from everywhere: tweets, blogs, papers) |
 | `notes/prompt/` | 2 | Prompting techniques and adversarial (synthetic languages, Waluigi Effect) |
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |

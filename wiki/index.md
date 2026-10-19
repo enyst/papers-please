@@ -17,7 +17,7 @@ compounds as new research is added.
 Written (prose syntheses):
 
 - [What Is Agent Memory?](what-is-agent-memory.md) — Why agents need memory, what kinds exist, and how the field is structured.
-- [Memory Consolidation & Lifecycle](memory-consolidation.md) — How agents compress, prune, and maintain memory over time.
+- [Memory Consolidation & Lifecycle](memory-consolidation.md) — How agents compress, revise and prune memory; separate source archives, interpretations and visible context.
 - [Memory Security](memory-security.md) — Poisoning attacks, injection vectors, and defenses for persistent memory.
 
 For every other memory topic, read the raw notes and the cross-cutting atlas page:
@@ -29,7 +29,7 @@ For every other memory topic, read the raw notes and the cross-cutting atlas pag
 
 ## Source Corpus
 
-This wiki synthesizes 63 papers from arXiv (2023–2026), focusing on deployed/inference-time memory in AI agents. The full source index is in [Sources](sources.md).
+The source index contains 66 arXiv papers (2023–2026), focused on deployed/inference-time memory and related harness mechanisms. It is a selected synthesis corpus, not the complete memory-note catalog; read depth is recorded in individual notes where available. The full source index is in [Sources](sources.md).
 
 **Scope:** ICL-style and prompt-time memory — retrieved experiences, workflows, summaries, skills. Also: episodic, semantic, hierarchical, and personalization memory. Benchmarks, surveys, and security papers included where they inform the synthesis.
 

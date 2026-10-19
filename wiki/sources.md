@@ -1,6 +1,6 @@
 # Source Corpus
 
-63 papers from arXiv (2023–2026) on deployed/inference-time memory in AI agents. Each paper has been read, annotated, and integrated into the topic articles in this wiki.
+66 indexed arXiv papers (2023–2026) on deployed/inference-time memory and related harness mechanisms. This selected source index is smaller than the full memory-note catalog. Consult per-source notes for read depth; older notes include abstract-level summaries, so this index does not imply every paper was read in full.
 
 **Scope:** ICL-style and prompt-time memory — retrieved experiences, workflows, summaries, skills. Also episodic, semantic, hierarchical, and personalization memory. Benchmarks, surveys, and security papers where they directly inform the synthesis. Papers centered on pretraining or fine-tuning are excluded.
 
@@ -132,6 +132,15 @@
 | [MemGym: Long-Horizon Memory Environment](https://arxiv.org/abs/2605.20833) | Xu et al., 2026 | Tests dynamic memory formation during execution, not just retrieval of stored facts. |
 | [EvoMemBench: Self-Evolving Perspective](https://arxiv.org/abs/2605.18421) | — , 2026 | Does memory actually make the agent better over time? |
 | [Cross-Scenario Generality of Agentic Memory Systems](https://arxiv.org/abs/2606.04315) | Chen et al., 2026 | Most memory systems are overfit to their benchmark. |
+
+
+## 2026 Q4 — Revision and Visible-State Control
+
+| Paper | Citation | One-line take |
+|-------|----------|--------------|
+| [LongHarness](https://arxiv.org/abs/2610.13075) | Huang et al., 2026 | Source-linked evidence and conclusions evolve separately; full history remains in context. [Full-read note](../notes/harness/longharness-stateful-evidence-management.md). |
+| [Recurrent Harness for Agentic Continual Learning](https://arxiv.org/abs/2610.12668) | Xiao et al., 2026 | Repair retrieved lessons against their original source after later feedback; fewer tokens need not mean lower cost. [Full-read note](../notes/memory/reharness-recurrent-agentic-continual-learning.md). |
+| [Scaling Discovery Requires Forgetting](https://arxiv.org/abs/2610.20563) | Tan et al., 2026 | Restart program search from the best artifact while hiding history and preserving the harness archive. [Full-read note](../notes/harness/scaling-discovery-requires-forgetting.md). |
 
 ---
 

@@ -1,0 +1,1739 @@
+{
+  "code": 200,
+  "message": "OK",
+  "tweet": {
+    "url": "https://x.com/dair_ai/status/2111862720446202052",
+    "id": "2111862720446202052",
+    "text": "https://x.com/i/article/2111861490571485185",
+    "raw_text": {
+      "text": "https://t.co/M5nuYbryjd",
+      "display_text_range": [
+        0,
+        23
+      ],
+      "facets": [
+        {
+          "type": "url",
+          "indices": [
+            0,
+            23
+          ],
+          "original": "https://t.co/M5nuYbryjd",
+          "replacement": "https://x.com/i/article/2111861490571485185",
+          "display": "x.com/i/article/2111…"
+        }
+      ]
+    },
+    "author": {
+      "screen_name": "dair_ai",
+      "url": "https://x.com/dair_ai",
+      "id": "889050642903293953",
+      "followers": 134973,
+      "following": 1,
+      "likes": 5641,
+      "media_count": 442,
+      "name": "DAIR.AI",
+      "description": "Democratizing AI research, education, and technologies. Learn about AI Agents for FREE at https://academy.dair.ai/courses/elements-of-ai-agents",
+      "raw_description": {
+        "text": "Democratizing AI research, education, and technologies. Learn about AI Agents for FREE at https://t.co/HHXg8rryu4",
+        "facets": [
+          {
+            "type": "url",
+            "indices": [
+              90,
+              113
+            ],
+            "original": "https://t.co/HHXg8rryu4",
+            "replacement": "https://academy.dair.ai/courses/elements-of-ai-agents",
+            "display": "academy.dair.ai/courses/elemen…"
+          }
+        ]
+      },
+      "location": "",
+      "banner_url": "https://pbs.twimg.com/profile_banners/889050642903293953/1773242460",
+      "avatar_url": "https://pbs.twimg.com/profile_images/1643277398522187778/31dedbLo_200x200.jpg",
+      "joined": "Sun Jul 23 09:12:45 +0000 2017",
+      "protected": false,
+      "website": {
+        "url": "https://www.dair.ai/",
+        "display_url": "dair.ai"
+      },
+      "verification": {
+        "verified": true,
+        "verified_at": null,
+        "type": "individual"
+      },
+      "avatar_color": null
+    },
+    "replies": 6,
+    "retweets": 5,
+    "likes": 63,
+    "bookmarks": 94,
+    "quotes": 2,
+    "created_at": "Sun Oct 18 16:51:23 +0000 2026",
+    "created_timestamp": 1792342283,
+    "possibly_sensitive": false,
+    "views": 20121,
+    "is_note_tweet": false,
+    "community_note": null,
+    "lang": null,
+    "replying_to": null,
+    "replying_to_status": null,
+    "article": {
+      "created_at": "2026-10-18T16:51:23.000Z",
+      "modified_at": "2026-10-18T16:51:23.000Z",
+      "id": "2111861490571485185",
+      "title": "🥇Top AI Papers of the Week ",
+      "preview_text": "1. Quantum Circuit Discovery\n \nMany quantum algorithms rely on a small set of computational primitives, and compiling those primitives into quantum circuits is hard because the computation must be",
+      "cover_media": {
+        "id": "QXBpTWVkaWE6DAAFCgABHU7W/7cXsAAKAAIMVorZbZVgAQAA",
+        "media_id": "2111861669060128768",
+        "media_info": {
+          "__typename": "ApiImage",
+          "color_info": {
+            "palette": [
+              {
+                "percentage": 76.41,
+                "rgb": {
+                  "blue": 229,
+                  "green": 230,
+                  "red": 243
+                }
+              },
+              {
+                "percentage": 15.59,
+                "rgb": {
+                  "blue": 141,
+                  "green": 143,
+                  "red": 216
+                }
+              },
+              {
+                "percentage": 7.84,
+                "rgb": {
+                  "blue": 127,
+                  "green": 128,
+                  "red": 139
+                }
+              },
+              {
+                "percentage": 0.41,
+                "rgb": {
+                  "blue": 65,
+                  "green": 65,
+                  "red": 97
+                }
+              }
+            ]
+          },
+          "original_img_height": 386,
+          "original_img_url": "https://pbs.twimg.com/media/HU7W_7cXsAAUuho.jpg",
+          "original_img_width": 964
+        },
+        "media_key": "3_2111861669060128768"
+      },
+      "content": {
+        "blocks": [
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "vjlj",
+            "text": "1. Quantum Circuit Discovery",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 0,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "e6ror",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "87c46",
+            "text": "Many quantum algorithms rely on a small set of computational primitives, and compiling those primitives into quantum circuits is hard because the computation must be reversible. Researchers from Anthropic, Harvard, and QuEra Computing pair an LLM that proposes circuit designs with an independent evaluator that verifies and scores every candidate.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 20,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "dlkq7",
+            "text": "Evolutionary search: The search runs over circuit-generating programs with OpenEvolve, using Claude Mythos 5 to propose architectures and program rewrites. Each search starts from a hand-written task specification and a blank program, and the best designs seed the next round.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 18,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "5q2lm",
+            "text": "Verified circuits: The evaluator checks each circuit for correctness before scoring it by Toffoli count and peak qubit count. Every reported gain is a circuit that passed this check.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 8,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "23t9m",
+            "text": "Results: On seven of eight tasks spanning numerical computation, chemistry, optimization, quantum simulation, and number theory, the discovered circuits use fewer Toffoli gates and fewer qubits than the best-known designs, cutting the combined cost by 4.1x to 39x. For a Reed-Solomon decoder, the search switched to the Berlekamp-Massey recurrence and lowered the Toffoli count from 5.1 million to 440,000.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "1s8ml",
+            "text": "Why it matters: On the eighth task, the search found a new reversible architecture for prime-field modular inversion that makes divsteps, a classical algorithm previously impractical for reversible integer arithmetic, usable and improves the Toffoli-qubit trade-off. The authors suggest that some apparent costs of quantum arithmetic reflect limits of existing reversible constructions rather than of the algorithms themselves.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 1,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 2,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "70tnj",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "8rpqg",
+            "text": "2. LongHarness",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 3,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "5ft3n",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "8iruq",
+            "text": "Agents that reason over document collections larger than their context window usually mix retrieved evidence and evolving conclusions into one growing interaction history. Researchers from Shanghai AI Laboratory, Fudan University, and colleagues present LongHarness, a model-agnostic harness for corpora of 100M tokens and more that keeps evidence and conclusions as explicit state.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 18,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "53vo0",
+            "text": "Two failure modes: The authors identify unbounded exploration, where retrieval keeps expanding the history without closing the relevant information gap, and evidence-state drift, where earlier evidence or later corrections stop reaching the current conclusion.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 32,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "8l1p3",
+            "text": "Evidence-Conclusion Coevolution: Open conclusions decide what to retrieve next, and each new piece of evidence strengthens or revises the conclusions that asked for it. An evidence lifecycle step keeps accumulated evidence current and traceable throughout the interaction.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 31,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "4lud8",
+            "text": "Same model, much higher scores: With GLM-5.3-Flash, exact match on OfficeQA Pro rises from 15.8% to 60.2% on V1 and from 4.4% to 61.1% on V2 compared with direct reasoning. LongHarness beats Claude Code by 12.0 points on V1 and Codex by 18.9 points on V2, and Qwen3.8-Flash reaches 61.7% on V1.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "ekmpn",
+            "text": "Why it matters: The gains come from the harness, with the backbone held fixed. Teams building agents for long-context work over large internal corpora can get large improvements by managing evidence explicitly instead of relying on a growing chat history.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 4,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 5,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "9eug4",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "15cgr",
+            "text": "3. Hybrid Reasoning Agents",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 6,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "feol8",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "eu37k",
+            "text": "Today’s LLM agents write out every reasoning step as text before they search, run code, or take an action, and those steps cost tokens and time. Researchers from Stanford, Together AI, and colleagues introduce Hybrid Reasoning Agents, which reason internally in latent space and switch to text only to call a tool or give an answer.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 11,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "6r54a",
+            "text": "HybridLink: A lightweight module moves the model between latent and text modes within a single generation process. A continuous working memory keeps both kinds of context across turns, tool calls stay in plain text, and the latent steps can still be inspected.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 19,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "2hnvs",
+            "text": "Two-stage training: HybridSFT first teaches the backbone to work with HybridLink during tool-integrated generation. HybridRL then teaches the model when to think in latent space and when to act through text.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 8,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "d5vak",
+            "text": "Results: Across 3 model scales and 11 benchmarks in math, science, medicine, search, and agentic reasoning, it improves over frontier LLM agents and agentic frameworks, both text-based and latent, by 10.4% on average. The 14B model beats the strongest agentic baseline by 17.4% on agentic reasoning tasks.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "4u7u7",
+            "text": "Why it matters: The agents use 35.5% to 54.7% fewer tokens, run 1.8x to 2.6x faster, and cost 2.7x to 3.7x less. Researchers have mostly studied latent reasoning without tools, and this work shows how to combine its efficiency with standard tool use.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 7,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 8,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "ds30o",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "9mpkg",
+            "text": "4. Harness^2",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 9,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "edacd",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "csooc",
+            "text": "Recursive self-improvement of agent harnesses usually depends on a verifier, and open-world tasks are new at test time, so no ground-truth checker exists. Researchers from Google Cloud AI Research and Northwestern University introduce Harness^2, a plug-and-play framework that improves the harness at test time through two connected levels of recursion.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 21,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "6l11s",
+            "text": "Task-level recursion: A contrastive Propose-Probe-Compose step proposes several edits to the harness for the current task, tests them against each other, and keeps the combination that works best. This guides edits reliably without a ground-truth verifier.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 27,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "dcrlp",
+            "text": "Harnessing-level recursion: Lessons from those edits update a second, continual improvement harness that the agent carries to future tasks, so improvements carry over instead of staying task-specific.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 8,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "du8ki",
+            "text": "Results: A single step improves GLM-5 and Gemini 3.5 Flash over their base harnesses in every configuration tested, with gains of up to 11.5 points on WorkBuddy-Bench, 4.5 points on JobBench, and 11.8 points on LAB. Running five candidate edits in parallel adds another 2.9 to 3.9 points on WorkBuddy-Bench.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "vrvu",
+            "text": "Why it matters: ReasoningBank, a memory baseline, fell up to 6.6 points below the base harness on coding tasks in the same comparison. For teams evolving their own harnesses, the paper shows that test-time harness edits can scale with more recursion budget even when no verifier is available.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 10,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 11,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "9bnsr",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "bvsp5",
+            "text": "5. Scaling Discovery Requires Forgetting",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 12,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "4qll6",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "26itk",
+            "text": "Automated research with coding agents can now run for days on a single problem, yet the search often stops improving early. Researchers from UC Berkeley, Stanford, and Bespoke Labs show that the fix is to make the agents forget.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 12,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "ecqc",
+            "text": "The plateau: Letting one agent iterate longer, running agents in parallel, and letting parallel agents share candidates all plateau as history accumulates. Each agent anchors on its own past attempts and makes fewer, smaller edits, so extra budget yields little improvement.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 11,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "5d7j3",
+            "text": "Forgetting: The method periodically discards every agent’s session and the candidate history, then restarts the team from the best candidate found so far. The authors implement this in a team of communicating agents.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 8,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "e0c6k",
+            "text": "Results: Across four tasks in heuristic programming, kernel optimization, and model training, forgetting gives up to 15% over parallel agents and up to 39% over a single agent with the same budget. On Anthropic’s VLIW kernel take-home, the team with forgetting reaches 1,077 cycles, against 1,172 for four parallel agents and 1,262 for one agent.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "4qp12",
+            "text": "Why it matters: Most research-agent designs try to keep as much history as possible. This paper suggests that, for open-ended discovery, what an agent can remember matters as much as how much compute it gets.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 13,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 14,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "fbroh",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "7lgp8",
+            "text": "6. ReHarness",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 15,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "ambt8",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "7iobu",
+            "text": "Agent memory harnesses usually only write forward, so a lesson goes into the bank and is never checked against whether it helped. Researchers at MIT, Meta, and Yale propose ReHarness, a recurrent harness for agentic continual learning that adds backward revision to the usual forward read-and-write.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 18,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "6qu2r",
+            "text": "Backward revision: After each task, ReHarness uses the finished trajectory as feedback on the specific reflections it retrieved and rewrites them. Feedback flows backward through the textual harness state, much like a recurrent update.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 16,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "3uu5t",
+            "text": "Strictly online: The method runs under a streaming protocol with no replay buffer or validation set. Add and delete operations alone keep a reflection bank tidy but ignore downstream outcomes, while ReHarness corrects lessons based on how they performed.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 8,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "a5e2p",
+            "text": "Results: Across three continual-learning benchmarks with 16 tasks and three backbones, ReHarness beats raw-context, memory, reflection, and prompt-optimization baselines. The gains stay significant after multiple-comparison correction.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "60qh7",
+            "text": "Why it matters: Agents running over long interaction streams face distribution shifts, and stored lessons can become overgeneralized or outdated. The analysis shows that ReHarness produces source-grounded revisions that fix such lessons and improve both stability and plasticity.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 16,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 17,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "3402m",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "2q1mb",
+            "text": "7. The Agentic Scientist",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 18,
+                "length": 1,
+                "offset": 0
+              }
+            ],
+            "inlineStyleRanges": [],
+            "key": "d1k6j",
+            "text": " ",
+            "type": "atomic"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "di7l4",
+            "text": "Fully autonomous research agents tend to have a narrow range of ideas and hill-climb myopically. Researchers from Sakana AI introduce The Agentic Scientist, an end-to-end distributed pipeline that lets human researchers run computational research alongside modern coding agents.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 16,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "97m45",
+            "text": "Staged pipeline: The system splits a project into task drafting, ideation, planning, sandboxed experiments, baselines and ablations, analysis, and report writing. Each stage runs on a coding agent that verifies its own work.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 16,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "9vnu0",
+            "text": "Meta-controller: A controller manages many research agents in parallel and checks every stage against a rubric. The same orchestration layer can be reused across domains with different execution environments, coding harnesses, and evaluation metrics.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "ff61h",
+            "text": "Accepted paper: As a co-scientist, a development version of the system helped write a paper accepted at ALIFE 2026 as a main-conference talk, after human verification and edits. The system can also run fully autonomously, and the authors apply it to open machine learning problems across several domains of computational research.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [
+              {
+                "length": 15,
+                "offset": 0,
+                "style": "Bold"
+              }
+            ],
+            "key": "6b6qs",
+            "text": "Why it matters: The ablations show that reliable scientific autonomy depends on both the cross-agent orchestration layer and the base model. It is a useful reference for anyone building multi-agent systems around coding agents.",
+            "type": "unordered-list-item"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 19,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 20,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "6fd5r",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "69amr",
+            "text": "8. GitSwarm",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "7vtdb",
+            "text": "Researchers at Meta Superintelligence Labs and colleagues built GitSwarm, where hundreds of asynchronous agents share one Git repository, and each contribution is a commit that records which earlier commits, on any branch, it builds on, with no central planner assigning work. With GPT-5.5 Codex workers, it solves all 30 IMOProofBench-Advanced problems in one run and scores 79.4% on ProgramBench, up from 73.1% at 100 workers to 79.4% at 500, compared with 65.1% for a single Codex agent at a similar budget. Later workers build on 94.7% of published contributions, and later accepted work cites 70.1% of failed research commits.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 21,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 22,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "3jpg0",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "a5dun",
+            "text": "9. LoGRA",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "bkmt",
+            "text": "NVIDIA researchers present LoGRA, an RL post-training method that updates all of a model’s weights while using less memory than LoRA by compressing each weight gradient into a low-rank sketch redrawn every step and adding predicted-KL step control to keep updates within budget. At 1.5B, it averages 7.2 GiB of training memory versus 13.2 GiB for rank-256 LoRA with similar Pass@4, and at 7B it cuts average training memory per GPU by 45.7% while keeping peak accuracy close to dense Adam. It also trains a 27B model for more than 1,100 steps on a single eight-GPU node, where dense Adam runs out of memory.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 23,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 24,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "77s6l",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "cmaf7",
+            "text": "10. AutoEnvScaling",
+            "type": "header-two"
+          },
+          {
+            "data": {},
+            "entityRanges": [],
+            "inlineStyleRanges": [],
+            "key": "d8s0i",
+            "text": "Researchers from Microsoft and collaborators hand RL environment design to a proposer agent that works in a terminal, studies the rollouts of the model being trained, and builds new environments from them, with each round of rollouts guiding the next. Building environments in a terminal increases the share of valid environments by up to 25x over prompt-only generation, at up to 75% lower cost per valid environment. With Qwen3.6-35B-A3B acting as both proposer and solver, Terminal-Bench 2.1 rises from 41.1 to 53.3, and the pipeline also generates environments for software engineering, computer use, and GPU kernel work.",
+            "type": "unstyled"
+          },
+          {
+            "data": {},
+            "entityRanges": [
+              {
+                "key": 25,
+                "length": 5,
+                "offset": 0
+              },
+              {
+                "key": 26,
+                "length": 5,
+                "offset": 8
+              }
+            ],
+            "inlineStyleRanges": [
+              {
+                "length": 5,
+                "offset": 0,
+                "style": "Bold"
+              },
+              {
+                "length": 5,
+                "offset": 8,
+                "style": "Bold"
+              }
+            ],
+            "key": "8ekgm",
+            "text": "Paper | Tweet",
+            "type": "unstyled"
+          }
+        ],
+        "entityMap": [
+          {
+            "key": "12",
+            "value": {
+              "data": {
+                "entityKey": "eb9fa92a-92b3-41fc-b9e8-2b337193c254",
+                "mediaItems": [
+                  {
+                    "localMediaId": "12",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862329662902272"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "8",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2110488828062675096"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "19",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/the-agentic-scientist-orchestrating-coding-agents-for-automated-scientific-co-di-2610.18933"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "23",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/logra-scaling-llm-reinforcement-learning-with-low-rank-gradient-sketches-2610.06647"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "4",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/longharness-advancing-agentic-reasoning-over-100m-token-corpora-via-stateful-evi-2610.13075"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "15",
+            "value": {
+              "data": {
+                "entityKey": "169328c8-177a-4947-bef6-b0e5c9adccc0",
+                "mediaItems": [
+                  {
+                    "localMediaId": "14",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862355676028928"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "11",
+            "value": {
+              "data": {
+                "url": "https://x.com/dair_ai/status/2110755132548038788"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "9",
+            "value": {
+              "data": {
+                "entityKey": "1584ef4e-3a4e-4172-9681-fe45172e8cdc",
+                "mediaItems": [
+                  {
+                    "localMediaId": "10",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862302584565760"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "22",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2109287161199812802"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "26",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2110467939057168849"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "13",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/scaling-discovery-requires-forgetting-2610.20563"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "24",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2109771098120450299"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "16",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/recurrent-harness-for-agentic-continual-learning-2610.12668"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "5",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2110083302728323346"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "10",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/harness-2-recursive-agent-harnessing-for-an-open-world-2610.14224"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "21",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/gitswarm-decentralized-compounding-inference-2610.04862"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "6",
+            "value": {
+              "data": {
+                "entityKey": "9879e34f-ffdb-4649-ae51-215fb7bf5e31",
+                "mediaItems": [
+                  {
+                    "localMediaId": "8",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862274709151744"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "1",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/discovering-state-of-the-art-quantum-circuits-with-large-language-models-2610.22367"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "17",
+            "value": {
+              "data": {
+                "url": "https://x.com/dair_ai/status/2110017231778373722"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "25",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/autoenvscaling-automating-the-data-flywheel-with-terminal-agents-2610.14163"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "14",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2110911109964386460"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "0",
+            "value": {
+              "data": {
+                "entityKey": "c9d60897-9b1d-4c79-aa92-4817e9d4c092",
+                "mediaItems": [
+                  {
+                    "localMediaId": "4",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862146514481152"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "20",
+            "value": {
+              "data": {
+                "url": "https://x.com/omarsar0/status/2110733945323368822"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "2",
+            "value": {
+              "data": {
+                "url": "https://x.com/dair_ai/status/2111155277886316847"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "18",
+            "value": {
+              "data": {
+                "entityKey": "e27e4ed0-090a-4fb2-a296-adb325d41129",
+                "mediaItems": [
+                  {
+                    "localMediaId": "16",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862384100884480"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          },
+          {
+            "key": "7",
+            "value": {
+              "data": {
+                "url": "https://academy.dair.ai/papers/hybrid-reasoning-agents-2610.18861"
+              },
+              "mutability": "Mutable",
+              "type": "LINK"
+            }
+          },
+          {
+            "key": "3",
+            "value": {
+              "data": {
+                "entityKey": "63b1332d-584f-484d-93b7-ea40d504f1d4",
+                "mediaItems": [
+                  {
+                    "localMediaId": "6",
+                    "mediaCategory": "DraftTweetImage",
+                    "mediaId": "2111862234804576256"
+                  }
+                ]
+              },
+              "mutability": "Immutable",
+              "type": "MEDIA"
+            }
+          }
+        ]
+      },
+      "media_entities": [
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7Xn5SW4AAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862355676028928",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 95.25,
+                  "rgb": {
+                    "blue": 238,
+                    "green": 238,
+                    "red": 238
+                  }
+                },
+                {
+                  "percentage": 3.35,
+                  "rgb": {
+                    "blue": 194,
+                    "green": 198,
+                    "red": 231
+                  }
+                },
+                {
+                  "percentage": 1.29,
+                  "rgb": {
+                    "blue": 222,
+                    "green": 201,
+                    "red": 148
+                  }
+                },
+                {
+                  "percentage": 0.11,
+                  "rgb": {
+                    "blue": 145,
+                    "green": 145,
+                    "red": 145
+                  }
+                }
+              ]
+            },
+            "original_img_height": 721,
+            "original_img_url": "https://pbs.twimg.com/media/HU7Xn5SW4AA3tCV.jpg",
+            "original_img_width": 1456
+          },
+          "media_key": "3_2111862355676028928"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7XpjLXwAAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862384100884480",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 79.64,
+                  "rgb": {
+                    "blue": 228,
+                    "green": 229,
+                    "red": 239
+                  }
+                },
+                {
+                  "percentage": 16.08,
+                  "rgb": {
+                    "blue": 140,
+                    "green": 138,
+                    "red": 209
+                  }
+                },
+                {
+                  "percentage": 4.37,
+                  "rgb": {
+                    "blue": 129,
+                    "green": 129,
+                    "red": 134
+                  }
+                }
+              ]
+            },
+            "original_img_height": 390,
+            "original_img_url": "https://pbs.twimg.com/media/HU7XpjLXwAAGBy1.jpg",
+            "original_img_width": 964
+          },
+          "media_key": "3_2111862384100884480"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7Xg3AW4AAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862234804576256",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 93.46,
+                  "rgb": {
+                    "blue": 244,
+                    "green": 245,
+                    "red": 246
+                  }
+                },
+                {
+                  "percentage": 3.43,
+                  "rgb": {
+                    "blue": 225,
+                    "green": 199,
+                    "red": 208
+                  }
+                },
+                {
+                  "percentage": 1.73,
+                  "rgb": {
+                    "blue": 216,
+                    "green": 202,
+                    "red": 228
+                  }
+                },
+                {
+                  "percentage": 0.65,
+                  "rgb": {
+                    "blue": 161,
+                    "green": 160,
+                    "red": 99
+                  }
+                },
+                {
+                  "percentage": 0.46,
+                  "rgb": {
+                    "blue": 161,
+                    "green": 202,
+                    "red": 216
+                  }
+                }
+              ]
+            },
+            "original_img_height": 295,
+            "original_img_url": "https://pbs.twimg.com/media/HU7Xg3AW4AAPVxQ.png",
+            "original_img_width": 823
+          },
+          "media_key": "3_2111862234804576256"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7XjLqWYAAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862274709151744",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 95.68,
+                  "rgb": {
+                    "blue": 253,
+                    "green": 253,
+                    "red": 253
+                  }
+                },
+                {
+                  "percentage": 2.47,
+                  "rgb": {
+                    "blue": 160,
+                    "green": 172,
+                    "red": 211
+                  }
+                },
+                {
+                  "percentage": 1.71,
+                  "rgb": {
+                    "blue": 136,
+                    "green": 136,
+                    "red": 136
+                  }
+                }
+              ]
+            },
+            "original_img_height": 773,
+            "original_img_url": "https://pbs.twimg.com/media/HU7XjLqWYAAM6Us.jpg",
+            "original_img_width": 1456
+          },
+          "media_key": "3_2111862274709151744"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7XbuGW8AAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862146514481152",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 99.86,
+                  "rgb": {
+                    "blue": 253,
+                    "green": 253,
+                    "red": 253
+                  }
+                },
+                {
+                  "percentage": 0.11,
+                  "rgb": {
+                    "blue": 131,
+                    "green": 133,
+                    "red": 134
+                  }
+                }
+              ]
+            },
+            "original_img_height": 1496,
+            "original_img_url": "https://pbs.twimg.com/media/HU7XbuGW8AAsI_H.jpg",
+            "original_img_width": 2150
+          },
+          "media_key": "3_2111862146514481152"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7XmYYWEAAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862329662902272",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 77.31,
+                  "rgb": {
+                    "blue": 255,
+                    "green": 255,
+                    "red": 255
+                  }
+                },
+                {
+                  "percentage": 18.05,
+                  "rgb": {
+                    "blue": 127,
+                    "green": 210,
+                    "red": 243
+                  }
+                },
+                {
+                  "percentage": 3.81,
+                  "rgb": {
+                    "blue": 197,
+                    "green": 233,
+                    "red": 247
+                  }
+                },
+                {
+                  "percentage": 1.47,
+                  "rgb": {
+                    "blue": 233,
+                    "green": 215,
+                    "red": 201
+                  }
+                },
+                {
+                  "percentage": 0.67,
+                  "rgb": {
+                    "blue": 143,
+                    "green": 195,
+                    "red": 209
+                  }
+                }
+              ]
+            },
+            "original_img_height": 777,
+            "original_img_url": "https://pbs.twimg.com/media/HU7XmYYWEAAQ01E.jpg",
+            "original_img_width": 1456
+          },
+          "media_key": "3_2111862329662902272"
+        },
+        {
+          "id": "QXBpTWVkaWE6DAAFCgABHU7XkzgXcAAKAAIMVorZbZVgAQAA",
+          "media_id": "2111862302584565760",
+          "media_info": {
+            "__typename": "ApiImage",
+            "color_info": {
+              "palette": [
+                {
+                  "percentage": 92.8,
+                  "rgb": {
+                    "blue": 252,
+                    "green": 245,
+                    "red": 244
+                  }
+                },
+                {
+                  "percentage": 3.49,
+                  "rgb": {
+                    "blue": 198,
+                    "green": 233,
+                    "red": 240
+                  }
+                },
+                {
+                  "percentage": 2.1,
+                  "rgb": {
+                    "blue": 209,
+                    "green": 230,
+                    "red": 209
+                  }
+                },
+                {
+                  "percentage": 0.91,
+                  "rgb": {
+                    "blue": 215,
+                    "green": 186,
+                    "red": 148
+                  }
+                },
+                {
+                  "percentage": 0.25,
+                  "rgb": {
+                    "blue": 118,
+                    "green": 131,
+                    "red": 146
+                  }
+                }
+              ]
+            },
+            "original_img_height": 327,
+            "original_img_url": "https://pbs.twimg.com/media/HU7XkzgXcAAG1Av.jpg",
+            "original_img_width": 1014
+          },
+          "media_key": "3_2111862302584565760"
+        }
+      ]
+    },
+    "twitter_card": "tweet",
+    "color": null,
+    "provider": "twitter",
+    "reposted_by": null
+  }
+}

@@ -2,7 +2,7 @@
 
 An agent that remembers everything is almost as broken as one that remembers nothing. Raw experience accumulates fast — conversation logs, tool outputs, web content, error traces, user preferences. Without consolidation, the memory store becomes a swamp: too large to search efficiently, too noisy to retrieve accurately, too expensive to inject into context.
 
-Memory consolidation is the process of transforming raw experience into durable, useful knowledge. In cognitive science, it's what happens when you sleep: the brain replays the day's events, strengthens important connections, prunes irrelevant detail, and integrates new information with existing knowledge. For agents, the parallel is direct — and largely underexplored.
+Memory consolidation is the process of transforming raw experience into durable, useful knowledge. In cognitive science, it's what happens when you sleep: the brain replays the day's events, strengthens important connections, prunes irrelevant detail, and integrates new information with existing knowledge. For agents, consolidation can happen between sessions or after feedback during a task stream. The useful engineering distinction is between the source archive, revisable interpretations and the context currently visible to the model. These layers need different update rules.
 
 ## The Consolidation Pipeline
 
@@ -28,6 +28,8 @@ Once extracted, memories need to be organized for efficient access. The structur
 
 **Graph stores** capture relationships between memories. A-MEM's zettelkasten approach ([Xu et al., 2025](https://arxiv.org/abs/2502.12110)) builds a linked note graph where the agent can revise connections over time. All-Mem ([Lv et al., 2026](https://arxiv.org/abs/2501.04770)) goes further with topology-structured memory that evolves through split, merge, and update operators.
 
+**Evidence versus conclusions.** LongHarness ([Huang et al., 2026](https://arxiv.org/abs/2610.13075)) makes this distinction operational within a task: a source-linked evidence bank sits beside conclusions, hypotheses and unresolved gaps. Gaps guide reads; revised or retracted evidence should change dependent conclusions. Its append-only-evidence ablation drops OfficeQA V2 exact match from 61.1% to 51.1% with GLM-5.3-Flash. But locator/ID checks do not establish semantic support, and dependent conclusions still need agent repair. Crucially, the harness also replays the entire interaction history. It demonstrates structured state management, not a solution to unbounded context growth.
+
 See the [`notes/memory/`](../notes/memory/) architecture notes for a deeper treatment.
 
 ### Stage 3: Consolidation — How Memory Evolves
@@ -38,7 +40,11 @@ This is where the interesting work happens. Consolidation includes:
 
 **Conflict resolution.** When new information contradicts existing memory, the system must decide which to keep. HiMem's reconsolidation explicitly detects these conflicts during the update cycle. Simpler systems just overwrite, which can lose important nuance.
 
+**Feedback-driven revision.** A lesson can remain factually sourced yet overstate what its source proves. ReHarness ([Xiao et al., 2026](https://arxiv.org/abs/2610.12668)) revisits reflections retrieved for a completed task, using new feedback to narrow their applicability while grounding each revision in its original trajectory. A failed calculation with one database column does not prove an untested alternative column/scaling is correct. The later episode can reveal that mistake without being inserted retroactively into the old source. New multi-episode synthesis should instead cite all contributing episodes. Removing backward revision lowers Claude CL-Bench normalized gain from 0.217 to 0.144. Source grounding remains fallible: the model-judged audit finds 0.8–2.1% later-trajectory leakage, depending on backbone.
+
 **Pruning.** Stale memories need to be identified and removed. MemoryBank ([Zhong et al., 2023](https://arxiv.org/abs/2305.10250)) draws on Ebbinghaus forgetting curves: memories that aren't accessed fade over time, while reinforced memories persist. AMV-L ([Bamidele, 2026](https://arxiv.org/abs/2603.04443)) adds utility-scored lifecycle management with explicit promotion, demotion, and eviction — treating memory management as a systems problem with latency constraints.
+
+**Visible-state reset.** Removing material from the working context need not delete its archive. In Scaling Discovery Requires Forgetting ([Tan et al., 2026](https://arxiv.org/abs/2610.20563)), program-search agents restart from the best evaluated candidate, its score and task instructions; prior session/workspace history stays outside their view but remains archived by the harness. In an AHC014 matched-prefix test, single-agent score gains after 30 further proposals average 4.5% with reset versus 1.6% with continuation, at lower model spend. The headline four-task comparison also adds team communication, so it does not isolate resetting alone. This supports a restart option for scored search, not erasing personal-agent continuity: a best program can preserve progress that conversations and unresolved evidence cannot encode in one artifact.
 
 **Synthesis.** The most valuable form of consolidation: combining multiple experiences into new understanding that wasn't in any single source. "The last three deployments all failed due to environment configuration" is a synthesis that helps more than any individual failure record.
 
@@ -80,13 +86,13 @@ SmolPaws has been running with persistent memory since early 2026. The consolida
 **What the papers don't cover well:**
 - **Identity preservation.** Aggressive pruning can accidentally remove personality traits, relationship context, and learned preferences that define the agent's continuity. Our consolidation rules include an explicit "never erase identity" constraint — the cat's character is not compressible.
 - **The index-vs-copy tradeoff.** Should durable memory contain full facts or pointers to where facts can be found? We settled on a hybrid: stable facts in-context, volatile facts as pointers to daily memory files. This keeps the durable memory file small while preserving retrievability.
-- **The ratchet problem.** Memory files are loaded at the start of every conversation. As durable memory grows, *every* conversation gets slower and more expensive. There's strong pressure to keep it tight — but too-aggressive pruning loses critical context. No paper in the corpus addresses this tension directly.
+- **The ratchet problem.** Memory files are loaded at the start of every conversation. As durable memory grows, *every* conversation gets slower and more expensive. There's strong pressure to keep it tight — but too-aggressive pruning loses critical context. LongHarness improves evidence-state discipline but still carries full history; ReHarness reduces replayed input while adding revision output. Neither establishes a universal low-cost solution for always-loaded personal memory.
 
 ## Online vs. Offline Consolidation
 
 A key architectural decision: when does consolidation happen?
 
-**Online (during conversation):** Every memory write triggers immediate consolidation. This keeps memory always-current but adds latency to every interaction. Most RAG-adjacent systems work this way by necessity.
+**Online (during a stream):** New feedback can trigger immediate repair of relevant lessons. ReHarness updates only reflections retrieved for the completed instance, then writes a new one. This avoids waiting for an offline sweep, but adds revision calls. On one Claude CL-Bench rollout it uses 41.57M total tokens versus Top-K raw context's 52.66M, yet costs $254 versus $85 because of expensive output and cache economics. Compare quality, latency and actual priced usage; token reduction alone is insufficient.
 
 **Offline (between sessions):** Consolidation happens in batch during idle periods. This is cheaper, allows more sophisticated processing, and doesn't slow down the user experience. But memory can be stale between consolidation runs. All-Mem's split of online retrieval vs. offline editing is the clearest formulation of this tradeoff.
 
@@ -123,6 +129,9 @@ This isn't guaranteed defense, but it's a layer that comes nearly for free if yo
 | [Auto-Dreamer](https://arxiv.org/abs/2605.20616) | 2026 | Learned offline consolidation policy |
 | [RecMem](https://arxiv.org/abs/2605.16045) | 2026 | Recurrence-based iterative consolidation |
 | [Beyond Atomic Facts](https://arxiv.org/abs/2605.19952) | 2026 | Richer memory units outperform flat facts |
+| [LongHarness](https://arxiv.org/abs/2610.13075) | 2026 | Separate source-linked evidence from evolving conclusions; retain full history |
+| [ReHarness](https://arxiv.org/abs/2610.12668) | 2026 | Feedback revises retrieved lessons against their original trajectories |
+| [Scaling Discovery Requires Forgetting](https://arxiv.org/abs/2610.20563) | 2026 | Hide search history during restarts while preserving best artifact and archive |
 
 ---
 

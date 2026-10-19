@@ -34,6 +34,12 @@ The harness grew in stages, each "giving the loop something new it is allowed to
 | [harness-learning-generalizable-test-time-adaptation](harness-learning-generalizable-test-time-adaptation.md) | RL-trained harness editor transfers to unseen tasks; frozen test-time weights, sequential feedback and strong fixed-baseline caveats | learned adaptation |
 | [empirical-study-harness-design-coding-agents](empirical-study-harness-design-coding-agents.md) | 176 matched settings: context elision→summary, persistent planning and workspace interfaces; effects depend on model, workload and context budget | component measurement |
 
+### Stateful evidence and controlled restarts
+
+- [LongHarness](longharness-stateful-evidence-management.md) — evidence ledger + separate conclusions/gaps, explicit revision/retraction; full history still replayed, not bounded-context memory.
+- [Scaling Discovery Requires Forgetting](scaling-discovery-requires-forgetting.md) — restart scored program search from the best artifact; hide session/candidate history but retain the archive; matched-prefix reset test and joint communication/reset caveat.
+- Related memory mechanism: [ReHarness](../memory/reharness-recurrent-agentic-continual-learning.md) — revise retrieved lessons against their original evidence after later feedback; fewer tokens can still cost more.
+
 Measurement backbone lives in misc: [Measuring AI Ability to Complete Long Software Tasks](../misc/measuring-ai-ability-to-complete-long-software-tasks.md) (METR time-horizon).
 
 ## Related elsewhere
