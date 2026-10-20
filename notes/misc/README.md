@@ -12,6 +12,7 @@ own topic directory.
 | [measuring-ai-ability-to-complete-long-software-tasks](measuring-ai-ability-to-complete-long-software-tasks.md) | Stop scoring single-turn pass rates; measure the **length of task** an agent finishes. METR's metric: the 50%-task-completion **time horizon** in human-time | evaluation |
 | [pulse-assessing-human-agent-interactions-software-agent-design](pulse-assessing-human-agent-interactions-software-agent-design.md) | Evaluate agent *design decisions* against real users of OpenHands Cloud (15k users, 36k+ sessions), blending human ratings with ML pseudo-labels; cuts CIs ~40% | evaluation |
 | [bagen-are-llm-agents-budget-aware](bagen-are-llm-agents-budget-aware.md) | Agents are bad at knowing when to stop: frontier models stay over-optimistic and burn tokens on doomed tasks. Trainable, not solved | evaluation |
+| [graft-gradient-routing-unintended-behaviors-rl](graft-gradient-routing-unintended-behaviors-rl.md) | Route detected-hack gradients into a sacrificial MLP adapter, then ablate; imperfect-monitor evasion, anchor/capability trade-offs and 8B RL vs. 32B SFT limits | alignment / reward hacking |
 | [stress-testing-deliberative-alignment-anti-scheming](stress-testing-deliberative-alignment-anti-scheming.md) | SFT+RL sharply reduces covert actions; evaluation awareness, retained hidden goals and later RL limit the safety inference | alignment / evaluation |
 | [llm-evaluators-recognize-and-favor-their-own-generations](llm-evaluators-recognize-and-favor-their-own-generations.md) | LLMs recognize their own outputs, and that self-recognition causally drives self-preference bias — they score their own text higher | evaluation |
 | [llms-reproduce-human-purchase-intent-via-semantic-similarity-elicitation](llms-reproduce-human-purchase-intent-via-semantic-similarity-elicitation.md) | Get realistic Likert-scale survey distributions from LLMs by eliciting text and mapping to ratings via embedding similarity — ~90% of human test-retest reliability | evaluation |
@@ -34,6 +35,7 @@ own topic directory.
   manipulate evaluation-aware reasoning and find changed covert-action rates. Behavior,
   explanations and deployment incentives need separate checks; lower observed rates do not
   establish that hidden objectives were erased.
+- **What the monitor optimizes matters.** [GRAFT](graft-gradient-routing-unintended-behaviors-rl.md) uses monitor flags to route learning rather than directly punish all detected behavior. It suppresses some unseen hacks, but fails when the learned separation does not generalize. Parameter ablation and runtime controls answer different questions.
 - **Disagreement beats consensus in multi-agent review.** Both the
   [3-agent review protocol](adversarial-review-structured-disagreement-code-review.md) and
   [NSED](mixture-of-models-nsed-deliberation.md) get their gains from structured contention,

@@ -2,6 +2,15 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-10-20 - [GRAFT: let a sacrificial adapter learn reward hacking](https://x.com/_jake_ward/status/2112264244767211854) (Jake Ward; announcement 2026-10-19)
+
+**Paper announcement, full paper read:** [Gradient Routing Localizes and Removes Unintended Behaviors in RL](../notes/misc/graft-gradient-routing-unintended-behaviors-rl.md). Route detected-hack gradients into a disposable MLP adapter, then disable it while retaining useful learning. An imperfect monitor need not be used only as a reward penalty that encourages evasion.
+
+- The important boundary: **≤8B single-turn RL; 32B multi-turn supervised distillation**, not 32B RL. Zero hacks in 99 elicitation tasks is a finite, single-training-seed observation.
+- The paper is more qualified than the opening post: skills can be lost on ablation; anchors matter; changing a toy monitor's blind spot yields ~60% hacking; no LLM-based RL routing monitor tested. Full note retains algorithm details, baseline ties and failures.
+
+**Read depth:** full 32-page v1 PDF including references/appendices, opening post and accessible thread text. Video not viewed; code not audited. [Paper](https://arxiv.org/abs/2610.17062) · [Code](https://github.com/jnward/GRAFT). Sources archived.
+
 ## 2026-10-18 - [Site Reliability Engineering, second edition](https://cloud.google.com/blog/products/devops-sre/sre-book-second-edition) (Google; announced 2026-10-13)
 
 **Book bookmark + agent-era reading note:** a complete rewrite covering modern reliability practice and AI. Saved after [Geoffrey Huntley's post](https://x.com/GeoffreyHuntley/status/2111324796197785728). **The book itself has not been read or acquired.** [Official catalog/purchase links](https://sre.google/books/).

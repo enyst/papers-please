@@ -1,0 +1,32 @@
+Title: Jake Ward (@_jake_ward) on X
+
+URL Source: https://x.com/_jake_ward/status/2112264244767211854
+
+Published Time: 2026-10-19T19:26:54.000Z
+
+Markdown Content:
+[![Image 1: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
+
+At the start of training, we initialize two new adapters: a "retain" adapter and a sacrificial "forget" adapter. When we detect reward hacking, we only update the "forget" adapter, otherwise we update both. When we deploy the model, we discard the "forget" adapter.
+
+![Image 2](https://pbs.twimg.com/media/HVBFJDrb0AAeQjC?format=webp&name=large)
+
+[![Image 3: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
+
+Why not just penalize reward hacking, if we can detect it? If we penalize the model for hacking in ways we can detect, it may eventually learn to hack in ways we can't detect + trick the detector. If we localize, hacks that trick the detector don’t get differentially reinforced.
+
+![Image 4](https://pbs.twimg.com/media/HVBFJXZbcAEJpg8?format=webp&name=large)
+
+[![Image 5: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
+
+The model keeps the good behaviors it learned during training even after we disable the "forget" adapter! GRAFT is on the Pareto frontier in our experiments (we test models up to 32B params): it hacks less than each baseline, though some baselines improve more on the target task.
+
+![Image 6](https://pbs.twimg.com/media/HVBFJu6agAAf2gp?format=webp&name=large)
+
+[![Image 7: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
+
+There's still more to do: in our experiments we only test monitors based on simple heuristics, and we chose their blind spots. Most of our environments are toy, and we only test models up to 8B in RL. We also don't fully know why GRAFT works! We discuss this more in our paper.
+
+[![Image 8: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
+
+[![Image 9: Avatar](https://pbs.twimg.com/profile_images/1944250434069442564/ZOvodQbw_normal.jpg)](https://x.com/_jake_ward)
