@@ -1,0 +1,52 @@
+When to use a decision model instead of an LLM | Dr. Randal S. Olson
+[LINK #main] Skip to content
+[LINK /] Dr. Randal S. Olson
+[LINK /] Home [LINK /#about] About [LINK /blog/] Blog [LINK /store/] Store [LINK /resume/] Resume [LINK /work-with-me/] Work with me [LINK /#contact] Contact
+When to use a decision model instead of an LLM
+October 15, 2026•6 min read
+Share [LINK https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.randalolson.com%2F2026%2F10%2F14%2Fwhen-to-use-a-decision-model-instead-of-an-llm%2F]  [LINK https://x.com/intent/tweet?url=https%3A%2F%2Fwww.randalolson.com%2F2026%2F10%2F14%2Fwhen-to-use-a-decision-model-instead-of-an-llm%2F&text=When%20to%20use%20a%20decision%20model%20instead%20of%20an%20LLM]
+Decision models are pitched as a faster and cheaper way to make the structured choices we usually hand to an LLM. I've had a hunch they're cheap because they're worse, and that an LLM with structured outputs would beat them. This week Artificial Analysis launched the  [LINK https://artificialanalysis.ai/articles/artificial-analysis-decision-index] Decision Index, which puts both kinds of model through the same tests. So I dug into the data.
+My hunch turned out to be half right, and the half I got wrong tells you when to use a decision model.
+What decision models are
+Decision models are a new class of model built only to pick answers from fixed lists. You give one a question and a list of possible answers, and it returns a probability for every answer. An LLM can answer the same question with structured outputs, which is how Artificial Analysis ran the LLMs in this benchmark.
+The benchmark covers 11 decision models and 15 LLM configurations on 4 tasks. Knowledge questions and hard reasoning test what a model knows and how well it thinks, while safety classification and tool-call routing test the kind of fixed-choice decisions these models are built for.
+The overall score hides the answer
+The index blends all 4 tasks into 1 score, and on that score most LLMs rank above every decision model. Taken alone, it backs up my hunch that decision models are just worse LLMs.
+The picture changes when you split the index by task.
+LLMs win knowledge and reasoning by a wide margin, and those 2 tasks account for nearly all of the gap in the blended score. That's the half of my hunch that held up.
+The other half didn't. On safety classification and tool-call routing, the 2 groups are about even. The best decision model beats every LLM tested at safety classification, and on tool-call routing, only Claude Opus 5.5 does better than the best decision models but at 50 or more times the cost per task.
+Where they tie, decision models are much faster
+Every decision model answers faster than every LLM on the 2 tasks where scores are even.
+A typical decision model answers in about 0.2 seconds, while a typical LLM takes more than 1 second. Decision models are usually cheaper, too, though the cost ranges overlap more than the speed ranges do.
+For a router in front of an agent or a moderation check on every message, that speed gap matters more than a small difference in accuracy.
+Same model, different format
+OpenAI's entries offer the cleanest comparison in the data because they hold the model fixed. GPT-6 Luna appears both as a decision model and as an LLM at 5 effort settings. The decision version scores about the same as the LLM version with reasoning off, and it answers several times faster. Turning on reasoning is what pulls the LLM version ahead.
+So the decision format by itself costs little accuracy. What you give up is the accuracy that reasoning buys.
+How I'd choose
+Use a decision model for routing, triage, moderation, intent detection, and tool-or-no-tool calls, especially when the input holds everything you need to decide and latency or volume matters.
+Use an LLM when the right answer depends on facts the input doesn't contain or on multi-step reasoning.
+Check the probabilities before you trust them. Artificial Analysis found decision models overconfident on the knowledge and reasoning tasks but better calibrated on tool calling and classification, which matches where they score well. Their probabilities are most useful for setting escalation thresholds on the tasks they're built for.
+For a worked example, Hamel Husain and Antaripa Saha's guide to  [LINK https://hamel.dev/blog/posts/decision-model-evals/] using decision models for evals shows how to tune decision thresholds and check probability calibration against labeled traces.
+The best setup for most products is probably both, with a decision model in front handling the bulk of fixed-choice calls and an LLM behind it taking the requests that need knowledge or reasoning.
+How I made these charts
+The headline comparison in Artificial Analysis's launch article is a bar chart of the blended index for 9 decision models and 2 LLMs, with bars colored by company. I rebuilt it from the leaderboard data with  [LINK https://github.com/rhiever/evident-charts] evident-charts, my open source skill that helps coding agents make clear and honest charts, and used it for every chart in this post. The rebuild splits the index into its tasks, shows every entry on the leaderboard, and uses color to separate decision models from LLMs, which is the comparison that matters here.
+All numbers come from the  [LINK https://artificialanalysis.ai/evaluations/artificial-analysis-decision-index] Artificial Analysis Decision Index leaderboard as of October 14, 2026.
+Tags
+AIbenchmarksdata visualization
+Share [LINK https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.randalolson.com%2F2026%2F10%2F14%2Fwhen-to-use-a-decision-model-instead-of-an-llm%2F]  [LINK https://x.com/intent/tweet?url=https%3A%2F%2Fwww.randalolson.com%2F2026%2F10%2F14%2Fwhen-to-use-a-decision-model-instead-of-an-llm%2F&text=When%20to%20use%20a%20decision%20model%20instead%20of%20an%20LLM]
+Dr. Randal S. Olson
+AI Researcher & Builder
+I’ve worked in AI for 15+ years, from academic research to production systems at startups. I’m building things independently for now.
+[LINK /] Learn more about me →
+Related Posts
+[LINK /2026/02/07/the-are-you-sure-problem-why-your-ai-keeps-changing-its-mind/]
+The "Are You Sure?" Problem: Why Your AI Keeps Changing Its MindFebruary 7, 2026 [LINK /2025/11/25/how-to-choose-right-llm-ai-assisted-coding/]
+How to Choose the Right LLM for AI-Assisted CodingNovember 25, 2025 [LINK /2025/11/24/three-phases-ai-assisted-coding/]
+The Three Phases of AI-Assisted CodingNovember 24, 2025
+Dr. Randal S. Olson
+AI researcher and builder. 15+ years building AI. Building things independently for now.
+Site
+[LINK /blog/] Writing [LINK /resume/] Resume [LINK /work-with-me/] Work with me
+Connect
+[LINK mailto:randal.s.olson@gmail.com]  [LINK https://www.linkedin.com/in/randalolson] (opens in new tab) [LINK https://github.com/rhiever] (opens in new tab) [LINK https://x.com/randal_olson] (opens in new tab) [LINK /feed.xml]
+© 2026 Randal S. Olson.

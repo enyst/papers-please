@@ -1,0 +1,23 @@
+Title: DAIR.AI Academy
+
+URL Source: https://academy.dair.ai/dashboard/resources/jev-as-a-judge
+
+Warning: This page contains shadow DOM that are currently hidden, consider enabling shadow DOM processing.
+Warning: This page maybe requiring CAPTCHA, please make sure you are authorized to access this page.
+
+Markdown Content:
+## Sign in to DAIR AI Academy
+
+Welcome back! Please sign in to continue
+
+or
+
+Email address
+
+Password
+
+Don’t have an account?[Sign up](https://academy.dair.ai/sign-up?redirect_url=https%3A%2F%2Facademy.dair.ai%2Fdashboard%2Fresources%2Fjev-as-a-judge)
+
+Secured by
+
+[](https://go.clerk.com/components)

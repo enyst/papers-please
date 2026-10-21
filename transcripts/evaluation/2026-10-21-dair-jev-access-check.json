@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-21T03:14:39.327073+00:00",
+  "checks": [
+    {
+      "url": "https://academy.dair.ai/dashboard/resources/jev-as-a-judge",
+      "status": 404,
+      "body_excerpt": "<!DOCTYPE html><html data-dpl-id=\"dpl_HB3dw1ef45wWb8VZhLKMfDKb27Dy\" lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><lin"
+    },
+    {
+      "url": "https://academy.dair.ai/labs/jev-as-a-judge-for-agent-evals/inspect-an-agent-run",
+      "status": 404,
+      "body_excerpt": "<!DOCTYPE html><html data-dpl-id=\"dpl_HB3dw1ef45wWb8VZhLKMfDKb27Dy\" lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><lin"
+    },
+    {
+      "url": "https://r.jina.ai/https://academy.dair.ai/dashboard/resources/jev-as-a-judge",
+      "status": 200,
+      "bytes": 625,
+      "body_excerpt": "Title: DAIR.AI Academy\n\nURL Source: https://academy.dair.ai/dashboard/resources/jev-as-a-judge\n\nWarning: This page contains shadow DOM that are currently hidden, consider enabling "
+    }
+  ]
+}

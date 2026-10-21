@@ -22,7 +22,7 @@ format and the ingest / query / lint workflows. Maintenance history is in
 | `notes/foundational/` | 5 | Foundational agent & AGI-theory papers — ReAct, CodeAct, RLM, weakest-hypothesis, freedom-third-axis |
 | `notes/interpretability/` | 6 | Mechanistic interpretability — native neurons versus superposition, Jacobian Lens and workspace evidence, steering/ablation, safety-entanglement, philosophical limits, and the pain axis |
 | `notes/verification/` | 2 | Formal verification of generated code — function-level and repository-level benchmarks (vericoding) |
-| `notes/misc/` | 12 | Everything that doesn't fit a category yet (evaluation, capability measurement / task time-horizon, survey simulation, ensembling, context-acquisition/active-inference, multi-agent emergence) |
+| `notes/misc/` | 14 | Everything that doesn't fit a category yet (evaluation, capability measurement / task time-horizon, survey simulation, ensembling, context-acquisition/active-inference, multi-agent emergence) |
 | `notes/long-context-and-prompting.md` | ~30 | Long-context evaluation, prompting techniques, reasoning |
 | `notes/memory-and-rag.md` | ~10 | RAG and memory-retrieval hybrid approaches |
 | `blogs/interesting-posts.md` | — | Blog notes and bookmarks — interesting essays, talks, tools and scenarios to revisit, with source type and read depth labeled |

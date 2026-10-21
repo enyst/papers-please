@@ -12,6 +12,8 @@ own topic directory.
 | [measuring-ai-ability-to-complete-long-software-tasks](measuring-ai-ability-to-complete-long-software-tasks.md) | Stop scoring single-turn pass rates; measure the **length of task** an agent finishes. METR's metric: the 50%-task-completion **time horizon** in human-time | evaluation |
 | [pulse-assessing-human-agent-interactions-software-agent-design](pulse-assessing-human-agent-interactions-software-agent-design.md) | Evaluate agent *design decisions* against real users of OpenHands Cloud (15k users, 36k+ sessions), blending human ratings with ML pseudo-labels; cuts CIs ~40% | evaluation |
 | [bagen-are-llm-agents-budget-aware](bagen-are-llm-agents-budget-aware.md) | Agents are bad at knowing when to stop: frontier models stay over-optimistic and burn tokens on doomed tasks. Trainable, not solved | evaluation |
+| [decision-model-evals-thresholds-calibration](decision-model-evals-thresholds-calibration.md) | Husain/Saha production-trace guide: tune thresholds, validate calibration; infeasible-fold fallback and model-selection limits | evaluation / blog |
+| [jev-as-a-judge-confidence-escalation](jev-as-a-judge-confidence-escalation.md) | Cheap-first judge cascade with locally validated confidence; frozen vs. prospective results, selective human audit and open decision models | evaluation / paper |
 | [graft-gradient-routing-unintended-behaviors-rl](graft-gradient-routing-unintended-behaviors-rl.md) | Route detected-hack gradients into a sacrificial MLP adapter, then ablate; imperfect-monitor evasion, anchor/capability trade-offs and 8B RL vs. 32B SFT limits | alignment / reward hacking |
 | [stress-testing-deliberative-alignment-anti-scheming](stress-testing-deliberative-alignment-anti-scheming.md) | SFT+RL sharply reduces covert actions; evaluation awareness, retained hidden goals and later RL limit the safety inference | alignment / evaluation |
 | [llm-evaluators-recognize-and-favor-their-own-generations](llm-evaluators-recognize-and-favor-their-own-generations.md) | LLMs recognize their own outputs, and that self-recognition causally drives self-preference bias — they score their own text higher | evaluation |
@@ -28,6 +30,7 @@ own topic directory.
   converts benchmark numbers into a human-time scale; [PULSE](pulse-assessing-human-agent-interactions-software-agent-design.md)
   measures real deployments instead of synthetic tasks; [BaGen](bagen-are-llm-agents-budget-aware.md)
   measures whether an agent knows when to stop. Three different ways of asking "is it actually useful?"
+- **A confidence gate needs its own evaluation.** [Production-trace threshold tuning](decision-model-evals-thresholds-calibration.md) separates failure risk, operating points and calibration; [JEV cascades](jev-as-a-judge-confidence-escalation.md) test whether confidence identifies mistakes worth escalating. A typed interface cannot establish accuracy, and shared judge errors survive escalation.
 - **Self-evaluation is compromised at the root.** [LLM evaluators favor their own generations](llm-evaluators-recognize-and-favor-their-own-generations.md)
   is the cleanest statement; it is why `../agentic-engineering/` insists on separating the
   agent's own tests from an independent evaluator, and why `../verification/` prefers proofs.

@@ -1,0 +1,364 @@
+{
+  "models": [
+    {
+      "key": "jev",
+      "name": "Jev",
+      "color": "#a99bff",
+      "note": "Jev needed little adjustment on this dataset.",
+      "raw": [
+        {
+          "predicted": 0.23200000000000004,
+          "observed": 0.3,
+          "n": 20
+        },
+        {
+          "predicted": 0.5845,
+          "observed": 0.45,
+          "n": 20
+        },
+        {
+          "predicted": 0.7809999999999999,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.8789473684210526,
+          "observed": 0.7894736842105263,
+          "n": 19
+        },
+        {
+          "predicted": 0.9357894736842104,
+          "observed": 0.8421052631578947,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.24764093261228295,
+          "observed": 0.3,
+          "n": 20
+        },
+        {
+          "predicted": 0.5240973312751357,
+          "observed": 0.45,
+          "n": 20
+        },
+        {
+          "predicted": 0.6955336373466834,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.7963044669890706,
+          "observed": 0.8947368421052632,
+          "n": 19
+        },
+        {
+          "predicted": 0.8704796315097422,
+          "observed": 0.7368421052631579,
+          "n": 19
+        }
+      ]
+    },
+    {
+      "key": "perplexity",
+      "name": "Perplexity",
+      "color": "#6cc9d9",
+      "note": "Perplexity underestimated failure risk in several groups.",
+      "raw": [
+        {
+          "predicted": 0.014874422551857206,
+          "observed": 0.3,
+          "n": 20
+        },
+        {
+          "predicted": 0.10872569989905231,
+          "observed": 0.4,
+          "n": 20
+        },
+        {
+          "predicted": 0.4315332717161577,
+          "observed": 0.7,
+          "n": 20
+        },
+        {
+          "predicted": 0.7625982431847347,
+          "observed": 0.8947368421052632,
+          "n": 19
+        },
+        {
+          "predicted": 0.9299391749435667,
+          "observed": 0.8421052631578947,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.24316729973969622,
+          "observed": 0.3,
+          "n": 20
+        },
+        {
+          "predicted": 0.4865554315149054,
+          "observed": 0.4,
+          "n": 20
+        },
+        {
+          "predicted": 0.6893317658830009,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.8183657912652641,
+          "observed": 0.8947368421052632,
+          "n": 19
+        },
+        {
+          "predicted": 0.8984534098823759,
+          "observed": 0.7894736842105263,
+          "n": 19
+        }
+      ]
+    },
+    {
+      "key": "liquid",
+      "name": "Liquid d1",
+      "color": "#edc66b",
+      "note": "Liquid d1 underestimated failure risk in several groups.",
+      "raw": [
+        {
+          "predicted": 0.048715954315989074,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.16849222817122356,
+          "observed": 0.65,
+          "n": 20
+        },
+        {
+          "predicted": 0.3353541850302371,
+          "observed": 0.7,
+          "n": 20
+        },
+        {
+          "predicted": 0.5946524900721527,
+          "observed": 0.7368421052631579,
+          "n": 19
+        },
+        {
+          "predicted": 0.801753421923037,
+          "observed": 0.7894736842105263,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.32460373721551716,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.5429948971146557,
+          "observed": 0.65,
+          "n": 20
+        },
+        {
+          "predicted": 0.6545894185764363,
+          "observed": 0.7,
+          "n": 20
+        },
+        {
+          "predicted": 0.7651876518905374,
+          "observed": 0.7368421052631579,
+          "n": 19
+        },
+        {
+          "predicted": 0.8451709254840251,
+          "observed": 0.7894736842105263,
+          "n": 19
+        }
+      ]
+    },
+    {
+      "key": "liquid_ultra",
+      "name": "Liquid d1-ultra",
+      "color": "#f09b65",
+      "note": "Liquid d1-ultra needed little adjustment on this dataset.",
+      "raw": [
+        {
+          "predicted": 0.10561187370434458,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.3743228805994703,
+          "observed": 0.4,
+          "n": 20
+        },
+        {
+          "predicted": 0.6687235779636953,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.8346832282501757,
+          "observed": 0.8421052631578947,
+          "n": 19
+        },
+        {
+          "predicted": 0.9169609266901734,
+          "observed": 0.8947368421052632,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.19924481505206423,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.4830318537288673,
+          "observed": 0.4,
+          "n": 20
+        },
+        {
+          "predicted": 0.7126361520784378,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.8354866743350289,
+          "observed": 0.8421052631578947,
+          "n": 19
+        },
+        {
+          "predicted": 0.9037645007424091,
+          "observed": 0.8947368421052632,
+          "n": 19
+        }
+      ]
+    },
+    {
+      "key": "clef_flash",
+      "name": "Clef Flash",
+      "color": "#e894b1",
+      "note": "Clef Flash: one group predicted 8% failure risk, but 60% contained failures.",
+      "raw": [
+        {
+          "predicted": 0.046669999999999996,
+          "observed": 0.35,
+          "n": 20
+        },
+        {
+          "predicted": 0.07747,
+          "observed": 0.6,
+          "n": 20
+        },
+        {
+          "predicted": 0.10643499999999999,
+          "observed": 0.6,
+          "n": 20
+        },
+        {
+          "predicted": 0.19611052631578949,
+          "observed": 0.6842105263157895,
+          "n": 19
+        },
+        {
+          "predicted": 0.6209894736842105,
+          "observed": 0.8947368421052632,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.38859679233351635,
+          "observed": 0.35,
+          "n": 20
+        },
+        {
+          "predicted": 0.5073338424955067,
+          "observed": 0.6,
+          "n": 20
+        },
+        {
+          "predicted": 0.5874823519627255,
+          "observed": 0.6,
+          "n": 20
+        },
+        {
+          "predicted": 0.7239389375766031,
+          "observed": 0.6842105263157895,
+          "n": 19
+        },
+        {
+          "predicted": 0.9254919243691905,
+          "observed": 0.8947368421052632,
+          "n": 19
+        }
+      ]
+    },
+    {
+      "key": "openai",
+      "name": "OpenAI Decisions",
+      "color": "#87c99b",
+      "note": "The Platt fit shown here did not improve OpenAI’s probabilities.",
+      "raw": [
+        {
+          "predicted": 0.013500000000000002,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.47750000000000004,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.8699999999999999,
+          "observed": 0.75,
+          "n": 20
+        },
+        {
+          "predicted": 0.94,
+          "observed": 0.9473684210526315,
+          "n": 19
+        },
+        {
+          "predicted": 0.9942105263157895,
+          "observed": 0.9473684210526315,
+          "n": 19
+        }
+      ],
+      "adjusted": [
+        {
+          "predicted": 0.16299876579412226,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.58917727102631,
+          "observed": 0.25,
+          "n": 20
+        },
+        {
+          "predicted": 0.7083023616058914,
+          "observed": 0.85,
+          "n": 20
+        },
+        {
+          "predicted": 0.7496144920273857,
+          "observed": 0.8421052631578947,
+          "n": 19
+        },
+        {
+          "predicted": 0.9152280272411288,
+          "observed": 0.9473684210526315,
+          "n": 19
+        }
+      ]
+    }
+  ]
+}

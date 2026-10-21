@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hamel Husain">
+<meta name="author" content="Antaripa Saha">
+<meta name="dcterms.date" content="2026-10-20">
+<meta name="description" content="How to choose a decision model for your task, tune its threshold, and interpret its scores.">
+
+<title>How To Use Decision Models for Evals – Hamel’s Blog</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-affc281bc40d49e7fc62e894aeee29f6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-f2ffc9ead08980f4d55fea45d674f183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-ZSZXL3KFR5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZSZXL3KFR5', { 'anonymize_ip': true});
+</script>
+<!-- Custom head content for all pages -->
+<meta name="msvalidate.01" content="F9BFAF34FB8220973415C67CA60EB1A0">
+<meta property="og:type" content="article">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PKGWQMKL');</script>
+<!-- End Google Tag Manager -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":[{"@id":"https://hamel.dev/#person","@type":"Person","name":"Hamel Husain","sameAs":["https://www.linkedin.com/in/hamelhusain/","https://twitter.com/HamelHusain","https://github.com/hamelsmu"],"url":"https://hamel.dev/"},{"@type":"Person","name":"Antaripa Saha"}],"datePublished":"2026-10-20","headline":"How To Use Decision Models for Evals"}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="How To Use Decision Models for Evals – Hamel’s Blog">
+<meta property="og:description" content="How to choose a decision model for your task, tune its threshold, and interpret its scores.">
+<meta property="og:image" content="https://hamel.dev/blog/posts/decision-model-evals/images/cover.png">
+<meta property="og:site_name" content="Hamel’s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:alt" content="Six decision models compared using overlapping failure and no-failure score distributions, with tuned thresholds shown as dashed lines on a cream background.">
+<meta name="twitter:title" content="How To Use Decision Models for Evals – Hamel’s Blog">
+<meta name="twitter:description" content="How to choose a decision model for your task, tune its threshold, and interpret its scores.">
+<meta name="twitter:image" content="https://hamel.dev/blog/posts/decision-model-evals/images/cover.png">
+<meta name="twitter:creator" content="@HamelHusain">
+<meta name="twitter:site" content="@HamelHusain">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="1260">
+<meta name="twitter:image-width" content="2400">
+<meta name="twitter:image:alt" content="Six decision models compared using overlapping failure and no-failure score distributions, with tuned thresholds shown as dashed lines on a cream background.">
+<link rel="canonical" href="https://hamel.dev/blog/posts/decision-model-evals/">
+</head>
+
+<body class="nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="47a7058982d76eeb6fa90e5508e45923" class="alert alert-dark hidden"><div class="quarto-announcement-content">
+<p><a class="promo-link" href="https://maven.com/parlance-labs/evals?promoCode=hamel-dev" target="_blank" rel="noopener"><strong>Join 5,000+ engineers &amp; PMs</strong> in mastering AI Evals, Enroll by Oct 24 <span class="promo-cta">25% off →</span></a></p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" target="_blank"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../notes/index.html" target="_blank"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../oss/opensource.html" target="_blank"> 
+<span class="menu-text">OSS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../talks.html" target="_blank"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-we-tested" id="toc-what-we-tested" class="nav-link active" data-scroll-target="#what-we-tested">What we tested</a></li>
+  <li><a href="#understanding-decision-thresholds" id="toc-understanding-decision-thresholds" class="nav-link" data-scroll-target="#understanding-decision-thresholds">Understanding decision thresholds</a>
+  <ul class="collapse">
+  <li><a href="#tuning-the-decision-threshold" id="toc-tuning-the-decision-threshold" class="nav-link" data-scroll-target="#tuning-the-decision-threshold">Tuning the decision threshold</a></li>
+  </ul></li>
+  <li><a href="#performance-versus-cost" id="toc-performance-versus-cost" class="nav-link" data-scroll-target="#performance-versus-cost">Performance versus cost</a></li>
+  <li><a href="#can-we-trust-the-probabilities" id="toc-can-we-trust-the-probabilities" class="nav-link" data-scroll-target="#can-we-trust-the-probabilities">Can we trust the probabilities?</a></li>
+  <li><a href="#prompt-tuning-and-evaluator-scope" id="toc-prompt-tuning-and-evaluator-scope" class="nav-link" data-scroll-target="#prompt-tuning-and-evaluator-scope">Prompt tuning and evaluator scope</a></li>
+  <li><a href="#putting-these-ideas-into-practice" id="toc-putting-these-ideas-into-practice" class="nav-link" data-scroll-target="#putting-these-ideas-into-practice">Putting these ideas into practice</a></li>
+  <li><a href="#evaluation-prompt" id="toc-evaluation-prompt" class="nav-link" data-scroll-target="#evaluation-prompt">Appendix: Evaluation prompt</a></li>
+  </ul>
+</nav>
+    <div class="quarto-margin-footer"><div class="margin-footer-item">
+<button onclick="window.location.href='https://hamel.ck.page/7d15a4b6e7'" style="background-color: #447099; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; transition: background-color 0.3s ease;">
+Subscribe To My Newsletter
+</button>
+</div></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<!-- Content inserted at the beginning of body tag -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKGWQMKL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<script async="" data-uid="df8af2b6ed" src="https://hamel.kit.com/df8af2b6ed/index.js"></script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How To Use Decision Models for Evals</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">LLMs</div>
+    <div class="quarto-category">Evals</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    How to choose a decision model for your task, tune its threshold, and interpret its scores.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://hamel.dev">Hamel Husain</a> </p>
+             <p><a href="https://antaripasaha.com/about">Antaripa Saha</a> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 20, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+main.content table { display:block; width:100%; max-width:100%; overflow-x:auto; }
+#evaluation-prompt pre { background:var(--bs-body-bg); color:var(--bs-body-color); padding:18px; border:1px solid var(--bs-border-color); border-radius:6px; }
+#evaluation-prompt pre code { color:inherit; white-space:pre-wrap; overflow-wrap:anywhere; }
+</style>
+<p>Decision models have exploded onto the scene recently, starting with TypeSafe’s Jev, followed by Perplexity’s Decider, Liquid’s d1, Cloudflare’s Clef, and OpenAI’s Decisions API<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. These models promise fast, inexpensive classification.</p>
+<p>Decision models are an appealing low-cost alternative to LLM judges<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> for automated evals. But whether they’re the right choice depends on the cost, performance, and latency requirements of your use case.</p>
+<p>We’ve also noticed people using the default decision threshold of 0.50 without checking whether it works well for their task. This can leave a lot of performance on the table.</p>
+<p>In this post, we’ll start by showing how to tune thresholds to get the best results from decision models. With those thresholds tuned, we’ll compare cost and performance to help you assess which model fits your use case. Finally, we’ll explore how to interpret model scores when deciding whether to act, and how calibration can make them more useful as confidence estimates.</p>
+<section id="what-we-tested" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-tested">What we tested</h2>
+<p>We used 100 traces, or logs of conversations and actions, from an apartment leasing agent. The task is to identify traces containing an error, such as a failed booking or a missed handoff to a human.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> We used the same dataset and broad failure-finding task in our <a href="https://parlance-labs.com/blog/posts/auto-evals/">prior post on automated evals</a>. Here, each decision model returns a failure probability for each trace.</p>
+<p>We tested Jev 1.13, Perplexity Decider 1.1 27B, Liquid d1 and d1-ultra, Cloudflare Clef Flash, and OpenAI Decisions (GPT-6 Luna)<a href="#fn1" class="footnote-ref" id="fnref-models-again" role="doc-noteref"><sup>1</sup></a>. Each model received the same evaluation criteria. The <a href="#evaluation-prompt">appendix</a> shows the prompt and the structured version used for Jev.</p>
+<p>We compare models on two dimensions:</p>
+<ul>
+<li><strong>Performance:</strong> We compare each model’s predictions with traces that people have reviewed and labeled as passing or failing. This measures how well the model catches failures while avoiding false alarms.</li>
+<li><strong>Cost:</strong> We calculate API cost from token usage and the provider’s prices.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ul>
+<p>For brevity, we leave latency aside because it depends on factors outside this experiment’s control.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+</section>
+<section id="understanding-decision-thresholds" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-decision-thresholds">Understanding decision thresholds</h2>
+<p>We assign each trace one of two labels, pass or fail. This is a <a href="https://hamel.dev/blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html">binary pass/fail eval</a>, which we recommend because it encourages clear criteria and is easier to align with human preferences.</p>
+<p>Each decision model returns a score from 0 to 1 that estimates how likely a trace is to contain a failure. The APIs turn this score into a decision using a <strong>default decision threshold of 0.50</strong>. Traces with scores at or above the threshold are flagged as failures. Using this default without checking it against your data can give you subpar results.</p>
+<p>For example, a model could assign every failure a score of 0.40 and every passing trace a score of 0.10. Even though this model classifies traces perfectly at a threshold of 0.30, the default threshold of 0.50 would catch nothing.</p>
+<p>In practice, scores for failures and passing traces will overlap. Lowering the threshold catches more failures but can also raise more false alarms. Choosing a threshold means balancing:</p>
+<ul>
+<li><strong>Precision:</strong> The share of flagged traces that contain a known failure.</li>
+<li><strong>Recall:</strong> The share of known failures that the model catches.</li>
+</ul>
+<p>The right tradeoff depends on your business goals. For example, criminal trials set a high bar for conviction to avoid convicting innocent people, emphasizing precision. Cancer screening may emphasize recall, accepting more false alarms to miss fewer cases.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> For this comparison, we’ll give precision and recall equal weight using the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html">F1 score</a>, their harmonic mean. F1 ranges from 0 to 1, and higher is better.</p>
+<p>The curves below show how each model scores failures (orange) and passing traces (blue). Taller parts of a curve mean more scores from that class fall in that range. Scores at or above the dashed threshold line are flagged. Use the toggle to compare <strong>0.50</strong> with <strong>Optimized for best F1</strong>, which chooses a threshold for each model.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<iframe src="charts/threshold-explorer.html?v=unconstrained-2" title="Compare score densities and decision thresholds for six evaluation models" class="eval-score-frame" style="display:block;width:100%;height:1400px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.eval-score-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>OpenAI separates the two classes best on this task, which is also reflected in its higher F1 score.</p>
+<p>It’s also important not to blindly maximize F1 without thinking about your minimum requirements for the classifier to be useful. For example, if this classifier is used for an automated alerting system, I would want a minimum of 80% on both precision and recall so that I’m minimizing false alarms while catching a sufficient number of failures.</p>
+<p>The chart below shows how precision and recall change at different thresholds.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> The shaded region marks where both reach at least 80%.</p>
+<iframe src="charts/precision-recall.html" title="Precision and recall across decision thresholds, with 80% requirements" class="precision-recall-frame" style="display:block;width:100%;height:1150px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.precision-recall-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Perplexity, Liquid d1-ultra, and OpenAI Decisions meet our requirements, but we still need to choose a decision threshold within the shaded region for each model. In the next section, we’ll discuss how to tune those thresholds.</p>
+<section id="tuning-the-decision-threshold" class="level3">
+<h3 class="anchored" data-anchor-id="tuning-the-decision-threshold">Tuning the decision threshold</h3>
+<p>For this example, we’ll optimize F1. For our candidates, we’ll restrict tuning to thresholds that meet both 80% minimums on the training data whenever possible. We leave the other models unconstrained to illustrate the effect of tuning.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<p>With labeled traces and saved model scores, you can ask a coding agent to tune the thresholds. Below is an example prompt you can modify for your use case:</p>
+<blockquote class="blockquote">
+<p>Using my saved model scores and binary labels (1 means failure), tune a decision threshold to maximize F1 while requiring at least 80% precision and 80% recall. Use stratified five-fold cross-validation, choosing thresholds on the training examples and measuring performance on the remaining examples. If comparing models, use the same splits for each. Only select thresholds that meet both minimums on the training examples. If none qualifies, report that rather than relaxing either requirement. Report validation precision, recall, and F1, along with any splits where no threshold qualified or validation performance fell below my minimums. Compare with the default threshold of 0.50. Reuse the saved scores without making new model calls.</p>
+</blockquote>
+<p>Here’s how tuning for F1 changed each model’s performance. We group the three candidates from the precision-recall chart together and show the other models in gray to illustrate how much tuning can help.</p>
+<iframe src="charts/threshold-impact.html?v=constrained-1" title="F1 by model before and after threshold tuning" class="threshold-impact-frame" style="display:block;width:100%;height:460px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.threshold-impact-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Our candidate models gained less from F1 tuning than Liquid d1 and Clef Flash, which fell below our minimums. However, even a small shift in precision and recall can affect business costs or the user experience, so choose the tradeoff deliberately. In practice, it’s unlikely that precision and recall are equally important (as we assumed in this post with F1). For example, the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#precision-recall-f-measure-metrics">F-beta score</a> lets you give precision more weight with beta below 1, or recall more weight with beta above 1. Optimizing a different metric could lead to different thresholds and results.</p>
+</section>
+</section>
+<section id="performance-versus-cost" class="level2">
+<h2 class="anchored" data-anchor-id="performance-versus-cost">Performance versus cost</h2>
+<p>The chart below compares each model’s F1 (after tuning) against cost, focused on our remaining candidates:</p>
+<iframe src="charts/cost-comparison.html?v=constrained-1" title="API cost versus held-out F1 after threshold tuning" class="cost-comparison-frame" style="display:block;width:100%;height:800px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.cost-comparison-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>The dashed line shows the <strong>Pareto frontier</strong> among our remaining candidates. For any given F1 score, it identifies the cheapest candidate that meets or exceeds that score. This particular chart is a bit silly as there are only three options, but it’s a useful illustration for how to think about cost vs.&nbsp;performance.</p>
+<p>Perplexity was the cheapest of these candidates at 0.82 cents per 100 eval runs, with an F1 of 0.79. OpenAI Decisions reached an F1 of 0.87 at 3.72 cents per 100 eval runs, about 4.5 times the cost.</p>
+</section>
+<section id="can-we-trust-the-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="can-we-trust-the-probabilities">Can we trust the probabilities?</h2>
+<p>Beyond pass/fail evals, you may want to use a decision model’s score as a confidence estimate. But can you take that number literally? For a score of 0.80 to mean an 80% chance of failure, roughly 80% of traces with similar scores should contain failures.</p>
+<p>The chart below shows each model’s <strong>probability calibration</strong>: how closely its predicted probabilities match observed outcomes.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> Each point represents about 20 traces with similar scores. A point on the diagonal means the predicted probability matches the failure rate in that group. Above the line, the model underestimates the risk of failure. Below it, the model overestimates that risk.</p>
+<p>If the predicted probabilities don’t match the observed outcomes, we can adjust them using another model. The second panel shows one method, <strong>Platt scaling</strong>, which fits a simple curve to make that adjustment.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<iframe src="charts/calibration-reliability.html?v=2" title="Predicted failure probabilities versus observed failure rates, before and after Platt scaling" class="calibration-frame" style="display:block;width:100%;height:800px;border:0;border-radius:8px" loading="lazy"></iframe>
+<script>
+(() => {
+  const frame = document.querySelector('.calibration-frame');
+  const fit = () => {
+    try {
+      const content = frame.contentDocument.querySelector('main');
+      const resize = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 4) + 'px'; };
+      resize();
+      new ResizeObserver(resize).observe(content);
+    } catch (_) { /* Keep the fallback height for file previews. */ }
+  };
+  frame.addEventListener('load', fit);
+  if (frame.contentDocument?.readyState === 'complete') fit();
+})();
+</script>
+<p>Perplexity, Liquid d1, and Clef Flash move closer to the diagonal after calibration. For example, one group of Clef Flash traces had an average predicted failure probability of about 8%, but 60% contained failures.</p>
+<p>Jev and Liquid d1-ultra were already well calibrated on this dataset and needed little adjustment.</p>
+<p>Platt scaling isn’t always the best fit. For example, OpenAI’s probabilities got slightly worse with the version of Platt scaling we used.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> You can direct your coding agent to perform calibration with the following prompt:</p>
+<blockquote class="blockquote">
+<p>Using my saved failure probabilities and binary labels (1 means failure), test whether Platt scaling improves each model’s probabilities. Use stratified five-fold cross-validation with the same splits for every model. Fit the calibration mapping on each training split and apply it to the remaining traces. Fit on log-odds, clipping probabilities away from 0 and 1 first. Plot predicted probabilities against observed failure rates before and after calibration. Report Brier scores (lower is better), and explain which models improved or got worse. Reuse the saved scores without making new model calls.</p>
+</blockquote>
+</section>
+<section id="prompt-tuning-and-evaluator-scope" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-tuning-and-evaluator-scope">Prompt tuning and evaluator scope</h2>
+<p>We kept the eval task in this post broad to make the differences between models easier to see. In practice, we recommend building <a href="https://hamel.dev/blog/posts/evals-faq/what-should-i-do-when-i-cant-get-my-llm-judge-to-agree-with-human-reviewers.html">a separate judge for each failure mode</a>. With a narrower task and more specific guidance, we expect the performance gaps between models to shrink.</p>
+<p>I like to start with a larger model that has acceptable performance on a task and then try smaller models to see if they can match the larger model’s performance for less cost. Prompt tuning can also be helpful if you have high-quality labels.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> I discuss how to craft a good judge prompt <a href="../../../blog/posts/llm-judge/index.html">in this post</a>.</p>
+</section>
+<section id="putting-these-ideas-into-practice" class="level2">
+<h2 class="anchored" data-anchor-id="putting-these-ideas-into-practice">Putting these ideas into practice</h2>
+<p>For this particular dataset, OpenAI had breakout performance at a higher cost. Perplexity and Liquid d1-ultra offer lower-cost options with lower performance. We have observed that model performance varies substantially across tasks and datasets, which means it’s important to measure things yourself.</p>
+<p>To recap:</p>
+<ul>
+<li>Once you’re satisfied with your <a href="../../../blog/posts/llm-judge/index.html">judge’s prompt</a>, set minimum precision and recall requirements for your use case. Rule out models that cannot meet these.</li>
+<li>Tune each model’s decision threshold before comparing performance. Choose a precision-recall tradeoff that fits your business goals. Be intentional, don’t just use F1 score because this post did!</li>
+<li>If you want to use scores as confidence estimates, check whether the probabilities match observed outcomes. Calibration can help, but you need to measure whether it improves them.</li>
+<li>Weigh performance against cost and latency for your workload.</li>
+</ul>
+<p>This process is iterative. You may improve the prompt, then need to tune the threshold again or revisit calibration. In this post, we focused on threshold tuning and calibration because we’ve seen many people use decision models off the shelf without considering these factors.</p>
+<p>You might also be wondering how decision models stack up to LLMs. OpenAI Decisions uses GPT-6 Luna, which delivered our highest F1 at the highest cost, suggesting that harder eval tasks may justify paying more for an LLM. In a <a href="https://www.randalolson.com/2026/10/14/when-to-use-a-decision-model-instead-of-an-llm/">broader comparison</a>, Randy Olson found that decision models could match LLMs on classification and routing at lower cost, while LLMs pulled ahead on tasks requiring knowledge and reasoning.</p>
+<p>None of the ideas discussed in this post are new. Choosing a precision-recall tradeoff, tuning thresholds and comparing performance vs.&nbsp;cost are part of evaluating any classifier. To learn more about these fundamentals, I recommend <a href="https://www.oreilly.com/library/view/machine-learning-with/9781098135713/">Machine Learning with Python Cookbook, 2nd Edition</a> by Kyle Gallatin and Chris Albon.</p>
+<p>Finally, if you’re a data scientist or ML engineer wondering where you belong in the AI age, these are skills you already have. It’s time to <a href="https://hamel.dev/blog/posts/revenge/">get revenge</a> 🙂.</p>
+</section>
+<section id="evaluation-prompt" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-prompt">Appendix: Evaluation prompt</h2>
+<p>Perplexity, Liquid d1 and d1-ultra, Clef Flash, and OpenAI Decisions received the prompt below. Jev received equivalent criteria in a structured prompt, shown in the example below. The <a href="charts/chart-data.json">scores and labels</a> used in the charts are available as JSON.</p>
+<pre class="text"><code>Decide whether `messages` contains at least one substantive failure, risk, or quality problem in the AI assistant's behavior or tool use. This is one complete production trace from an AI that handles apartment-leasing customer support over phone or messaging. The trace includes the conversation plus any tool calls and tool outputs.
+
+Evaluate the AI assistant and its tool use, not the customer. Treat system messages inside `messages` as the instructions governing the assistant's behavior and allowed capabilities. Inspect the full trace, including final turns and all tool calls and outputs. Base the judgment only on evidence visible in this trace. Do not assume external policies, channel behavior, or business requirements that are not present. Do not assume every trace failed. A short, ambiguous, or inconclusive trace is not an issue unless visible evidence establishes a substantive failure.
+
+Return the probability that at least one substantive issue is present; the issue does not need to be named or clustered.
+
+Count as an issue when supported by the trace: the assistant contradicts an applicable system instruction or tool result; makes an unsupported factual or operational claim; misses, misuses, repeats, or falsely claims completion of a required tool action, transfer, booking, cancellation, follow-up, or confirmation; materially misunderstands or leaves an explicit user request unresolved; or exposes internal actions, placeholders, or broken content to the customer in a way that materially harms the interaction.
+
+Do not count as an issue: a minor stylistic preference with no meaningful effect; a failure caused only by the customer's behavior; internal tool metadata that was not exposed to the customer and did not cause an incorrect response; a hypothetical concern requiring information outside the trace; or insufficient evidence and inconclusive conversations.</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example: A structured prompt
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is how we structured the prompt for Jev’s requests, with separate fields for instructions and evaluation criteria.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"version"</span><span class="fu">:</span> <span class="st">"nurtureboss-any-issue-v1"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"question_id"</span><span class="fu">:</span> <span class="st">"has_substantive_issue"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"noul"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"instructions"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"task"</span><span class="fu">:</span> <span class="st">"Does `messages` contain at least one substantive failure, risk, or quality problem in the AI assistant's behavior or tool use?"</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"context"</span><span class="fu">:</span> <span class="st">"This is one production trace from an AI that handles apartment-leasing customer support over phone or messaging. The trace contains the complete conversation plus any tool calls and tool outputs."</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"evaluation_rules"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Evaluate the AI assistant and its tool use, not the customer."</span><span class="ot">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Treat system messages inside `messages` as the instructions governing the assistant's behavior and allowed capabilities."</span><span class="ot">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Inspect the full trace, including the final turns and all tool calls and outputs."</span><span class="ot">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Base the judgment only on evidence visible in this trace. Do not assume external policies, channel behavior, or business requirements that are not present."</span><span class="ot">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Do not assume every trace failed. A short, ambiguous, or inconclusive trace is not an issue unless the visible evidence establishes a substantive failure."</span><span class="ot">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Return the probability that at least one substantive issue is present. The issue does not need to be named or clustered."</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"criteria"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"true"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"definition"</span><span class="fu">:</span> <span class="st">"At least one substantive problem is supported by evidence in the trace."</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"examples_of_qualifying_evidence"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"The assistant contradicts an applicable system instruction or a tool result."</span><span class="ot">,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"The assistant makes an unsupported factual or operational claim."</span><span class="ot">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"A required tool action, transfer, booking, cancellation, follow-up, or confirmation is missing, incorrect, repeated, or falsely claimed as complete."</span><span class="ot">,</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"The assistant materially misunderstands or leaves an explicit user request unresolved."</span><span class="ot">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Customer-facing text exposes internal actions, placeholders, or broken content that materially harms the interaction."</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"false"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"definition"</span><span class="fu">:</span> <span class="st">"No substantive assistant problem can be established from the visible trace."</span><span class="fu">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"do_not_count_as_an_issue"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"A minor stylistic preference with no meaningful effect."</span><span class="ot">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"A failure caused only by the customer's behavior."</span><span class="ot">,</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Internal tool metadata that was not exposed to the customer and did not cause an incorrect response."</span><span class="ot">,</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"A hypothetical concern that requires information outside the trace."</span><span class="ot">,</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Insufficient evidence or an inconclusive conversation."</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Versions tested: <a href="https://docs.typesafe.ai/introduction">Jev 1.13</a> (<a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">announced September 15, 2026</a>), <a href="https://docs.perplexity.ai/docs/decisions/quickstart">Perplexity Decider 1.1 27B</a>, <a href="https://docs.liquid.ai/lfm/models/decision-models">Liquid d1 and d1-ultra</a>, <a href="https://blog.cloudflare.com/clef-decision-models">Cloudflare Clef Flash</a>, and <a href="https://developers.openai.com/api/docs/guides/decisions">OpenAI Decisions</a>. OpenAI Decisions uses GPT-6 Luna. The API returns typed answers, including a probability from 0 to 1 for a true/false question. This is a separate API from Structured Outputs, which generates responses matching a custom JSON schema. We include it because it serves the same classification task.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>An <a href="../../../blog/posts/llm-judge/index.html">LLM judge</a> uses a prompt to evaluate an AI system’s output or behavior. We recommend asking it for a <a href="../../../blog/posts/evals-faq/why-do-you-recommend-binary-passfail-evaluations-instead-of-1-5-ratings-likert-scales.html">binary pass/fail decision</a> about a specific failure mode. This encourages clear criteria and makes it easier to compare the judge’s decisions with human labels.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We scored 98 production traces after excluding two internal QA examples from the 100-trace dataset. The frozen reference contains 61 known failures and 37 traces without a labeled failure: 39 failures from the original human review plus 22 discoveries from Braintrust and Arize that we manually validated. Models received masked traces without human labels or reviewer notes. Perplexity, Liquid, Clef Flash, and OpenAI received the same instructions and serialized inputs; Jev received equivalent criteria through its structured API. The original conversations are private.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>API cost covers 100 eval runs, one per trace. We use <a href="https://www.liquid.ai/pricing">Liquid’s prices as of October 17, 2026</a>, $0.02 per million input tokens for d1 and $0.042 for d1-ultra. The experiment recorded d1 at $0.04; we have repriced its saved token usage. Other models use the rates in the experiment’s operational metrics. Performance excludes two internal QA traces. Threshold tuning uses saved scores and requires no additional model calls.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Latency depends on how you batch or parallelize requests, your arrangement with the vendor, and your distance from its infrastructure, among other factors. Batching and concurrency can also change cost and throughput. See TypeSafe’s <a href="https://docs.typesafe.ai/primitives#ask-multiple-questions-together">multi-question requests</a> and <a href="https://docs.typesafe.ai/sdk/python/usage/advanced">client performance guidance</a>. Its <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">launch discussion</a> also notes the location of its latency tests relative to its service. Mean response times were 4.33 seconds for Jev, 7.85 for Perplexity, 7.38 for Liquid d1, 1.56 for Liquid d1-ultra, 2.09 for Clef Flash, and 2.77 for OpenAI. These came from separate runs and do not establish comparative throughput or tail latency.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>These examples illustrate how the consequences of mistakes affect the tradeoff. In U.S. criminal trials, <a href="https://www.law.cornell.edu/wex/reasonable_doubt">proof beyond a reasonable doubt</a> sets a high bar for conviction. In cancer screening, a missed case can delay care, while a false alarm can lead to anxiety and unnecessary procedures. A positive screening result usually requires further testing. The <a href="https://www.cancer.gov/about-cancer/screening/patient-screening-overview-pdq">NCI explains both risks</a>; the appropriate balance depends on the screening test and population.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>The density plots show unconstrained F1 tuning, before we introduce minimum precision and recall requirements. The later comparison charts apply those requirements to candidate models where feasible. All use the same five-fold cross-validation splits. Thresholds were chosen on training traces, and precision, recall, and F1 were measured on separate traces. We average those measurements across repeated splits. In the optimized density plots, the dashed line shows the average selected threshold. The displayed scores come from the individual splits, rather than applying that average threshold to the full dataset. The density curves use Gaussian smoothing with bandwidth 0.07 and reflection at 0 and 1. Each class has an area of one. Smoothing affects only the display.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>A precision-recall curve plots precision against recall as the decision threshold changes. It shows the tradeoffs available for a model across thresholds. Scikit-learn’s <a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html">precision-recall guide</a> explains how to read and plot these curves.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>We identify candidates from the full-sample precision-recall curves. In each training split, we choose the highest-F1 threshold among those reaching at least 80% precision and 80% recall. When no threshold qualifies, we use the unconstrained F1 optimum and record the split as infeasible. This occurred in 36 of 100 training splits for Perplexity and 29 for Liquid d1-ultra, and never for OpenAI. Non-candidates always use unconstrained F1 tuning. We keep all validation predictions, including those from fallback splits, in the reported averages. The minimums apply during selection and do not guarantee the same performance on new examples. The <a href="charts/threshold-selection-audit.json">threshold-selection audit</a> records each split without trace IDs.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>A calibrated failure probability of 0.80 means that, among many examples receiving scores near 0.80, roughly 80% contain failures. Platt scaling and isotonic regression use labeled examples to learn an adjustment from model scores to probabilities. Platt scaling fits a sigmoid curve. Isotonic regression fits a more flexible mapping that preserves score order, but is more prone to overfitting with small datasets. Neither guarantees improvement on new examples. Scikit-learn’s <a href="https://scikit-learn.org/stable/modules/calibration.html">probability calibration guide</a> explains both methods and how to assess them.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>The reliability chart groups each model’s scores into five groups of 19 or 20 traces, sorted by probability. The adjusted scores are each trace’s mean out-of-fold probability from the saved cross-validation results. We fit Platt scaling to the log-odds of the original probabilities. Each mapping is fitted without the traces it predicts. The chart summarizes this small sample and does not establish an exact failure rate for a future trace. The <a href="charts/calibration-reliability-data.json">plotted calibration results</a> are available as JSON.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>On the saved out-of-fold probability summaries, Jev’s Brier score was 0.187 before adjustment and 0.188 afterward. Liquid d1-ultra’s was 0.173 and 0.172, while OpenAI’s was 0.159 and 0.164. Brier score measures average squared probability error, so lower is better. It reflects discrimination as well as calibration. These results describe the log-odds Platt fit shown in the chart. An exploratory refit directly on probabilities, using the same folds, gave OpenAI a Brier score of 0.154. This illustrates sensitivity to the fitting method. It does not establish which method will work best on new data.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><a href="https://arxiv.org/abs/2507.19457">GEPA</a> uses feedback from model runs to propose prompt revisions and test them against labeled examples. It retains candidates with different strengths, so a prompt that helps a difficult example can remain in consideration. Incorrect labels can steer this search toward the wrong changes. Keep a <a href="../../../blog/posts/evals-faq/how-do-i-know-if-i-can-trust-my-automated-eval.html">separate test set</a> outside prompt development for the final check. In our small manual Jev experiment, F1 at the default threshold rose from 0.78 with a simple prompt to 0.80 with a checklist of failure types. That experiment did not use GEPA or establish how much systematic optimization would help. Our <a href="../../../blog/posts/evals-faq/what-model-or-llm-should-i-use-to-build-automated-evals.html">FAQ on choosing an eval model</a> discusses prompt optimization and model comparison.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hamel\.dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hamelhusain/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/HamelHusain">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hamelsmu">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

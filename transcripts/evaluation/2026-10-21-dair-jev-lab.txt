@@ -1,0 +1,71 @@
+Jev-as-a-Judge: Evaluating Agents with a Decision Model | Hands-on Labs | DAIR Academy | DAIR.AI Academy
+[LINK /labs/getting-started-with-claude-agents]
+🚀NEW LAB—Getting Started with Claude AgentsStart lab
+[LINK /] DAIR.AI Academy
+[LINK /courses] Courses [LINK /labs] Labs [LINK /events] Events [LINK /papers] AI Papers [LINK /pricing] Pricing [LINK /blog] Blog
+Toggle theme
+Hands-on LabIntermediateFree
+Jev-as-a-Judge: Evaluating Agents with a Decision Model
+Evaluate agent tool choices, execution traces, and outcomes with Jev through OpenRouter.
+4 labsabout 28 minUpdated Oct 2026
+[LINK /labs/jev-as-a-judge-for-agent-evals/inspect-an-agent-run] Start lab 1
+lab 1 workspace
+$ open "Inspect an agent run"
+checkpoints run as you work
+✓ checkpoint passed, lab 2 unlocked
+What you'll build
+Inspect an agent's tool choices and execution trace
+Score runs against a rubric with Jev as the judge
+Check the judge before you trust its verdicts
+Repair the agent's policy and measure the change
+Curriculum
+4 labs, about 28 min
+1
+Inspect an agent run
+4 min
+[LINK /labs/jev-as-a-judge-for-agent-evals/inspect-an-agent-run] Open
+2
+Define a rubric and run Jev
+8 min
+Locked
+3
+Check the judge
+8 min
+Locked
+4
+Repair the agent and reevaluate
+8 min
+Locked
+Your instructor
+ES
+Elvis Saravia
+Founder, DAIR.AI
+Elvis founded DAIR.AI and wrote the Prompt Engineering Guide, one of the most widely used references on working with language models. He has worked at companies like Meta AI and Elastic, and specializes in AI agents, RAG, and harness engineering.
+How labs work
+Live workspace
+You run the real tools in a browser workspace. Nothing to install.
+Checkpoints
+Each lab checks your files and output, then unlocks the next one.
+Your work stays
+The workspace persists between labs so you finish with a project.
+Questions
+Do I need an API key or my own model?
+What happens if a checkpoint fails?
+Can I cancel Pro?
+[LINK /labs/jev-as-a-judge-for-agent-evals/inspect-an-agent-run] Start lab 1
+Next up. Inspect an agent run, 4 min
+4 labs, about 28 min
+Live workspace, nothing to install
+Graded checkpoints
+Certificate on completion
+Free
+[LINK /labs/jev-as-a-judge-for-agent-evals/inspect-an-agent-run] Start lab 1
+DAIR.AI Academy
+Learn AI from expert-led courses, live events, and a community of builders.
+Platform
+[LINK /courses] Courses [LINK /labs] Labs [LINK /events] Events [LINK /papers] AI Papers [LINK /pricing] Pricing [LINK /blog] Blog
+Legal
+[LINK /payment-policies] Payment Policies [LINK /terms] Terms of Service [LINK /privacy] Privacy Policy
+Connect
+[LINK https://github.com/dair-ai] GitHub [LINK https://x.com/dair_ai] Twitter / X
+© 2026 DAIR.AI Academy. All rights reserved.

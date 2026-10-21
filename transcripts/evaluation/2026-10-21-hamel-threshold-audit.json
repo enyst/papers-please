@@ -1,0 +1,5414 @@
+{
+  "jev": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8431372549019608,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7678571428571429,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6764705882352942,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.44,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.56,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.68,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8301886792452831,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.56,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.68,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7884615384615384,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.57,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7586206896551724,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.56,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7818181818181819,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.18,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6621621621621622,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.56,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7884615384615384,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6818181818181818,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.66,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.56,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7857142857142857,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.56,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7678571428571429,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.56,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.66,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7884615384615384,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.66,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7272727272727273,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6764705882352942,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8269230769230769,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.65,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.65,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7818181818181819,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.66,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.44,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.4,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.4,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    }
+  ],
+  "perplexity": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.1752003273623877,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7916666666666666,
+      "trainingRecall": 0.7916666666666666
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.177862186793548,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.1152140369546081,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6857142857142857,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7843137254901961,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8269230769230769,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.1152140369546081,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.02791874033793,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6956521739130435,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.02791874033793,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.2528150778501843,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.8444444444444444,
+      "trainingRecall": 0.7755102040816326
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8181818181818182,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6811594202898551,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6857142857142857,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7843137254901961,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.2528150778501843,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.8444444444444444,
+      "trainingRecall": 0.7755102040816326
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8214285714285714,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.2528150778501843,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8666666666666667,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7058823529411765,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8125,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.676056338028169,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8269230769230769,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8541666666666666
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.0952329710922097,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7719298245614035,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6714285714285714,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8214285714285714,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7692307692307693,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.1152140369546081,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7962962962962963,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8541666666666666
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8269230769230769,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.1381790951209153,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7592592592592593,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.2528150778501843,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.8604651162790697,
+      "trainingRecall": 0.7708333333333334
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.1152140369546081,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7543859649122807,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.1152140369546081,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8148148148148148,
+      "trainingRecall": 0.9166666666666666
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.2606088225407563,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.8636363636363636,
+      "trainingRecall": 0.7755102040816326
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7924528301886793,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.0952329710922097,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7636363636363637,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.1752003273623877,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7592592592592593,
+      "trainingRecall": 0.8541666666666666
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.1381790951209153,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8235294117647058,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.1152140369546081,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.0952329710922097,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.0952329710922097,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7719298245614035,
+      "trainingRecall": 0.9166666666666666
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.0119327615012465,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.177862186793548,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8695652173913043,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.1269946949454886,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7777777777777778,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.1269946949454886,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    }
+  ],
+  "liquid": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.75,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7333333333333333,
+      "trainingRecall": 0.9166666666666666
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.0259573571977968,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6533333333333333,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.765625,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.1066906109879991,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.0259573571977968,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6712328767123288,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.1066906109879991,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.0850990380460445,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7377049180327869,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6956521739130435,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7419354838709677,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7058823529411765,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6956521739130435,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7213114754098361,
+      "trainingRecall": 0.9166666666666666
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7058823529411765,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7258064516129032,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7580645161290323,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.0259573571977968,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6901408450704225,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.746031746031746,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6811594202898551,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.0803574644174152,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7377049180327869,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.106690588264869,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.1008786281363246,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    }
+  ],
+  "liquid_ultra": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8541666666666666,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8125,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.851063829787234,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8181818181818182,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.4386055069579756,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8695652173913043,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8035714285714286,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7301587301587301,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.6092789156141315,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8666666666666667,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.4386055069579756,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7272727272727273,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8478260869565217,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.746031746031746,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8113207547169812,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.3560898149766863,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.851063829787234,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8269230769230769,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.5492049215204136,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8723404255319149,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.851063829787234,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.851063829787234,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8163265306122449,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8125,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.5613944930420245,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.82,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7272727272727273,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7230769230769231,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.5492049215204136,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.2006540753001129,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.5492049215204136,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8723404255319149,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.803921568627451,
+      "trainingRecall": 0.8367346938775511
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8695652173913043,
+      "trainingRecall": 0.8333333333333334
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8076923076923077,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.2006540828510226,
+      "feasible": false,
+      "fallback": true,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8125,
+      "trainingRecall": 0.8125
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.4753376834348995,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.4264895836370407,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8333333333333334,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8,
+      "trainingRecall": 0.8163265306122449
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.5246623165651004,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.851063829787234,
+      "trainingRecall": 0.8163265306122449
+    }
+  ],
+  "clef_flash": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6619718309859155,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6811594202898551,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.0607,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.734375,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6486486486486487,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6619718309859155,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6764705882352942,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.0335,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6533333333333333,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6621621621621622,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.0607,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7142857142857143,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6818181818181818,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7058823529411765,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6811594202898551,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6764705882352942,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.0607,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6923076923076923,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6575342465753424,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6811594202898551,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6818181818181818,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6857142857142857,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.0567,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6575342465753424,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7121212121212122,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.0335,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6447368421052632,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.0498,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.676056338028169,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6575342465753424,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.0607,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.0498,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6857142857142857,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.676056338028169,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6527777777777778,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6619718309859155,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6575342465753424,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6911764705882353,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.676056338028169,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6575342465753424,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6712328767123288,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.696969696969697,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.0607,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.71875,
+      "trainingRecall": 0.9583333333333334
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7014925373134329,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6716417910447762,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7164179104477612,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6621621621621622,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6666666666666666,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.703125,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6857142857142857,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7205882352941176,
+      "trainingRecall": 1.0
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6486486486486487,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6486486486486487,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.0459,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6619718309859155,
+      "trainingRecall": 0.9791666666666666
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6956521739130435,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.0551,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.7076923076923077,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.0498,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.676056338028169,
+      "trainingRecall": 0.9795918367346939
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.055,
+      "feasible": false,
+      "fallback": false,
+      "trainingPrecision": 0.6865671641791045,
+      "trainingRecall": 0.9387755102040817
+    }
+  ],
+  "openai": [
+    {
+      "repeat": 0,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 0,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 0,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.9,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 0,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 0,
+      "fold": 4,
+      "threshold": 0.81,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 1,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8490566037735849,
+      "trainingRecall": 0.9375
+    },
+    {
+      "repeat": 1,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 1,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 1,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 1,
+      "fold": 4,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 2,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 2,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 2,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 2,
+      "fold": 3,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.9130434782608695,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 2,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 3,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 3,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 3,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8431372549019608,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 3,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8979591836734694,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 3,
+      "fold": 4,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8979591836734694,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 4,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 4,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 4,
+      "fold": 2,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8979591836734694,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 4,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8461538461538461,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 4,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 5,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.9166666666666666
+    },
+    {
+      "repeat": 5,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 5,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 5,
+      "fold": 3,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 5,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8431372549019608,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 6,
+      "fold": 0,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 6,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 6,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 6,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8518518518518519,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 6,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 7,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 7,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 7,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 7,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 7,
+      "fold": 4,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8703703703703703,
+      "trainingRecall": 0.9591836734693877
+    },
+    {
+      "repeat": 8,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 8,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 8,
+      "fold": 2,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 8,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 8,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 9,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 9,
+      "fold": 1,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 9,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 9,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 9,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 10,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 10,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 10,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 10,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 10,
+      "fold": 4,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 11,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8541666666666666,
+      "trainingRecall": 0.8541666666666666
+    },
+    {
+      "repeat": 11,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8846153846153846,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 11,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 11,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 11,
+      "fold": 4,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 12,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 12,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 12,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 12,
+      "fold": 3,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 12,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8653846153846154,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 13,
+      "fold": 0,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 13,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 13,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 13,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 13,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 14,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 14,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.9,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 14,
+      "fold": 2,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 14,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 15,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 15,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8461538461538461,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 15,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8979591836734694,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 15,
+      "fold": 3,
+      "threshold": 0.79,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 15,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 16,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8775510204081632,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 16,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 16,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 16,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.875,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 16,
+      "fold": 4,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8627450980392157,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 17,
+      "fold": 0,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8367346938775511,
+      "trainingRecall": 0.8541666666666666
+    },
+    {
+      "repeat": 17,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8979591836734694,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 17,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 17,
+      "fold": 3,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8461538461538461,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 17,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.88,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 18,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.875
+    },
+    {
+      "repeat": 18,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8571428571428571,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 18,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.9148936170212766,
+      "trainingRecall": 0.8775510204081632
+    },
+    {
+      "repeat": 18,
+      "fold": 3,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8490566037735849,
+      "trainingRecall": 0.9183673469387755
+    },
+    {
+      "repeat": 18,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8461538461538461,
+      "trainingRecall": 0.8979591836734694
+    },
+    {
+      "repeat": 19,
+      "fold": 0,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8958333333333334,
+      "trainingRecall": 0.8958333333333334
+    },
+    {
+      "repeat": 19,
+      "fold": 1,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8679245283018868,
+      "trainingRecall": 0.9387755102040817
+    },
+    {
+      "repeat": 19,
+      "fold": 2,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.8936170212765957,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 19,
+      "fold": 3,
+      "threshold": 0.75,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.84,
+      "trainingRecall": 0.8571428571428571
+    },
+    {
+      "repeat": 19,
+      "fold": 4,
+      "threshold": 0.72,
+      "feasible": true,
+      "fallback": false,
+      "trainingPrecision": 0.86,
+      "trainingRecall": 0.8775510204081632
+    }
+  ]
+}
