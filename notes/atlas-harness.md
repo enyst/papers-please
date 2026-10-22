@@ -9,7 +9,7 @@ tags:
   - skills
   - self-improving
   - scaffolding
-updated: "2026-10-12"
+updated: "2026-10-22"
 ---
 
 # Atlas: Agent Harness
@@ -58,6 +58,7 @@ The "static harness / grow the verbs" stage lives across topics:
   own code; archive-of-ancestors; empirical validation replaces the proof requirement.
 - `meta-harness-end-to-end-optimization-of-model-harnesses.md` — outer loop searches harness
   *code*; **don't over-compress feedback**.
+- [Object-Oriented Harness](harness/object-oriented-harness-specialization-routing.md) evolves shared-code specialists on discovery clusters, then freezes the family and routes from observable base executions. Base reuse protects one disjoint-app test split by selecting no specialist at all. Inheritance ablations compare separately learned systems; selected-trace steps omit base/router cost.
 - [harness-learning-generalizable-test-time-adaptation](harness/harness-learning-generalizable-test-time-adaptation.md) — train the revision
   rule itself, then adapt executable code with both models frozen. Transfers across held-out
   reasoning families and QA benchmarks; single-revision training already supports repeated

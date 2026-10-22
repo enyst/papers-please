@@ -1,0 +1,1261 @@
+                                                                                                                                                          2026-10-21
+
+
+
+
+                                         Object-Oriented Harness: Evolving Agent
+                                         Harnesses through Object-Oriented Design
+                                         Gaotang Li1,* , Bhavana Dalvi Mishra2 , Yifei Ming2 , Yanfei Chen2 , Zhongying CuiZhu2 , Lesly Miculicich2 ,
+                                         Long T. Le2 , Rui Meng2 , Chun-Liang Li2 , Hanghang Tong1 , Chen-Yu Lee2 and Tomas Pfister2
+                                         1 University of Illinois Urbana-Champaign, 2 Google Cloud AI Research
+
+
+
+
+                                         Agent harnesses are executable code that specifies the prompts, tools, and control flow around a language
+                                         model. A single global harness can struggle with heterogeneous tasks that require different execution
+                                         strategies. In this work, we introduce Object-Oriented Harness (OO-Harness), a harness optimization
+                                         framework that evolves a hierarchy of executable harness classes using object-oriented design. During
+
+
+
+
+arXiv:2610.28380v1 [cs.CL] 20 Oct 2026
+                                         training, an evolution agent uses execution records to create a family of specialized harnesses, each
+                                         implemented as a subclass of the base or an existing specialized harness via inheritance. At test time, a
+                                         harness router uses routing lessons accumulated during training to select a specific harness for each
+                                         task. Across three long-horizon benchmarks spanning business workflows, workspace tasks, and tool
+                                         use, OO-Harness achieves the best performance among the compared methods, with an absolute
+                                         improvement of up to 15.79% over the base harness. Extensive ablation studies examine the contributions
+                                         of its core components.
+
+
+                                         1. Introduction                                                         lection does not guarantee that the same changes
+                                                                                                                 remain beneficial under distribution shift. Even
+                                         Generalizing to tasks beyond the training dis-                          within a benchmark, Agentic Harness Engineer-
+                                         tribution is a central goal of language-agent re-                       ing’s component ablations show that adding
+                                         search (Xi et al., 2024; Zeng et al., 2023). Recent                     evolved memory improves performance on hard
+                                         benchmarks illustrate the breadth of tasks agents                       tasks but reduces it on easy ones (Lin et al.,
+                                         must handle: FutureX evaluates agents on fore-                          2026a). EvoHarnessBench further shows that
+                                         casting real-world events using external informa-                       adding tools, skills, and specialist agents can
+                                         tion (Zeng et al., 2025), while APEX-Agents eval-                       degrade previously effective behavior (Ke et al.,
+                                         uates cross-application workflows in investment                         2026). These findings motivate specialized har-
+                                         banking, management consulting, and corporate                           nesses that share common code while preserving
+                                         law (Vidgen et al., 2026). These workloads dif-                         different execution strategies, with a router se-
+                                         fer in the tool use, context management, and                            lecting a harness for each task.
+                                         completion checks they require. An agent’s har-
+                                         ness implements these choices as executable code                           Because harnesses are executable code (Ning
+                                         around a language model (Yang et al., 2024).                            et al., 2026), object-oriented design offers a
+                                                                                                                 natural way to express shared and specialized
+                                            Recent approaches automate agent design and                          behavior. We introduce Object-Oriented Har-
+                                         harness optimization by refining executable code                        ness (OO-Harness), a harness optimization
+                                         and other harness components using execution                            framework that evolves a hierarchy of executable
+                                         feedback (Hu et al., 2024; Jiang et al., 2026;                          classes (Figure 1). Each specialized harness in-
+                                         Karten et al., 2026; Lee et al., 2026; Lin et al.,                      herits from the base or an existing specialized
+                                         2026a; Lou et al., 2026; Nie et al., 2026; Zhang                        harness, overriding inherited methods or adding
+                                         et al., 2025). Meta-Harness, for example, evolves                       new ones.
+                                         candidate programs using discovery-set feedback
+                                         and selects a global harness based on perfor-                              During training, we first cluster discovery tasks
+                                         mance on that set (Lee et al., 2026). Such se-                          by shared execution needs identified in base-
+                                                                                                                 harness execution records. An evolution agent
+                                           ∗ This work was done during Gaotang Li’s internship at
+                                                                                                                 iteratively selects a cluster and parent harness,
+                                         Google Cloud AI Research.
+                                                                                                                 creates a subclass, and evaluates it across the
+                      Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+                                                               ness selection. Adaptive Auto-Harness routes
+                                                               tasks among specialized Git branches (Liu et al.,
+                                                               2026b). In OO-Harness, inheritance shares
+                                                               code across harnesses, and routing lessons
+                                                               learned during training guide selection alongside
+                                                               class descriptions and observable base trajecto-
+                                                               ries.
+                                                                 We evaluate OO-Harness on Automation-
+                                                               Bench, Workspace-Bench, and Toolathlon-GYM,
+                                                               where it achieves the highest primary score
+                                                               among the compared methods.
+                                                                   Our contributions are:
+                                                                  • A harness representation combining shared
+                                                                    code and specialized behavior through inher-
+                                                                    itance, method overrides, and new methods.
+                                                                  • An evolution framework that learns special-
+                                                                    ized harnesses and routing lessons from exe-
+                                                                    cution records to support task-specific selec-
+                                                                    tion.
+                                                                  • Strong empirical results across three long-
+                                                                    horizon benchmarks, with extensive abla-
+                                                                    tions validating individual components.
+
+
+                                                                2. Related Work
+Figure 1 | Three ways to organize harness adapta-              Self-evolving agents. Self-evolving agents use
+tion. (a) A single global harness serves all tasks. (b) A      execution experience to improve prompts, mem-
+router selects among independent harness implemen-             ories, skills, and other persistent components.
+tations. (c) OO-Harness selects among specialized
+                                                               GEPA reflects on trajectories to optimize prompts
+harnesses that share code through inheritance.
+                                                               (Agrawal et al., 2025), while ReasoningBank
+                                                               distills successful and failed experiences into
+cluster’s tasks. This feedback guides subsequent               reusable memories (Ouyang et al., 2026). A-
+revisions and accumulates as design and routing                Evolve considers deliberate updates to persistent
+lessons. This offers two advantages. Efficiency:               agent state (Lin et al., 2026b), and HASP repre-
+evaluating candidates on their target clusters                 sents skills as executable functions that modify
+avoids rerunning the entire discovery set. Gen-                actions or supply corrective context (Liu et al.,
+eralization: specialized changes leave the base                2026a). These forms of adaptation provide build-
+and other learned harnesses intact, so new tasks               ing blocks for harness evolution. OO-Harness
+can use an appropriate harness without inher-                  evolves specialized harnesses through inheritance
+iting unrelated changes. At test time, polymor-                and uses a harness router to select one for each
+phism allows the executor to run a selected har-               task.
+ness through a common execution interface. A
+harness router uses the task, an observable base                Automatic harness evolution. Recent work
+trajectory, and routing lessons to select a special-            automates harness construction and revision
+ized harness or retain the base result. The hier-               through code search and execution feedback, in-
+archy and lessons are frozen before deployment;                 cluding Meta-Harness (Lee et al., 2026), Agentic
+executor weights remain fixed in both phases.                   Harness Engineering (Lin et al., 2026a), and Har-
+  Concurrent work also explores task-specific har-              nessEvolve (Jiang et al., 2026). These approaches
+
+
+                                                                                                                2
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+primarily optimize a global harness across tasks,
+although changes that benefit one task group may
+not benefit another. HarnessDev benchmarks har-
+ness creation and evolution (Wu et al., 2026),
+while EvoHarnessBench shows that expanding
+tools, skills, and specialist agents can degrade
+previously effective behavior (Ke et al., 2026).
+Concurrent work explores adaptation across tasks
+and deployments: Adaptive Auto-Harness shares
+and specializes workspace contents through Git
+branching and rebasing (Liu et al., 2026b), while
+EvolveNet integrates adaptations from distributed
+deployments into a global harness (Nie et al.,
+2026). At the representation level, NOOA pro-
+vides a programming model that expresses agents
+as native Python objects (Furgale et al., 2026).
+OO-Harness evolves a hierarchy of executable                  Figure 2 | Problem setting. We use a train/test split:
+harness classes through inheritance, method over-             harnesses evolve on discovery tasks and are evaluated
+rides, and new methods. Its harness router selects            on disjoint held-out tasks.
+a harness using routing lessons accumulated dur-
+ing training, class descriptions, the task, and an            harness router 𝜌 selects the base or a special-
+observable base trajectory.                                   ized harness (Figure 3). A.1,A.4 describe model-
+                                                              prompts/implementation details; Table 2 com-
+3. Method                                                     pares routing inputs.
+                                                                Execution records E store candidate code,
+3.1. Problem setting and overview
+                                                             discovery-task trajectories, outcomes, and reflec-
+A harness implements the prompts, tools, and                 tions from successful and unsuccessful proposals.
+execution rules around an executor, the language             Where lesson stores are enabled, we summarize
+model 𝑀 that carries out tasks (Ning et al.,                 these records into design lessons L𝜋 for code revi-
+2026). OO-Harness evolves this code on dis-                  sion and routing lessons L 𝜌 for harness selection.
+covery tasks while keeping 𝑀 fixed, then eval-               Design lessons describe useful changes and failed
+uates the frozen harnesses on disjoint held-out              approaches; routing lessons describe when a har-
+tasks (Figure 2). This differs from Meta-Harness’s           ness applies. Both accumulate during discovery
+TerminalBench-2 discovery experiment, which                  and remain frozen at deployment. The router’s
+uses the same tasks for search and final evalua-             model weights stay fixed; training changes the
+tion (Lee et al., 2026). Separating discovery from           evidence that guides its decisions.
+evaluation is essential for assessing generalization
+beyond the search set (Wang et al., 2026).                    3.2. Representing the harness hierarchy
+   A harness hierarchy T𝐻 stores complete har-
+                                                             Interfaces and inheritance. Harness evolu-
+ness classes, starting from the base 𝐻0 . Each child
+                                                             tion operates on executable class definitions and
+inherits its parent’s methods and can override ex-
+                                                             supporting source files. The agent can change
+isting methods or add new ones. Task clusters
+                                                             prompts, tools, context management, and execu-
+C group discovery tasks with related execution
+                                                             tion control, and introduce additional methods.
+needs. For cluster 𝑐, let D𝑐 denote its discov-
+                                                             Where supported by the scaffold, it can also con-
+ery tasks and 𝐻𝑐 the harness currently chosen
+                                                             figure middleware, file backends, and subagents.
+for that cluster. Clusters organize task evidence;
+                                                             The resulting class must remain compatible with
+the hierarchy organizes reusable harness code.
+                                                             the scaffold’s execution interface.
+The evolution agent 𝜋 constructs candidate sub-
+classes from discovery-task evidence, while the                  A subclass reuses inherited methods and over-
+
+
+                                                                                                                  3
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+
+Figure 3 | OO-Harness training and test-time execution. (1) Base execution records initialize task clusters.
+(2) The evolution agent builds and evaluates subclasses, updating lessons from execution feedback. (3) The
+resulting harness hierarchy, harness descriptions, and routing lessons are frozen for testing. (4) The harness
+router uses the task, observable base trajectory, and frozen routing lessons to select a specialized harness or
+reuse the base result.
+
+rides or adds methods for a targeted change.                  3.4. Training iteration
+Overrides can call parent methods through super              At each iteration, the evolution agent works in a
+(). Figure 1 illustrates the hierarchy; Listing 1            code workspace with filesystem access to harness
+shows inheritance in a saved harness lineage.                source, task clusters, and execution records. It
+                                                             can inspect files, delegate analysis to subagents,
+Execution within one instance. The harness                   and write or edit candidate code. It selects a tar-
+router selects a complete class whose methods                get cluster and parent class, states the intended
+execute within one instance; ancestors are not               change, and implements an executable subclass.
+separate agent runs. Methods can condition their             Successful and unsuccessful proposals remain
+behavior on runtime evidence, such as repeated               available for later inspection.
+tool errors or unfinished output artifacts.                      We execute the candidate 𝐻 ′ on D𝑐 with the
+                                                              fixed model 𝑀 . Let 𝑆𝑐 ( 𝐻 ′ ) denote its cluster score
+3.3. Training initialization                                  and 𝑆𝑐current the stored score under current harness
+We first run 𝐻0 on discovery tasks Dtr and re-                assignments. The candidate’s source parent need
+tain trajectories and evaluation feedback. We                 not be 𝐻𝑐 . Evaluation runs directly on the target
+group tasks whose base executions suggest that                cluster without routing, avoiding rerunning the
+they may benefit from a shared harness change,                full discovery set for every candidate.
+yielding clusters C and task sets D𝑐 . Each cluster             We accept 𝐻 ′ when 𝑆𝑐 ( 𝐻 ′ ) > 𝑆𝑐current and
+records its shared execution needs and starts with            benchmark-specific acceptance checks pass; oth-
+𝐻𝑐 = 𝐻0 ; the initial hierarchy is T𝐻 = { 𝐻0 }.               erwise, we reject it. These checks consider task-
+                                                              level outcomes and execution feedback, with a
+
+
+                                                                                                                   4
+                      Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+Algorithm 1 Harness evolution on discovery tasks               At test time, grader scores, verdicts, and hidden
+ 1: Input: 𝐻0 , fixed 𝑀 , tasks Dtr , budget 𝑇                 reference answers are unavailable to the router
+ 2: Run 𝐻0 on Dtr ; store execution records                    or executor.
+ 3: Cluster tasks from these records into {D𝑐 }
+ 4: Initialize T𝐻 and 𝐻𝑐 ← 𝐻0
+ 5: for 𝑖 = 1, . . . , 𝑇 do                                     4. Experiments
+ 6:     Review clusters; adjust task assignments if
+    needed                                                      4.1. Evaluation setup
+ 7:     𝜋 chooses a cluster 𝑐 and parent in T𝐻                 Benchmarks and metrics. We evaluate on Au-
+ 8:     Build subclass 𝐻 ′ ; override or add methods           tomationBench (Shepard and Salimans, 2026)
+ 9:     Run 𝐻 ′ on D𝑐 ; collect scores and feedback
+                                                               for business workflows (300 discovery and 300
+10:     Compare task outcomes; apply acceptance
+    checks                                                     held-out tasks), Workspace-Bench (Tang et al.,
+11:     Retain accepted 𝐻 ′ ; update 𝐻𝑐 if preferred           2026) for work across files and applications (288
+12:     Update cluster priority from acceptance his-           discovery and 100 held-out tasks, Lite-100), and
+    tory                                                       Toolathlon-GYM (Zhang et al., 2026) for multi-
+13:     Store outcomes; distill enabled lessons                tool task completion (251 discovery and 252 held-
+14: end for                                                    out tasks). AutomationBench and Toolathlon-
+15: Output: freeze T𝐻 , { 𝐻𝑐 }, records, lessons
+                                                               GYM use deterministic graders to assess task
+                                                               completion; Workspace-Bench evaluates outputs
+judging agent for ambiguous cases where config-                against task-specific rubrics.
+ured. Accepted classes enter T𝐻 and can become                    We report Mean and strict task success (PASS)
+the cluster’s selected harness 𝐻𝑐 . All outcomes               for all three benchmarks. Mean denotes mean par-
+guide later revisions and lesson updates. Improve-             tial credit on AutomationBench, micro-averaged
+ment is required on the target cluster, not all tasks.         rubric pass rate on Workspace-Bench, and mean
+A parent remains reusable through inheritance                  reward on Toolathlon-GYM. PASS requires re-
+and, if active, can still be selected separately from          ward at least 0.999 on AutomationBench and
+its specialized children.                                      Toolathlon-GYM, or all rubrics satisfied on
+   Repeated rejections lower a cluster’s search pri-           Workspace-Bench. The primary metric is Mean
+ority, allowing evolution to explore other task                for AutomationBench and Workspace-Bench, and
+groups. Cluster assignments are also re-examined               PASS for Toolathlon-GYM. All scores are reported
+at each iteration: execution feedback can moti-                as percentages.
+vate reassigning tasks or splitting or merging clus-
+ters, including when repeated harness revisions                 Comparators. We compare with the unevolved
+fail to improve a group. Algorithm 1 summarizes                 base harness; global harness optimization using
+evolution; Appendix A.4 gives implementation                    Meta-Harness (Lee et al., 2026) and Agentic
+details.                                                        Harness Engineering (AHE; Lin et al., 2026a);
+                                                                and specialized harnesses using Adaptive Auto-
+3.5. Test-time selection and execution                          Harness (AAH; Liu et al., 2026b). Our AHE
+                                                                adaptation iteratively edits a global harness from
+For a new task 𝑡 , the harness router observes the
+                                                                a framework-only bundle. Since OO-Harness
+base trajectory 𝜔 ( 𝑡 ) and selects
+                                                                uses a base trajectory for routing, we also com-
+                                                       
+       𝐻 ★ = 𝜌 𝑡, 𝜔 ( 𝑡 ) , { 𝐻0 } ∪ { 𝐻𝑐 } 𝑐 ∈ C , L 𝜌 .       pare with test-time scaling of the base harness
+                                                                to assess gains from additional inference. In-
+It uses class descriptions, applicability conditions,           spired by Wang et al. (2026), we evaluate parallel
+and frozen routing lessons. If 𝐻★ = 𝐻0 , we reuse               best-of- 𝐾 selection ( 𝐾 ∈ {2, 5}) and sequential
+the base result. Otherwise, we execute one in-                  self-refinement ( 𝐾 = 2; Madaan et al., 2023).
+stance of 𝐻★ with its inherited and specialized                 Both methods use observable trajectories without
+behavior. The hierarchy and stored evidence re-                 grader feedback.
+main fixed across all held-out tasks. Grader feed-
+back supports evolution on training tasks only.
+
+                                                                                                                5
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+Evaluation and reporting. All methods use the                OO-Harness selects from its learned hierar-
+same gemini-3.5-flash executor and follow                    chy. Figure 4 highlights three advantages of
+each benchmark’s native execution protocol. We               OO-Harness: training progress, with larger
+fix the evolution agent to Claude Opus 4.8 across            early gains in the averaged discovery curve (a);
+harness optimization methods for up to 40 itera-             training efficiency, with shorter recorded search
+tions and use the same model for test-time trajec-           duration (b); and generalization performance,
+tory selection or guidance where required. The               with higher held-out scores (c). Evaluating revi-
+OO-Harness harness router uses Claude Son-                   sions on target clusters instead of rerunning the
+net 5 (Appendix A.4.2). Harnesses and lessons                full discovery set can reduce API calls and associ-
+remain frozen during held-out evaluation, and                ated cost per candidate. These results motivate
+grader outputs are used only for final scoring               hierarchical, adaptive harness optimization for
+(§3.5). For the main comparison, we perform                  heterogeneous tasks.
+three independent executor runs per method and
+benchmark and report mean ± standard devia-                                                            Meta-Harness                         OO-Harness
+                                                                                                       Global                               Hierarchical
+tion. Steps is the mean number of steps in the
+finally selected trajectory, excluding other roll-             (a) Training progress
+
+
+
+
+                                                                         Mean score (%)
+outs and auxiliary selection calls.
+                                                                                          50
+
+                                                                                          40
+4.2. Main results
+                                                                                          30
+Strong empirical results. OO-Harness                                                           0            25        50          75                          100
+achieves the highest primary score on all three                                                           Recorded search progress (%)
+benchmarks (Table 1), outperforming prior global               (b) Search time                                                    (c) Held-out score
+
+
+
+
+                                                                Mean duration (h)                                     Mean score (%)
+harness optimization approaches and AAH’s                                                          109.1                               60
+                                                                                    120                                                                    51.4
+specialized harnesses. These results support the                                                                                       50
+expressiveness of object-oriented programming                                                                                                      42.3
+                                                                                          60                                                39.4
+                                                                                                            29.0                       40
+as a natural fit for code-based harness evolution:
+inheritance shares useful behavior, while method                                          0                                            30
+                                                                                                   Meta      OO                             Base Meta OO
+overrides and additions specialize it for different
+tasks. On AutomationBench, OO-Harness also
+has the lowest mean trajectory step count among              Figure 4 | Global versus hierarchical harness
+all compared methods. Table 1 also shows that                optimization. Compared with Meta-Harness,
+test-time scaling with parallel best-of- 𝐾 selection         OO-Harness shows (a) larger early training gains,
+( 𝐾 ∈ {2, 5}) and sequential self-refinement                 (b) shorter recorded search time, and (c) higher held-
+                                                             out scores. Curves align runs by their fraction of
+( 𝐾 = 2) does not consistently improve perfor-
+                                                             recorded updates.
+mance. Additional inference alone therefore does
+not guarantee gains, highlighting the value of
+learning task-appropriate harnesses through our
+training pipeline.
+                                                              5. Analysis
+                                                             In this section, we aim to understand the effec-
+Global versus hierarchical approaches. We                    tiveness of OO-Harness through ablations of
+compare more closely with Meta-Harness,                      (1) task- and execution-informed harness routing
+a prominent prior approach to global har-                    (§5.1.1) and (2) hierarchical harness optimiza-
+ness optimization. During training, Meta-                    tion through inheritance (§5.1.2). These com-
+Harness evolves one global harness, whereas                  parisons assess the roles of execution evidence
+OO-Harness builds a hierarchy of special-                    and hierarchical code reuse. We then conduct de-
+ized harnesses through cluster-specific evolu-               tailed case studies of base-harness reuse, learned
+tion. Both freeze code before testing; Meta-                 task clusters, and concrete harness changes to
+Harness applies one harness to every task, while             relate execution needs to code and routing de-
+                                                             cisions (§5.2). Finally, we construct an out-of-
+
+                                                                                                                                                                  6
+                       Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+Table 1 | Held-out results with a frozen executor. Mean: mean partial credit on AutomationBench, micro-
+averaged rubric pass rate on Workspace-Bench, and mean reward on Toolathlon-GYM. PASS: strict task success
+(reward ≥ 0.999 on AutomationBench and Toolathlon-GYM; all rubrics satisfied on Workspace-Bench). The
+primary metric is Mean for AutomationBench and Workspace-Bench, and PASS for Toolathlon-GYM. Steps
+counts only the finally selected trajectory, excluding other rollouts and auxiliary selection calls. Values are
+mean ± standard deviation over three runs; scores are percentages. Bold marks each column’s maximum
+score (↑) or minimum steps (↓). † : supervised harness evolution with discovery-task feedback. ‡ : unsupervised
+test-time scaling of the base harness. Held-out grader feedback is unavailable to all methods.
+
+                             AutomationBench                    Workspace-Bench                       Toolathlon-GYM
+Method                Mean ↑       PASS ↑     Steps ↓    Mean ↑      PASS ↑      Steps ↓     Mean ↑        PASS ↑      Steps ↓
+base                 61.62±0.15   25.44±0.51 31.27±0.13 25.45±2.98 3.67±0.58 34.41±1.34 71.87±0.65 31.15±0.28 40.50±0.99
+Test-time scaling
+Parallel ( 𝐾 =2)‡    61.46±2.38   24.67±2.83 31.64±0.23 32.54±4.30 5.67±1.15 41.62±2.56 74.85±1.45 31.55±1.96 39.94±0.32
+Parallel ( 𝐾 =5)‡    60.24±1.07   24.00±0.47 31.29±0.05 37.71±0.45 7.67±0.58 48.63±1.92 75.69±0.79 32.14±0.56 38.90±0.00
+Sequential ( 𝐾 =2)‡ 59.29±0.25    25.00±1.41 31.86±0.12 27.93±2.13 3.33±2.52 32.91±2.07 73.53±1.67 33.33±2.81 40.97±1.32
+Global harness optimization
+Meta-Harness† 63.92±0.89          26.33±1.33 30.05±0.03 29.56±1.23 5.54±1.23 35.23±1.44 75.84±0.76 33.45±1.23 39.85±1.03
+AHE†                 64.18±0.91   28.11±1.84 30.61±0.18 38.43±4.32 7.78±0.87 34.59±1.21 74.48±1.23 36.23±1.19 41.02±0.89
+Specialized harness families
+AAH†                 75.40±1.26   34.31±1.19 28.89±0.03 38.62±2.98 8.00±0.82 33.58±2.48 74.99±1.63 34.32±1.47 41.23±0.88
+OO-Harness†          77.41±1.37   37.22±2.14 27.99±0.02 39.48±3.21 8.33±2.52 32.78±1.97 77.18±1.15 37.45±0.98 37.25±0.38
+
+
+distribution (OOD) setting with disjoint training                                                          OO-Harness
+and test application families, and examine Base                                                           routing evidence
+reuse on the selected test tasks (§5.3).                                                                   Task   Task +
+                                                                 Benchmark / metric            Base        only trajectory
+5.1. Ablation studies
+                                                                 Automation / Mean 61.30 64.88                          77.52
+5.1.1. Harness routing                                           Workspace / Mean 24.57 40.03                           40.56
+We compare two routers with the same frozen                      Toolathlon / PASS 31.35 33.33                          37.70
+harness catalogue, executor, grader, and held-out
+                                                                Table 2 | Routing ablation on a frozen
+split. The task-only router uses task descriptions              OO-Harness catalogue.          Task only uses the
+and metadata, requiring self-reported applicabil-               task description and available task metadata; Task
+ity confidence of at least 0.7 to select a special-             + trajectory also observes the base execution. Base
+ist. The trajectory-based router also observes the              executes without routing. Entries report primary
+base execution. Neither receives held-out grader                scores (%) from single ablation runs, distinct from
+feedback. Appendix A.6.1 details the task-only                  the repeated runs in Table 1.
+prompt setup.
+   Table 2 shows that the value of execution evi-                shared execution needs. On Workspace-Bench,
+dence depends on the workload. Compared with                     the learned cluster labels align with task types
+task-only routing, trajectory-based routing im-                  such as document writing and spreadsheet edit-
+proves AutomationBench mean partial credit by                    ing (Figure 6b), making the requested output
+12.64 points and Toolathlon-GYM PASS by 4.37                     a useful cue for harness selection. On Automa-
+points. The gap on Workspace-Bench is only 0.53                  tionBench and Toolathlon-GYM, some harnesses
+points. To understand why these gains differ, we                 address execution issues shared across domains
+further inspect the learned task clusters and the                or apps, such as leaving required writes incom-
+harness changes developed for them. This inspec-                 plete or failing to finalize within the tool-call bud-
+tion suggests that the information needed for rout-              get. The base trajectory helps reveal whether
+ing depends on how the evolution agent groups                    these issues occurred, allowing the router to select
+tasks and specializes harnesses to address their                 a harness designed to address them. Appendix
+
+
+                                                                                                                                 7
+                                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+
+    Micro rubric (%)
+                                                                                                            Original Base performance
+                       45                                 40.56
+                       40                  35.60                             Routing destination Tasks Mean reward            Strict PASS
+                       35
+                              29.39                                          Reuse Base               134             77.15        36.57
+                       30
+                                                                             Specialized harness      166             44.40        14.25
+                       25
+                            Base-reset      Flat           OO
+                                                                            Table 3 | Base performance by routing destination
+                                                                            on AutomationBench. We find that tasks routed to
+Figure 5 | Inheritance ablation on Workspace-Bench.
+                                                                            specialized harnesses have substantially weaker Base
+We find that learning through inheritance outperforms
+                                                                            performance on average, while OO-Harness pre-
+Flat and Base-reset.
+                                                                            serves stronger Base executions through reuse.
+
+Figures 8 and 9 illustrate document-writing and
+                                                                             ists have lower Base mean reward (44.40%) than
+completion-check changes.
+                                                                             those selected for Base reuse (77.15%); strict
+                                                                             PASS follows the same pattern. These results sug-
+5.1.2. Hierarchical evolution structure
+                                                                             gest that routing directs specialization toward
+One central design choice of OO-Harness is                                   tasks with weaker Base executions, while preserv-
+evolution via inheritance. We examine its con-                               ing stronger Base results through reuse. Routing
+tribution on Workspace-Bench with three ways                                 lessons guide this choice by linking observed exe-
+of learning harnesses. The routing procedure,                                cution problems to suitable harnesses (Figure 6c).
+executor, task splits, and nominal search budget
+are the same across variants; only how harness
+                                                                            How task clusters reflect execution needs.
+code is learned changes. OO extends earlier har-
+                                                                            The evolution agent can create and revise task
+nesses through subclasses. Flat copies previously
+                                                                            clusters from discovery executions, without a
+evolved code into a class derived directly from
+                                                                            fixed domain or task-type taxonomy. Figure 6
+the base, without inheriting from a specialized
+                                                                            contrasts two learned organizations. On Automa-
+harness. Base-reset starts from the base and adds
+                                                                            tionBench, clusters capture failures and correc-
+new changes without carrying forward previously
+                                                                            tive needs visible in trajectories: commit-gate
+evolved code. Each variant conducts a separate
+                                                                            targets missing writes, while compute-verify
+search and is evaluated once on Lite-100.
+                                                                            groups tasks requiring arithmetic or time-based
+   OO achieves the highest micro rubric pass of                             derivations across five business domains. On
+40.56%, exceeding Flat by 4.96 points (Figure 5).                           Workspace-Bench, all six learned cluster labels
+Flat also improves over Base-reset, supporting                              align with the evaluated AAH task-type groups,
+the value of reusing useful code across revisions.                          including document writing and spreadsheet edit-
+Since Flat also carries forward evolved code, its                           ing. Tasks requesting the same output format
+gap to OO suggests a benefit from organizing re-                            often share backend requirements, so task-type
+visions through inheritance. Each variant evolves                           clusters can emerge naturally from execution evi-
+separately, so these results compare the harnesses                          dence. The evolution agent can thus group tasks
+learned by each search strategy.                                            by a shared failure or by a shared capability, de-
+                                                                            pending on the workload.
+5.2. Case studies                                                               Routing lessons connect execution problems
+Reusing the base harness. In OO-Harness,                                     to harness capabilities. In Figure 6c, the router
+a task is rerun with an evolved specialized har-                             matches repeated query-parsing errors to a saved
+ness only when the router selects one; otherwise,                            lesson and selects an API error-normalizer that
+the Base result is reused. In this case study, we ex-                        provides query-repair instructions. Appendix Ta-
+amine one AutomationBench run with 300 tasks,                                ble 4 shows lessons that select a resource-manifest
+of which 134 (44.7%) reuse Base and 166 select                               harness or preserve a clean Base execution.
+specialized harnesses. Table 3 compares the origi-
+nal Base performance of these two groups, before
+any specialized execution. Tasks sent to special-
+
+                                                                                                                                       8
+                       Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+a AutomationBench                                                b Workspace-Bench
+                OO clusters                 Domains                                           OO clusters                Task types
+              commit-gate       3      5    4    1         3     1                           code-artifact     9
+            compute-verify      7           2    3    3    3
+                                                                 2 coverage-large-workspace                         20
+           discovery-setup      12     43   3    5    4    1
+       exploration-budget       2           4    2    8    2     3           office-doc-write                             81          7
+         injection-defense                  2    1    4          4                            slides-write                     17
+            self-verify-gate    26     2    35   36   28   39
+                                                                 5                      spreadsheet-write                             39
+          verbatim-fidelity                      2    1
+working-memory-multihop                               2          6                    text-nonconvergence                                  78
+                                Fin.   HR Mkt. Ops. Sales Sup.                                                 1    2      3   4      5    6
+c Routing from execution evidence
+  Base trajectory (schematic)                               Routing lesson                                         Selected harness
+  Call: SOQL query                                           Repeated query-
+                                                 match                                                select         API error-
+  Result: query-parsing error                                 parsing errors
+  Retry: revised query                  Parse                                                                        normalizer
+                                        error                   Use an API                                          Rewrites errors as
+  Result: query-parsing error                                error normalizer                                       query-repair hints
+
+
+Figure 6 | Learned clusters and an example router lesson. Panels (a,b) compare learned clusters (rows) with
+domains or task types (columns); cells count shared discovery tasks. AutomationBench clusters largely reflect
+execution needs, while Workspace-Bench clusters largely follow task types. Panel (c) schematically shows how
+repeated query-parsing errors in a Base trajectory match a saved routing lesson, leading to selection of an API
+error-normalizer harness. Blank cells are zero; Workspace-Bench column IDs match the numbered rows.
+
+
+
+
+                                                                      Task PASS (%)
+Concrete harness changes. Inheritance                                                         59.18                            59.18
+                                                                                      60                       44.90
+supports both shared behavior and targeted
+                                                                                      40
+specialization.    On AutomationBench, the
+                                                                                      20
+discovery-setup lineage extends a missing-                                             0
+write completion check with a near-budget                                                     Base        Meta-Harness OO-Harness
+reminder and tool-error guidance (Appendix Fig-
+ure 9). Each node is a complete executable                       Figure 7 | Base reuse on the selected OOD test
+harness. A parent supplies shared behavior and,                  tasks. After evolution on the disjoint training split,
+if active, can serve tasks that do not need a                    OO-Harness reuses Base on every test task, preserv-
+descendant’s additional changes. A document-                     ing its performance, while applying the learned Meta-
+                                                                 Harness harness reduces PASS.
+backend specialization on Workspace-Bench
+appears in Appendix Figure 8.
+                                                                 OO-Harness to handle unfamiliar tasks with-
+5.3. Base harness reuse in OOD settings                          out requiring them to use a specialization learned
+                                                                 on different application families.
+To examine behavior in extreme OOD scenarios,
+we construct a setting with 254 Toolathlon-GYM
+training tasks and 49 Toolathlon test tasks (Li                  6. Conclusion
+et al., 2025). Their named application fami-
+                                                                 OO-Harness evolves specialized harnesses
+lies are disjoint, making the test set largely out
+                                                                 through inheritance and routes tasks using ex-
+of distribution relative to the training set (Ap-
+                                                                 ecution evidence. Task clusters capture shared ex-
+pendix A.7). We evolve harnesses on this training
+                                                                 ecution needs, and inheritance allows specialized
+split and compare OO-Harness against Meta-
+                                                                 harnesses to share useful code. OO-Harness
+Harness. At test time, Meta-Harness ap-
+                                                                 achieves the best performance among baselines.
+plies its learned global harness, whereas the
+                                                                 Ablations support inheritance and trajectory-
+OO-Harness router selects the general Base har-
+                                                                 informed routing, while case studies illustrate
+ness for every test task. As Figure 7 shows, reusing
+                                                                 the effectiveness of specialization and Base reuse.
+Base preserves its performance, while applying
+the Meta-Harness harness yields a lower PASS
+rate. Keeping Base as a routing option allows
+
+
+                                                                                                                                                9
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+Limitations
+OO-Harness relies on the APIs and execution
+environment provided by its host. Service out-
+ages and rate limits can affect reliability, while
+interface changes may require updates to evolved
+harnesses. Integrating private or authenticated
+services also requires secure credential handling
+and permission configuration. These dependen-
+cies motivate further work on robust API integra-
+tion and deployment across environments.
+
+
+
+
+                                                                                                      10
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+References                                                    Yoonho Lee, Roshen Nair, Qizheng Zhang, Kang-
+                                                                wook Lee, Omar Khattab, and Chelsea Finn. Meta-
+Lakshya A. Agrawal, Shangyin Tan, Dilara Soylu,                 Harness: End-to-end optimization of model har-
+  Noah Ziems, Rishi Khare, Krista Opsahl-Ong, Arnav             nesses. arXiv preprint arXiv:2603.28052, 2026.
+  Singhvi, Herumb Shandilya, Michael J. Ryan, Meng
+  Jiang, Christopher Potts, Koushik Sen, Alexan-              Junlong Li, Wenshuo Zhao, Jian Zhao, Weihao Zeng,
+  dros G. Dimakis, Ion Stoica, Dan Klein, Matei Za-             Haoze Wu, Xiaochen Wang, Rui Ge, Yuxuan Cao,
+  haria, and Omar Khattab. GEPA: Reflective prompt              Yuzhen Huang, Wei Liu, Junteng Liu, Zhaochen Su,
+  evolution can outperform reinforcement learning.              Yiyang Guo, Fan Zhou, Lueyang Zhang, Juan Miche-
+  arXiv preprint arXiv:2507.19457, 2025. Accepted               lini, Xingyao Wang, Xiang Yue, Shuyan Zhou, Gra-
+  to ICLR 2026.                                                 ham Neubig, and Junxian He. The tool decathlon:
+                                                                Benchmarking language agents for diverse, realis-
+Anthropic. Claude models overview, 2026. URL                    tic, and long-horizon task execution. 2025. URL
+  https://platform.claude.com/docs/en/                          https://arxiv.org/abs/2510.25726.
+  models/overview. Provider documentation;
+  accessed October 10, 2026.                                  Jiahang Lin, Shichun Liu, Chengjun Pan, Lizhi Lin, Shi-
+                                                                 han Dou, Zhiheng Xi, Xuanjing Huang, Hang Yan,
+Paul Furgale, Severin Klingler, James Nolan, Matt                Zhenhua Han, Tao Gui, and Yu-Gang Jiang. Agen-
+  Staats, Gaia Di Lorenzo, Elisa Martinez Abad,                  tic harness engineering: Observability-driven auto-
+  Christian Schüller, Razvan Dinu, Alessio Devoto,               matic evolution of coding-agent harnesses. arXiv
+  Pascal Berard, Gal Kaplun, Elad Sarafian, Ric-                 preprint arXiv:2604.25850, 2026a.
+  cardo Roveri, Leon Derczynski, and Ricardo Sil-
+  veira Cabral. NVIDIA-labs OO Agents: Native                 Minhua Lin, Hanqing Lu, Zhan Shi, Bing He, Rui Mao,
+  Python object-oriented agents. arXiv preprint                 Zhiwei Zhang, Zongyu Wu, Xianfeng Tang, Hui Liu,
+  arXiv:2607.20709, 2026. URL https://arxiv.                    Zhenwei Dai, Xiang Zhang, Suhang Wang, Benoit
+  org/abs/2607.20709.                                           Dumoulin, and Jian Pei. Position: Agentic evolu-
+                                                                tion is the path to evolving LLMs. arXiv preprint
+Google. Gemini API models, 2026. URL https://                   arXiv:2602.00359, 2026b.
+  ai.google.dev/gemini-api/docs/models.
+  Provider documentation; accessed October 10,                Hongjun Liu, Yifei Ming, Shafiq Joty, and Chen Zhao.
+  2026.                                                         Harnessing LLM agents with skill programs. arXiv
+                                                                preprint arXiv:2605.17734, 2026a. URL https:
+Shengran Hu, Cong Lu, and Jeff Clune. Auto-                     //arxiv.org/abs/2605.17734.
+  mated design of agentic systems. arXiv preprint
+  arXiv:2408.08435, 2024.                                     Zewen Liu, Zhan Shi, Yisi Sang, Bing He, Minhua Lin,
+                                                                Tianxin Wei, Dakuo Wang, Benoit Dumoulin, Wei
+Wen Jiang, Mingmin Chu, Yimeng Tian, Qianxin                    Jin, and Hanqing Lu. Adaptive auto-harness: Sus-
+ Zhang, Haofei Yang, Rui Yang, Yang Liu, Tao Lv, and            tained self-improvement for agentic system deploy-
+ Fangming Li. HarnessEvolve: Learning from refer-               ment on open-ended task streams. arXiv preprint
+ ence trajectories for reliable agent self-evolution.           arXiv:2606.01770, 2026b.
+ arXiv preprint arXiv:2609.00829, 2026.
+                                                              Xinghua Lou, Miguel Lázaro-Gredilla, Antoine Dedieu,
+Seth Karten, Joel Zhang, Tersoo Upaa Jr, Ruirong                Carter Wendelken, Wolfgang Lehrach, and Kevin P.
+  Feng, Wenzhe Li, Chengshuai Shi, Chi Jin, and Ki-             Murphy. AutoHarness: Improving LLM agents by
+  ran Vodrahalli. Continual Harness: Online adapta-             automatically synthesizing a code harness. arXiv
+  tion for self-improving foundation agents. arXiv              preprint arXiv:2603.03329, 2026. URL https://
+  preprint arXiv:2605.09998, 2026. URL https:                   arxiv.org/abs/2603.03329.
+  //arxiv.org/abs/2605.09998.
+                                                              Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler
+Zixuan Ke, Vaidehi Patil, Haizhou Shi, Yang Li,                 Hallinan, Luyu Gao, Sarah Wiegreffe, Uri Alon,
+  Ye Liu, Sarath Shekkizhar, Anurag Koul, Jiayu Wang,           Nouha Dziri, Shrimai Prabhumoye, Yiming Yang,
+  Xuan Phi Nguyen, Semih Yavuz, Mohit Bansal, and               Shashank Gupta, Bodhisattwa Prasad Majumder,
+  Shafiq Joty. EvoHarnessBench: Can your agents                 Katherine Hermann, Sean Welleck, Amir Yazdan-
+  keep pace with an evolving harness? arXiv preprint            bakhsh, and Peter Clark. Self-refine: Iterative re-
+  arXiv:2609.04280, 2026. URL https://arxiv.                    finement with self-feedback. Advances in Neural
+  org/abs/2609.04280.                                           Information Processing Systems (NeurIPS), 2023.
+
+
+
+
+                                                                                                                  11
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+Jun Nie, Yonggang Zhang, Qianshu Cai, Yiu-ming Che-              of harness evolution for agents.      arXiv preprint
+  ung, Xinmei Tian, and Bo Han. EvolveNet: Collabo-              arXiv:2607.12227, 2026.
+  rative harness evolution for agent self-improvement.
+  arXiv preprint arXiv:2608.04968, 2026.                      Yuhao Wu, Jingyuan Zhang, Jiajun Shi, Xinping Lei,
+                                                                Qingshui Gu, Yuxuan Zhang, Zexuan Wang, Chen
+Xuying Ning, Katherine Tieu, Dongqi Fu, Tianxin Wei,            He, Chen Huang, Maojia Song, Zhiyuan Zeng,
+  Zihao Li, Yuanchen Bei, Jiaru Zou, Mengting Ai,               Shaowen Wang, Jinkai Liu, Yunfeng Shi, Jiaheng
+  Zhining Liu, Ting-Wei Li, Lingjie Chen, Yanjun Zhao,          Liu, Shen Yan, Wenhao Huang, Ge Zhang, and
+  Ke Yang, Bingxuan Li, Cheng Qian, Gaotang Li, Xiao            Wenxuan Zhang. HarnessDev: Can LLMs create
+  Lin, Zhichen Zeng, Ruizhong Qiu, Sirui Chen, Yifan            and evolve their own agent harness? arXiv preprint
+  Sun, Xiyuan Yang, Ruida Wang, Rui Pan, Chenyuan               arXiv:2609.01437, 2026.
+  Yang, Dylan Zhang, Liri Fang, Zikun Cui, Yang Cao,
+  Pan Chen, Dorothy Sun, Ren Chen, Mahesh Srini-              Zhiheng Xi, Yiwen Ding, Wenxiang Chen, Boyang
+  vasan, Nipun Mathur, Yinglong Xia, Hong Li, Hong              Hong, Honglin Guo, Junzhe Wang, Dingwen Yang,
+  Yan, Pan Lu, Lingming Zhang, Tong Zhang, Hang-                Chenyang Liao, Xin Guo, Wei He, Songyang
+  hang Tong, and Jingrui He. Code as agent harness.             Gao, Lu Chen, Rui Zheng, Yicheng Zou, Tao Gui,
+  arXiv preprint arXiv:2605.18747, 2026.                        Qi Zhang, Xipeng Qiu, Xuanjing Huang, Zuxuan
+                                                                Wu, and Yu-Gang Jiang. AgentGym: Evolving large
+Siru Ouyang, Jun Yan, I-Hung Hsu, Yanfei Chen,                  language model-based agents across diverse envi-
+   Ke Jiang, Zifeng Wang, Rujun Han, Long T. Le,                ronments. arXiv preprint arXiv:2406.04151, 2024.
+   Samira Daruki, Xiangru Tang, Vishy Tirumalashetty,
+   George Lee, Mahsan Rofouei, Hangfei Lin, Jiawei            John Yang, Carlos E. Jimenez, Alexander Wettig, Kil-
+   Han, Chen-Yu Lee, and Tomas Pfister. Reasoning-              ian Lieret, Shunyu Yao, Karthik Narasimhan, and
+   Bank: Scaling agent self-evolving with reasoning             Ofir Press. SWE-agent: Agent-computer interfaces
+   memory. In The Fourteenth International Conference           enable automated software engineering. Advances
+   on Learning Representations, 2026. URL https:                in Neural Information Processing Systems (NeurIPS),
+  //openreview.net/forum?id=jL7fwchScm.                         2024.
+
+Daniel Shepard and Robin Salimans. Automation-                Aohan Zeng, Mingdao Liu, Rui Lu, Bowen Wang, Xiao
+  Bench, 2026. URL https://arxiv.org/abs/                       Liu, Yuxiao Dong, and Jie Tang. AgentTuning: En-
+  2604.18934.                                                   abling generalized agent abilities for LLMs. arXiv
+                                                                preprint arXiv:2310.12823, 2023.
+Zirui Tang, Xuanhe Zhou, Yumou Liu, Linchun Li,
+  Yukai Wu, Weizheng Wang, Hongzhang Huang,                   Zhiyuan Zeng, Jiashuo Liu, Siyuan Chen, Tianci He,
+  Wei Zhou, Jun Zhou, Jiachen Song, Shaoli Yu,                  Yali Liao, Yixiao Tian, Jinpeng Wang, Zaiyuan Wang,
+  Jinqi Wang, Zihang Zhou, Hongyi Zhou, Yuting Lv,              Yang Yang, Lingyue Yin, Mingren Yin, Zhenwei Zhu,
+  Jinyang Li, Jiashuo Liu, Ruoyu Chen, Chunwei Liu,             Tianle Cai, Zehui Chen, Jiecao Chen, Yantao Du,
+  GuoLiang Li, Jihua Kang, and Fan Wu. Workspace-               Xiang Gao, Jiacheng Guo, Liang Hu, Jianpeng Jiao,
+   Bench 1.0: Benchmarking AI agents on workspace               Xiangsheng Li, Jingkai Liu, Shuang Ni, Zhoufutu
+   tasks with large-scale file dependencies, 2026. URL          Wen, Ge Zhang, Kaiyuan Zhang, Xin Zhou, Jose
+   https://arxiv.org/abs/2605.03596.                            Blanchet, Xipeng Qiu, Mengdi Wang, and Wenhao
+                                                                Huang. FutureX: An Advanced Live Benchmark for
+Bertie Vidgen, Austin Mann, Abby Fennelly,                      LLM Agents in Future Prediction. arXiv preprint
+  John Wright Stanly, Lucas Rothman, Marco                      arXiv:2508.11987, 2025.
+  Burstein, Julien Benchek, David Ostrofsky, Anirudh
+  Ravichandran, Debnil Sur, Neel Venugopal, Alan-             Jenny Zhang, Shengran Hu, Cong Lu, Robert Lange,
+  nah Hsia, Isaac Robinson, Calix Huang, Olivia                 and Jeff Clune. Darwin gödel machine: Open-
+  Varones, Daniyal Khan, Michael Haines, Austin                 ended evolution of self-improving agents. arXiv
+  Bridges, Jesse Boyle, Koby Twist, Zach Richards,              preprint arXiv:2505.22954, 2025.
+  Chirag Mahapatra, Brendan Foody, and Osvald Nit-
+                                                              Puzhen Zhang, Weijie Bai, Wendong Fan, and Guohao
+  ski. APEX-Agents. arXiv preprint arXiv:2601.14242,
+                                                                Li. Toolathlon-GYM: Large-Scale Long-Horizon En-
+  2026.
+                                                                vironments for Tool-Use Agents, 2026. URL https:
+Yike Wang, Huaisheng Zhu, Zhengyu Hu, Yige Yuan,                //github.com/eigent-ai/toolathlon_gym.
+  Zhengyu Chen, Shakti Senthil, Hannaneh Ha-
+  jishirzi, Yulia Tsvetkov, Noah A. Smith, Pradeep
+  Dasigi, and Teng Xiao. Rethinking the evaluation
+
+
+                                                                                                                  12
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+A. Implementation and evaluation de- artifacts. We use the DeepAgents scaffold with
+   tails                             a local shell and filesystem backend. The bench-
+                                                             mark’s agent-as-a-judge pipeline evaluates task-
+The implementations share the problem setting                specific rubrics over the resulting outputs. We
+described in §3, with benchmark-specific settings            report micro-averaged rubric pass and full-task
+described below.                                             pass, which requires satisfying every rubric for a
+                                                             task.
+A.1. Model configuration
+For the main comparison across all three                     Toolathlon-GYM. Tasks combine tools and ap-
+benchmarks, we use Anthropic’s Claude Opus                   plication services exposed through configured
+4.8 for evolution across harness-optimization                MCP servers. The native runner initializes each
+methods (Anthropic, 2026). We use Google’s                   task’s workspace and service connections, then
+gemini-3.5-flash as the fixed execu-                         executes the agent through the benchmark’s
+tor (Google, 2026) for all methods. Execution                containerized evaluation pipeline. Task-specific
+follows each benchmark’s native protocol,                    graders assess completion and produce the evalu-
+including its agent scaffold, tool environment,              ation records used to compute mean reward and
+execution limits, and evaluation procedure.                  strict PASS.
+Harness evolution changes the code around the
+executor while keeping its model weights fixed.              A.4. OO-Harness implementation
+                                                            This section describes the code workspace,
+A.2. Common training configuration
+                                                            prompts, and harness interface used to imple-
+We configure a budget of up to 40 evolution it-             ment OO-Harness (§3).
+erations for each harness-optimization method
+on each benchmark, which we found sufficient                 A.4.1. Evolution workspace and code author-
+for harness search across the evaluated methods.                    ing
+Candidate evaluation and selection use only dis-
+                                                            We run the evolution agent as a coding agent with
+covery tasks. The resulting harnesses are frozen
+                                                            filesystem access to harness interfaces, existing
+before held-out evaluation.
+                                                            source code, task clusters, discovery trajectories,
+                                                            evaluation feedback, and prior reflections. It can
+A.3. Benchmark implementations                              search and read these files, delegate evidence
+We retain each benchmark’s native task environ-             inspection to subagents, and write executable
+ment and evaluation procedure. Task counts,                 candidate subclasses at designated paths. Au-
+discovery/held-out splits, and primary metrics              tomationBench and Workspace-Bench also sup-
+are given in §4.1.                                          port shared helper modules. The resulting code is
+                                                            loaded, validated, and evaluated by the evolution
+                                                            procedure.
+AutomationBench. Tasks execute business
+workflows in a simulated application environ-                  The Workspace-Bench authoring interface ex-
+ment. The agent uses API search and request                 poses file-reading, search, writing, editing, and
+tools to inspect and modify an initialized world            subagent tools. Its harness interface sepa-
+state. We retain the native execution loop and              rately supports tools, middleware, file backends,
+tools. Deterministic assertions evaluate the final          and subagent configurations. For example, the
+state, yielding partial-credit scores and strict            subagents() method supplies subagents used
+task-completion verdicts.                                   during benchmark task execution, while the evo-
+                                                            lution agent’s subagents inspect training evidence.
+                                                            The available modifications are determined by
+Workspace-Bench. Tasks operate on files in a
+                                                            each benchmark’s harness interface.
+task workspace and require outputs such as doc-
+uments, spreadsheets, presentations, and code
+
+
+                                                                                                            13
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+A.4.2. Evolution and routing prompts                         frozen harness catalogue, together with routing
+Evolution prompt. The evolution agent re-                    lessons where supplied. We use Claude Son-
+ceives the harness interface, current hierarchy,             net 5 for routing in the main comparison. The
+target cluster or available clusters, and paths to           condensed AutomationBench prompt below illus-
+discovery-task trajectories, evaluation feedback,            trates the selection instruction:
+and prior reflections. A condensed prompt is:                Choose one available harness or base using
+                                                             only the Base query, observable trajectory,
+Read the training trajectories and prior                     and retrieved training context.
+    changes.                                                 Choose base when no mechanism clearly fits
+Use subagents to inspect the execution                       or a learned anti-pattern applies.
+    evidence.                                                AVAILABLE HARNESSES: <frozen catalogue>
+Identify one shared, harness-fixable                         RETRIEVED CONTEXT: <retrieval response>
+    mechanism.                                               BASE QUERY + DIGEST: <observable evidence>
+Write one subclass of the selected parent;                   Return only JSON with choice, rule, and why.
+    call
+super() to preserve the inherited behavior.
+Do not hardcode task IDs, answers, or
+    filenames.                                                 Held-out grades and reference answers are ex-
+Return a JSON manifest describing the                        cluded from the routing input.
+    change.
+
+                                                            Inputs supplied to the router. We summa-
+   AutomationBench and Workspace-Bench bind
+                                                            rize each benchmark’s task metadata and observ-
+the parent as _Parent; Toolathlon uses _Base.
+                                                            able Base execution as a compact prompt record.
+AutomationBench allows add, merge, and split
+                                                            These records provide cues for matching a task
+proposals and lets the teacher choose a cluster;
+                                                            to a learned cluster, such as the tools involved,
+Workspace-Bench supplies a target cluster and
+                                                            encountered errors, and required output format.
+parent. Toolathlon also provides its design prin-
+ciples and requires an observable applicability                AutomationBench supplies the task query and
+gate. Supplied lesson text is capped at 6,000                a bounded digest of Base tool calls and results,
+characters in all three implementations. The de-             including write counts and execution-error pat-
+fault proposal timeout is 2,400 seconds, separate            terns. A first prompt retrieves relevant frozen
+from the executor rollout budget. A representa-              routing rules; a second prompt selects one avail-
+tive manifest is:                                            able harness. The final response has the following
+                                                             schema:
+{"op": "add", "cluster": "<training cluster
+    >",                                                      {"choice": "<harness-id|base>",
+ "parent": "<existing node or base>",                         "rule": "<rule-id or empty>",
+ "name": "<candidate name>",                                  "why": "<one sentence>"}
+ "seam": "<modified interface>",
+ "hypothesis": "<shared failure and                             For Toolathlon, each record contains the task
+    mechanism>"}
+                                                             identifier, tool families, number of recorded his-
+                                                             tory events, frequent tool or event types, and
+  Toolathlon adds gate; Workspace-Bench
+                                                             execution-error categories. These fields summa-
+adds changes and names the seam as
+                                                             rize the tool environment, interaction history, and
+system_prompt,         tools,     middleware,
+                                                             errors observed during Base execution.
+subagents, or backend. Merge and split
+proposals identify the affected clusters or an                For Workspace-Bench, each record contains
+observable split criterion. The template files              benchmark-provided task metadata: persona
+give the exact benchmark-specific schemas; the              and difficulty labels, requested output-file ex-
+evolution procedure validates candidates and                tensions, and the number of links in the file-
+determines acceptance from training evaluations.            dependency graph. It also includes Base assistant-
+                                                            turn and tool-call counts. Output types and file
+                                                            dependencies describe the requested artifact and
+Routing prompt. The router receives the task,               workspace, while the execution counts summa-
+an observable Base-execution summary, and a
+
+                                                                                                             14
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+rize Base’s activity. The router can therefore               rather than unevaluated formula strings. Child
+match both task requirements and execution pat-              s30 inherits this guidance and adds a check of
+terns to the learned cluster descriptions.                   percentage-labelled cells in saved workbooks be-
+   Both routers receive the frozen cluster menu              fore finishing. The check can request one correc-
+alongside these records; Toolathlon also receives            tion pass on the identified cells; Appendix B.3
+frozen routing lessons. They return one assign-              details its trigger and unit convention.
+ment per task:                                                 The child does not redefine manage_context,
+{"task_to_cluster": {                                       so the parent’s context rule remains active. Its
+  "<task-id>": "<cluster-id|leave-on-base>"                 verify_before_finish method calls super()
+}}                                                           to preserve inherited completion checks before
+                                                            applying its own. The selected child combines
+                                                            these capabilities in one execution. This illus-
+Router invocation. The router is called with                trates incremental specialization: evolution can
+agent tools disabled and receives only the pre-             add a targeted behavior while reusing an earlier
+pared task records and frozen routing context.              mechanism without copying its code.
+
+
+Router settings. The following code defaults                 A.5. Baseline method implementations
+specify limits on prompt length, batch sizes,               All baselines use the task splits and fixed executor
+model choices, and call timeouts. In the Automa-            in §4.1. Harness optimization uses discovery-task
+tionBench reference router, the query is limited to         feedback; test-time trajectory selection and refine-
+600 characters and the digest processes at most             ment use observable execution records without
+60 observable message entries; the final digest is          grader feedback.
+capped at 5,000 characters. Each compact rout-
+ing lesson contributes at most 180 characters of
+                                                             Base. Base uses the unevolved benchmark-
+lesson text and each available-harness descrip-
+                                                             specific harness, including its prompts, tools, and
+tion at most 120 characters. Retrieval requests
+                                                             execution loop. It performs no harness optimiza-
+a synthesis of at most ten lines. Defaults are
+                                                             tion or selection among specialized harnesses.
+Sonnet 5 for retrieval and Opus 4.8 for selection,
+with 400- and 1,200-second timeouts respectively.
+Toolathlon defaults to batches of 25 tasks, up              Meta-Harness. Meta-Harness (Lee et al.,
+to twelve frozen routing rules capped at 4,000              2026)1 searches for one global harness using
+characters in total, and a 1,800-second call time-          discovery-task evaluations. The evolution agent
+out. Workspace-Bench supplies the requested                 inspects earlier candidates and execution feed-
+cohort’s feature table in one call, with a 1,200-           back, proposes revised harness code, and evalu-
+second timeout. Its metadata fallback uses depen-           ates the resulting program. We freeze the selected
+dency counts and output extensions; Toolathlon’s            global harness and apply it to every held-out task.
+invalid-menu fallback selects leave-on-base.
+Both allow router-model overrides, otherwise us-             AHE. AHE (Lin et al., 2026a)2 begins with
+ing the proposer model (default Opus 4.8). The               framework-source exploration and maintains an
+case study in Table 3 uses Opus 4.8 for both re-             editable workspace of framework components. A
+trieval and selection.                                       debugger analyzes discovery trajectories; the evo-
+                                                             lution agent uses these reports and the change his-
+A.4.3. Inheritance example                                   tory to revise components, retain useful changes,
+Listing 1 illustrates how a specialized harness re-          or roll back unsuccessful edits. The selected
+tains an earlier capability while adding a new               global snapshot is frozen for held-out evaluation.
+one. In this saved Toolathlon lineage, parent s7               1 https://github.com/stanford-iris-lab/
+
+detects formula-like writes to .xlsx workbooks               meta-harness
+                                                               2 https://github.com/china-qijizhifeng/
+and adds a reminder to save computed values
+                                                             agentic-harness-engineering
+
+
+                                                                                                             15
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+
+Listing 1 | Inherited context guidance with an added completion check (Toolathlon s7 → s30). Display names
+and helper calls are shortened; the method names match the implementation.
+class FormulaLiteralHarness(BaseHarness):
+  def manage_context(self, messages, state):
+    messages = super().manage_context(messages, state)
+    return pin_literals_if_needed(messages, state)
+
+class PercentCheckHarness(FormulaLiteralHarness):
+  # Inherits manage_context from its parent.
+  def verify_before_finish(self, messages, state):
+    parent = super().verify_before_finish(messages, state)
+    if parent:
+      return parent
+    return check_saved_percent_values(messages, state)
+
+
+AAH. AAH (Liu et al., 2026b)3 organizes tasks                A.6.1. Harness routing
+into groups using task descriptions and meta-               The routing ablation keeps the harness catalogue,
+data, and improves a separate harness for each              executor, grader, and held-out split fixed, vary-
+group. In our benchmark setup, Automation-                  ing only the routing input (Table 2). Task-only
+Bench groups correspond to business domains;                routing uses task descriptions and metadata;
+Workspace-Bench groups use output type and                  trajectory-based routing also observes the Base
+workspace requirements; and Toolathlon-GYM                  execution. The task-only prompt setups are given
+groups follow application families. Each specialist         below.
+is revised as a separate harness implementation.
+At deployment, task descriptions or metadata de-
+termine which frozen specialist to use, with Base           Confidence gate. The router is asked for a
+used when no specialist is available.                       specialist identifier and applicability confidence
+                                                            𝑐 ∈ [0, 1]. For a valid identifier and numeric confi-
+                                                            dence, the routing procedure selects the specialist
+Parallel sampling. For 𝐾 = 2 and 𝐾 = 5, we                  when 𝑐 ≥ 0.7, otherwise Base. Confidence is self-
+obtain independent Base executions of the same              reported, not a calibrated success probability or
+task. A Claude Opus 4.8 selector compares their             a grader score.
+observable trajectories and chooses one result.
+Neither reference answers nor grader feedback is
+available to the selector.                                  AutomationBench. The prompt includes spe-
+                                                            cialist identifiers with mechanisms truncated to
+                                                            130 characters, and task identifiers, domains,
+Sequential refinement. For 𝐾 = 2, Claude                    and user triggers (up to 300 characters each),
+Opus 4.8 summarizes process errors visible in               in batches of 25 tasks:
+the first Base execution. These task-local notes
+guide a second Base execution, without access to             Route each task to ONE specialist (or base)
+                                                             using ONLY the task description/trigger.
+held-out grader feedback or reference answers.               You have no execution trace, tool output,
+                                                             or score. Each specialist fixes a specific
+A.6. Ablation settings                                       failure mode of the base agent.
+
+These experiments isolate the roles of routing ev-           SPECIALISTS (id | mechanism): <catalogue>
+idence and inheritance in OO-Harness (§5.1).                 TASKS (id | domain | trigger): <task batch>
+  3 https://github.com/A-EVO-Lab/a-evolve/                   Pick a specialist only when the description
+tree/release/adaptive-auto-harness                           clearly fits it; otherwise choose base.
+                                                             Return a confidence in [0,1]. Output only
+                                                                 JSON:
+                                                             {"<task-id>": {"cluster": "<id-or-base>",
+
+
+                                                                                                              16
+                   Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+                "confidence": <0..1>}, ...}
+                                                             Choose a specialist only when the task
+  Missing entries or unknown identifiers select              requirements clearly match its capability.
+                                                             Do not assume that an execution error has
+Base; missing confidence defaults to zero.                   occurred. If no specialist clearly fits or
+                                                             confidence is below 0.7, choose leave-on-
+                                                                 base.
+Workspace-Bench. Catalogue entries contain                   Return each task exactly once. Output only
+cluster identifiers, routing signatures, and ad-                 JSON:
+dressed failures. Each task supplies its identi-             {"routes": {"<task-id>": {
+fier, persona, difficulty, output-file extensions,             "cluster": "<cluster-id|leave-on-base>",
+                                                               "confidence": <0..1>}, ...}}
+dependency-edge count, tested capabilities (up
+to 80 characters), and task text (up to 500 char-
+acters). Batches default to 25 tasks:                        A.6.2. Hierarchical structure
+Assign each new task to ONE cluster in the
+fixed catalogue whose description best
+                                                            This ablation examines how an evolution step
+matches it, using only the task description                 builds on previously learned harness code. We
+and metadata. No execution trace, score,                    compare three separate searches on Workspace-
+or grader feedback is provided.                             Bench, each learning specialized harnesses for
+                                                            task clusters:
+CLUSTERS (id | routing signature |
+  failure):                                                  • Base-reset (no code carry-over). Each candi-
+<frozen catalogue>
+TASKS (description + metadata): <task                          date derives directly from Base. The evolution
+  batch>                                                       agent is asked to implement one new mecha-
+                                                               nism without incorporating mechanisms from
+If no cluster matches well, or confidence                      earlier evolved nodes. Previous execution evi-
+is below 0.7, choose leave-on-base.
+Output only JSON: {"routes": {"<task-id>":                     dence and reflections remain available to guide
+  {"cluster":                                                  the proposal. Thus, each proposal starts afresh
+  "<cluster-id|leave-on-base>",                                in its code implementation while retaining the
+  "confidence": <0..1>}, ...}}                                 search’s diagnostic history.
+
+  Missing or invalid identifiers invoke a task-              • Flat (copy-based reuse). Each candidate also
+metadata fallback based on output-file type and                derives directly from Base. When the target
+dependency count; missing confidence defaults                  cluster already has a deployed harness, the
+to one.                                                        evolution agent is instructed to read its source,
+                                                               copy all its accepted mechanisms into a new
+                                                               file, and then add one new mechanism. The
+Toolathlon-GYM. The following reconstructed                    candidate cannot import, delegate to, or in-
+template uses task descriptions and declared ap-               herit from other evolved nodes. Reuse there-
+p/tool metadata with the frozen harness cata-                  fore occurs through code copied into the candi-
+logue and the same confidence gate. Catalogue                  date, whose retained behavior is implemented
+entries describe each specialist’s mechanism and               within the module.
+applicability conditions:
+                                                             • OO (inheritance). The target cluster’s cur-
+Route each Toolathlon-GYM task to ONE                          rently deployed harness becomes the candi-
+specialist in the fixed catalogue or
+leave-on-base, using only its description                      date’s parent; Base is used when the cluster has
+and declared app/tool metadata. No Base                        no specialist. The loader binds this parent class
+trajectory, tool output, or grader feedback                    to _Parent. Methods that the candidate does
+is provided.                                                   not override remain inherited, while an over-
+                                                               ride can call super() to compose the parent’s
+SPECIALISTS (id | mechanism | applicability)
+    :                                                          behavior with a new change. The evolution
+<frozen catalogue>                                             agent can inspect prior source, execution evi-
+TASKS (id | description | apps/tools):                         dence, and reflections, then add a specialized
+<task batch>
+
+
+                                                                                                             17
+                    Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+  behavior without needing to copy the parent’s              notice for third-party API structures.4 Workspace-
+  implementation.                                            Bench’s code is MIT-licensed.5 Its full-dataset
+                                                             card lists Apache-2.0; the inspected Lite card
+Shared setup and evaluation. The variants use                does not separately specify a license.6 Toolathlon-
+the same discovery split, initial task clusters, and         GYM’s root code license is Apache-2.0.7 The orig-
+initial Base execution records. They share the               inal Toolathlon repository and task-data card do
+procedures for choosing a target cluster, scoring            not specify a standard license.8 Task files, bun-
+candidates, accepting revisions, and routing held-           dled components, and external services may carry
+out tasks, with the executor and grader fixed.               separate terms that also govern redistribution.
+Flat and Base-reset keep the shared helper li-
+brary read-only during their searches, so can-               API access and AI assistance. We access the
+didate changes are written into the new node                 language models through hosted APIs, using
+module.                                                      Google Cloud Vertex AI as the backend. AI tools
+  Each search learns from the 288-task discov-               assisted manuscript revision and polishing, code
+ery split and freezes its resulting catalogue for            inspection, and figure preparation.
+one held-out evaluation on Lite-100. The routing
+procedure is shared, while the learned harnesses             Resources. Across all benchmarks and methods,
+and resulting task assignments can differ across             the main computational expense is hosted-model
+searches. Figure 5 reports micro rubric pass for             API usage for task execution and, where applica-
+the three resulting systems. Base-reset versus Flat          ble, harness evolution, routing, and model-based
+examines carrying forward evolved code; Flat ver-            evaluation.
+sus OO examines organizing that reuse through
+inheritance.
+                                                              B. Case studies of specialized har-
+                                                                 nesses
+A.7. OOD evaluation configuration
+We use application metadata to construct the                 These cases show how OO-Harness turns ex-
+OOD split in §5.3, retaining 254 Toolathlon-GYM              ecution needs into concrete code changes and
+tasks and 49 Toolathlon tasks. We note that the              routing choices. We examine document gener-
+emphasis of Toolathon(-GYM) is on using applica-             ation on Workspace-Bench, shared completion
+tions and that different applications could require          checks and routing lessons on AutomationBench,
+substantially different skills, tools, or workflows.         and targeted runtime checks on Toolathlon-GYM.
+The curated application distribution is as follows:
+                                                              B.1. Workspace-Bench: generating Word doc-
+• Training applications: Google Workspace                          uments
+  (Forms, Calendar, and Sheets), HowToCook,
+  Notion, Snowflake, and WooCommerce.                         Document-writing tasks require both suitable con-
+• Test applications:       Amazon, Canvas,                    tent and a valid output file. Writing plain text to a
+  Git/GitHub, Kubernetes, literature research                 .docx path does not produce a Word document.
+  (arXiv and Scholarly/Google Scholar), MySQL,                 4 https://github.com/zapier/
+
+  12306, Redis, Yahoo Finance, and YouTube.                  AutomationBench/blob/main/LICENSE
+                                                               5 https://github.com/OpenDataBox/
+As a result, these application families do not over-         Workspace-Bench/blob/main/LICENSE
+lap and offer a good controlled experiment set-                6 https://huggingface.co/datasets/
+
+ting.                                                        Workspace-Bench/Workspace-Bench;       https:
+                                                             //huggingface.co/datasets/Workspace-Bench/
+                                                             Workspace-Bench-Lite
+A.8. Artifact sources and resource reporting                   7 https://github.com/eigent-ai/toolathlon_
+
+                                                             gym/blob/main/LICENSE
+Sources and terms. The AutomationBench                         8 https://github.com/hkust-nlp/Toolathlon;
+repository distributes Zapier’s original contribu-           https://huggingface.co/datasets/hkust-nlp/
+tions under the MIT license, with a separate scope           Toolathlon
+
+
+                                                                                                                18
+                      Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+Document-writing backend                                          Figure 9 shows successive extensions within
+write_file("report.docx", text)                                 the discovery-setup lineage. Building on s9’s
+Fixed executor; change the file backend                         missing-write completion check, s12 adds a re-
+                                                                minder near the turn limit when no write has
+Base harness                  Specialized harness
+                                                                succeeded. Its child s29 retains both mechanisms
+ Default write()                Override write()
+                                                                and adds guidance for unrecoverable errors and
+                                                                repeated unproductive tool results.
+ Encode text as UTF-8           Render a binary .docx
+
+                                                                                      discovery-setup
+                                                                                   s9: completion check
+      Text bytes                     Binary document
+                                                                            Before finishing, request another turn
+      report.docx                    report.docx                                  if no write was attempted
+
+Valid file format does not imply correct content.
+                                                                               s12: near-budget reminder
+Figure 8 | Generating a Word document through the                             Prompt a write near the turn limit
+file backend. For the same illustrative write_file                               if no write has succeeded
+call, the base backend saves text under a .docx file-
+name; the specialized backend renders the text into a
+binary document.                                                                 s29: tool-error guidance
+                                                                           Add corrective hints for unrecoverable
+                                                                           errors or repeated unproductive results
+The office-doc-write harness addresses this
+problem by wrapping the file backend and render-                        Outlined: inactive ancestors | Filled: active harness
+
+ing supported text into a binary Word document
+(Figure 8).                                                     Figure 9 | Adding execution checks through inher-
+                                                                itance. Successive nodes add a missing-write com-
+  The specialized backend handles direct doc-                   pletion check, a near-budget reminder, and tool-error
+ument writes and can also create a missing re-                  guidance. Arrows show inheritance. The filled node
+quested document from a text draft. In the latter               s29 is active; s9 and s12 are inactive ancestors that
+case, it preserves the original text write and leaves           supply inherited behavior.
+any existing target document untouched. If ren-
+dering fails, execution falls back to the parent
+backend. This capability handles the file format;               Using execution evidence to choose a harness.
+the benchmark separately evaluates whether the                  Routing lessons connect observed execution prob-
+content satisfies the task.                                     lems to harness capabilities. For example, a lesson
+   The requested output format is often visible in              recommends an API error-normalizer when an
+the task description, giving the router a useful                execution repeatedly encounters query-parsing
+cue for selecting this capability. This is consistent           errors. This harness turns error feedback into
+with the small difference between task-only and                 instructions for repairing the query (Figure 6c).
+trajectory-based routing on Workspace-Bench.                      Table 4 gives two recorded routing choices. An
+                                                               execution with no writes and repeated service
+B.2. AutomationBench: inherited checks and                     errors is routed to a resource-manifest harness,
+     routing lessons                                           which supplies connected-service and resource
+                                                               information to guide API exploration. A clean ex-
+Adding execution checks through inheritance.
+                                                               ecution with successful writes reuses Base. These
+Business workflows often require changes to ap-
+                                                               examples show how lessons can select a relevant
+plication state, but an execution may finish after
+                                                               intervention or preserve a clean Base execution.
+searching or reading without making an update.
+An ancestor (s9) addresses this problem with a
+completion check: when the task requires a write
+but no mutating API call has occurred, it can re-
+quest another turn.
+
+                                                                                                                                19
+                       Object-Oriented Harness: Evolving Agent Harnesses through Object-Oriented Design
+
+
+
+  Base execution                                  Routing lesson                                                        Router choice
+ A lead-scoring execution makes no                Repeated connection errors and failed                                 Resource-manifest
+ writes. HubSpot and Intercom return              resource lookups suggest that                                         harness.
+ 401 errors indicating no connected               information about connected services
+ account; a Lead lookup returns 404.              and available resources may help.
+ The final response is empty.
+ Another execution completes three                Successful writes and a clean finish                                  Reuse Base.
+ writes, has no errors, and finishes              support keeping the Base result.
+ cleanly.
+
+Table 4 | Execution evidence behind two routing choices. Examples from an earlier AutomationBench
+workflow pair observed Base behavior with the applicable routing lesson and the recorded choice.
+
+          Toolathlon-GYM
+                          OO clusters                                        Task tool/app families
+               completeness-finalize        1                                                1                     3        2
+             copy-translation-fidelity                                                                                                  1
+                          email-fidelity    1                                                                               3
+                   excel-formula-literal    2       1                      1                 1                     10       3           2
+                       notion-structure                                                      4                              1
+               sql-overfilter-fullscan      2                                                                      9        1
+
+                                                                                                                  flake                ya
+                                                                                     ok     n
+                                                                                                                           com woo
+                                                   go         goog       goog
+                                            as                                                          r
+                                                                                                     123a0il_
+                                           canv   caleogle_
+                                                                   l
+                                                               forme_
+                                                                              l
+                                                                          sheee_    toco   notio           6                          finahnoo-
+                                                      ndar           s          t                  scho
+                                                                                                                 snow         mer           ce
+                                                                                                                                 ce
+                                                                                                        larly
+                                                                                how
+
+
+
+Figure 10 | Learned task clusters on Toolathlon-GYM. Rows are learned clusters and columns are evaluated
+AAH app groups. Cells count shared discovery tasks, showing how a cluster can span several applications.
+Blank cells are zero; Base and unclustered tasks are omitted.
+
+B.3. Toolathlon-GYM: refining when and what                                    Checking            the          saved           workbook. The
+     to check                                                                  excel-formula-literal harness adds a
+The learned clusters can span multiple applica-                                file check to inherited guidance about writing
+tions (Figure 10). For example, completeness-                                  computed values to spreadsheets (Listing 1).
+finalize includes tasks using Canvas, Notion,                                  Before finishing, it reads the saved workbook
+Snowflake, and WooCommerce. The following                                      and looks for cells with percentage labels and
+examples show how evolution refines a shared                                   values strictly between zero and one. It can then
+behavior and adds a check for a particular output.                             request one correction pass, listing the identified
+                                                                               cells and proposed values multiplied by 100.
+                                                                                  This rule assumes that the task expects percent-
+Refining when to compress tool output. An
+                                                                               age points: for example, 20 rather than 0.2 for
+ancestor of the completeness-finalize har-
+                                                                               twenty percent. The instruction asks the execu-
+ness shortens unusually long tool responses to
+                                                                               tor to change only the listed cells and preserve
+limit the amount of text in the execution history.
+                                                                               the rest of the workbook. The harness therefore
+Its child retains this behavior but adds an early-
+                                                                               uses the contents of the produced file to decide
+finish condition: after an early completion at-
+                                                                               whether to request a targeted correction before
+tempt, any subsequent tool outputs bypass com-
+                                                                               finishing.
+pression. This allows the child to narrow when
+an inherited intervention applies, using progress
+observed during execution.
+
+
+                                                                                                                                                  20
+

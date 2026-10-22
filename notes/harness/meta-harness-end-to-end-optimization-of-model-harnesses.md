@@ -43,3 +43,7 @@ Reference code (the harness that searches over harnesses) is open-sourced; linke
 ## Follow-up: learning the revision procedure
 
 - [Harness Learning Enables Generalizable Test-Time Adaptation](harness-learning-generalizable-test-time-adaptation.md) (2026-09-28; full read) trains a small proposer with execution-based RL, then repeatedly revises a frozen solver’s harness on unseen task families. This adds transfer of a **learned editing procedure**, alongside Meta-Harness’s agentic code-search approach. Its supplied reports are externally generated; it does not test replacing an agentic optimizer’s trace filesystem with compressed reports. Strong fixed-tool-loop baselines and unmatched feedback/compute budgets limit claims about general superiority.
+
+## Follow-up: specialize while keeping the base
+
+- [Object-Oriented Harness](object-oriented-harness-specialization-routing.md) (2610.28380v1; full read) compares a global Meta-Harness adaptation with inherited specialists and frozen trajectory-informed routing on disjoint discovery/test splits. Its strongest OOD result is **all-base reuse**, not transfer of learned specialist code. The follow-up notes that Meta-Harness’s TerminalBench-2 discovery experiment uses the same tasks for search and evaluation; do not generalize the original coding score into held-out transfer evidence. OO’s cluster-local evaluations, router/base execution and single-search inheritance ablation require separate compute and causal caveats.
