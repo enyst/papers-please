@@ -2,6 +2,25 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-10-26 - [How to be more ambitious: A tutorial for humans with models](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/) (Felix Rieseberg; published 2026-10-13, modified 2026-10-16)
+
+**Practitioner essay, full read.** Rieseberg works on Claude, but this is his **personal blog**, not an Anthropic corporate post. His advice is model-independent. Capabilities are uneven; using AI well requires reconsidering what to attempt, not assuming every task has become easy.
+
+- **Speed:** do the same work faster. He names this familiar benefit, then concentrates on three other kinds of ambition.
+- **Altitude — ask for the outcome beyond the task.** Move from fixing one crash to keeping an app crash-free. For a quarterly review: populate slides → explain what changed and why → identify urgent decisions → design an earlier-warning process, backtest it on company history and run it beside the existing review for a quarter. Higher-level delegation requires infrastructure: crash reports, version-to-commit mapping and machines on which the agent can reproduce and verify fixes. He says this framing is less useful for creative work without one ultimate outcome.
+- **Depth — use expert methods, not expert-sounding language.** Ask for raw records, databases and statistical models rather than polished tables. Adversarially test an accepted explanation (“churn is an onboarding problem”); look for previously unknown signals and validate predictions on unseen data. He recommends ambitious stretch targets and persistence, but also **outside validation**, ideally an executable feedback tool. A confident model's own verdict is not the check.
+- **Range — borrow techniques from other fields.** Replace artifact nouns with purpose verbs: a deck becomes helping busy people understand cause and effect and decide under uncertainty. Then identify useful disciplines: analysis, journalism, editing, motion/audio design, forensic accounting or adversarial financial analysis. Use these to choose methods and tools, **not to stage a role-playing transcript**. Multiple agents are an available implementation, not the substance of the technique.
+
+**Reusable prompt (quoted):**
+
+> I want a deeper version of this task, not a bigger one. Before rewriting it: (1) say what a top professional in this field would do here that I’m not asking for; (2) name the rawest material they would start from instead of what has already been digested for me; (3) name the specific methods and tools they would use; (4) say what, other than you or me, would show the result is right. Then rewrite my prompt to ask for exactly that.
+
+**Why the ambition gap exists, in his account:** self-efficacy and narrow professional identities constrain the projects people attempt. He links goal-setting research and uses historical anecdotes about difficult goals, seeing others succeed and permission to fail. These motivate experimentation; they are not controlled evidence that this AI workflow improves outcomes. His computer/software/data-access recommendation is a capability prerequisite, not a reason to grant unrestricted permissions. Stretch goals still need measurable acceptance criteria, honest failure reports and bounded budgets.
+
+**Connection for us:** name the desired outcome, choose the raw evidence and professional method, then define an external test before expanding autonomy. [The Agentic Scientist](../notes/harness/agentic-scientist-orchestrating-coding-agents.md) shows why artifact-grounded verification still needs human scrutiny; [two-gap assurance](../notes/agentic-engineering/reality-is-the-final-verifier-two-gap-framework.md) separates an evaluator from independent evidence and authority. Those are related checks, not empirical validation of this essay.
+
+**Read depth:** complete essay, its four ambition categories, embedded prompt and closing self-efficacy discussion. Linked research, historical anecdotes, planet-discovery report and video not independently reviewed. [Original HTML](../transcripts/2026-10-26-felix-rieseberg-ambition.html) and [reader text](../transcripts/2026-10-26-felix-rieseberg-ambition.txt) archived.
+
 ## 2026-10-21 - [Decision models for evals: thresholds, calibration and escalation](https://x.com/omarsar0/status/2112632133357346889) (Elvis Saravia collection; posted 2026-10-20)
 
 **Two full blog reads + one full paper; two DAIR resource bookmarks.** Original sources behind the collection:
