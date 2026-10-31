@@ -1,0 +1,1150 @@
+                                             Your Programming Students' Cognition with ChatGPT: Higher
+                                               Performance, Lower Retention, and Reduced Ownership
+                                                                   Christian Bergh                                                           Benjamin Tag
+                                                                c.bergh@unsw.edu.au                                                  benjamin.tag@unsw.edu.au
+                                                            University of New South Wales                                           University of New South Wales
+                                                               Sydney, NSW, Australia                                                  Sydney, NSW, Australia
+
+                                                                  Alexandra Vassar                                                           Jake Renzella
+                                                                a.vassar@unsw.edu.au                                                 jake.renzella@unsw.edu.au
+                                                            University of New South Wales                                           University of New South Wales
+
+
+
+
+arXiv:2609.21194v1 [cs.CY] 18 Sep 2026
+                                                               Sydney, NSW, Australia                                                  Sydney, NSW, Australia
+
+                                         Abstract                                                                      practice assumes that the artefact is a sufficient proxy to measure
+                                         Generative AI can improve students’ programming performance,                  a student’s knowledge or capability. LLMs can produce a plausi-
+                                         but successful task completion may not reflect what they retain. We           ble essay or functional code without the student acquiring that
+                                         examined performance, retention, cognitive load, and ownership in             knowledge. Research to date has established that GenAI assistance
+                                         a controlled between-subjects experiment with 59 undergraduate                improves immediate task performance [48, 84], but there is lim-
+                                         computer science students, 55 were retained for analysis. Partic-             ited evidence on what students actually retain from AI-assisted
+                                         ipants completed three introductory C programming tasks with                  work [24, 31].
+                                         access to ChatGPT-4.5 or conventional web search without gen-                    Much of the current research focuses on technical aspects such
+                                         erative AI. We measured task performance, self-reported mental                as model performance [34, 82], methods for integrating GenAI in
+                                         effort and difficulty, pupillary responses, heart rate variability, and       specific use cases [44], and detection of AI-generated content [83].
+                                         ownership, and assessed cued recall immediately and 48 hours later.           Comparatively little work examines the cognitive impacts of GenAI
+                                         ChatGPT-assisted students achieved higher coding scores (89% vs.              on users, especially in a higher education setting [7]. AI-assisted
+                                         69%) but lower recall scores immediately (41% vs. 53%) and after              learning may also reshape learners’ preconceptions of their capa-
+                                         48 hours (39% vs. 52%). There was no significant difference in the            bilities and ownership of the work they produce.
+                                         loss of recall information over 48 hours between the groups. Self-               We conducted a between-subjects controlled experiment explor-
+                                         reported mental effort increased less across tasks in the ChatGPT             ing the cognitive impact of GenAI usage on 𝑁 = 59 undergraduate
+                                         condition (Holm-adjusted p = .047), and students attributed less of           computer science students, of whom 𝑛 = 55 were retained for
+                                         the submitted code to themselves (45% vs. 81%). Confirmatory phys-            analysis. These students were tasked with completing introductory-
+                                         iological tests did not detect significant differences in trajectories        level coding problems with or without GenAI assistance. During
+                                         between conditions; substantial data loss limits their interpretation.        the programming tasks, we recorded pupillometry and heart rate
+                                         These findings reveal a gap between assisted task performance and             as physiological metrics of cognitive load, alongside self-reported
+                                         subsequent recall and sense of ownership in this setting. They mo-            measures. After completing the problems, students reported their
+                                         tivate the need for assessment practices and AI learning tools that           sense of ownership over the code they had submitted. Retention
+                                         require students to explain, retrieve, and contribute to the work             was assessed by quizzing students on the content of the coding
+                                         they submit as active participants in their education.                        problems immediately after submission and again 48-hours later.
+                                                                                                                       The AI-assisted group scored significantly higher on the coding
+                                         Keywords                                                                      assessment (89% vs. 69%). However, they scored significantly lower
+                                                                                                                       on both retention quizzes: immediately (41% vs. 53%) and 48 hours
+                                         Generative AI, ChatGPT, Computing Education, Cognitive Load,
+                                                                                                                       later (39% vs. 52%). In addition, they reported a smaller increase in
+                                         Knowledge Retention, Psychological Ownership, AI-Assisted Pro-
+                                                                                                                       mental effort across tasks (𝑝 Holm = .047) and a significantly lower
+                                         gramming
+                                                                                                                       sense of ownership over the submitted code (45% vs. 81%). This
+                                         1    Introduction                                                             experiment allowed us to evaluate the immediate and delayed ef-
+                                                                                                                       fects of GenAI assistance on learners’ performance, cognitive load,
+                                         Since the release of ChatGPT in November 2022, generative Ar-
+                                                                                                                       retention, and sense of ownership over their work.
+                                         tificial Intelligence (GenAI) has become part of students’ routine;
+                                                                                                                          Understanding these effects is increasingly important as GenAI
+                                         they use large language models (LLMs) to draft essays, debug code,
+                                                                                                                       tools become embedded in learning environments. Investigating
+                                         and complete assignments [46], and many tertiary institutions
+                                                                                                                       these interactions is critical for determining the role GenAI plays in
+                                         have replaced initial prohibition with policies permitting disclosed
+                                                                                                                       educational processes and its impact on learning outcomes. Specifi-
+                                         use [17, 54, 58]. These changes are consistent with calls from UN-
+                                                                                                                       cally, how can programming courses assess learning in a post-AI
+                                         ESCO and others to prepare students for an AI future [55]. Educa-
+                                                                                                                       world?
+                                         tors have traditionally relied, in part, on students demonstrating
+                                                                                                                          Toward this goal, this paper contributes:
+                                         knowledge acquisition through summative assessment tasks. This
+
+                                                                                                                   1
+                                                                                                                                        Bergh et al.
+
+
+      • A combined physiological and self-report account of cogni-          2.2    Learning and Cognitive Load
+        tive load during programming tasks with or without GenAI            Learning science research shows that activities requiring learners
+        assistance.                                                         to generate and retrieve information often produce stronger long-
+      • Evidence of a dissociation between short-term task success          term retention than conditions that maximise immediate perfor-
+        and longer-term (48 hours later) knowledge retention in             mance [4, 59, 67, 68]. This creates a potential tension for AI-assisted
+        AI-assisted learning.                                               learning, as GenAI can improve task performance while reducing
+      • Evidence that GenAI assistance lowers students’ sense of            opportunities for productive cognitive effort [3].
+        ownership over submitted work.                                         Cognitive Load Theory provides a complementary account; it
+      • Design implications and suggested mitigations for AI-               posits that learning requires time and conscious effort through a
+        assisted learning systems that aim to balance performance           limited-capacity working memory before it can be stored in long-
+        support with durable learning at the institution, educator,         term memory [72]. Load on working memory is conventionally de-
+        and student levels.                                                 composed into three categories: intrinsic load, imposed by the learn-
+                                                                            ing material itself; extraneous load, imposed by how the material is
+2     Related Work                                                          presented; and germane load, characterised as the effortful process-
+Generative AI (GenAI) is increasingly used in education to sup-             ing through which schema construction occurs [74]. Suggesting
+port translation, personalisation, feedback, and content generation,        that learning benefits arise not simply from reducing extrinsic cog-
+while concerns about inequitable access remain [18, 22, 60, 69]. It         nitive load, but from preserving the germane processing required
+has also raised concerns about academic integrity because students          for schema construction and long-term retention [71, 72, 74].
+can produce substantial amounts of text or code with minimal in-
+put, allowing them to submit work that may not reflect their own            2.3    Performance and Cognitive Impacts of
+learning or understanding [47, 50]. While these concerns are often                 AI-Assisted Learning
+framed as issues of misconduct, they may also reflect a broader
+                                                                            The evidence that GenAI assistance improves immediate outcomes
+educational trade-off in which GenAI assistance reduces cognitive
+                                                                            is consistent. In introductory programming, students given access
+effort while potentially affecting knowledge retention and durable
+                                                                            to ChatGPT reported higher programming self-efficacy and moti-
+learning. To situate this work, we review the literature on GenAI in
+                                                                            vation and scored higher on computational thinking than a con-
+computing education, cognitive load and learning, the performance
+                                                                            trol group [86]. Wang et al. [79] report similar findings, students
+and cognitive impacts of AI-assisted learning, and questions of
+                                                                            collaborating with a GenAI agent outperformed a conventional
+ownership and authorship in human-AI creation.
+                                                                            computer-supported collaborative learning group in achievement,
+                                                                            self-efficacy, and interest, and reported significantly lower mental
+2.1    GenAI in Computing Education
+                                                                            effort with no difference in mental load. A meta-analysis of GenAI
+Early work highlighted the disruptive potential of GenAI for pro-           tools in programming education pooled these effects across studies,
+gramming education, as models rapidly approached or exceeded                AI-assisted students completed tasks faster and achieved higher
+novice programming capabilities [14, 15]. As the initial capabilities       task performance scores, and perceptions of the tools were almost
+of GenAI code generation systems matured, the discussion shifted            uniformly positive [1]. Notably, the same analysis found no signif-
+to investigating the extent to which students should be allowed to          icant advantage in learning success or ease of understanding [1].
+use GenAI and how to use it effectively. Denny et al. [8] argue that        These benefits focus on task output, speed, and how learners feel
+experts derive value from GenAI precisely because they possess              about their work, and do not cleanly extend to what they learn and
+the foundational knowledge to analyse, critique, and contextualise          retain over time.
+generated code. The authors further argue for an evolution of com-             This divergence between performance and learning becomes par-
+puting education pedagogical and assessment practices to reflect            ticularly visible when researchers examine what students retain, un-
+an increasingly AI-assisted computing world [8].                            derstand, or can independently reason about; rather than the quality
+   This evolving discussion of disruption, adaptation, and peda-            of their immediate outputs. Across domains, GenAI support consis-
+gogy establishes the computing education context for empirical              tently reduces cognitive effort and improves subjective experiences
+investigations into the impact of GenAI assistance on novice pro-           while producing more mixed outcomes for learning [33, 56, 70]. Stu-
+gramming learners. One of the earliest studies examined the effect          dents using GenAI report lower cognitive load, greater confidence,
+of GenAI assistance on novice programmers using a web-based ap-             and stronger perceptions of success, yet often demonstrate weaker
+plication for learning introductory Python [23]. The authors found          reasoning, poorer argumentation, and reduced knowledge transfer
+that GenAI significantly improved coding performance but did not            when assessed beyond the immediate task [33, 70]. Programming
+significantly affect retention evaluation either immediately or one         studies suggest that these benefits are not distributed evenly. More
+week later. However, while this study demonstrated performance              capable learners tend to use GenAI as a collaborative resource, cri-
+benefits, it did not investigate how GenAI assistance may have              tiquing suggestions and integrating them into their own reasoning,
+impacted underlying cognitive processes. Additional studies in the          whereas struggling learners are more likely to accept outputs un-
+field have begun investigating the effects of GenAI assistance on           critically and become dependent on the tool [33, 57]. As a result,
+cognitive processes.                                                        GenAI can simultaneously improve task completion while limiting
+                                                                            the cognitive engagement necessary for durable learning.
+
+
+                                                                        2
+Your Programming Students' Cognition with ChatGPT
+
+
+   Evidence from educational and workplace settings points to a              writing tasks [24]. However, no work to our knowledge jointly
+common underlying mechanism: cognitive offloading. Learners                  examines performance, cognitive load, retention, and psychological
+who rely heavily on GenAI may invest less effort in generating,              ownership in AI-assisted programming.
+evaluating, and refining solutions themselves, instead shifting their           In this paper, we address these gaps through the following re-
+attention toward monitoring and integrating AI-generated content             search questions.
+[31]. This reduction in active processing has been linked to weaker            RQ1 How does the use of GenAI tools shape learners’ perfor-
+transfer, overconfidence, and illusions of competence, where users                   mance, cognitive load, retention, and psychological sense
+believe they understand more than they actually do [57]. Physio-                     of ownership in introductory programming tasks?
+logical evidence further supports this interpretation. Using EEG                      (a) How does GenAI tool usage affect task performance in
+recordings collected over four months, Kosmyna et al. [24] found                          introductory programming assignments, as measured
+that participants writing with GenAI exhibited the lowest levels                          by accuracy and completeness?
+of neural engagement, reported the weakest sense of ownership                         (b) How does GenAI tool usage affect learners’ cognitive
+over their work, and struggled to recall or quote content they had                        load during programming tasks, as measured through
+produced. Together, these findings suggest that GenAI assistance                          subjective and physiological indicators?
+does not merely reduce workload; it can also alter the extent to                      (c) How does GenAI tool usage influence immediate and
+which learners remain cognitively and psychologically invested in                         delayed retention of information in the programming
+the task.                                                                                 tasks?
+   Liu et al. [36] conceptualise these outcomes as a tension be-                      (d) How does GenAI tool usage affect learners’ sense of
+tween Domain Mastery and Tool Mastery. Depending on factors                               ownership over the code they produce?
+such as task complexity, time pressure, and scaffolding design, learn-
+ers may enter either a Scaffolding Loop, in which GenAI supports             3     Method
+and extends their own reasoning, or an Offloading Loop, in which             We conducted a between-subjects, mixed-methods experiment ex-
+routine delegation displaces opportunities for germane process-              amining the cognitive, psychological, and physiological effects of
+ing, knowledge construction, and authorship [36]. While prior                GenAI use during a programming task. Participants completed
+work collectively links GenAI use to lower cognitive effort, reduced         an introductory programming assessment either with access to
+critical engagement, weaker transfer, and diminished ownership               a GenAI assistant or without. The task was designed to mimic a
+[23, 33, 57, 79, 86], no study to our knowledge has simultaneously           student completing a programming homework assessment, since
+examined performance, cognitive load, retention, and psychological           this is a common setting in which students interact with GenAI
+ownership in novice programmers using AI-assisted programming.               tools while producing assessable work.
+2.4    Ownership and Authorship in Human–AI                                  3.1    AI Disclosure
+       Creation                                                              The authors used GenAI tools to improve language and readability
+Psychological ownership describes a relation between an individual           in the manuscript (Microsoft 365 Copilot). The statistic pipeline
+and an object, material or immaterial, in which the object comes             was developed using Claude Code via Fable 5.1. All outputs were
+to be experienced as an extension of the self [49]. Psychological            reviewed and verified by the authors (Authors tested all generated
+ownership has been linked to individual attitudes and behaviour,             code, reviewed code outputs for accuracy including validating re-
+and validated scales exist for measuring it across domains [49].             sults with external analysis (SPSS v30.0.0), and reviewed any edits
+   Research on ownership of AI-generated content remains limited.            for accuracy). GenAI (ChatGPT Astra) was used to anonymise ex-
+Wasi et al. [80] found that ownership varies based on content type,          perimental setup images Figure 1. Authorship boundaries: GenAI
+with individuals feeling less ownership over creative content, such          did not make substantive intellectual contributions; authors re-
+as poems and more over technical content, such as emails [80]. The           tain full responsibility for ideas, interpretations, and claims. No
+same work also identified a possible disconnect between ownership            references were identified or generated using GenAI tools.
+and authorship, with individuals willing to claim authorship of
+content they did not feel they owned [80]. Draxler et al. report             3.2    Human Research Ethics
+a related reluctance to attribute authorship to AI-generated con-            This study was conducted under the approval of our university’s
+tent [11]. Research involving ownership of AI-generated content              Institutional Review Board (IRB), ensuring adherence to ethical re-
+should therefore capture individuals’ claims of authorship alongside         search standards. The study procedure was reviewed and approved
+ownership, since the two seem to exist independently.                        by the IRB. All participants provided written informed consent
+                                                                             before taking part, were informed that they could withdraw at any
+2.5    Research Question                                                     point without penalty, and were provided with a reimbursement
+Existing work shows that GenAI assistance can improve program-               gift voucher for their time. Physiological data were recorded only
+ming performance, but performance gains do not necessarily trans-            for the duration of the experimental session. All data were stored
+late into learning. Prior studies have reported lower cognitive ef-          in university-managed secure storage and analysed in de-identified
+fort, poorer transfer, reduced critical engagement, and differences          form.
+in these effects across learners [23, 33, 57, 79]. Related work has
+also linked GenAI assistance to reduced recall and ownership in
+                                                                         3
+                                                                                                                                        Bergh et al.
+
+
+3.3    Participants                                                         3.5    Measures
+We recruited 𝑁 = 59 undergraduate Computer Science students at              3.5.1 Cognitive Load. Multiple physiological measurements of cog-
+a single university. The students were pseudo-randomly assigned to          nitive load were captured during the tasks. Gaze data was captured
+the experimental AI-Assisted (𝑛 = 31) and No AI groups (𝑛 = 28) in          with a Tobii Pro Spectrum research-grade eye tracker. Pupil dila-
+order to ensure gender balance across conditions. The AI-Assisted           tion has been shown to index cognitive load across several stud-
+group comprised 7 females and 24 males; the No AI group comprised           ies [16, 25, 65]. Heart rate data was captured with the Polar Verity
+6 females and 22 males. No participant identified as a third gender         Sense, a consumer-grade heart rate tracker that has been used in
+or declined to provide their gender.                                        human research as a less intrusive alternative to research-grade
+   In order to balance programming experience, participants were            equipment [63]. Participants were instructed to wear the sensor on
+recruited from first year undergraduate students in the Computer            the bicep in order to reduce any potential noise introduced by the
+Science program in or recently completing the first course of the           movement of the sensor during typing.
+program. Participants prior programming, and specifically C pro-               Perceived mental effort and difficulty were captured between
+gramming, experience were collected in the pre-survey. Addition-            each programming questions using Paas’s Subjective Rating Scale
+ally participant prior LLM, and specifically ChatGPT, experience            of Mental Effort [51–53], comprising two 9-point Likert items on
+was collected in the pre-survey as well. Breakdowns of included             perceived mental load (low to high).
+participant pre-survey results are provided in section 4.
+                                                                            3.5.2 Ownership. Three post-task measures of authorship and
+                                                                            ownership were captured. Authorship attribution was captured
+3.4    Instruments and Materials
+                                                                            with a single 7-point Likert item developed by He et al. [19], rang-
+3.4.1 Workstation. The experiment was designed to simulate an               ing from sole authorship by the participant, to equal authorship,
+average student completing a homework assessment for an intro-              sole authorship by the AI/colleague. We utilised the Psychological
+ductory programming course. Both conditions used an identical               Ownership Scale (POS), comprising four 5-point Likert questions
+physical setup: a single monitor, keyboard and mouse, with the              (disagree to agree) assessing felt ownership over a target [49, 78],
+monitor divided into two side-by-side panels. The right panel con-          with the target adapted from the participant’s organisation to the
+tained the condition-specific assistance application, ChatGPT or            code they had submitted. Participants also reported, on a 100-point
+Google. The left panel contained the programming assessment in              scale, what percentage of the submitted answers they considered
+EdStem, which displayed the challenge instructions alongside a              their own rather than produced by GenAI or taken from the internet,
+web-based development environment containing the initial scaf-              adapted from Kosmyna et al. [24] interview question.
+fold code ( Figure 1). Dividing the screen in this way allowed the
+eye tracking system to attribute gaze reliably to one application           3.5.3 Performance. The three coding challenges were graded in
+or the other. Monitor brightness and ambient lighting were held             EdStem out of 5 points each by automated unit tests validating
+constant across sessions, and both assistance applications presented        program functionality and edge-case handling. Task performance
+a light-background text interface, so that pupil diameter differences       is reported as the proportion of the available points achieved (total
+between conditions could not be attributed to display luminance.            points out of 15 maximum points possible).
+    Participants in both conditions were told they could copy and               Content retention was assessed by cued recall, using ten open-
+paste any material from the assessment, including the full instruc-         ended questions about the tasks completed during the experiment.
+tions and the scaffold code, into the application in the assistance         To distinguish knowledge of this specific assessment from program-
+panel (ChatGPT/Google).                                                     ming knowledge participants already held, the questions mixed
+    To mask variable ambient noise, an instrumental low-fi playlist         general programming concepts with questions about specific edge
+was played in the laboratory space at a fixed volume for every              cases and implementation details of the submitted solutions. The
+participant.                                                                same cued recall instrument was administered twice, once immedi-
+                                                                            ately after the coding task, and again 48 hours later. The recruitment
+3.4.2 Task Design. The programming assessment was delivered                 advertisement stated that a 48-hour follow-up would occur, and
+through EdStem, the online educational platform used in partic-             participants were reminded of it upon completing the initial recall
+ipants’ regular coursework, which ensured familiarity with the              task. Participants did not have access to their submitted code whilst
+submission environment. The assessment was written in the C                 responding to these questions.
+programming language, the language used in introductory courses                 Each response was scored independently by three markers using
+at the participants’ institution, and consisted of three program-           a three-point rubric (0 − 2) per question, giving a maximum of 20
+ming questions of increasing difficulty. Each question presents a           points per assessment response. Markers were blind to the condition.
+short C program with an incomplete function stub. Instructions for          A participant’s content retention score is the mean of the three
+each question explicitly stated the function’s input parameters and         markers’ totals, reported as the proportion of the available points
+return type, provided example program output, and specified com-            achieved (mean markers’ total out of 20 maximum points possible).
+pletion requirements such as maximum length of input variables.             Inter-rater reliability is reported in subsection 3.9.
+Submitted code was graded for completeness and accuracy of the
+specified function behaviour out of 5 possible points.
+
+
+
+
+                                                                        4
+Your Programming Students' Cognition with ChatGPT
+
+
+
+
+Figure 1: Experimental setup for the AI-Assisted (left) and No AI (right) conditions. Both used an eye tracker below the monitor
+and a heart rate sensor on the upper arm. Insets show the programming assessment beside ChatGPT or Google. Gaze markers
+are illustrative and were not visible to participants. Setup images were anonymised using GenAI, as disclosed in Section 3.1.
+
+
+3.6    Conditions                                                           To establish a physiological baseline under conditions comparable
+3.6.1 AI-Assisted. Participants in the AI-Assisted condition were           to the experimental task, participants were shown sample program
+given access to ChatGPT-4.5. Settings were consistent across par-           code and completed a typing task copying the sample code for five
+ticipants, with each participant logged into a different ChatGPT            minutes.
+account, the memory feature turned off, and model fixed to GPT4.5.              Participants then had 30 minutes to complete the three program-
+This ensures that each participant receives individualised responses        ming problems, submitting each through EdStem as they finished
+not impacted by previous participants. The AI-Assisted experimen-           it. EdStem displayed a time remaining timer and "Times Up" non-
+tal group were not given access to any other GenAI assistant tools          interrupting notification when time had elapsed. The Subjective
+or web search engines such as Google.                                       Rating Scale of Mental Effort was administered between each ques-
+                                                                            tion.
+3.6.2 No AI. The participants in the No AI control group did not                If a participant appeared to make no progress for ten minutes,
+have access to ChatGPT or any GenAI assistant tools. They were              a predefined stuck procedure allowed the researcher to intervene.
+given access to the Google search engine, with all GenAI com-               Intervention was limited to clarifying the task, offering conceptual
+ponents disabled in the browser. Access to all major GenAI tool             prompts, or giving directional instructions. Researchers did not
+sites were blocked, and participants were instructed not to seek            provide any code, algorithms, bug fixes or implementation guidance.
+out GenAI tools through the search engine. Disabling Google’s AI            This procedure was called upon four times, three of those times the
+Overviews was a deliberate design decision to create a clear delin-         participant did not finish all three coding challenges in the allotted
+eation between conventional web search and conversational GenAI             time.
+assistance, accepting that this yields a different experience than              Once the assessment was complete or the time had elapsed, the
+students encounter in general use. It was acceptable for this group         tracking sensors were removed and recording stopped. Participant
+to not utilise any search tools.                                            then completed the post-assessment survey containing ownership
+                                                                            and authorship measures and the cued recall questions, without ac-
+3.7    Procedure                                                            cess to their submitted code. Following the post-survey, participants
+Participants first completed a pre-survey capturing demographic             were debriefed and reminded of the follow up survey.
+information; recent sleep, recent caffeine intake, prior programming            Forty-eight hours after the session, participants were sent an
+and LLM experience. Participants were briefed on the procedure              online survey containing the same recall questions. All participants
+and fitted with the heart rate sensor.                                      completed the follow up survey.
+   After this was done, participants were seated at the workstation
+and the eye tracker was calibrated individually for each participant.
+                                                                        5
+                                                                                                                                         Bergh et al.
+
+
+3.8    Data Collection                                                      effect was analysed with a group × time mixed ANOVA [40] where
+Self-reported data were collected through Qualtrics. Physiological          interaction tested potential differential forgetting.
+data were recorded in real time during the session. Submitted code          3.9.2 Cognitive Load. The primary measure is the 9-point self-
+was captured automatically through EdStem. All data was stored              reported scale of mental effort and difficulty collected after each
+securely in university-managed storage.                                     task [51, 52], treated as interval data.
+                                                                                The physiological channels are supplemental and were measured
+3.9    Analysis                                                             where usable. An interval contributes pupil or heart rate data only
+All analyses were run in Python 3.13.7. Linear mixed models, or-            if the task lasted at least 60 seconds [64] and passes its quality
+dinal logistic regression and Holm-Bonferroni corrections used              gate [77] (Table 1). Otherwise that task’s pupil or heart rate value for
+Statsmodels 0.15.0; Welch’s 𝑡 used SciPy 1.18.1. The mixed ANOVA            that interval is treated as missing, while the session’s self-reported
+and Cronbach’s 𝛼 used pingouin 0.6.1. The Type III 𝐹 tests, Sat-            cognitive load, performance, retention and ownership data are
+terthwaite degrees of freedom, 𝑅 2 and estimated marginal means             retained.
+for the mixed models were computed following the lmerTest al-                   Task pupillary response [2, 77] was recorded with a Tobii Pro
+gorithm [29]. Physiological signals were pre-processed with Neu-            Spectrum and subtractive baseline correction [39]. The Tobii Pro
+roKit2 0.2.13 [37]. We report Hedges’ 𝑔 for two-group comparisons,          Lab whole-fixation mean pupil diameter (I-VT filter) was used if
+and 𝜂𝑝2 for omnibus effects, with 95% confidence intervals.                 ≥ 20% of the interval’s duration is in fixations [26]. Task heart
+    Group comparisons for assessment performance, retention imme-           rate response was recorded with a Polar Verity Sense worn on the
+diately after, 48-hours after submission, self-attributed ownership         bicep, corrected with the artefact detection algorithm [35, 75] in
+and Psychological Ownership Scale scores used Welch’s 𝑡-tests,              NeuroKit2 [37]. We compute ln RMSSD, the recommended HRV
+which do not assume equal variance across groups.                           index for short segments [20, 64]. An interval is only used if ≤ 25%
+    Adhering to recommendations on the disclosure of analytic               of successive pulse intervals differ by more than 20% [38].
+choices [66], we report all covariates considered. Reduced sleep
+and elevated caffeine intake in the 24 hours before the session were        Table 1: Physiological intervals retained after quality gates.
+included as fixed effects in the physiological mixed models, since
+both plausibly affect pupil diameter and vagal heart rate variability
+                                                                                   Interval    HRV Interval 𝑛 (%)     Pupil Interval 𝑛 (%)
+(HRV). Prior programming experience, in any language and in C
+specifically, was examined as a covariate on performance and re-                   Baseline          13 (25%)               47 (87%)
+tention as participants may plausibly impact their performance on                  Task 1            19 (36%)               43 (80%)
+C based programming challenges and knowledge questions. Partici-                   Task 2            18 (35%)               42 (79%)
+pants’ prior Large Language Model (LLM) and specifically ChatGPT                   Task 3            16 (31%)               42 (81%)
+experience was examined as a covariate on ownership, since fa-
+miliarity with LLMs could plausibly influence their relationship of            Each load index (Paas effort, Paas difficulty, pupil Δ, ln RMSSD)
+ownership over generated content. No covariate was significant so           was modelled separately with a linear mixed model, 𝑦 ∼ task × tool,
+all primary analyses are reported without covariates.                       with a random intercept per participant (Maximum Likelihood (ML)
+    Time on task was deliberately not entered as a covariate: it is         estimation). Mixed models were used because they accommodate
+measured after random assignment and is itself shaped by the tool           the unbalanced data produced by the physiological quality gates.
+(Table 3), adjusting for it would condition on a post-treatment vari-       The confirmatory test for each index was a likelihood-ratio test
+able and estimate a direct effect net of any pathway through time,          of the tool × task interaction against the additive model, fitted by
+rather than the total effect of the tool that the research questions        maximum likelihood. The research question examined whether the
+ask about [43, 61]; ANCOVA assumes that the covariate is indepen-           condition changes the load trajectory across the assessment, which
+dent of group [42]. Time on task is therefore reported descriptively        is a single model-comparison question per index. Per-task con-
+and treated as a candidate mechanism in section 5.                          trasts are reported as descriptive follow-up rather than as separate
+3.9.1 Performance. The coding assessment consisted of three pro-            confirmatory tests.
+gramming challenges scored out of 5 points each via automated                  Fixed effects are reported from the REML fit as omnibus Type III
+unit tests in EdStem testing the described program requirements             𝐹 tests with sum-to-zero contrasts and Satterthwaite-approximated
+and edge cases (grade = points/15). Groups were compared us-                denominator degrees of freedom [62], with partial 𝜂 2 as the per-
+ing Welch’s t-test, the recommended test for two independent                effect size for each term. Estimated marginal means (EMM) with
+groups [6], with Hedges’ 𝑔 [30].                                            Satterthwaite-𝑡 95% CIs were computed on the balanced task × tool
+   An open-ended 10-question quiz was administered immediately              grid. Model fit is summarised by marginal and conditional 𝑅 2 [45].
+after the session and again 48 hours later, and each question was           Holm–Bonferroni correction was applied across the four confirma-
+scored by 3 independent raters using a three-point rubric (0 − 2).          tory interaction tests.
+Inter-rater reliability was assessed using Krippendorff’s 𝛼 [28] for        3.9.3 Ownership. The 7-point authorship attribution item [19] was
+ordinal data. Reliability was high overall (𝛼 = .94) and remained           assessed via proportional-odds ordinal logistic regression on group.
+high per question (𝛼 = .80–.99) [27]. Each quiz used the same two-          The percentage ownership slider (0 − 100) [24] and the four-item
+group tests as the programming challenge performance. The time              Psychological Ownership Scale [78] were assessed with Welch’s
+
+                                                                        6
+Your Programming Students' Cognition with ChatGPT
+
+
+𝑡-tests. Cronbach’s 𝛼 [76] was also calculated for the four scale                          Table 2: Included participants (𝑁 = 55).
+items.
+   All 𝑝 values are corrected within the three pre-specified test                        Group                              𝑛 (%)
+families above. Performance: the three Welch tests. Cognitive load:
+                                                                                         AI-Assisted                  29 (53%)
+the four interaction tests across each cognitive channel index. Own-
+                                                                                         No AI                        26 (47%)
+ership: the three scale tests. Each family is corrected using Holm-
+                                                                                         Gender
+Bonferroni correction procedure [21], which controls family-wise
+                                                                                         Male                         43 (78%)
+error rate. Uncorrected and Holm-corrected 𝑝 values are reported.
+                                                                                         Female                       12 (22%)
+4     Results                                                                            Slept less than usual (24 h)
+                                                                                         No                           48 (87%)
+Of the 𝑁 = 59 participants who completed the session, 𝑛 = 55
+                                                                                         Yes                          7 (13%)
+were retained for analysis (No AI 𝑛 = 26, AI-Assisted 𝑛 = 29). Four
+                                                                                         More caffeine than usual (24 h)
+were excluded for protocol reasons: one participant allocated to
+                                                                                         No                           52 (95%)
+the AI-Assisted condition did not use the assistance at any point,
+                                                                                         Yes                           3 (5%)
+and three did not attempt Task 3 (two from No AI and one from
+                                                                                         Programming experience (any language)
+AI-Assisted).
+                                                                                         No experience                 4 (7%)
+    Table 2 reports the composition of the analysed sample. Males
+                                                                                         1 Year                       22 (40%)
+comprised 78% (𝑛 = 43) of participants and females 22% (𝑛 = 12),
+                                                                                         2 Years                      13 (24%)
+consistent with the gender composition of Australian computer
+                                                                                         3 Years                      11 (20%)
+science programs [9]. Few participants reported sleeping less than
+                                                                                         4 Years                       3 (5%)
+usual (𝑛 = 7, 13%) or consuming more caffeine than usual (𝑛 = 3,
+                                                                                         5+ Years                      2 (4%)
+5%) in the 24 hours prior to the session. All 𝑛 = 55 participants
+                                                                                         C programming experience
+reported up to two years of experience with the C programming
+                                                                                         No experience                 5 (9%)
+language specifically, and most (𝑛 = 39,71%) reported up to two
+                                                                                         0-1 Year                     48 (87%)
+years of programming experience in general, indicating a novice
+                                                                                         1-2 Years                     2 (4%)
+population. Most also reported no more than a moderate amount of
+                                                                                         LLM experience
+experience with ChatGPT (𝑛 = 40, 73%), and 80% (𝑛 = 44) indicating
+                                                                                         None at all                  18 (33%)
+up to a moderate amount of experience with LLMs in general.
+                                                                                         A little                     6 (11%)
+                                                                                         A moderate amount            20 (36%)
+4.1    Performance
+                                                                                         A lot                        7 (13%)
+The AI-Assisted group scored substantially higher on the coding                          A great deal                  4 (7%)
+assessment (AI-Assisted 𝑀 = 0.89, 𝑆𝐷 = 0.12) than the No AI group                        ChatGPT experience
+(𝑀 = 0.69, 𝑆𝐷 = 0.19), Welch’s 𝑡 (42.0) = −4.57, 𝑝 < .001, Hedges’                       A little                     13 (24%)
+𝑔 = −1.24, 𝑝 Holm < .001, shown in Figure 2. This significance                           A moderate amount            27 (49%)
+survives Holm correction.                                                                A lot                        11 (20%)
+                                                                                         A great deal                  4 (7%)
+4.2    Time on Task
+Task durations derived from the Tobii interval markers (Table 3)              Table 3: Time on task in minutes, mean (𝑆𝐷) and median per
+show similar time on Task 1 in both conditions (No AI 𝑀 = 3.9min,             task and tool including intervals under the 60s physiological
+AI-Assisted 𝑀 = 4.0min), diverging as difficulty increased. On                gate. The Total row covers all three tasks.
+Task 3 the No AI group worked nearly twice as long (𝑀 = 11.4min)
+as the AI-Assisted group (𝑀 = 5.9min). Across the full assessment,
+the No AI participants spent 𝑀 = 24.1min, while AI-Assisted par-                                    No AI                   AI-Assisted
+ticipants took 𝑀 = 16.4min, sustaining their higher reported effort                 Task       𝑀 (𝑆𝐷) Mdn          𝑛     𝑀 (𝑆𝐷) Mdn           𝑛
+over a longer period (subsection 4.3). Three task intervals fell below              Task 1     3.9 (2.0)    3.8    26    4.0 (2.8)    3.3    28
+the 60-second physiological gate (all in the AI-Assisted group) and                 Task 2     8.8 (5.7)    6.4    26    6.4 (5.4)    4.4    28
+are included in these descriptives. One AI-Assisted participant’s                   Task 3    11.4 (5.4)    9.2    26    5.9 (4.3)    5.5    28
+Tobii recording failed to capture interval start and end times for                  Total     24.1 (6.8)   25.2    26   16.4 (8.7)    16.4   28
+any task, resulting in 𝑛 = 28 for the AI-Assisted descriptive analysis.
+These observations are descriptive only, no confirmatory statistical
+comparisons of time on task were conducted.                                   𝑔 = 0.71, 𝑝 Holm = .011). The same pattern was observed 48 hours
+                                                                              later (𝑀 = 0.52, 𝑆𝐷 = 0.16 vs. 𝑀 = 0.39, 𝑆𝐷 = 0.19 for No AI and
+4.2.1 Content retention. The No AI group scored higher on the
+                                                                              AI-Assisted respectively), also significant (𝑡 (52.9) = 2.91, 𝑝 = .005,
+retention quiz at both time points (Table 4). Immediately after
+                                                                              𝑔 = 0.77, 𝑝 Holm = .011). Both findings survive Holm correction.
+submission, the No AI participants (𝑀 = 0.53, 𝑆𝐷 = 0.15) recalled
+                                                                                 A mixed ANOVA confirmed the group effect (𝐹 (1, 53) = 8.14, 𝑝 =
+significantly more than the AI-Assisted group (𝑀 = 0.41, 𝑆𝐷 =
+                                                                              .006, 𝜂𝑝2 = 0.13) with no main effect of time (𝑝 = .169) and, critically,
+0.17) as confirmed by a Welch’s 𝑡-test (𝑡 (53.0) = 2.68, 𝑝 = .010,
+                                                                          7
+                                                                                                                                           Bergh et al.
+
+
+                                   Table 4: Two-group comparisons (Welch’s 𝑡). Effect size is Hedges’ 𝑔.
+
+              Family         Assessment            No AI 𝑀 (𝑆𝐷 )   AI-Assisted 𝑀 (𝑆𝐷 )            𝑡             𝑝       𝑝 Holm      𝑔
+              Performance    Task performance        0.69 (0.19)         0.89 (0.12)       𝑡 (42.0) = −4.57    <.001     <.001    -1.24
+                             Immediate retention     0.53 (0.15)         0.41 (0.17)        𝑡 (53.0) = 2.68     .010      .011     0.71
+                             48 h retention          0.52 (0.16)         0.39 (0.19)        𝑡 (52.9) = 2.91     .005      .011     0.77
+              Ownership      SAO                    80.81(27.48)         44.59(38.68)       𝑡 (50.5) = 4.03   < 0.001   < 0.001   1.05
+                             POS                     4.30(0.85)           2.92(1.48)        𝑡 (45.5) = 4.28   < 0.001   < 0.001   1.11
+
+
+                                                                              for AI-Assisted participants, and the proportion unable to recall
+                                                                              any line of code remained 4% (𝑛 = 1) for the No AI participants
+                                                                              versus 41% (𝑛 = 12) AI-Assisted participants. These observations are
+                                                                              descriptive only, no statistical comparisons of individual question
+                                                                              performances were conducted (Figure 4).
+
+
+
+
+Figure 2: Task performance by assistance: individual grades,
+means and 95% CIs.
+                                                                              Figure 4: Code-line recall (retention quiz Q1) by tool and time
+no group × time interaction (𝑝 = .391). The gap in retention of               point: counts of no, partial and accurate recall.
+the AI-Assisted group is established by the end of the session and
+remains the same 48 hours later, indicating there is no difference
+in the rate of forgetting between the groups (Figure 3).                      4.3       Cognitive Load
+                                                                              For each index, the likelihood-ratio test of the tool × task interaction
+                                                                              was conducted (Table 5), testing whether the conditions changed
+                                                                              the load trajectory across the assessment. A significant tool×task
+                                                                              interaction was identified for self-reported mental effort. Omnibus
+                                                                              Type III 𝐹 tests then decomposed each model into Group, Task and
+                                                                              Group × Task effects with partial 𝜂 2 (Table 6), and the per-task fixed
+                                                                              effects, random-effect variances and 𝑅 2 (Table 7), describing how
+                                                                              participants progressed through the tasks. In the coefficient table
+                                                                              the reference level is Task 1 in the AI-Assisted group: the Task 2
+                                                                              and Task 3 rows give that group’s change from Task 1, the No AI
+                                                                              row gives the group difference at Task 1, and the interaction rows
+                                                                              give the additional change in the No AI group on the later tasks.
+                                                                                 Physiological quality gate definitions are included in subsec-
+Figure 3: Retention grade by assistance at both time points,                  tion 3.9 and counts of surviving physiological responses are avail-
+with individual trajectories.                                                 able in Table 1.
+                                                                                 There was a significant tool×task interaction for self-reported
+                                                                              mental effort (𝜒 2 (2) = 8.88, 𝑝 = .012, 𝑝 Holm = .047) and sur-
+   The first question of the content retention quiz asked participants
+                                                                              vives Holm correction. Follow-up analysis revealed a significant
+to recall a line of code from their own submission (0 = no recall, 1
+                                                                              group×task interaction (𝐹 (2, 106.0) = 4.46, 𝑝 = .014). Specifically,
+= partial recall, 2 = accurate recall). Immediately after the session,
+                                                                              the two groups began the session with no significant difference
+85% of No AI participants (𝑛 = 22) accurately recalled a line versus
+                                                                              on reported mental effort at Task 1 (𝛽 = 0.03, 95% CI[−0.86, 0.91],
+48% of AI-Assisted participants (𝑛 = 14). Only 4% (𝑛 = 1) of No AI
+                                                                              𝑝 = .953), indicating any divergence arose during the assessment
+participants were unable to recall any line compared to 24% (𝑛 = 7)
+                                                                              rather than reflecting a prior group difference. As the tasks became
+of AI-Assisted participants. At the 48-hour follow-up, accurate
+                                                                              harder, effort rose across both groups. A significant task × group
+recall was 65% (𝑛 = 17) for the No AI participants and 45% (𝑛 = 13)
+                                                                          8
+Your Programming Students' Cognition with ChatGPT
+
+
+Table 5: Confirmatory likelihood-ratio test of the tool × task
+interaction (full vs. additive model) per cognitive-load index.
+
+         Index              Obs.    𝑛     𝜒 2 (2)    𝑝     𝑝 Holm
+         Mental Effort      165     55    8.88      .012   .047
+         Difficulty         165     55    2.44      .296   .591
+         Pupil Δ (mm)       118     44    4.56      .103   .308
+         ln RMSSD            53     24    0.32      .853   .853
+
+
+effect was observed as mental effort increased further in the No AI
+group at both Task 2 (𝛽 = 1.31, 95% CI[0.39, 2.22] ,𝑝 = .005) and
+Task 3 (𝛽 = 1.13, 95% CI[0.22, 2.05], 𝑝 = .015). See Figure 5.
+
+
+
+                                                                               Figure 6: Self-reported task difficulty EMM per task with 95%
+                                                                               confidence intervals.
+
+
+
+
+Figure 5: Self-reported mental effort EMM per task with 95%
+confidence intervals.
+
+   There was no significant tool×task interaction for self-reported
+difficulty (𝜒 2 (2) = 2.44, 𝑝 = .296, 𝑝 Holm = .591) and remains in-
+significant after Holm correction. However, follow-up analysis does            Figure 7: Pupil diameter delta (mm, task-baseline) EMM per
+show a significant main effect of task (𝐹 (2, 106.0) = 38.71, 𝑝 < .001).       task with 95% confidence intervals.
+That effect held across all three tasks as both groups rated the sub-
+sequent tasks more difficult (𝛽 = 1.38, 95% CI[0.78, 1.98], 𝑝 < .001;
+                                                                               deltas are therefore interpretable as change relative to the baseline
+𝛽 = 1.48, 95% CI[0.88, 2.09], 𝑝 < .001). See Figure 6
+                                                                               anchor, as opposed to absolute load.
+   The baseline interval was a copy-typing task, chosen to place
+                                                                                   There was no significant tool×task interaction for pupil Δ
+a realistic motor-plus-attention load on every participant so that
+                                                                               (𝜒 2 (2) = 4.56, 𝑝 = .103, 𝑝 Holm = .308) and remains insignificant
+task-level findings could not be attributed to the experimental setup
+                                                                               after Holm correction. The follow-up analysis showed a signif-
+alone. The self-reported cognitive load ratings collected after the
+                                                                               icant main effect of task (𝐹 (2, 70.4) = 32.72, 𝑝 < .001). Both
+baseline indicate it worked as intended. Participants rated the typ-
+                                                                               groups showed significant reductions in pupilΔ (reduced pupil
+ing task at a level of mental effort comparable to Task 1 (No AI: base-
+                                                                               dilation) at Task 2 and Task 3 (𝛽 = −0.08, 95% CI[−0.11, −0.05],
+line 𝑀 = 2.46 vs. Task 1 𝑀 = 2.92; AI-Assisted: baseline 𝑀 = 2.83
+                                                                               𝑝 < .001; 𝛽 = −0.09, 95% CI[−0.12, −0.07] 𝑝 < .001). A significant
+vs. Task 1 𝑀 = 2.90), and 49% (𝑛 = 27) of participants rated baseline
+                                                                               group×task contrast was observed at Task 3×No AI (𝛽 = 0.04,
+effort at or above their Task 1 effort. For perceived difficulty, No AI
+                                                                               95% CI[0.002, 0.08], 𝑝 = .039), where the AI-Assisted participants
+participants rated the typing test and Task 1 identically (baseline
+                                                                               exhibited a significantly larger negative pupilΔ (smaller pupil) in
+𝑀 = 2.81 vs. Task 1 𝑀 = 2.81), whereas AI-Assisted participants
+                                                                               comparison to the No AI group. See Figure 7. Task level significance
+rated the typing test as harder than Task 1 (baseline 𝑀 = 3.66
+                                                                               is exploratory and was not a part of our confirmatory testing.
+vs. Task 1 𝑀 = 2.72). This matters for reading the pupil deltas: a
+near-zero or negative delta does not indicate an unloaded task, only
+load comparable to or below an already-demanding reference. The
+
+                                                                           9
+                                                                                                                                          Bergh et al.
+
+
+    There was no significant tool×task interaction for ln RMSSD
+(𝜒 2 (2) = 0.32, 𝑝 = .853, 𝑝 Holm = .853) and remained insignificant af-
+ter Holm correction. Follow-up omnibus 𝐹 tests also did not identify
+any significant group×task effect (𝐹 (2, 27.8) = 0.14, 𝑝 = .868).
+
+Table 6: Omnibus Type III 𝐹 tests per cognitive-load index.
+
+      Index           Effect       𝑑𝑓        𝐹        𝑝       𝜂𝑝2
+      Mental Effort   Group      1, 53.0    5.14     .027     .088
+                      Task      2, 106.0   33.28    < .001    .386
+                      G×T       2, 106.0    4.46     .014     .078
+      Difficulty      Group      1, 53.0    1.59     .212     .029
+                      Task      2, 106.0   38.71    < .001    .422                Figure 8: Authorship attribution distribution by group
+                      G×T       2, 106.0    1.19     .309     .022
+      Pupil Δ         Group      1, 41.2    0.44     .512     .010
+                      Task       2, 70.4   32.73    < .001    .482
+                      G×T        2, 70.4    2.21     .117     .059
+      ln RMSSD        Group      1, 22.6    0.01     .927     .000
+                      Task       2, 27.8    0.30     .743     .021
+                      G×T        2, 27.8    0.14     .868     .010
+
+
+
+4.4     Sense of Code Ownership
+AI-Assisted participants reported significantly lower ownership on
+all three measures, and all three effects survived Holm correction
+(Figure 8). Authorship attribution was captured on a seven-point
+scale running from sole authorship by the participant to sole author-
+ship by the tool, with intermediate points for acknowledgement,
+secondary authorship and equal co-authorship (Appendix A.3). AI-
+Assisted participants were significantly more likely to attribute
+co-authorship or primary authorship to ChatGPT than the No AI                   Figure 9: Self-attributed ownership percentage by group with
+participants were to attribute authorship to Google (OR = 13.4                  95% CIs
+[4.0, 44.8], 𝑝 < .001 𝑝 Holm < .001).
+    Half of the No AI group (𝑛 = 13) claimed sole authorship, 𝑛 = 10            not add to the total load and instead describes where available
+(38%) would acknowledge Google without listing it as an author,                 capacity is directed [71].
+and 𝑛 = 3 (12%) noted they would list Google as a secondary author.
+In the AI-Assisted group, 𝑛 = 2 participants (7%) claimed full sole             5.1    Performance Gains vs Retention Costs
+authorship, 𝑛 = 16 (55%) would acknowledge or list ChatGPT as a
+                                                                                RQ1a The AI-Assisted group significantly outperformed the No AI
+secondary author, and 𝑛 = 11 (38%) would attribute ChatGPT as
+                                                                                group on the assessment with an average grade of 89% compared to
+the primary author or co-author.
+                                                                                69%. Each coding challenge was an introductory level task, within
+    Self-attributed ownership (SAO), the percentage of submitted
+                                                                                the capability of the model to solve when given the full context.
+code that the participants considered their own, was lower in the AI-
+                                                                                   Several of the instances where AI-Assisted participants did not
+Assisted condition (𝑀 = 44.6) than the No AI condition (𝑀 = 80.8),
+                                                                                receive full marks involved participants who had not provided the
+𝑡 (50.5) = 4.03, 𝑝 < .001, 𝑝 Holm < .001, 𝑔 = 1.05. See Figure 9.
+                                                                                full instructions or the scaffold code to the model. One AI-Assisted
+    The final measure, Psychological Ownership Scale (POS), scores
+                                                                                participant did not complete all three tasks. This participant at-
+were also lower for the AI-Assisted condition (𝑀 = 2.92) than the
+                                                                                tempted to use ChatGPT as a tutor, asking the model to respond
+No AI condition (𝑀 = 4.30), 𝑡 (45.5) = 4.28, 𝑝 < .001 𝑝 Holm < .001,
+                                                                                with questions or next step hints, rather than solutions. The ex-
+𝑔 = 1.11) See Table 4. Cronbach’s 𝛼 = 0.94.
+                                                                                change became circular and self-contradicting and did not provide
+                                                                                useful responses to the student, resulting in the student being un-
+5     Discussion
+                                                                                able to finish Task 2 before the timer had expired. This student
+The status of germane load is debated within Cognitive Load Theory              was unable to attempt Task 3. Meanwhile, the two participants
+(CLT); we follow Sweller and colleagues in treating germane load                in the No AI group that were also unable to attempt Task 3 were
+not as an additive third source of load but as the working memory               among a small subset in the No AI group that attempted to treat
+resources devoted to dealing with intrinsic load, such that it does
+                                                                           10
+Your Programming Students' Cognition with ChatGPT
+
+
+Table 7: Linear mixed models per cognitive-load index (𝑦 ∼ task × tool, random intercept per participant, ML): fixed-effect
+estimates, random-effect variances, and marginal / conditional 𝑅 2 . Reference level: Task 1 in the AI-Assisted group.
+
+                       Index             Predictor                               𝑏      𝑆𝐸         95% CI         𝑡        𝑝
+                       Mental effort     Intercept (Task 1, AI-Assisted)       2.90     0.31    [2.29, 3.51]     9.31    < .001
+                                         Task 2 (vs. Task 1)                   1.00     0.32    [0.37, 1.63]     3.12    = .002
+                                         Task 3 (vs. Task 1)                   1.14     0.32    [0.51, 1.77]     3.55    < .001
+                                         No AI (at Task 1)                     0.03     0.45    [-0.86, 0.91]    0.06    = .953
+                                         Task 2 × No AI                        1.31     0.47    [0.39, 2.22]     2.80    = .005
+                                         Task 3 × No AI                        1.13     0.47    [0.22, 2.05]     2.42    = .015
+                                         Participant intercept 𝜎𝑢2             1.313   𝑆𝐷 = 1.15
+                                         Residual 𝜎𝜀2                          1.492   𝑆𝐷 = 1.22
+                                           2
+                                         𝑅marginal           2
+                                                   = 0.235, 𝑅conditional = 0.593
+                       Difficulty        Intercept (Task 1, AI-Assisted)       2.72     0.32    [2.10, 3.34]     8.62    < .001
+                                         Task 2 (vs. Task 1)                   1.38     0.31    [0.78, 1.98]     4.48    < .001
+                                         Task 3 (vs. Task 1)                   1.48     0.31    [0.88, 2.09]     4.82    < .001
+                                         No AI (at Task 1)                     0.08     0.46    [-0.82, 0.98]    0.18    = .856
+                                         Task 2 × No AI                        0.58     0.45    [-0.30, 1.46]    1.30    = .194
+                                         Task 3 × No AI                        0.63     0.45    [-0.25, 1.51]    1.41    = .158
+                                         Participant intercept 𝜎𝑢2             1.520   𝑆𝐷 = 1.23
+                                         Residual 𝜎𝜀2                          1.375   𝑆𝐷 = 1.17
+                                           2
+                                         𝑅marginal           2
+                                                   = 0.203, 𝑅conditional = 0.622
+                       Pupil Δ (mm)      Intercept (Task 1, AI-Assisted) -0.04         0.024 [-0.086, 0.009]     -1.58   = .113
+                                         Task 2 (vs. Task 1)                   -0.08    0.01 [-0.105, -0.050]    -5.55   < .001
+                                         Task 3 (vs. Task 1)                   -0.09    0.01 [-0.122, -0.066]    -6.59   < .001
+                                         No AI (at Task 1)                     -0.04    0.03   [-0.106, 0.028]   -1.14   = .254
+                                         Task 2 × No AI                         0.01    0.02   [-0.030, 0.049]    0.48   = .629
+                                         Task 3 × No AI                         0.04    0.02   [0.002, 0.081]     2.06   = .039
+                                         Participant intercept 𝜎𝑢2            0.0106   𝑆𝐷 = 0.103
+                                         Residual 𝜎𝜀2                         0.0019   𝑆𝐷 = 0.043
+                                           2
+                                         𝑅marginal           2
+                                                   = 0.099, 𝑅conditional = 0.864
+                       ln RMSSD          Intercept (Task 1, AI-Assisted)       4.45     0.15    [4.16, 4.73]     30.58   < .001
+                                         Task 2 (vs. Task 1)                   -0.12    0.11    [-0.34, 0.10]    -1.04   = .298
+                                         Task 3 (vs. Task 1)                   -0.05    0.12    [-0.29, 0.18]    -0.45   = .654
+                                         No AI (at Task 1)                     -0.07    0.22    [-0.50, 0.36]    -0.32   = .748
+                                         Task 2 × No AI                         0.09    0.17    [-0.24, 0.42]     0.56   = .577
+                                         Task 3 × No AI                         0.06    0.18    [-0.29, 0.41]     0.33   = .738
+                                         Participant intercept 𝜎𝑢2             0.201   𝑆𝐷 = 0.45
+                                         Residual 𝜎𝜀2                          0.057   𝑆𝐷 = 0.24
+                                           2
+                                         𝑅marginal           2
+                                                   = 0.006, 𝑅conditional = 0.782
+
+
+Google search as an AI. We hypothesise that this behaviour is due to             participants could not accurately recall a line of code they had
+increasing reliance on GenAI tools, or even unfamiliarity with pre-              submitted immediately after submission (no or partial recall), with
+GenAI search. However, with AI Summaries disabled, this yielded                  one of those unable to recall simply responding "Absolutely not".
+limited relevant results and reduced Google’s usefulness as a search             Meanwhile 85% (𝑛 = 22) of No AI participants accurately recalled
+tool.                                                                            a line of code immediately after submitting. If AI assistance was
+   RQ1c Cognitive offloading appears to come at a cost of reten-                 only reducing extraneous cognitive load while retaining intrinsic
+tion of information. The No AI group outperformed the AI-Assisted                load, CLT posits that AI-Assisted participants’ germane load should
+group 53% to 41% immediately following the assessment and this                   have allocated working memory to develop new or update existing
+same differential was maintained even 48 hours later (52%, 39%).                 schema of the information that would have been available to them
+This indicates that both groups forgot at the same rate over those               in the recall stages.
+48 hours, but the AI-Assisted group did not retain as much infor-
+mation during the tasks. Over half (52%, 𝑛 = 15) of the AI-Assisted
+
+                                                                            11
+                                                                                                                                          Bergh et al.
+
+
+5.2    Interpreting Reduced Cognitive Load                                    that germane processing to the GenAI assistant while the intrinsic
+RQ1b While both groups reported the mental effort of Task 1                   load remains, as evidenced by the divergence in mental effort and
+similarly, the No AI participants reported significantly higher men-          difficulty in the AI-Assisted group. The No AI participants expended
+tal effort than the AI-Assisted participants for Task 2 and Task 3.           that effort generating or updating schemas and retained more of
+Combined with the reported difficulty, participants in both groups            the content, while AI-Assisted participants reported a flatter effort
+acknowledged that the tasks were getting harder, but only No                  trajectory and retained less.
+AI participants reported commensurate increases in mental effort.
+Taken together, it appears that the AI-Assisted group appears to              5.3    Ownership and Authorship with AI
+be aware the problem difficulty is rising, however, they appear to            RQ1d The offloading does not appear limited to cognitive load.
+remain disengaged from the content itself. This pattern is consistent         AI-Assisted participants reported substantially lower sense of psy-
+with offloading the cognitive work to the tool [70].                          chological ownership over the submitted work in addition to self-
+    This pattern could be substantiated by time on task as both               attributing only 45% ownership over the code submitted compared
+groups spent similar time on Task 1, again implying that the two              to the 81% ownership by the No AI group. This relinquishing of
+groups began at similar states. However, the time spent on later              ownership is supported by the pattern of disengagement observed
+tasks diverged, notably, the No AI participants spent nearly twice as         in the cognitive measurements; it can be hard to feel ownership
+long on Task 3 with three of the AI-Assisted participants completing          over something one was not engaged in creating. Retention and
+Task 3 in under 60 seconds. Overall, the No AI participants spent             ownership are unlikely to be independent outcomes therefore the
+roughly 1.5× as long working through the coding challenges. This              two results should be taken as convergent evidence of reduced
+is consistent with deeper encoding potentially driving the retention          engagement rather than as two separate effects.
+advantage [5], although engagement depth can not be teased apart                 This lack of ownership extends to authorship as well. All of
+from exposure time in this experimental design.                               the No AI participants would attribute themselves as the primary
+    Exposure time and engagement depth may both be impacted by                author of the code, with half either acknowledging Google or listing
+the AI-Assistance and are inseparable in this experimental proce-             it as a secondary author. Meanwhile only 7% of the AI-Assisted
+dure. Time on Task was not controlled as participants were given              participants would attribute themselves as the full primary author
+a single 30-minute budget and self-paced through the tasks. The               and 38% relinquish primary authorship to ChatGPT, reflecting each
+AI-Assisted group finished sooner because the tool produced work-             groups sense of ownership over the code. This aligns with previous
+ing solutions quickly with little deliberation to the point that some         work finding participants reluctance to attribute authorship to AI
+of the AI-Assisted participant’s responses could not be interpreted           generated content [11], however, Wasi et al. [80] found a disconnect
+physiologically. For that reason we did not adjust the retention or           on type of content technical vs. creative. It could be that computing
+effort comparisons for time on task. Doing so would condition on              students more closely associate writing code as a creative medium
+a post-treatment variable and would answer a different question               than a technical one like writing an email [32].
+from those posed by RQ1b and RQ1c. Equally, the data cannot                      All together, the No AI participants both engaged more deeply
+determine whether the No AI group retained more because they                  and were exposed to the task content for longer resulting in lower
+spent longer with the material. We therefore present time on task as          initial task performance, but higher immediate and delayed reten-
+a descriptive marker of the offloading pattern, consistent with the           tion and a larger sense of ownership over the code submitted. On
+mental effort and retention results, and leave its causal separation          the other hand AI-Assisted participants completed the assessment
+from engagement depth to future work (section 6).                             in less time with a higher initial task performance, but significantly
+    Physiological signals did not identify any significant group level        lower immediate and follow up retention with substantially lower
+differences between both groups, potentially impacted by data noise           sense of ownership over the code submitted. Taken together, in this
+discussed later in section 6. In particular, the HRV analysis retained        sample the short-term performance gain on a single assessment
+only a minority of task intervals after quality gates. The cardiac            came with a measurable cost to retention and ownership.
+insignificance should be read as inconclusive rather than as evi-
+dence of no group difference. While not significant, Figure 7 does            5.4    Implications and Mitigation
+show Task 3 required an increase in effort for the No AI group                We put forward potential design implications and suggested mit-
+compared to Task 2, whereas the AI-Assisted group continued to                igation for GenAI assisted learning systems that aim to balance
+reduce signals of effort and a clearer pattern could have emerged             performance support with durable learning at the institution, edu-
+with additional tasks.                                                        cator, and student levels.
+    CLT offers an explanation for this pattern. The effort GenAI
+assistance impacted appears to have been germane rather than                  5.4.1 Human–AI Learning Design. AI assisted learning systems
+extraneous or intrinsic. Developing a solution, and retrieving the            should scaffold cognitive development, not replace it. GenAI as-
+knowledge for that development, are the processes through which               sisted learning systems should adapt to promote content retention
+schema form via germane load [71]. GenAI driven interactions espe-            and engage a useful level of cognitive load. GenAI assisted learn-
+cially, where the human acts as reverse centaur only supplying input          ing systems should utilise current cognitive load theory informa-
+to the GenAI tool and blindly accepting the GenAI output, appears             tion [73] as a foundation for processes in determining individualised
+to completely side-step the schema formation process [10]. Instead            cognitive load management of users.
+they appear to be entering an offloading loop [36] relinquishing                 With a user in a state where they are more cognitively ready
+                                                                              to learn, these systems should put heavy emphasis on evidence
+                                                                         12
+Your Programming Students' Cognition with ChatGPT
+
+
+based methods for promoting learning and content retention in                     This is further exemplified by AI-Assisted participants only at-
+digital learning scenarios [41]. These systems should also realise             tributing ownership of 45% of the code to themselves compared to
+that educational interactions are not one off instances and instead            81% ownership attribution by the No AI group. Students should
+these students are expected to retain the information, so these                interact with GenAI assistants in a manner in which they can retain
+systems should take extra care to support long term retention,                 a sense of ownership of the output, by providing meaningful input
+not just direct question answering or immediate retention. These               and engagement with the content being generated.
+interactions should support the act of learning, not just the end
+result.                                                                        6   Limitations and Future Work
+   Systems must support active contribution to preserve ownership.             There were several limitations of this study. Firstly, the participants
+Either by actively requiring user input that is integrated into a solu-        all self-selected to participate and are all from a single university
+tion or by eliciting individual involvement in the creation process            first-year cohort. This could introduce self-selection bias and these
+while being aware of infringing on the students’ autonomy [85].                results may not be generalisable to all students. Future studies
+   Taken together these design principles can help a GenAI-assisted            should look to replicate this experimental design across different
+learning system to maintain students’ ownership and content re-                geographic and socioeconomic regions. Specifically gender and
+tention while increasing performance.                                          other traditionally minority group specific focused replications
+5.4.2 Mitigation. Institutions should develop policies and proce-              would be beneficial to a more holistic understanding of the impacts
+dures that promote individual growth as a key pillar in their institu-         of GenAI across gender and minority groups.
+tional framework. Policies that place students in direct competition               Secondly, this study does not control for how students use GenAI
+with each other, like maximum passing or minimum fail thresholds,              tools to complete the assessment. During the study a pattern was
+will create perverse incentives for students to use GenAI not to               observed where of the 29 students in the AI-Assisted group, 15
+out-learn but to outscore other students. GenAI then becomes an                generated AI driven responses by copying and pasting the instruc-
+overly enticing incentive to outscore other students and creates               tions or starter code into ChatGPT and accepting the solution from
+an economy of haves and have not with greater socioeconomic                    ChatGPT, while 14 wrote code themselves and used ChatGPT as a
+dynamics where students who can afford access to better models                 validation or debugging tool only. As this was not a priori factor
+will outperform those who cant.                                                considered in this study it is possible that the different ways in
+   Teachers should take from this study that GenAI assistance high-            which GenAI tools are being used could impact learning processes
+lights gaps in our current teaching curricula and methods. Primarily,          differently. Future studies could conduct controlled experiments
+this research shows that GenAI Assistance allows students to out               specifically regimenting how students are instructed to use GenAI
+perform those who do not use it on summative assessments. This                 tools to further explore if the manner in which GenAI is used has
+is a clear advantage, even with free versions of available models.             an impact on student learning processes.
+As institutions continue to adopt policies that permit disclosed                   Thirdly, physiological measurements are highly sensitive to vari-
+use [17, 54, 58], keeping GenAI out of the classroom is not a viable           ability in participants physiology and behaviour. Eye tracking is
+stance. However, this research shows evidence that the retention of            sensitive to glasses/lenses, eye physiology, and head distance from
+information is impacted when GenAI assistance is used, which may               the tracking box [12]. Several eye tracking measurements were ex-
+produce situations where students perform well when GenAI as-                  cluded from analysis due to issues in capturing the participant’s eye
+sistance is available yet perform markedly worse in individualised             consistently, particularly during the baseline as the subsequent task
+assessments [81]. Therefore the traditional reliance on summa-                 deltas depended on this measurement. These could be participants
+tive assessments as a proxy for knowledge acquisition needs to be              who wore glasses, had irregular pupil physiology, or participants
+reassessed. We suggest course structures that promote increased                who shifted during the task leaning toward or away from the screen
+opportunities for students to demonstrate individual knowledge                 during the task, or looking up to the roof or down at the keyboard
+such as hands on or in person interactive activities where GenAI               when thinking or typing. Additionally, heart rate variability (HRV)
+assistance is not available. If GenAI usage is integrated into the             measurements are sensitive to strap tension, sensor placement po-
+course, incorporating a "critique-the-AI" [36] phase where students            sition, and individual physiology like arm hair and skin tone [13].
+validate, test, and justify modification of GenAI output could help            Many of the heart rate measurements were excluded possibly due to
+engage with germane load processing and possibly enhance sense                 the sensor tension or fit during the experiment and the continuous
+of ownership and authorship.                                                   fine motor demands of typing code on a bicep worn sensor. future
+   Students should be active participants in their education. The              research should amend the experiment protocol in an attempt to
+short term gain of GenAI Assistance on task performance is gone                mitigate potential losses of physiological data such as including a
+immediately when asked to recall that information without GenAI                chin rest or other guidance mechanism to ensure the participant’s
+assistance. We recommend students attempt to avoid GenAI As-                   head is in range and visible to the eye tracker or recalibrate the
+sistance when formulating new knowledge scaffolding. If GenAI                  tracker between tasks, or utilising a heart rate capture method that
+assistance is compulsory, try and utilise the GenAI assistant to               is less sensitive to fine motor movement such as a chest strap sensor
+reinforce knowledge scaffolding by having it ask questions, provide            or lead-based sensors.
+similar examples, walk through the steps of the problem; all without               Additionally, the coding assessment comprised an active typing-
+simply getting an answer from the assistant.                                   test baseline and three coding challenges in a fixed order with a
+                                                                               maximum of 30 minutes with no fixed time limits per question and
+
+                                                                          13
+                                                                                                                                                             Bergh et al.
+
+
+cued recall 48 hours later. The baseline typing test was deliberately          Acknowledgments
+chosen over a rest interval so motor and visual elements would be              This project was supported by a Google.org GAIR/GARA grant
+matched to the coding tasks, therefore pupil Δs are interpreted in             which contributed towards the participant compensation.
+this work as change relative to the baseline anchor. Future work
+should look to counterbalance or repeat baselines between tasks                References
+to estimate position effects on pupil reactions directly. Additional            [1] Manal Alanazi, Ben Soh, Halima Samra, and Alice Li. 2025. The Influence of
+experiment variations that investigate the impact of question order,                Artificial Intelligence Tools on Learning Outcomes in Computer Programming:
+                                                                                    A Systematic Review and Meta-Analysis. Computers 14, 5 (5 2025), 185. doi:10.
+time on task, duration, and recall prompt timing would be beneficial.               3390/COMPUTERS14050185/S1
+   Finally, it is possible that participants could be less engaged in           [2] Jackson Beatty. 1982. Task-evoked pupillary responses, processing load, and the
+this experiment than they would be in a graded activity. Future                     structure of processing resources. Psychological Bulletin 91, 2 (3 1982), 276–292.
+                                                                                    doi:10.1037/0033-2909.91.2.276
+research could investigate the impact of incentives in these inter-             [3] Elizabeth L Bjork, Robert Bjork, Henry L Roediger, Kathleen B Mcdermott, and
+actions by integrating the experiment structure into a course or                    Mark A Mcdaniel. 2011. Making Things Hard on Yourself, But in a Good Way:
+otherwise incentivise participants perhaps by informing partici-                    Creating Desirable Difficulties to Enhance Learning. Psychology and the real
+                                                                                    world: Essays illustrating fundamental contributions to society 2 (2011), 56–4.
+pants their compensation would be tied to performance.                          [4] Robert A. Bjork and Elizabeth L. Bjork. 2020. Desirable Difficulties in Theory
+                                                                                    and Practice. Journal of Applied Research in Memory and Cognition 9, 4 (12 2020),
+                                                                                    475–479. doi:10.1016/J.JARMAC.2020.09.003
+7   Conclusion                                                                  [5] Fergus I. Craik and Endel Tulving. 1975. Depth of processing and the retention
+Students are using GenAI in their school work to learn. This re-                    of words in episodic memory. Journal of Experimental Psychology: General 104,
+                                                                                    3 (9 1975), 268–294. doi:10.1037/0096-3445.104.3.268
+search expands on the preliminary growing research indicating that              [6] Marie Delacre, Daniël Lakens, and Christophe Leys. 2017. Why psychologists
+there is a negative cognitive impact of GenAI tool usage. Under-                    should by default use welch’s t-Test instead of student’s t-Test. International
+standing how these GenAI tools impact our cognitive and learning                    Review of Social Psychology 30, 1 (2017), 92–101. doi:10.5334/IRSP.82
+                                                                                [7] Ruiqi Deng, Maoli Jiang, Xinlu Yu, Yuyan Lu, and Shasha Liu. 2025. Does
+processes now is paramount. The longer we wait to investigate                       ChatGPT enhance student learning? A systematic review and meta-analysis of
+these impacts, the greater the potential risk of losing learning capa-              experimental studies. Computers & Education 227 (4 2025), 105224. doi:10.1016/J.
+bilities in future generations grows.                                               COMPEDU.2024.105224
+                                                                                [8] Paul Denny, James Prather, Brett A. Becker, James Finnie-Ansley, Arto Hellas,
+    This research identified GenAI Assistance impacts student learn-                Juho Leinonen, Andrew Luxton-Reilly, Brent N. Reeves, Eddie Antonio Santos,
+ing process in a particularly unique way by providing a real mea-                   and Sami Sarsa. 2024. Computing Education in the Era of Generative AI. Commun.
+                                                                                    ACM 67, 2 (1 2024), 56–67. doi:10.1145/3624720
+surable boost to immediate task performance, however it comes                   [9] Department of Industry, Science and Resources. 2026. University enrolment
+at a substantial cost to retention, mental effort, ownership and au-                and completion in STEM and other fields | | Department of Industry Science
+thorship of the content. In an academic setting, both the educators                 and Resources.            https://www.industry.gov.au/publications/stem-equity-
+                                                                                    monitor/higher-education-data/university-enrolment-and-completion-stem-
+using assessment performance as a proxy for knowledge and the                       and-other-fields
+students getting high marks on those assessments can be lulled into            [10] Cory Doctorow. 2026. The reverse centaur’s guide to life after AI: how to think
+an illusion of learning taking place that shatters upon attempts to                 about artificial intelligence before it’s too late. Verso Books, 207 East 32nd street,
+                                                                                    New York, NY 10016.
+recall that knowledge. We feel this is not a sustainable trade off and         [11] Fiona Draxler, Anna Werner, Florian Lehmann, Matthias Hoppe, Albrecht
+is detrimental to students.                                                         Schmidt, Daniel Buschek, and Robin Welsch. 2024. The AI Ghostwriter Effect:
+                                                                                    When Users do not Perceive Ownership of AI-Generated Text but Self-Declare
+    The design of educational GenAI assistance systems should look                  as Authors. ACM Transactions on Computer-Human Interaction 31, 2 (2 2024).
+to fully support student cognitive development by managing the                      doi:10.1145/3637875;WGROUP:STRING:ACM
+students cognitive load; not to completely eliminate it, but to utilise        [12] Timur Ezer, Lisa Grabinger, Florian Hauser, Susanne Staufer, and Jürgen Mottok.
+                                                                                    2024. EYE TRACKING AS TECHNOLOGY IN EDUCATION: FURTHER INVES-
+it to promote not only initial content acquisition but also ownership               TIGATION OF DATA QUALITY AND IMPROVEMENTS. INTED2024 Proceedings
+and extended recall to develop durable learning in students. We put                 1 (3 2024), 2955–2961. doi:10.21125/inted.2024.0802
+forth our suggested mitigation for institutions to enact policy that           [13] Jesse Fine, Kimberly L. Branan, Andres J. Rodriguez, Tananant Boonya-Ananta,
+                                                                                    Ajmal, Jessica C. Ramella-Roman, Michael J. McShane, and Gerard L. Coté. 2021.
+can help foster environments that ensure students remain active                     Sources of Inaccuracy in Photoplethysmography for Continuous Cardiovascular
+participants in their education, for teachers to rethink how we infer               Monitoring. Biosensors 2021, Vol. 11, Page 126 11, 4 (4 2021), 126. doi:10.3390/
+                                                                                    BIOS11040126
+knowledge transfer in courses, and for students to remain engaged              [14] James Finnie-Ansley, Paul Denny, Brett A. Becker, Andrew Luxton-Reilly, and
+and invested in their education.                                                    James Prather. 2022. The robots are coming: Exploring the implications of
+    This research contributes to the emerging body of work on un-                   OpenAI codex on introductory programming. ACM International Conference
+                                                                                    Proceeding Series 22 (2 2022), 10–19. doi:10.1145/3511861.3511863
+derstanding the interplay of GenAI systems and human cognitive                 [15] James Finnie-Ansley, Paul Denny, Andrew Luxton-Reilly, Eddie Antonio Santos,
+learning processes. This field of study will continue to grow in im-                James Prather, and Brett A. Becker. 2023. My AI Wants to Know if This Will
+portance as GenAI quickly spreads and integrates with many legacy                   Be on the Exam: Testing OpenAI’s Codex on CS2 Programming Exercises. In
+                                                                                    Proceedings of the 25th Australasian Computing Education Conference (Melbourne,
+systems and introduces new systems seeking global adoption. AI’s                    VIC, Australia) (ACE ’23). Association for Computing Machinery, New York, NY,
+ubiquitous presence must be addressed with caution.                                 USA, 97–104. doi:10.1145/3576123.3576134
+                                                                               [16] Rahul Gavas, Debatri Chatterjee, and Aniruddha Sinha. 2017. Estimation of
+    Much of human history has been looking back and attempting                      cognitive load based on the pupil size dilation. 2017 IEEE International Conference
+to course correct as damages accumulate years, or decades later.                    on Systems, Man, and Cybernetics, SMC 2017 2017-January (11 2017), 1499–1504.
+This is an opportunity to develop our understanding of the impacts                  doi:10.1109/SMC.2017.8122826
+                                                                               [17] Francis Geng, Anshul Shah, Mia Chen, Paul Denny, Juho Leinonen, Bill Griswold,
+of this emerging technology in lockstep with this technology’s                      Gerald Soosai Raj, and Leo Porter. 2026. Mapping the Emerging Curriculum for
+development.                                                                        AI-Assisted Software Engineering via Syllabus Analysis. arXiv:2608.05898 [cs.SE]
+                                                                                    https://arxiv.org/abs/2608.05898
+                                                                               [18] Sourojit Ghosh. 2024. ChatGPT as a Tool for Equitable Education in Engineering
+                                                                                    Classes. In 2024 ASEE Annual Conference & Exposition. American Society for
+
+                                                                          14
+Your Programming Students' Cognition with ChatGPT
+
+
+     Engineering Education, Portland, oregon, 16 pages. doi:10.18260/1-2--48458                       Research Methods 2021 53:4 53, 4 (2 2021), 1689–1696. doi:10.3758/S13428-020-
+[19] Jessica He, Stephanie Houde, and Justin D. Weisz. 2025. Which Contributions                      01516-Y
+     Deserve Credit? Perceptions of Attribution in Human-AI Co-Creation. CHI                     [38] Marek Malik. 1996. Heart rate variability: Standards of measurement, physiolog-
+     Conference on Human Factors in Computing Systems (CHI ’25), April 26-May 1,                      ical interpretation, and clinical use. Circulation 93 (3 1996), 1043–1065.
+     2025, Yokohama, Japan 1 (2 2025), 30. doi:10.1145/3706598.3713522                           [39] Sebastiaan Mathôt, Jasper Fabius, Elle Van Heusden, and Stefan Van der Stigchel.
+[20] Nis Hjortskov, Dag Rissén, Anne Katrine Blangsted, Nils Fallentin, Ulf Lundberg,                 2018. Safe and sensible preprocessing and baseline correction of pupil-size data.
+     and Karen Søgaard. 2004. The effect of mental stress on heart rate variability and               Behavior Research Methods 2018 50:1 50, 1 (1 2018), 94–106. doi:10.3758/S13428-
+     blood pressure during computer work. European Journal of Applied Physiology                      017-1007-2
+     2004 92:1 92, 1 (2 2004), 84–89. doi:10.1007/S00421-004-1055-Z                              [40] Scott E. Maxwell and Harold D. Delaney. 2004. DESIGNING EXPERIMENTS
+[21] Sture Holm. 1979. A Simple Sequentially Rejective Multiple Test Procedure.                       AND ANALYZING DATA A MODEL COMPARISON PERSPECTIVE Second Edition
+     Scandinavian Journal of Statistics 6, 2 (1979), 65–70. http://www.jstor.org/stable/              (second ed.). Taylor & Fancis, New York.
+     4615733                                                                                     [41] Richard E. Mayer. 2024. The Past, Present, and Future of the Cognitive Theory
+[22] Kenneth Holstein and Shayan Doroudi. 2021. Equity and Artificial Intelligence                    of Multimedia Learning. Educational Psychology Review 2024 36:1 36, 1 (1 2024),
+     in Education: Will "AIEd" Amplify or Alleviate Inequities in Education? CoRR                     8–. doi:10.1007/S10648-023-09842-1
+     abs/2104.12920 (4 2021). https://arxiv.org/pdf/2104.12920                                   [42] Gregory A. Miller and Jean P. Chapman. 2001. Misunderstanding Analysis of
+[23] Majeed Kazemitabaar, Justin Chow, Carl Ka To Ma, Barbara J. Ericson, David                       Covariance. Journal of Abnormal Psychology 110, 1 (2001), 40–48. doi:10.1037/
+     Weintrop, and Tovi Grossman. 2023. Studying the effect of AI Code Generators                     0021-843X.110.1.40
+     on Supporting Novice Learners in Introductory Programming. Conference on                    [43] Jacob M. Montgomery, Brendan Nyhan, and Michelle Torres. 2018. How Con-
+     Human Factors in Computing Systems - Proceedings 1, 23 (4 2023), 23. doi:10.1145/                ditioning on Posttreatment Variables Can Ruin Your Experiment and What
+     3544548.3580919                                                                                  to Do about It. American Journal of Political Science 62, 3 (2018), 760–775.
+[24] Nataliya Kosmyna, Eugene Hauptmann, Ye Tong Yuan, Jessica Situ, Xian-Hao                         doi:10.1111/ajps.12357
+     Liao, Ashly Vivian Beresnitzky, Iris Braunstein, and Pattie Maes. 2025. Your Brain          [44] Muhammad Yasir Mustafa, Ahmed Tlili, Georgios Lampropoulos, Ronghuai
+     on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for                        Huang, Petar Jandrić, Jialu Zhao, Soheil Salha, Lin Xu, Santosh Panda, Kinshuk,
+     Essay Writing Task. arXiv:2506.08872 [cs.AI] https://arxiv.org/abs/2506.08872                    Sonsoles López-Pernas, and Mohammed Saqr. 2024. A systematic review of
+[25] Krzysztof Krejtz, Andrew T. Duchowski, Anna Niedzielska, Cezary Biele, and                       literature reviews on artificial intelligence in education (AIED): a roadmap to a
+     Izabela Krejtz. 2018. Eye tracking cognitive load using pupil diameter and                       future research agenda. Smart Learning Environments 2024 11:1 11, 1 (12 2024),
+     microsaccades with fixed gaze. PLOS ONE 13, 9 (9 2018), e0203629. doi:10.1371/                   59–. doi:10.1186/S40561-024-00350-5
+     JOURNAL.PONE.0203629                                                                        [45] Shinichi Nakagawa and Holger Schielzeth. 2013. A general and simple method for
+[26] Mariska E. Kret and Elio E. Sjak-Shie. 2018. Preprocessing pupil size data:                      obtaining R2 from generalized linear mixed-effects models. Methods in Ecology
+     Guidelines and code. Behavior Research Methods 2018 51:3 51, 3 (7 2018), 1336–                   and Evolution 4, 2 (2 2013), 133–142. doi:10.1111/J.2041-210X.2012.00261.X
+     1342. doi:10.3758/S13428-018-1075-Y                                                         [46] Kaberi Naznin, Abdullah Al Mahmud, Minh Thu Nguyen, and Caslon Chua. 2025.
+[27] Klaus krippendorff. 2004. Measuring the Reliability of Qualitative Text Analysis                 ChatGPT Integration in Higher Education for Personalized Learning, Academic
+     Data. Quality and Quantity 2004 38:6 38, 6 (12 2004), 787–800. doi:10.1007/S11135-               Writing, and Coding Tasks: A Systematic Review. Computers 14, 2 (2 2025), 53.
+     004-8107-7                                                                                       doi:10.3390/COMPUTERS14020053/S1
+[28] Klaus Krippendorff. 2011. Computing Krippendorff’s Alpha-Reliability. (1 2011).             [47] Hung Manh Nguyen and Daisaku Goto. 2024. Unmasking academic cheating
+     https://repository.upenn.edu/handle/20.500.14332/2089                                            behavior in the artificial intelligence era: Evidence from Vietnamese under-
+[29] Alexandra Kuznetsova, Per B. Brockhoff, and Rune H.B. Christensen. 2017.                         graduates. Education and Information Technologies 2024 29:12 29, 12 (2 2024),
+     lmerTest Package: Tests in Linear Mixed Effects Models. Journal of Statisti-                     15999–16025. doi:10.1007/S10639-024-12495-4
+     cal Software 82, 13 (12 2017), 1–26. doi:10.18637/JSS.V082.I13                              [48] Shakked Noy and Whitney Zhang. 2023. Experimental evidence on the pro-
+[30] Daniël Lakens. 2013. Calculating and reporting effect sizes to facilitate cumulative             ductivity effects of generative artificial intelligence. Science 381, 6654 (7 2023),
+     science: A practical primer for t-tests and ANOVAs. Frontiers in Psychology 4,                   187–192. doi:10.1126/SCIENCE.ADH2586
+     NOV (11 2013), 62627. doi:10.3389/FPSYG.2013.00863/TEXT                                     [49] Chantal Olckers and Llewellyn van Zyl. 2017. Measuring Psychological Ownership:
+[31] Hao-Ping (Hank) Lee, Advait Sarkar, Lev Tankelevitch, Ian Drosos, Sean Rintel,                   A Critical Review. Springer International Publishing, Cham, 61–78. doi:10.1007/
+     Richard Banks, and Nicholas Wilson. 2025. The Impact of Generative AI on                         978-3-319-70247-6_4
+     Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence              [50] Jo Ann Oravec. 2023. Artificial Intelligence Implications for Academic Cheat-
+     Effects From a Survey of Knowledge Workers. In Proceedings of the 2025 CHI                       ing: Expanding the Dimensions of Responsible Human-AI Collaboration with
+     Conference on Human Factors in Computing Systems (CHI ’25). Association for                      ChatGPT and Bard. Journal of Interactive Learning Research 34, 2 (2023), 213–237.
+     Computing Machinery, New York, NY, USA, Article 1121, 22 pages. doi:10.1145/                     doi:10.70725/304731GMMVHW
+     3706598.3713778                                                                             [51] Fred Paas, Juhani E. Tuovinen, Huib Tabbers, and Pascal W.M. Van Gerven.
+[32] Golan Levin and Tega Brain. 2021. Code as creative medium: a handbook for                        2003. Cognitive load measurement as a means to advance cognitive load theory.
+     computational art and design. MIT Press, Boston,MA.                                              Educational Psychologist 38, 1 (2003), 63–71. doi:10.1207/S15326985EP3801{_}8;
+[33] Siran Li, Jiangyue Liu, and Qianyan Dong. 2025. Generative artificial intelligence-              ISSUE:ISSUE:DOI
+     supported programming education: Effects on learning performance, self-efficacy             [52] Fred G.W.C. Paas. 1992. Training Strategies for Attaining Transfer of Problem-
+     and processes. Australasian Journal of Educational Technology 41, 3 (5 2025),                    Solving Skill in Statistics: A Cognitive-Load Approach. Journal of Educational
+     1–25. doi:10.14742/AJET.9932                                                                     Psychology 84, 4 (1992), 429–434. doi:10.1037/0022-0663.84.4.429
+[34] Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu, Michi-              [53] Fred G.W.C. Paas and Jeroen J.G. Van Merriënboer. 1994. Instructional control of
+     hiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar,                            cognitive load in the training of complex cognitive tasks. Educational Psychology
+     Benjamin Newman, Binhang Yuan, Bobby Yan, Ce Zhang, Christian Cosgrove,                          Review 6, 4 (12 1994), 351–371. doi:10.1007/BF02213420/METRICS
+     Christopher D. Manning, Christopher Ré, Diana Acosta-Navas, Drew A. Hudson,                 [54] Luke Parker, A. Jane Loper, Josh Hayes, Alice Karakas, Steven White, and Heidi
+     Eric Zelikman, Esin Durmus, Faisal Ladhak, Frieda Rong, Hongyu Ren, Huaxiu                       Hallman. 2025. Comparative analysis of artificial intelligence policies in univer-
+     Yao, Jue Wang, Keshav Santhanam, Laurel Orr, Lucia Zheng, Mert Yuksekgonul,                      sities across five countries. Discover Computing 2025 28:1 28, 1 (11 2025), 267–.
+     Mirac Suzgun, Nathan Kim, Neel Guha, Niladri Chatterji, Omar Khattab, Peter                      doi:10.1007/S10791-025-09745-5
+     Henderson, Qian Huang, Ryan Chi, Sang Michael Xie, Shibani Santurkar, Surya                 [55] Francesc Pedro, Miguel Subosa, Axel Rivas, and Paula Valverde. 2019. Artificial
+     Ganguli, Tatsunori Hashimoto, Thomas Icard, Tianyi Zhang, Vishrav Chaudhary,                     intelligence in education : challenges and opportunities for sustainable development.
+     William Wang, Xuechen Li, Yifan Mai, Yuhui Zhang, and Yuta Koreeda. 2022.                        Technical Report. UNESCO. https://repositorio.minedu.gob.pe/handle/20.500.
+     Holistic Evaluation of Language Models. Annals of the New York Academy of                        12799/6533
+     Sciences 1525, 1 (11 2022), 140–146. doi:10.1111/nyas.15007                                 [56] James Prather, Paul Denny, Juho Leinonen, Brett A. Becker, Ibrahim Albluwi,
+[35] Jukka A. Lipponen and Mika P. Tarvainen. 2019. A robust algorithm for heart                      Michelle Craig, Hieke Keuning, Natalie Kiesler, Tobias Kohn, Andrew Luxton-
+     rate variability time series artefact correction using novel beat classification.                Reilly, Stephen MacNeil, Andrew Petersen, Raymond Pettit, Brent N. Reeves,
+     Journal of Medical Engineering & Technology 43, 3 (4 2019), 173–181. doi:10.1080/                and Jaromir Savelka. 2023. The Robots are Here: Navigating the Generative AI
+     03091902.2019.1640306                                                                            Revolution in Computing Education. ITiCSE-WGR 2023 - Proceedings of the 2023
+[36] Dandan Liu, Guangrui Fan, and Lihu Pan. 2026. Tool, tutor, or crutch?: A                         Working Group Reports on Innovation and Technology in Computer Science Edu-
+     grounded theory of cognitive scaffolding and offloading in AI-assisted program-                  cation 1 (12 2023), 108–159. doi:10.1145/3623762.3633499;CSUBTYPE:STRING:
+     ming education. International Journal of STEM Education 2026 13:1 13, 1 (3 2026),                CONFERENCE
+     10–. doi:10.1186/S40594-025-00592-W                                                         [57] James Prather, Brent N. Reeves, Juho Leinonen, Stephen Macneil, Arisoa S. Ran-
+[37] Dominique Makowski, Tam Pham, Zen J. Lau, Jan C. Brammer, François                               drianasolo, Brett A. Becker, Bailey Kimmel, Jared Wright, and Ben Briggs. 2024.
+     Lespinasse, Hung Pham, Christopher Schölzel, and S. H.Annabel Chen. 2021.                        The Widening Gap: The Benefits and Harms of Generative AI for Novice Pro-
+     NeuroKit2: A Python toolbox for neurophysiological signal processing. Behavior                   grammers. ICER 2024 - ACM Conference on International Computing Education
+                                                                                            15
+                                                                                                                                                                              Bergh et al.
+
+
+     Research 1 (8 2024), 469–486. doi:10.1145/3632620.3671116;CSUBTYPE:STRING:                       025-13487-8
+     CONFERENCE                                                                                  [80] Azmine Toushik Wasi, Mst Rafia Islam, and Raima Islam. 2024. LLMs as Writing
+[58] Yufeng Qian. 2026. Governing generative AI in higher education: emerging policy                  Assistants: Exploring Perspectives on Sense of Ownership and Reasoning. ACM
+     approaches and support ecosystems at innovative U.S. Universities. International                 International Conference Proceeding Series 1 (10 2024), 38–42. doi:10.1145/3690712.
+     Journal for Educational Integrity 2026 22:1 22, 1 (8 2026), 25–. doi:10.1007/S40979-             3690723
+     026-00233-X                                                                                 [81] Emma Whittford. 2026. Brown Professor Suspects Most of His Class Used AI
+[59] Henry L. Roediger and Andrew C. Butler. 2011. The critical role of retrieval                     to Cheat. https://www.insidehighered.com/news/faculty/learning-assessment/
+     practice in long-term retention. Trends in Cognitive Sciences 15, 1 (1 2011), 20–27.             2026/07/08/brown-professor-suspects-most-his-class-used-ai-cheat
+     doi:10.1016/j.tics.2010.09.003                                                              [82] Walter F. Wiggins and Ali S. Tejani. 2022. On the Opportunities and Risks of
+[60] Rod D. Roscoe, Shima Salehi, Nia Nixon, Marcelo Worsley, Chris Piech, and Rose                   Foundation Models for Natural Language Processing in Radiology. Radiology: Ar-
+     Luckin. 2022. Inclusion and equity as a paradigm shift for artificial intelligence               tificial Intelligence 4, 4 (2022), e220119. arXiv:https://doi.org/10.1148/ryai.220119
+     in education. In Artificial Intelligence in STEM Education: The Paradigmatic                     doi:10.1148/ryai.220119
+     Shifts in Research, Education, and Technology (1 ed.). CRC Press, Boca Raton, FL,           [83] Junchao Wu, Shu Yang, Runzhe Zhan, Yulin Yuan, Lidia Sam Chao, and Derek Fai
+     359–373. doi:10.1201/9781003181187-28/INCLUSION-EQUITY-PARADIGM-                                 Wong. 2025. A Survey on LLM-Generated Text Detection: Necessity, Methods,
+     SHIFT-ARTIFICIAL-INTELLIGENCE-EDUCATION-ROD-ROSCOE-SHIMA-                                        and Future Directions. Computational Linguistics 51, 1 (3 2025), 275–338. doi:10.
+     SALEHI-NIA-NIXON-MARCELO-WORSLEY-CHRIS-PIECH-ROSE-LUCKIN                                         1162/COLI{_}A{_}00549
+[61] Paul R. Rosenbaum. 1984. The Consequences of Adjustment for a Concomitant                   [84] Suqing Wu, Yukun Liu, Mengqi Ruan, Siyu Chen, and Xiao Yun Xie. 2025. Human-
+     Variable That Has Been Affected by the Treatment. Journal of the Royal Statistical               generative AI collaboration enhances task performance but undermines human’s
+     Society. Series A (General) 147, 5 (1984), 656–666. doi:10.2307/2981697                          intrinsic motivation. Scientific Reports 2025 15:1 15, 1 (4 2025), 15105–. doi:10.
+[62] F. E. Satterthwaite. 1946. An Approximate Distribution of Estimates of Variance                  1038/s41598-025-98385-2
+     Components. Biometrics Bulletin 2, 6 (12 1946), 110. doi:10.2307/3002019                    [85] Yuxin Xu, Mengqiu Cheng, and Anastasia Kuzminykh. 2024. What Makes It
+[63] Theresa Schweizer and Rahel Gilgen-Ammann. 2025. Wrist-Worn and Arm-Worn                         Mine? Exploring Psychological Ownership over Human-AI Co-Creations. In
+     Wearables for Monitoring Heart Rate During Sedentary and Light-to-Vigorous                       Proceedings of the 50th Graphics Interface Conference (Halifax, NS, Canada) (GI
+     Physical Activities: Device Validation Study. JMIR cardio 9, 1 (3 2025), e67110.                 ’24). Association for Computing Machinery, New York, NY, USA, Article 35,
+     doi:10.2196/67110                                                                                8 pages. doi:10.1145/3670947.3670974
+[64] Fred Shaffer and J. P. Ginsberg. 2017. An Overview of Heart Rate Variability                [86] Ramazan Yilmaz and Fatma Gizem Karaoglan Yilmaz. 2023. The effect of genera-
+     Metrics and Norms. Frontiers in Public Health 5 (9 2017), 290215. doi:10.3389/                   tive artificial intelligence (AI)-based tool use on students’ computational thinking
+     FPUBH.2017.00258/FULL                                                                            skills, programming self-efficacy and motivation. Computers and Education: Arti-
+[65] Ciara Sibley, Joseph Coyne, and Carryl Baldwin. 2011. Pupil Dilation as an Index                 ficial Intelligence 4 (1 2023), 100147. doi:10.1016/J.CAEAI.2023.100147
+     of Learning. Proceedings of the Human Factors and Ergonomics Society Annual
+     Meeting 55, 1 (2011), 237–241. arXiv:https://doi.org/10.1177/1071181311551049
+     doi:10.1177/1071181311551049                                                                A Survey Instrument
+[66] Joseph P. Simmons, Leif D. Nelson, and Uri Simonsohn. 2011. False-positive
+     psychology: Undisclosed flexibility in data collection and analysis allows pre-             A.1 Sleep and Caffeine
+     senting anything as significant. Psychological Science 22, 11 (2011), 1359–1366.
+     doi:10.1177/0956797611417632;CTYPE:STRING:JOURNAL
+                                                                                                 In the last 24 hours; did you sleep significantly less than in a regular
+[67] Norman J. Slamecka and Peter Graf. 1978. The generation effect: Delineation of a            night? Yes/No
+     phenomenon. Journal of Experimental Psychology: Human Learning and Memory                      In the last 24 hours; did you have more caffeine than on a regular
+     4, 6 (11 1978), 592–604. doi:10.1037/0278-7393.4.6.592
+[68] Nicholas C. Soderstrom and Robert A. Bjork. 2015. Learning Versus Performance:              day? Yes/No
+     An Integrative Review. Perspectives on Psychological Science 10, 2 (3 2015), 176–
+     199. doi:10.1177/1745691615569000                                                           A.2       Experience
+[69] K. G. Srinivasa, Muralidhar Kurni, and Kuppala Saritha. 2022. Harnessing the
+     Power of AI to Education. Springer Nature Singapore, Singapore, 311–342. doi:10.            A.2.1 General Programming Experience. How much experience do
+     1007/978-981-19-6734-4_13                                                                   you have programming in any programming language?
+[70] Matthias Stadler, Maria Bannert, and Michael Sailer. 2024. Cognitive ease at
+     a cost: LLMs reduce mental effort but compromise depth in student scientific                     • 0 Years (No experience)
+     inquiry. Computers in Human Behavior 160 (11 2024), 108386. doi:10.1016/J.CHB.                   • 1 Year
+     2024.108386
+[71] John Sweller. 2011. Cognitive Load Theory. Psychology of Learning and Motivation                 • 2 Years
+     - Advances in Research and Theory 55 (1 2011), 37–76. doi:10.1016/B978-0-12-                     • 3 Years
+     387691-1.00002-8
+[72] John Sweller. 2019. Cognitive load theory and educational technology. Ed-
+                                                                                                      • 4 Years
+     ucational Technology Research and Development 2019 68:1 68, 1 (8 2019), 1–16.                    • 5+ Years
+     doi:10.1007/S11423-019-09701-3
+[73] John Sweller. 2024. Cognitive load theory and individual differences. Learning              A.2.2 C Programming Experience. How much experience do you
+     and Individual Differences 110 (2 2024), 102423. doi:10.1016/J.LINDIF.2024.102423           have programming in the C programming language?
+[74] John Sweller, Jeroen J.G. Van Merrienboer, and Fred G.W.C. Paas. 1998. Cognitive
+     Architecture and Instructional Design. Educational Psychology Review 10, 3                       • 0 Years (No experience)
+     (1998), 251–296. doi:10.1023/A:1022193728205/METRICS                                             • 1 Year
+[75] Mika P. Tarvainen, Juha Pekka Niskanen, Jukka A. Lipponen, Perttu O. Ranta-
+     aho, and Pasi A. Karjalainen. 2014. Kubios HRV – Heart rate variability analysis                 • 2 Years
+     software. Computer Methods and Programs in Biomedicine 113, 1 (1 2014), 210–220.                 • 3 Years
+     doi:10.1016/j.cmpb.2013.07.024
+[76] Mohsen Tavakol and Reg Dennick. 2011. Making sense of Cronbach’s alpha.
+                                                                                                      • 4 Years
+     International Journal of Medical Education 2 (6 2011), 53. doi:10.5116/IJME.4DFB.                • 5+ Years
+     8DFD
+[77] Pauline van der Wel and Henk van Steenbergen. 2018. Pupil dilation as an index              A.2.3 General LLM Experience. How much experience do you have
+     of effort in cognitive control tasks: A review. Psychonomic Bulletin & Review               using Large Language Models (LLMs)?
+     2018 25:6 25, 6 (2 2018), 2005–2015. doi:10.3758/S13423-018-1432-Y
+[78] Linn Van Dyne and Jon L. Pierce. 2004. Psychological ownership and feelings of                   • None at all
+     possession: Three field studies predicting employee attitudes and organizational                 • A little
+     citizenship behavior. Journal of Organizational Behavior 25, 4 (6 2004), 439–459.
+     doi:10.1002/JOB.249;ISSUE:ISSUE:DOI                                                              • A moderate amount
+[79] Haoming Wang, Chengliang Wang, Zhan Chen, Fa Liu, Chunjia Bao, and Xi-                           • A lot
+     anlong Xu. 2025. Impact of AI-agent-supported collaborative learning on the                      • A great deal
+     learning outcomes of University programming courses. Education and Informa-
+     tion Technologies 2025 30:12 30, 12 (3 2025), 17717–17749. doi:10.1007/S10639-
+                                                                                            16
+Your Programming Students' Cognition with ChatGPT
+
+
+A.2.4 ChatGPT Experience. How much experience do you have                     Thinking only of the code for the functions submitted; Indicate
+using ChatGPT?                                                             the degree to which you personally agree or disagree with the
+     • None at all                                                         following statements.
+     • A little                                                                 • This is MY code
+     • A moderate amount                                                        • I sense that this is MY code
+     • A lot                                                                    • I feel a very high degree of personal ownership for this
+     • A great deal                                                                code
+                                                                                • It is hard for me to think about this code as MINE
+A.3     Authorship Question
+Authorship question adapted from He et al. [19].
+   For the next question please refer to the following definitions:
+     • Sole Developer designed the logic, wrote the code, and fixed
+        errors.
+     • Primary Developer defined the structure and logic and sig-
+        nificantly modified code included by others.
+     • Secondary Developer only tweaked parameters, fixed bugs,
+        or included code that was significantly modified by others.
+     • Acknowledged Developer’s contribution was helpful like
+        spotting a bug or suggesting a library but not fundamental
+        to the final code. This would be a "Special Thanks".
+     • Co-Developer is a true partnership. Both parties contributed
+        roughly equally to the final functioning code.
+   Imagine you were going to publish this code. Thinking only
+of the code for the functions submitted; please indicate what you
+think is the most accurate way to attribute authorship of the code
+submitted. Remember that there are no right or wrong answers.
+   Participants selected one of the following options:
+     • You are the sole developer
+     • You are the primary developer; Google/ChatGPT is ac-
+        knowledged but not listed as a developer
+     • You are the primary developer; Google/ChatGPT is the
+        secondary developer
+     • You and Google/ChatGPT are Co-Developers and have
+        equal contribution
+     • Google/ChatGPT is the primary developer; you are the
+        secondary developer
+     • Google/ChatGPT is the primary developer; you are ac-
+        knowledged but not as a developer
+     • Google/ChatGPT is the sole developer
+
+A.4     Self-reported Ownership Attribution
+Question modified from Kosmyna et al. [24].
+  Thinking only of the code for the functions submitted; how much
+was yours, how much was (Google/ChatGPT)? Please indicate what
+percentage you feel was yours.
+  1–100 point scale
+
+A.5     Psychological Ownership Scale
+Adapted from Van Dyne and Pierce [78].
+  Scale:
+    • Strongly Disagree
+    • Somewhat Disagree
+    • Neither agree nor disagree
+    • Somewhat agree
+    • Strongly Agree
+
+                                                                      17
+

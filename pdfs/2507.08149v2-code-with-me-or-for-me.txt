@@ -1,0 +1,1631 @@
+                                               Code with Me or for Me? How Increasing AI
+                                               Automation Transforms Developer Workflows
+                                               Valerie Chen1,2 , Ameet Talwalkar1 , Robert Brennan2 , and Graham Neubig1,2
+                                                                            1
+                                                                                Carnegie Mellon University
+                                                                                     2
+                                                                                       All Hands AI
+
+
+                                                                   Correspondence to valeriechen@cmu.edu
+
+
+
+
+arXiv:2507.08149v2 [cs.SE] 13 Sep 2025
+                                                                                        Abstract
+                                                   Developers now have access to a growing array of increasingly autonomous AI tools for
+                                               software development. While many studies examine copilots that provide chat assistance
+                                               or code completions, evaluations of coding agents—which can automatically write files
+                                               and run code—still rely on static benchmarks. We present the first controlled study of
+                                               developer interactions with coding agents, characterizing how more autonomous AI tools
+                                               affect productivity and experience. We evaluate two leading copilot and agentic coding
+                                               assistants, recruiting participants who regularly use the former. Our results show agents
+                                               can assist developers in ways that surpass copilots (e.g., completing tasks humans may not
+                                               have accomplished) and reduce the effort required to finish tasks. Yet challenges remain
+                                               for broader adoption, including ensuring users adequately understand agent behaviors. Our
+                                               findings reveal how workflows shift with coding agents and how interactions differ from
+                                               copilots, motivating recommendations for researchers and highlighting challenges in adopting
+                                               agentic systems.
+
+
+
+                                         1    Introduction
+                                         AI-powered tools have become integral to modern software development workflows. Tools
+                                         such as GitHub Copilot [1], Cursor [2], Windsurf [3], and Continue [4] primarily function as
+                                         copilots—offering autocomplete suggestions and chat-based code assistance. These systems assist
+                                         developers incrementally, typically requiring continuous developer input to drive progress by
+                                         making further changes themselves within the development environment. In contrast, coding
+                                         agents such as Devin [5], OpenHands [6], and Claude Code [7] are designed for greater autonomy:
+                                         they can autonomously plan multi-step actions based on user inputs, navigate across files, execute
+                                         code, and iteratively revise outputs. One might draw a parallel where coding with copilots is
+                                         akin to a pair programming [8] whereas collaborating with coding agent might be more akin to
+                                         working with a fellow engineer. Though some have claimed that coding agents will be eventual
+                                         replacements for human developers [9], until they demonstrate a high level of reliability across
+                                         diverse contexts, these systems will necessarily require close human supervision. As developers
+                                         gain access to increasingly autonomous AI tools (Figure 1), it is critical to understand how these
+                                         systems are transforming software workflows, developer productivity, and overall user experience.
+                                             Despite growing commercial interest in agents for software development, understanding how
+                                         well coding agents perform in real-world settings with software engineers remains incomplete for
+                                         multiple reasons. First, the AI community has largely relied on static benchmarks to evaluate
+                                         new agents [10, 11, 12], which have well-specified problems and no human-in-the-loop to provide
+                                         interactive feedback. While initial work aims to incorporate interactivity with synthetic users on
+
+                                                                                            1
+                                   Coding Copilots                               Coding Agents
+
+                                     Development                                  Development
+                                     Environment                                  Environment
+
+
+
+
+                   <Edit files,                                                                      Edit files,
+                  Run code>                                                                           Run code
+
+                                  Terminal
+                                   output                                                     Terminal
+                                                                                               output
+
+
+                                      <Ask chat                                   <Provide
+                                      question>                                   task desc>
+
+
+                                        <Chat                                      <Share
+                                      response>                                    updates>
+                     User                            AI                   User                           AI
+  Human Only                                                                                                       AI Only
+
+                                                     Level of AI Involvement
+
+
+Figure 1: The spectrum of developer workflows with AI tools. While prior studies
+have evaluated how human-only workflows compare to human-copilot workflows, understanding
+how AI can code with developers, little work exists comparing copilots to the emerging agent
+workflows, where AI is more often used to code for developers. We study how these differences
+affect productivity, user experience, and interaction patterns with AI tools.
+
+
+benchmark tasks [13, 14], synthetic users struggle to capture all the nuances of real users [15, 16].
+In contrast, there is a much richer body of work on understanding how developers use various
+copilot features [17, 18, 19, 20, 21] and even designing new affordances to improve interactions
+with them [22, 23, 24]. Prior works examining how developers use existing copilots have even
+demonstrated that benchmark performance alone may not necessarily correlate with downstream
+user utility [25]. Second, no prior work has considered a head-to-head comparison of copilots
+and agents, despite developers often having access to both types of tools in their day-to-day.
+Without controlled comparisons with existing tools, it remains unclear how much current agentic
+systems improve software development.
+     In this work, we conduct the first controlled user study to understand how developers interact
+with coding agents and compare them to existing copilots. In particular, we recruit a population
+of users who are experienced copilot users but novice agent users, which is representative of the
+majority of current software developers according to a 2025 Stack Overflow developer survey [26].
+We adopt a within-participant design where participants solve realistic coding problems with both
+Github Copilot [1]—one of the most widely used AI copilots for code—and OpenHands [6]—a
+state-of-the-art, open-source coding agent. Each respective choice encompasses many common
+features of other popular copilot or agent alternatives. Additionally, we ask participants to solve
+tasks that are motivated by realistic use cases [27, 10], which include creating programs from
+scratch, implementing features, and fixing bugs in real-world repositories. Since participants
+work on tasks of the same type with both the copilot and coding agent, we can directly compare
+their impacts on user productivity and user experience. Furthermore, by indirectly monitoring
+participant interaction with both types of AI tools as they are solving the problem, we can also
+derive a better understanding of interaction patterns across copilots and agents.
+     We find that, from the productivity angle, agents tend to enable users to complete more tasks
+than with copilots, observing an average 35% increase in task correctness, and with about 50%
+the user effort, as measured by the amount of time spent by the user. On the user experience
+front, we also observe that this result translates into significantly less cognitive load and also a
+significant improvement in a user’s sense of ability to accomplish new tasks. When more carefully
+inspecting interaction trajectories with each type of tool, we find that the reduction in user effort
+is largely due to the agent’s ability to autonomously debug and set up complex environments
+
+
+                                                               2
+                                                                      I want to analyze the data that I
+              import pandas as pd                                        have collected in this folder.
+              #load outputs.csv dataset
+              df = pd.read_csv("outputs.csv")
+
+                                                              I will create a script after
+                                                              looking for relevant datasets.
+                           *accepts copilot suggestion*
+
+
+
+
+                            How do i one hot encode the
+                                     first two columns?
+                                                              Should I create a new branch for
+                                                              this analysis?
+               To one-hot encode the first two
+               columns of a pandas DataFrame in
+               Python, you can use                                      Wait, first run the script and
+               pd.get_dummies(). Here's how to…                                    show me the output.
+
+
+
+
+Figure 2: Comparing affordances in copilot (left) and agent (right) workflows. While
+prior work has studied the benefits and challenges of coding with copilots (overviewed in
+Section 2.3), we ask the same questions about agentic workflows.
+
+
+and assist users in evaluating whether code implementations follow task instructions. However,
+despite productivity gains, participants noted multiple aspects of the user experience could be
+improved, including user satisfaction and understanding of agent outputs. We discuss three
+desiderata for building more collaborative coding agents.
+    Together, our approach and findings offer multiple contributions: (1) Our study tackles the
+timely and important issue of understanding the effect of increasing automation of AI coding
+assistants. We do this through a study design that directly contrasts how developers use copilots
+compared to coding agents. (2) Through our study, we show that coding agents can have
+substantial productivity implications on modern software development. Our findings, however,
+caution against the immediate adoption of existing tools given limitations in user experience. (3)
+We provide an in-depth discussion of the implications of our findings, limitations of our work,
+and future research directions. In particular, we identify three goals for building future coding
+agents that include improved transparency, balanced proactivity, and effective involvement of
+human effort. While the focus of this work is on agents in the context of software engineering
+tasks, we believe our findings and recommendations can be more broadly applicable to designing
+better emerging human-agent interactions.
+
+
+2     Related Work
+2.1    The Ecosystem of AI Coding Assistants
+A growing number of tools powered by large language models (LLMs)—i.e., AI coding assistants—
+are available to developers to generate or edit code and answer queries. Developers are increasingly
+writing code with AI assistants like Github Copilot [1] and Cursor [2] and are using chat assistants
+like ChatGPT [28] or Claude [29] in place of online Q&A communities like Stack Overflow [30].
+We refer to these types of coding assistants as copilots because these are tools that assist the
+developer but are not in command. Copilots typically involve one of two types of support
+(Figure 2, left): autocomplete suggestions are used to quickly write more code based on the
+programmer’s current code context, while chat dialogue can help answer questions that range
+from debugging errors to explaining documentation.
+    More recently, we have seen researchers and companies introduce coding agents (e.g., Devin [5],
+OpenHands [6], Claude Code [7]). This is largely due to recent advances in LLM capabilities,
+which have sparked a surge in the development of AI agents [31, 32, 33, 34]. We refer to AI
+
+                                                          3
+agents as LLM-powered systems that are equipped with the ability to use tools, run commands,
+observe feedback from the environment, and plan for future actions. In the context of software
+engineering tasks, unlike copilots, coding agents can autonomously execute the same set of actions
+that a human developer can, provided a natural language task description from the developer
+(Figure 2, right). Note that coding agents typically do not have autocomplete functionality, as
+that is considered too limited in scope. Given the increased interest in agents, there is a need to
+understand how coding agents compare to existing tools like copilots. In this work, we conduct a
+study that compares a widely used copilot (e.g., GitHub Copilot [1]) to a state-of-the-art coding
+agent (e.g., OpenHands [6]).
+
+2.2   Impact of AI Coding Assistants In Practice
+To assess whether a new AI tool can be integrated into a developer’s workflow effectively, multiple
+factors should be assessed, including the performance of the tool on its own (or the model
+powering this tool), the performance on human and AI compared to other alternatives, the
+human’s experience, and so on. We discuss how these various factors have been studied by HCI
+and AI communities in the context of both coding copilots and agents:
+    Evaluations of copilot capabilities began by measuring an LLM’s performance on coding
+benchmarks that test the model’s code generation capabilities (e.g., HumanEval [35]). As LLM
+performance on static benchmarks improved, a growing and fairly extensive set of user studies
+has been conducted to understand how developers code with various AI copilots. These studies
+have focused on two forms of support present in AI copilots: autocomplete suggestions [17, 18,
+19, 20, 21, 23, 36, 25] and chat dialogue [37, 38, 39, 40, 41, 25]. These studies show how copilots
+have generally had a positive impact on software development, e.g., leading to an increase in
+perceived productivity [42, 43, 44] and rate of task completion in controlled studies [17, 18]
+compared to developers writing code on their own.
+    Given that coding agents are a much more nascent technology, attempts to measure their
+usefulness on software engineering tasks have largely been limited to benchmarks without
+humans-in-the-loop [10, 11, 12, 13, 14], which cannot provide insight into the impacts on user
+experience and productivity. Recent efforts track the usage of the various aforementioned coding
+agents on GitHub [45, 46] indicate a growing trend in adoption. Initial analysis of this data
+suggests that coding agents may still lag behind humans on PR acceptance rates by a large
+margin, especially on complex tasks. Our work complements these analyses by quantifying,
+on a set of coding tasks, the difference in productivity and user experience, while identifying
+opportunities for the community to design better agents.
+
+2.3   Developer Workflows with AI Tools
+The growing use of AI coding assistants has motivated studies towards understanding developer
+workflows with AI tools—i.e., where do people tend to spend their time when working with
+AI coding assistants, and what are the bottlenecks created in these workflows. We focus our
+discussion on prior studies of copilot systems, as that is where the primary set of related work
+lies. The focus of multiple works has been in the autocomplete setting [19, 21]. Mozannar et al.
+[21] developed CUPS, a taxonomy of common programmer activities when interacting with
+code completions, and observed that “verifying suggestions” takes up a significant portion of a
+developer’s AI workflow. Another work by Barke et al. [19] introduced the terms “acceleration”
+and “exploration” to denote the difference between cases where code completion models are
+used to help developers accomplish something more quickly versus explore potential solutions,
+indicating two different roles of AI tools.
+     As code completion is no longer the only point of interaction with AI coding assistants,
+recent work has shifted towards understanding natural language-driven interaction in chat
+interfaces. Real conversations between developers and AI show the diversity [30], from explaining
+
+
+                                                4
+existing code, brainstorming new ideas or functionality, to identifying and fixing bugs. Within
+this interaction format, prior work has found that one bottleneck is the amount of time spent
+constructing prompts [38, 41]. In the context of agents, some may associate coding with agents
+with the growing paradigm of “vibe-coding,” where developers tend to write natural language
+task descriptions rather than the code itself [47]. Relatedly, Zamfirescu-Pereira et al. [48] studied
+a complementary direction of supporting exploration of program design space with more agentic
+workflows. Our work focuses on the implementation process that requires iterating on code and
+debugging once a task description is provided. We will later revisit some of these observations
+across autocomplete and chat to discuss how they compare to interactions with agents.
+
+
+3     Study Design
+As developers begin to adopt coding agents, we aim to understand when and by how much
+better agents are than existing copilots and investigate how people interact with coding agents.
+Our research questions are as follows:
+
+RQ1: How do agents and copilots compare in terms of effect on user productivity? While agents
+     are often marketed as AI software engineers, we evaluate to what extent they can help a
+     user complete more tasks than when a user has access to a widely used copilot tool.
+
+RQ2: How do agents and copilots compare in terms of effect on user experience? Extensive
+     surveys have been conducted to understand user experience with copilots. We ask many
+     of the same questions that have been explored in prior surveys but directly comparing
+     agents and copilots.
+
+RQ3: How do developers interact with different coding assistants? Prior work has explored
+     modeling user behaviors with copilots [21, 19, 18]. We compare interaction patterns
+     between both tools.
+
+3.1   Participants
+We recruited a total of 20 students via university mailing lists. The inclusion criteria for the
+study are that they must have access to and use GitHub Copilot regularly and have experience
+programming in Python. Since we select tasks that are largely written in Python, we require
+participants to have a baseline level of Python knowledge. Among our participants, 60% had
+3-5 years of professional programming experience, 25% had 0-2 years, and 15% had 6-10 years.
+Additionally, 95% of participants rated themselves as having intermediate to advanced proficiency
+in Python. In terms of AI tool usage, all participants used GitHub Copilot at least once a week
+in addition to other common chat assistants like ChatGPT, Claude, and Gemini. Unsurprisingly,
+no participants reported any prior experience with using coding agents, as current usage of
+agents largely remains in communities of early adopters [26]. Accordingly, our results are
+targeted towards the broader set of developers who are still largely using copilots, and we aim
+to understand how they will adopt this new technology.
+
+3.2   Choice of Copilot, Agent, and LLMs
+We discuss our choice of copilot and agent for the study, which encompasses many relevant
+functionalities from popular alternatives (Table 1). Additional details about how users would
+interact with each are provided in the Appendix A
+
+
+
+
+                                                 5
+                               Basic Features                 Advanced Capabilities
+ Tool
+                                Auto-     Chat   Multi-file   Terminal      File         Act
+                               complete          Editing      Execution   Creation   Autonomously
+ Copilots
+ GitHub Copilot* [1]              ✓        ✓                                              ×
+ Cursor [2]                       ✓        ✓                                              ×
+ Windsurf [3]                     ✓        ✓                     ×           ×            ×
+ Continue [4]                     ✓        ✓         ×           ×           ×            ×
+ Amazon CodeWhisperer [49]        ✓        ✓         ×           ×           ×            ×
+ Agents
+ OpenHands* [6]                   ×        ✓         ✓           ✓           ✓            ✓
+ Devin [5]                        ×        ✓         ✓           ✓           ✓            ✓
+ Claude Code [7]                  ×        ✓         ✓           ✓           ✓            ✓
+ Cline [50]                       ×        ✓         ✓           ✓           ✓            ✓
+ Replit [51]                      ×        ✓         ✓           ×           ✓            ✓
+
+Table 1: Comparison of popular AI coding copilots and agents, where ✓ denotes the
+action is done by the AI,    denotes the action is approved by a human, and × denotes the
+feature does not exist. We split features based on basic ones that involve the current file and
+more advanced capabilities. We use * to denote the choice of copilot and agent that we select
+for this study.
+
+
+Choice of copilot. GitHub Copilot [1] is one of the most widely used AI coding assistants,
+making it a natural choice for the copilot baseline. Its popularity also makes it relatively easier
+to recruit participants who already have access to this tool. In fact, in our recruitment survey, it
+was by far the most mentioned AI tool that participants regularly used. Furthermore, it has
+been the sole choice of AI coding assistant in the majority of prior studies aiming to understand
+developer usage of AI tools [17, 18, 19, 20, 21, 23]. Despite choosing one instantiation of coding
+copilots, GitHub Copilot is also representative of other tools like Cursor, Windsurf, and Continue:
+it can generate code completions based on the user’s cursor position, answer user questions in
+the chat panel, incorporate suggested code edits into the user’s file, or suggest code edits in a
+diff format for users to review. GitHub Copilot is a tool comprised of many LLMs—a faster,
+light-weight code generation model and a flexible choice of models that powers the chat assistant.
+In the copilot portion of the study, we allow participants to use any LLM they want in the chat
+panel to most closely mimic real-world usage, where some users may be more familiar with some
+LLMs. At the time of the study, the LLMs that are available to users include GPT-4o, Claude
+Sonnet 3.7, Gemini 2.5 Pro, and o3-mini.
+
+Choice of agent. Given that agents are much newer on the market, there is not yet one
+option that has been widely adopted by developers. For our study, we select OpenHands, which
+is a leading open-source coding agent on benchmarks like SWE-Bench [10]. OpenHands supports
+multiple tools, including a bash shell, Jupyter IPython server, text-based browsing tool that
+uses a Chromium browser, and a file-processing tool for creating, viewing, and editing plain-text
+files. Users primarily interact with OpenHands through a chat interface, but can use tabs on the
+side of the interface to see an overview of changes, modify files themselves through an embedded
+VSCode interface, view web servers or browser through a non-interactive. In contrast to copilots,
+agents are typically optimized for specific LLM backbones. As such, we only allow users to
+interact with a version of OpenHands powered by Claude Sonnet 3.7. Since the models that
+participants have access to in the copilot phase are regarded as being similarly proficient as the
+fixed model, we consider it to be a reasonable setup. We later evaluate whether this limitation
+
+
+                                                 6
+                                                      Realistic Task Collection
+
+
+                    Issue                                      Feature request                        Deep Research
+                 ` RepeatedKFold ` does not               Enable smooth animations                 Find which property in Pearl
+                 show correct __repr__ str…               between different states…                City , Hawaii sold in 2022 for..
+
+                    Repository                                 Repository                              Repository
+                     scikit-learn                              matplotlib-main                        instructions.txt
+                     instructions.txt                          instructions.txt
+
+
+
+
+                                              Same task type is assigned in both phases
+
+
+
+
+                                              GitHub Copilot                          OpenHands
+              User                                                                                                       Post-study
+                                    OR                                                                                    Survey
+           recruitment
+
+
+
+                                               OpenHands                          GitHub Copilot
+
+                                                Phase 1                               Phase 2
+
+Figure 3: Overview of our study procedure. We designed a controlled user study to directly
+contrast participant interactions with copilots and agents. Participants were asked to solve a set
+of realistic and challenging tasks, including fixing issues in repositories, adding features, and
+conducting deep research and analysis.
+
+
+impacts user productivity.
+
+3.3    Task Types
+Prior studies evaluating interactions with AI coding assistants used relatively simple tasks that
+involved only a single file or unrealistic tasks like programming interview-style programs [17,
+21, 24]. We address these limitations by focusing on more challenging tasks, of 3 types: (1)
+deep research and analysis—which involves researching and scraping data from the internet
+and writing scripts to process the data, (2) adding features to an existing repository, and (3)
+fixing bugs in an existing repository. We source tasks from existing datasets that are used to
+evaluate agents and select example questions that are not solved by existing agents, and the
+task description itself is accessible to a broad set of potential participants. For (1), we select
+questions from GAIA [27], which evaluates AI agents as general-purpose assistants using tasks
+that require browsing the open web, performing web search, coding, and processing multimodal
+content. The coding tasks in GAIA generally require the agent to write and execute stand-alone
+programs from scratch. For (2) and (3), we select tasks from SWE-Bench [10], which require
+users to fix issues by editing existing code files in a larger, real-world repository (e.g., matplotlib
+and scikit-learn). While SWE-Bench does not directly contain questions that test (2), we
+manually create variants of the existing questions that fit the feature addition category. In total,
+we had 2 questions per task type. We provide a list of all tasks in Appendix B.
+
+3.4    Procedure
+We conducted this study in April-May 2025 following the study procedure outlined in Figure 3.
+We adopt a within-participant setup, where each participant interacts with both OpenHands
+and GitHub Copilot. We randomize the order in which participants interact with either. The
+
+
+                                                                         7
+total amount of time the participant spent coding for the study is 90 minutes, with participants
+spending 40 minutes in each condition and additional time for onboarding and filling out
+the post-task survey. Participants conduct the study asynchronously in their own time. Each
+participant is sent a document outlining the study procedure, which also contains links to GitHub
+repositories where they can download relevant starter code for each task. Upon completion,
+participants were asked to push their updated code to a new repository to be shared with the
+first author and were subsequently compensated with a $35 Amazon gift card.
+     We use a between-subjects set-up to randomize task types. This means that in both phases,
+participants would work on the same type of task using both Copilot and OpenHands. This
+not only allows us to control for problem difficulty but also allows participants to more directly
+contrast their experience working on the same type of task with two different AI tools. Finally, we
+ask participants to record themselves when writing code with GitHub Copilot. Since participants
+already have access to GitHub Copilot, there is little setup required to get started on this portion
+of the study. When working with OpenHands, we ask them to use a web application from
+which we can directly pull their telemetry data. Interacting with the agent through the web app
+obviates the need for users to set up an agent on their own machines, which can be challenging
+and time-consuming, allowing participants to get started quickly. Full instructions sent to the
+participants are provided in Appendix C.
+
+3.5   Measurements
+We collect four different types of data:
+
+   1. User trajectories with copilot and agent: Through user recordings of their interactions with
+      Github Copilot, we can manually extract user trajectories to identify key interactions (e.g.,
+      what kind of messages do users write, how do users use GitHub Copilot to debug, etc.).
+      With the web app used to host OpenHands, we can collect a similar set of information
+      through the event stream that is logged through every conversation that users have with
+      the agent, which can help us compute metrics like total time spent. The event stream
+      architecture is described in more detail in Wang et al. [6].
+
+   2. Final code snapshots: We also ask participants to push all of their code to a GitHub
+      repository that is shared after working with both copilot and agent. We use the final code
+      snapshot to evaluate the correctness of the code.
+
+   3. Likert responses: In the post-task survey, we ask participants to rate their interactions
+      with both the copilot and agent on a 5-point Likert scale from “strongly agree” to
+      “strongly disagree”. We consider multiple dimensions ranging from cognitive load to output
+       understanding that have also been studied in prior studies [42].
+
+   4. Qualitative responses: In the post-task survey, we also asked participants to describe when
+      copilots were preferred over agents, detail their experience using both tools, and further
+      explain their ratings.
+
+3.6   Analysis Approach
+To measure the effect of coding assistance on productivity (RQ1), we consider both task
+completion rate and user effort. First, we evaluated whether the task description was correctly
+completed. We built a linear model that incorporates the experimental condition, which is either
+a copilot or an agent, and the coding problem as fixed effects. For all tests, the threshold for
+statistical significance was α = 0.05. Second, we measure user effort using time spent. Since
+copilot workflows require users to constantly be in the loop, we measure effort by the total time
+spent from start to end. However, since agent workflows are more autonomous, we measure effort
+
+
+                                                 8
+                                   Task Correctness Rate                            User Effort Spent
+                             0.8
+                                                                            30
+                             0.7
+                             0.6                                            25
+
+
+
+
+                                                           Time (minutes)
+                             0.5                                            20
+
+                Percentage
+                             0.4
+                                                                            15
+                             0.3
+                                                                            10
+                             0.2
+                             0.1                                            5
+
+                             0.0                                            0
+                                   Copilot         Agent                         Copilot           Agent
+
+Figure 4: Measuring the effect of different coding assistants on user productivity. We
+consider two measurements: the task correctness rate and user effort spent to build a correct
+solution (i.e., excluding incomplete or incorrect solutions). For each metric, we report the mean
+and standard error.
+
+
+by the time users spend writing instructions to the agent. This is computed by summing the
+differences between the time of the agent’s last action preceding a user’s message and the time
+of the agent’s first action following a user’s message—this would encompass the time users take
+to inspect agent outputs and specify a new request. To evaluate the effect of coding assistant
+on user experience (RQ2), we analyze the post-study responses and Likert ratings to various
+comparison-based questions. We run a Wilcoxon Signed-Rank Test comparing the median
+response against a neutral point (i.e., rating of 3). We also analyze participant justifications to
+interpret the quantitative results. To begin to understand how participants use different types
+of coding assistants (RQ3), we analyze the videos of copilot interactions and event streams
+reflecting agent interactions and extract qualitative feedback that aligns with common trends.
+We consider RQ3 to be an exploratory analysis to identify trends that distinguish the two types
+of AI assistance.1
+
+
+4        Results
+We answer each research question below and provide additional analyses in Appendix D.
+
+4.1        RQ1: Productivity as a result of using copilots and agents
+As shown in Figure 4, we evaluate productivity along two complementary axes: task correctness,
+which captures whether the code satisfies all task specifications, and user effort, which reflects
+the amount of work a user puts in to achieve the correct solution.
+
+Task correctness. While AI coding assistants can help users complete tasks by generating large
+amounts of code, the output is not always correct, underscoring the importance of measuring task
+correctness. When comparing the number of tasks that are completed correctly by participants,
+we find that on average, participants with agents are more productive than with copilots: we
+observe a 35% increase in task correctness when users have access to agents as compared to
+copilots (µ = 25%, SE = 10% compared to µ = 60%, SE = 11% respectively). We find that
+these productivity improvements are significant (p = 0.02). We do not observe any significant
+differences between the types of tasks that users were working on, though bug-fixing tasks seem
+to be the most challenging of the three types we studied. Some tasks, such as both of the data
+analysis problems, were only completed by participants when they had access to agents. The
+    1
+        We provide analysis scripts at https://github.com/valeriechen/copilot-agent-comparison.
+
+
+                                                           9
+Table 2: Comparing user experience with Github Copilot and OpenHands. We
+report user rating distributions of Likert scale responses (ranging from strongly agree to strongly
+disagree) to various statements. We order the questions based on user preferences for OpenHands
+versus GitHub Copilot.
+
+      Comparison Statement                            Distribution
+ C1 I experienced less cognitive load using Open-     75%                                      10%
+
+    Hands than Github Copilot
+ C2 I was able to accomplish new tasks with           70%                                      5%
+
+    OpenHands than Github Copilot
+ C3 I was able to accomplish tasks faster with        50%                                      35%
+
+    OpenHands than Github Copilot
+ C4 I was more in the flow using OpenHands            45%                                      30%
+
+    than Github Copilot
+ C5 I was more satisfied using OpenHands than         45%                                      40%
+
+    Github Copilot
+ C6 I have a better understanding of OpenHands        25%                                      55%
+
+    outputs than Github Copilot outputs
+             Strongly Agree       Agree     Neutral     Disagree     Strongly Disagree
+
+
+challenge with the data analysis problems was that it required users to scrape data from the
+internet and then perform in-depth analyses; this proved challenging for people to complete in
+the allotted amount of time in the copilot condition. A more in-depth breakdown by multiple
+factors is in the Appendix.
+
+User Effort. For those who completed the task correctly, we also measure the amount of
+user effort spent. We find a significant difference in user effort between the time spent using
+copilots and agents (p = 0.01), where the former took 25.1 minutes of a user’s time on average
+(SE = 6.22) and the latter only took 12.5 minutes of a user’s time (SE = 2.8). We further
+analyze in RQ3 where the user’s effort was spent. However, we note that, if we also included
+the time that the agent spent taking actions (e.g., reading files, editing files, running code), the
+total amount would be comparable—on average 27.9 minutes. While this was not captured in
+the study, we elaborate in Discussion how developers can use the remaining time to complete
+other tasks or launch other agents, opening doors for developers to develop new multi-tasking
+workflows.
+
+     RQ1 Findings
+   Compared to copilots, agents improve the task correctness rate and reduce the effort
+   required for users to complete the task. New workflows that encourage multi-tasking are
+   needed to most effectively leverage agents.
+
+
+4.2    RQ2: User experiences between copilots and agents
+We analyze users’ post-study survey responses to understand user experiences across both tools
+(Table 2). Across 6 comparison questions between Github Copilot and OpenHands, we divide
+our discussion into questions where each is preferred over the other, and when it is less clear,
+focusing on grouping those in the strong and weak agree/disagree categories together. A Likert
+scale rating of 5 would indicate a strong preference in that comparison for OpenHands, while a
+rating of 1 would indicate a strong preference for Github Copilot.
+
+
+                                                10
+Situations when agents are preferred over copilots. Most notably, participants felt
+that using agents allowed them to accomplish new tasks that they could not have done so with
+prior tools (C1; p = 0.0013). This comparison was the only instance where the majority of
+participants strongly agreed, indicating the strongest feelings (median = 5.0, mean = 4.25 on 5
+point Likert scale where 5 is strongly agree). Commenting about one task that asked participants
+to add a new functionality into the matplotlib package, a participant noted that “without prior
+knowledge on the code structure of matplotlib, I was able to understand and do the task at
+the same time.” Relatedly, participants also experienced significantly less cognitive load (C2;
+p = 0.0006). For example, one participant noted “it feels like I can tell it what to do and let it
+run on its own and get back to me with an answer ” and that the “experience on OpenHands was
+like autopilot.” Overall, participants felt slightly less strongly about C2 (median = 4.0, mean =
+3.95).
+
+Situations where there is no clear winner. There were non-significant differences for
+three comparisons (C3-C5) and the mean/median rating was around the neutral point. We find
+that participants had mixed experiences around task completion speed, being in the flow, and
+satisfaction. In terms of speed of accomplishing tasks (C3; p = 0.09), we find that perception
+may vary depending on the scope of the work that each tool is being asked to perform, as one
+participant noted that agents are “better for faster iteration” but copilots provide faster individual
+responses. Similarly, depending on user preferences, they have have different perspectives on
+which tool lets them be more in the flow (C4; p = 0.39). On one hand, Github Copilot is
+“directly integrated into VS Code,” helping a developer stay in the flow. However, on the other
+hand, users of OpenHands could stick to one interaction modality: one participant described
+how “using OpenHands was seamless, as all I had to do was ask questions.” Finally, these types
+of feedback may contribute to the mixed levels of satisfaction (C5; p = 0.26). Interestingly,
+despite on average being able to solve more tasks correctly, participants were not necessarily
+more satisfied with agents. In Section 5.1, we discuss participant feedback on ways to improve
+their interactions with the agent.
+
+ Situations when copilots are preferred over agents. On one comparison, a majority of
+ participants (55%) reported better understanding of copilot outputs compared to agents (C6;
+ p = 0.07). On the 5 point likert scale, we observe a median rating of 2.0 and mean rating of
+2.45. The sentiment was further echoed in qualitative responses, where participants noted that
+“OpenHands felt a little hard to control ” and the agent generations “seemed kind of hidden.” In
+ contrast, when they were using copilot, one participant said that “I tend to use it in ‘ask’ mode
+and review what it outputs and this helps me to understand the code better.” Even if participants
+were not necessarily able to accomplish as much with copilots because “sometimes copilot will
+ provide bad code.”, there are still potential benefits (e.g., “it’s the bad code and errors that helps
+me understand the changes that took place.”) We note that there were no comparisons where
+ copilots were strongly preferred over agents—despite participants being regular users of copilots
+ in their day-to-day.
+
+      RQ2 Findings
+    Agents were significantly preferred over copilots in only 2 out of 6 comparisons, indicating
+    room for improving user experience in human-agent collaboration.
+
+
+4.3    RQ3: Comparing copilot and agent interactions
+In RQ1, we observed that agents reduce user effort in completing tasks—in what ways does
+that manifest? We compare copilot and agent interactions. All tasks in our study share some
+commonalities in how they can be approached: first, one needs to set up the environment, then
+
+
+                                                  11
+                       Copilot Workﬂow                                                        Agent Workﬂow
+
+                       Implement functionality                                        Implement functionality
+
+               Task          Generate           Create                            Task           Generate         Create
+               Input           code            new file                           Input            code          new file
+
+
+
+                        Environment Set up                                                 Environment Set up
+                 Try to             Copy                                            Create            Generate
+                run code            error                                          new file             Code
+
+
+                                            Install                                                        Install
+                         Generate                                                           Try to
+                                             right                                                          right
+                         fix                                                               run code
+                                            package                                                        package
+
+
+
+                       Debug implementation                                            Debug implementation
+
+              Describe       Generate         Copy over                         Generate          Give           Update
+              problem        new code           edits                           response        feedback          code
+
+
+                                                                  Legend
+
+                                                          Human            AI
+
+
+
+
+Figure 5: Comparing developer workflows with copilots and agents. We visualize
+abstracted user trajectories across three parts of the workflow: implementing functionality,
+setting up the environment, and debugging. We find that agentic workflows begin to shift more
+effort to the AI, aligning with the observed time saved.
+
+
+generate code based on the task description, and finally, debug and iterate on the code. Based
+on the trajectory data (illustrated in Figure 5), we map participants’ messages and qualitative
+descriptions of their experience to each step.
+
+Creating an initial implementation is largely AI-driven. In either workflow, we find
+that code is largely generated by the coding assistant—though, surprisingly, chat is used for this
+purpose rather than code completion functionality in the copilot workflow. In all cases, we find
+that the task instruction that we provide in the study is typically copied by study participants
+to both copilots and agents as input to chat. However, a few participants noted that agents,
+which can browse relevant files and file structures, were more adept at following instructions and
+when working with the copilot, “the instructions for github copilot was not enough” or they “had
+to give more specifics and manually interpret the instructions.” Another difference is that, in the
+copilot workflow, humans may need to create a new file that does not exist yet, whereas users
+rely on agents to perform simple actions like creating files in the appropriate location within a
+complex repository.
+
+Rote tasks like environment setup is AI-driven in agentic workflows, but human-
+driven in copilot workflow. When working with copilots, we observed that participants
+spent a significant amount of time setting up the environment with the correct Python version
+and the necessary requirements to even run the code. While users could send messages to the chat
+assistant (e.g., copying an error trace about how the environment is missing a certain package),
+they still had to execute commands themselves. In contrast, we rarely saw any messages from
+users to the agent regarding the environment setup. This was noted in multiple post-study
+survey responses, where participants noted how “it took me sometime (around 8 min) to make it
+right” in the Copilot setting and “OpenHands was able to setup the env as well. But with GitHub
+Copilot it took me a long time to even bring up the env.” In general, we find that mechanical
+tasks like setting up the development environment are becoming increasingly automated.
+
+                                                                  12
+Table 3: Post-study survey responses about future usage of copilots compared to agents on the
+Likert scale.
+
+      Future Usage Statements                        Distribution
+ F1 OpenHands is more competent than a hu-           70%                                     10%
+
+    man programmer
+ F2 Moving forward, I would continue to use          20%                                     60%
+
+    OpenHands over Github Copilot
+             Strongly Agree      Agree     Neutral     Disagree     Strongly Disagree
+
+
+Debugging outputs shift towards AI-driven in agentic workflows. In the copilot
+workflow, users always manually run the code themselves: “I also have to do manual testing, but
+I can confirm the code is running according to my wants”. In contrast, in the agentic workflow,
+we find that users tend to rely on the agent to show them the changes that have been made
+(e.g., “Hey run this code”) and subsequently explain the changes (e.g., “in what folder have
+these changes been made? ”). Then, the user would give the agent feedback on how to improve
+the code: “the integrated version of test script does not work well. It looks like the dark mode
+cannot be reversed. Is the new function in the source not applied / installed? ” Occasionally,
+there are still users who try to run the code themselves, but then ask the agent to fix issues
+when they encounter them, “why am I getting an error when I am running....” In contrast,
+another participant even noted that “OpenHands can provide automate code running, debugging
+and testing.”
+
+       RQ3 Findings
+    Agentic workflows are more AI-driven than copilot workflows, where human effort is
+    largely used to oversee agent actions in the debugging phase.
+
+
+5     Discussion
+5.1    Design Desiderata and Future Work
+So, should agents replace copilots? In the post-study survey, we included two relevant comparison
+statements to answer this question (Table 3). While we observe that OpenHands is perceived
+as being significantly more competent than other human programmers (F1; p = 0.002), study
+participants would still often prefer to use GitHub Copilot (F2; p = 0.04). Since OpenHands
+shares many similarities with other coding agents, we believe these takeaways are more broadly
+applicable to the current state of the art agents. As such, there are still multiple ways in which
+existing agents can be improved to make them a competitive alternative to well-established
+copilots for end users. We highlight three design desiderata for collaborative coding agents,
+based on feedback from participants, and connect suggestions for future work with relevant
+related work:
+
+Desiderata 1: Agent behaviors should be transparent to users. Since agents may be
+editing multiple files and making many changes, it can become difficult for users to understand
+why OpenHands made certain changes. In the post-study feedback, we found that participants
+wanted ways to understand quickly what the agent did and why changes were necessary. We
+also see this in the user messages, where one participant asked “Did you delete most of the
+functions in [filename]? If so, explain why did you do this.” Prior literature has studied how
+users consume model explanations has largely focused on ML models [52, 53, 54] and more
+
+
+                                               13
+recently LLMs [55]. However, there is a need to propose explanations of agent actions. Epperson
+et al. [56] introduced a way for agent developers to view counterfactual roll-outs, but this is not
+necessarily user-friendly for end users (e.g., developers). Future work can consider new ways of
+displaying agent explanations and for users to interact with them.
+
+Desiderata 2: Agents should balance the level of proactivity. Many participants
+observed, or even complained, about how OpenHands would take more actions than necessary:
+one participant wrote in a message to the agent, “could the code have been simplified, I did not
+expect 10 files to be created with more than 1000 lines each.” In the post-study feedback, one
+participant noted that “even though OpenHands agents performs all tasks, it does not seem to
+have a good control on when to stop”, while others described how they would like “if it’s more
+controlled on its resources.” This sentiment reinforces findings from prior work demonstrating
+how overly proactive AI can negatively impact developer experience [24]. If agents were better
+calibrated in terms of their confidence about whether it has completed the user’s request, this
+issue might be mitigated [57, 58]. Recent work on UI agents has explored proactively pausing
+agents at task boundaries [59]—identifying such boundaries in the software engineering settings
+may be a fruitful direction to improve user perception of agent actions.
+
+Desiderata 3: Agent should effectively leverage human effort. Human effort can be
+measured in many ways, including the amount of time spent interacting with the agent. On this
+front, many participants noted that the “the generation time is slower ” for OpenHands than
+GitHub Copilot and sometimes “im just kind of sitting there”. As such, user experience can be
+improved by explicitly optimizing for latency when engaging in back-and-forth with the user and
+providing more direct ways for users to steer agent behaviors [60]. Additionally, developers will
+increasingly need to multi-task to be most productive in agentic workflows, though prior work
+has characterized the cognitive cost of doing so [61]. Designing mixed-initiative approaches [62]
+that allow developers to seamlessly work in parallel with agents is an open direction to improve
+developer experience.
+
+5.2   Comparison to Prior Findings
+We discuss our findings on developer interaction with coding agents in the context of related,
+prior literature on AI-assisted programming—specifically on developer usage of copilots.
+
+Are the limitations of copilots resolved? Prior work has documented several limitations
+of copilot-style AI coding assistants [21, 38, 41]. For example, in studying developer interactions
+with autocomplete suggestions, Mozannar et al. [21] found that 22.4% of developer time was
+spent on “verifying suggestions” from code completion models. Although our study design
+does not allow us to precisely measure the verification time for agent outputs, we hypothesize
+that this burden may be even greater for agents, given that the average user effort exceeded 12
+minutes. This effort reflects both the time required to interpret the agent’s actions and the time
+spent crafting a new prompt; by contrast, the act of writing itself likely demanded less effort
+than the process of understanding. In the case of chat-based interactions, a recurring challenge
+reported in prior work is the difficulty of providing sufficient context through prompting [38, 41].
+As noted in RQ3, several participants emphasized that they had to repeatedly refine or clarify
+their instructions when using copilots in order to achieve the desired context. Since agents are
+often able to access user files directly and generally have a broader context, this likely helped
+mitigate this issue.
+
+ Has the role of AI tools evolved? Barke et al. [19] introduced the distinction between
+“acceleration” and “exploration,” where code completion models either help developers complete
+
+
+                                                14
+tasks more quickly or support them in exploring alternative solutions. In our findings, agents
+appear to be particularly effective at supporting exploration, but less clearly advantageous for
+acceleration. As discussed in RQ1 and RQ2, participants were often able to accomplish new
+tasks with agents, but this did not necessarily translate into reduced total completion time—only
+reduced user effort. Further, our results from RQ3 point to an expanded set of “roles” that
+coding agents may occupy, and correspondingly, new roles for developers. Because agents can
+autonomously handle mechanical or rote aspects of development, developers may find themselves
+shifting into a more managerial role, which includes overseeing, directing, and correcting the
+agent’s work rather than executing every step themselves.
+
+5.3   Limitations
+First, we acknowledge that this study only investigates one instantiation of AI copilots and
+agents. However, we aimed to select choices of each that were representative of other tools on
+the market (Table 1). Additionally, we did not control for the type of LLM that participants
+chose to use when writing code with GitHub Copilot, and fixed the type of LLM powering
+OpenHands to reflect the common copilot and agent setup. We encourage future work to study
+how varying choices of LLM backbones for both copilots and agents may lead to more nuanced
+findings. Second, the pool of participants who were largely students in our study performed a
+limited number of tasks. Since the participants had no prior experience with coding agents, our
+findings are primarily representative of those who are novice coding agent users, rather than
+power users who have significant experience using this tool.
+    Additionally, while our study was longer than many prior studies, it is still not fully
+representative of real-world software development workflows, where completing one task may
+take multiple days. Participants were also solely focused on a single task in the study; however,
+in practice, developers may complete other tasks while waiting for AI responses. This means that
+our particular measurement of time spent to complete tasks may not be representative. Further,
+the set of tasks we picked is on relatively popular programming languages and packages. Since
+tasks were already pre-defined by the authors, the study does not fully capture the planning
+aspects of the software development life cycle. Our findings on the effect of agents on productivity
+may not generalize to developers who are working on lower-resource programming languages
+and applications. Finally, our study findings are only representative of the point in time when
+the study was completed (April-May 2025). Given the rapid rate of change in the AI coding
+assistant ecosystem and the growing awareness of coding agents in particular, we expect the
+impact of increased AI autonomy to continue evolving.
+
+
+6     Conclusion
+As developers will increasingly adopt coding agents in their development workflows, it is
+important to understand how these more autonomous AI coding assistants will change how
+humans write code and build software compared to existing copilots. We conducted a study
+to understand when and by how much agents are better than copilots on various aspects of
+developer productivity and experience. While we find positive signals in terms of productivity
+improvements, there are still multiple concerns surrounding actual deployment considerations in
+terms of user experience. We begin to understand how to improve developer interactions with
+coding agents by analyzing how agentic workflows compare to copilot workflows. Furthermore,
+we identified multiple opportunities for more collaborative coding agents. While the focus of
+this work is in the software engineering domain, we believe our findings and recommendations
+apply to designing better human-agent interactions broadly.
+
+
+
+
+                                                15
+Acknowledgements
+We thank all participants for generously contributing their time to this study. We also appreciate
+the valuable feedback provided by Xingyao Wang and Xuhui Zhou, and we are grateful to Jenny
+Liang for kindly permitting us to adopt her table formatting.
+
+
+References
+ [1] Github. Github copilot - your ai pair programmer, 2022. URL https://github.com/
+     features/copilot.
+
+ [2] Cursor. Cursor - the ai code editor, 2023. URL https://www.cursor.com/.
+
+ [3] Windsurf. Introducing the windsurf editor, 2024. URL https://windsurf.com/.
+
+ [4] Inc. Continue Dev. Continue: Open-source ai code assistant. https://github.com/
+     continuedev/continue, 2025. Accessed: 2025-05-08.
+
+ [5] Cognition. Introducing devin, the first ai software engineer, 2024. URL https://cognition.
+     ai/blog/introducing-devin.
+
+ [6] Xingyao Wang, Boxuan Li, Yufan Song, Frank F Xu, Xiangru Tang, Mingchen Zhuge, Jiayi
+     Pan, Yueqi Song, Bowen Li, Jaskirat Singh, et al. Openhands: An open platform for ai
+     software developers as generalist agents. In The Thirteenth International Conference on
+     Learning Representations, 2024.
+
+ [7] Anthropic. Claude code overview, 2025. URL https://docs.anthropic.com/en/docs/
+     claude-code/overview.
+
+ [8] Andrew Begel and Nachiappan Nagappan. Pair programming: what’s in it for me? In
+     Proceedings of the Second ACM-IEEE international symposium on Empirical software
+     engineering and measurement, pages 120–128, 2008.
+
+ [9] Sherin Shibu.    ’i do have a fair amount of concern.’ the ceo of $61 bil-
+     lion anthropic says ai will take over a crucial part of software engineers’
+     jobs within a year, 2025. URL https://www.entrepreneur.com/business-news/
+     anthropic-ceo-predicts-ai-will-take-over-coding-in-12-months/488533.
+
+[10] Carlos E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and
+     Karthik Narasimhan. Swe-bench: Can language models resolve real-world github issues?
+     arXiv preprint arXiv:2310.06770, 2023.
+
+[11] John Yang, Carlos E Jimenez, Alex L Zhang, Kilian Lieret, Joyce Yang, Xindi Wu, Ori Press,
+     Niklas Muennighoff, Gabriel Synnaeve, Karthik R Narasimhan, et al. Swe-bench multimodal:
+     Do ai systems generalize to visual software domains? arXiv preprint arXiv:2410.03859,
+     2024.
+
+[12] Daoguang Zan, Zhirong Huang, Wei Liu, Hanwu Chen, Linhao Zhang, Shulin Xin, Lu Chen,
+     Qi Liu, Xiaojian Zhong, Aoyan Li, et al. Multi-swe-bench: A multilingual benchmark for
+     issue resolving. arXiv preprint arXiv:2504.02605, 2025.
+
+[13] Yijia Shao, Vinay Samuel, Yucheng Jiang, John Yang, and Diyi Yang. Collaborative
+     gym: A framework for enabling and evaluating human-agent collaboration. arXiv preprint
+     arXiv:2412.15701, 2024.
+
+
+
+                                               16
+[14] Sanidhya Vijayvargiya, Xuhui Zhou, Akhila Yerukola, Maarten Sap, and Graham Neu-
+     big. Interactive agents to overcome ambiguity in software engineering. arXiv preprint
+     arXiv:2502.13069, 2025.
+[15] Mirjana Prpa, Giovanni Troiano, Bingsheng Yao, Toby Jia-Jun Li, Dakuo Wang, and Hansu
+     Gu. Challenges and opportunities of llm-based synthetic personae and data in hci. In
+     Companion Publication of the 2024 Conference on Computer-Supported Cooperative Work
+     and Social Computing, pages 716–719, 2024.
+[16] Angel Hsing-Chi Hwang, Michael S Bernstein, S Shyam Sundar, Renwen Zhang, Manoel
+     Horta Ribeiro, Yingdan Lu, Serina Chang, Tongshuang Wu, Aimei Yang, Dmitri Williams,
+     et al. Human subjects research in the age of generative ai: Opportunities and challenges of
+     applying llm-simulated data to hci studies. In Proceedings of the Extended Abstracts of the
+     CHI Conference on Human Factors in Computing Systems, pages 1–7, 2025.
+[17] Priyan Vaithilingam, Tianyi Zhang, and Elena L Glassman. Expectation vs. experience:
+     Evaluating the usability of code generation tools powered by large language models. In CHI
+     Conference on Human Factors in Computing Systems Extended Abstracts, pages 1–7, 2022.
+[18] Sida Peng, Eirini Kalliamvakou, Peter Cihon, and Mert Demirer. The impact of ai on
+     developer productivity: Evidence from github copilot. arXiv preprint arXiv:2302.06590,
+     2023.
+[19] Shraddha Barke, Michael B James, and Nadia Polikarpova. Grounded copilot: How
+     programmers interact with code-generating models. Proceedings of the ACM on Programming
+     Languages, 7(OOPSLA1):85–111, 2023.
+[20] James Prather, Brent N. Reeves, Paul Denny, Brett A. Becker, Juho Leinonen, Andrew
+     Luxton-Reilly, Garrett Powell, James Finnie-Ansley, and Eddie Antonio Santos. “it’s
+     weird that it knows what i want”: Usability and interactions with copilot for novice
+     programmers. ACM Trans. Comput.-Hum. Interact., 31(1), nov 2023. ISSN 1073-0516. doi:
+     10.1145/3617367. URL https://doi.org/10.1145/3617367.
+[21] Hussein Mozannar, Gagan Bansal, Adam Fourney, and Eric Horvitz. Reading between the
+     lines: Modeling user behavior and costs in ai-assisted programming. In Proceedings of the
+     CHI Conference on Human Factors in Computing Systems, pages 1–16, 2024.
+[22] Litao Yan, Alyssa Hwang, Zhiyuan Wu, and Andrew Head. Ivie: Lightweight anchored
+     explanations of just-generated code. In Proceedings of the CHI Conference on Human
+     Factors in Computing Systems, pages 1–15, 2024.
+[23] Helena Vasconcelos, Gagan Bansal, Adam Fourney, Q. Vera Liao, and Jennifer Wort-
+     man Vaughan. Generation probabilities are not enough: Uncertainty highlighting in ai code
+     completions. ACM Trans. Comput.-Hum. Interact., 32(1), April 2025. ISSN 1073-0516. doi:
+     10.1145/3702320. URL https://doi.org/10.1145/3702320.
+[24] Valerie Chen, Alan Zhu, Sebastian Zhao, Hussein Mozannar, David Sontag, and Ameet
+     Talwalkar. Need help? designing proactive ai assistants for programming. In Proceedings
+     of the 2025 CHI Conference on Human Factors in Computing Systems, CHI ’25, New
+     York, NY, USA, 2025. Association for Computing Machinery. ISBN 9798400713941. doi:
+     10.1145/3706598.3714002. URL https://doi.org/10.1145/3706598.3714002.
+[25] Hussein Mozannar, Valerie Chen, Mohammed Alsobay, Subhro Das, Sebastian Zhao, Den-
+     nis Wei, Manish Nagireddy, Prasanna Sattigeri, Ameet Talwalkar, and David Sontag.
+     The realhumaneval: Evaluating large language models’ abilities to support programmers.
+     Transactions on Machine Learning Research.
+
+                                              17
+[26] Stack Overflow. 2025 stack overflow developer survey, 2025. URL https://survey.
+     stackoverflow.co/2025/.
+
+[27] Grégoire Mialon, Clémentine Fourrier, Thomas Wolf, Yann LeCun, and Thomas Scialom.
+     Gaia: a benchmark for general ai assistants. In The Twelfth International Conference on
+     Learning Representations, 2023.
+
+[28] OpenAI. Chatgpt: Optimizing language models for dialogue, 2022. URL https://openai.
+     com/blog/chatgpt/.
+
+[29] Anthropic. Meet claude, 2023. URL https://www.anthropic.com/claude.
+
+[30] Tao Xiao, Christoph Treude, Hideaki Hata, and Kenichi Matsumoto. Devgpt: Studying
+     developer-chatgpt conversations. arXiv preprint arXiv:2309.03914, 2023.
+
+[31] Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li Jiang, Xi-
+     aoyun Zhang, Shaokun Zhang, Jiale Liu, et al. Autogen: Enabling next-gen llm applications
+     via multi-agent conversations. In First Conference on Language Modeling.
+
+[32] Lilian Weng. Llm-powered autonomous agents. lilianweng.github.io, Jun 2023. URL
+     https://lilianweng.github.io/posts/2023-06-23-agent/.
+
+[33] Theodore Sumers, Shunyu Yao, Karthik Narasimhan, and Thomas Griffiths. Cognitive
+     architectures for language agents. Transactions on Machine Learning Research.
+
+[34] Zane Durante, Bidipta Sarkar, Ran Gong, Rohan Taori, Yusuke Noda, Paul Tang, Ehsan
+     Adeli, Shrinidhi Kowshika Lakshmikanth, Kevin Schulman, Arnold Milstein, et al. An
+     interactive agent foundation model. arXiv preprint arXiv:2402.05929, 2024.
+
+[35] Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde de Oliveira Pinto,
+     Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg Brockman, et al. Evalu-
+     ating large language models trained on code. arXiv preprint arXiv:2107.03374, 2021.
+
+[36] Zheyuan Kevin Cui, Mert Demirer, Sonia Jaffe, Leon Musolff, Sida Peng, and Tobias Salz.
+     The effects of generative ai on high-skilled work: Evidence from three field experiments
+     with software developers. Available at SSRN 4945566, 2025.
+
+[37] Steven I Ross, Fernando Martinez, Stephanie Houde, Michael Muller, and Justin D Weisz.
+     The programmer’s assistant: Conversational interaction with a large language model for
+     software development. In Proceedings of the 28th International Conference on Intelligent
+     User Interfaces, pages 491–514, 2023.
+
+[38] Bhavya Chopra, Ananya Singha, Anna Fariha, Sumit Gulwani, Chris Parnin, Ashish
+     Tiwari, and Austin Z. Henley. Challenges in using conversational ai for data science. In
+     Proceedings of the Workshop on Human-In-the-Loop Data Analytics, HILDA ’25, New
+     York, NY, USA, 2025. Association for Computing Machinery. ISBN 9798400719592. doi:
+     10.1145/3736733.3736748. URL https://doi.org/10.1145/3736733.3736748.
+
+[39] Majeed Kazemitabaar, Justin Chow, Carl Ka To Ma, Barbara J Ericson, David Weintrop,
+     and Tovi Grossman. Studying the effect of ai code generators on supporting novice learners
+     in introductory programming. In Proceedings of the 2023 CHI Conference on Human
+     Factors in Computing Systems, pages 1–23, 2023.
+
+[40] Ken Gu, Ruoxi Shang, Tim Althoff, Chenglong Wang, and Steven M Drucker. How do
+     analysts understand and verify ai-assisted data analyses? In Proceedings of the CHI
+     Conference on Human Factors in Computing Systems, pages 1–22, 2024.
+
+
+                                              18
+[41] Daye Nam, Andrew Macvean, Vincent Hellendoorn, Bogdan Vasilescu, and Brad Myers.
+     Using an llm to help with code understanding. In Proceedings of the IEEE/ACM 46th
+     International Conference on Software Engineering, pages 1–13, 2024.
+
+[42] Albert Ziegler, Eirini Kalliamvakou, X Alice Li, Andrew Rice, Devon Rifkin, Shawn Simister,
+     Ganesh Sittampalam, and Edward Aftandilian. Productivity assessment of neural code
+     completion. In Proceedings of the 6th ACM SIGPLAN International Symposium on Machine
+     Programming, pages 21–29, 2022.
+
+[43] Justin D. Weisz, Shraddha Vijay Kumar, Michael Muller, Karen-Ellen Browne, Arielle
+     Goldberg, Katrin Ellice Heintze, and Shagun Bajpai. Examining the use and impact of an
+     ai code assistant on developer productivity and experience in the enterprise. In Proceedings
+     of the Extended Abstracts of the CHI Conference on Human Factors in Computing Systems,
+     CHI EA ’25, New York, NY, USA, 2025. Association for Computing Machinery. ISBN
+     9798400713958. doi: 10.1145/3706599.3706670. URL https://doi.org/10.1145/3706599.
+     3706670.
+
+[44] Joel Becker, Nate Rush, Elizabeth Barnes, and David Rein. Measuring the impact of early-
+     2025 ai on experienced open-source developer productivity. arXiv preprint arXiv:2507.09089,
+     2025.
+
+[45] Mark Niklas Müller Christian Mürtz. Agents in the wild - dashboard. https://insights.
+     logicstar.ai, 2025. URL https://doi.org/10.5281/zenodo.15846865. Interactive web
+     dashboard. Code available at https://github.com/logic-star-ai/insights.
+
+[46] Hao Li, Haoxiang Zhang, and Ahmed E Hassan. The rise of ai teammates in software
+     engineering (se) 3.0: How autonomous coding agents are reshaping software engineering.
+     arXiv preprint arXiv:2507.15003, 2025.
+
+[47] Advait Sarkar and Ian Drosos. Vibe coding: programming through conversation with
+     artificial intelligence. arXiv preprint arXiv:2506.23253, 2025.
+
+[48] J.D. Zamfirescu-Pereira, Eunice Jun, Michael Terry, Qian Yang, and Bjoern Hartmann.
+     Beyond code generation: Llm-supported exploration of the program design space. In
+     Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, CHI ’25,
+     New York, NY, USA, 2025. Association for Computing Machinery. ISBN 9798400713941.
+     doi: 10.1145/3706598.3714154. URL https://doi.org/10.1145/3706598.3714154.
+
+[49] Amazon. Ml-powered coding companion – amazon codewhisperer, 2022. URL https:
+     //aws.amazon.com/codewhisperer/.
+
+[50] Cline. The collaborative ai coder, 2024. URL https://cline.bot/.
+
+[51] Replit. Replit agent, 2024. URL https://docs.replit.com/replitai/agent.
+
+[52] Gagan Bansal, Tongshuang Wu, Joyce Zhou, Raymond Fok, Besmira Nushi, Ece Kamar,
+     Marco Tulio Ribeiro, and Daniel Weld. Does the whole exceed its parts? the effect of
+     ai explanations on complementary team performance. In Proceedings of the 2021 CHI
+     conference on human factors in computing systems, pages 1–16, 2021.
+
+[53] Helena Vasconcelos, Matthew Jörke, Madeleine Grunde-McLaughlin, Tobias Gerstenberg,
+     Michael S Bernstein, and Ranjay Krishna. Explanations can reduce overreliance on ai
+     systems during decision-making. Proceedings of the ACM on Human-Computer Interaction,
+     7(CSCW1):1–38, 2023.
+
+
+
+                                              19
+[54] Sunnie SY Kim, Elizabeth Anne Watkins, Olga Russakovsky, Ruth Fong, and Andrés
+     Monroy-Hernández. ” help me help the ai”: Understanding how explainability can support
+     human-ai interaction. In proceedings of the 2023 CHI conference on human factors in
+     computing systems, pages 1–17, 2023.
+
+[55] Sunnie SY Kim, Jennifer Wortman Vaughan, Q Vera Liao, Tania Lombrozo, and Olga Rus-
+     sakovsky. Fostering appropriate reliance on large language models: The role of explanations,
+     sources, and inconsistencies. In Proceedings of the 2025 CHI Conference on Human Factors
+     in Computing Systems, pages 1–19, 2025.
+
+[56] Will Epperson, Gagan Bansal, Victor C Dibia, Adam Fourney, Jack Gerrits, Erkang (Eric)
+     Zhu, and Saleema Amershi. Interactive debugging and steering of multi-agent ai systems. In
+     Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, CHI ’25,
+     New York, NY, USA, 2025. Association for Computing Machinery. ISBN 9798400713941.
+     doi: 10.1145/3706598.3713581. URL https://doi.org/10.1145/3706598.3713581.
+
+[57] Stephanie Lin, Jacob Hilton, and Owain Evans. Teaching models to express their uncertainty
+     in words. arXiv preprint arXiv:2205.14334, 2022.
+
+[58] Elias Stengel-Eskin, Peter Hase, and Mohit Bansal. Lacie: Listener-aware finetuning for
+     confidence calibration in large language models. arXiv preprint arXiv:2405.21028, 2024.
+
+[59] Yi-Hao Peng, Dingzeyu Li, Jeffrey P Bigham, and Amy Pavel. Morae: Proactively pausing
+     ui agents for user choices. arXiv preprint arXiv:2508.21456, 2025.
+
+[60] Damien Masson, Sylvain Malacria, Géry Casiez, and Daniel Vogel. Directgpt: A direct
+     manipulation interface to interact with large language models. In Proceedings of the 2024
+     CHI Conference on Human Factors in Computing Systems, pages 1–16, 2024.
+
+[61] Bogdan Vasilescu, Kelly Blincoe, Qi Xuan, Casey Casalnuovo, Daniela Damian, Premkumar
+     Devanbu, and Vladimir Filkov. The sky is not the limit: multitasking across github
+     projects. In Proceedings of the 38th International Conference on Software Engineering,
+     pages 994–1005, 2016.
+
+[62] Eric Horvitz. Principles of mixed-initiative user interfaces. In Proceedings of the SIGCHI
+     conference on Human Factors in Computing Systems, pages 159–166, 1999.
+
+
+
+
+                                               20
+Figure 6: In the chat panel, users can select from ask, edit, and agent mode. In both edit and
+agent mode, GitHub Copilot will suggest changes in the code that can be reviewed by the user.
+Additionally, the user can add relevant context (e.g., layout.tsx, page.tsx).
+
+
+A         Overview of selected copilot and agent
+As discussed in Section 3.2, we select GitHub Copilot [1] as the choice of copilot and OpenHands [6]
+as the choice of agent. Both have fairly extensive documentation online, which we provide a
+copy below for completeness to illustrate how developers would use each.
+
+A.1        GitHub Copilot Interface
+We overview the two forms of support that GitHub Copilot provides and refer the reader to the
+latest GitHub Copilot documentation for full details.
+
+        • Code completion. Copilot offers coding suggestions in the editor as a user types.
+
+        • Chat. In the chat panel, users can choose from three different modes and also the LLM
+          backend. Figure 6 shows an example.
+
+             – Ask mode: Users can ask specific questions about their project or general software
+               questions, including writing code, fixing errors, writing tests, and documenting code.
+             – Edit mode: Edit mode is the same as ask mode, except the user can select the context
+               to add (e.g., files). Also, Copilot will propose edits that the user can decide whether
+               or not to accept.
+             – Agent mode: Unlike edit mode, Copilot determines which files to make changes to,
+               offers code changes and terminal commands to complete the task. Proposed edits
+               still need to be accepted by users.
+
+A.2        OpenHands Interface
+We discuss the main interface components in our web interface that hosts the OpenHands
+platform2 .
+
+        • Chat Panel. Displays the conversation between the user and OpenHands.
+
+        • Changes. Shows the file changes performed by OpenHands.
+
+        • VS Code. Embedded VS Code for browsing and modifying files, which can also be used
+          to upload and download files.
+    2
+        See https://github.com/All-Hands-AI/OpenHands for full source code
+
+
+
+                                                      21
+Figure 7: Overview of OpenHands interface. On the left panel, the user message is displayed
+along with the OpenHands response and a series of actions taken. On the right panel are multiple
+ways to view the agent’s changes and code written.
+
+
+    • Terminal. A space for OpenHands and users to run terminal commands.
+
+    • Jupyter. Shows all Python commands that were executed by OpenHands. Particularly
+      handy when using OpenHands to perform data visualization tasks.
+
+    • App. Displays the web server when OpenHands runs an application.
+
+    • Browser Used by OpenHands to browse websites, but is non-interactive.
+
+    An updated version of OpenHands is released about once a week. The versions that were
+used for the duration of the study were 0.35-0.38. There were no interface changes between 0.35
+and 0.38. Other changes were minor bug fixes or irrelevant to the functionality that users would
+interact with in the study.
+
+
+B     Task Design
+We describe how we selected problems for the three different task types.
+
+B.1    Data analysis
+We select two problems from GAIA [27] that focus on coding abilities. Both questions are ones
+where a previous evaluation showed that OpenHands is unable to solve the task entirely on
+its own, demonstrating that the problem is challenging and potentially benefits from having
+a human-in-the-loop. Since GAIA questions only require one output (i.e., the answer to the
+task statement), it is less interesting for participants. As such, we extend the question to
+include additional instructions about visualizing the curated data. Below we provide the problem
+statements for the two GAIA (extended) tasks:
+
+
+
+
+                                              22
+1. Automatically create a dataset of at least 50 home sales in
+   Pearl City , Hawaii from 2021 -2023 , including :
+   - Address
+   - Sale date
+   - Sale price
+   - Square footage
+   - Number of bedrooms / bathrooms
+   - Year built
+   - Any other relevant features
+
+Note this must include the following two properties :
+- 2072 Akaikai Loop
+- 2017 Komo Mai Drive
+
+2. Determine which of these two properties in Pearl City , Hawaii
+    sold for more in 2022. Provide the exact sale price of the
+   higher - priced property in a file called result . txt .
+
+3. In a Python script or Jupyter notebook , analyze the dataset
+   and provide analyses for :
+   - Current estimated value of a typical home in the area
+   - Best time to sell based on seasonal trends ( if any )
+   - Which home improvements might yield the best return on
+      investment
+
+1. Automatically create a comprehensive dataset of two shows
+   including :
+   - Survivor :
+     * Season number
+     * Year aired
+     * Winner name
+     * Runner - up ( s )
+     * Location
+     * Number of contestants
+     * Viewership data
+
+   - American Idol :
+     * Season number
+     * Year aired
+     * Winner name
+     * Runner - up ( s )
+     * Judges for that season
+     * Number of contestants
+     * Viewership data
+
+2. Determine how many more unique winners there have been in the
+    American version of Survivor compared to American Idol as of
+    the end of Survivor ’ s 44 th season . Provide the exact numbers
+    for each show and the difference between them in a file
+   called result . txt .
+
+2. In a Python script or Jupyter notebook , provide
+   visualizations to compare both shows :
+   - Demographics of winners ( age , gender , background )
+   - Viewership trends over time ( with visualizations )
+   - Analysis of how both shows have evolved over time
+
+
+
+
+                                  23
+B.2    Fix issue in repo
+We select two problems from SWE-Bench [10]. Again, both questions are ones where a previous
+evaluation showed that OpenHands is unable to solve the task entirely on its own, demonstrat-
+ing that the problem is challenging and potentially benefits from having a human-in-the-loop.
+Further, we select problems where the issue description is relatively short, so users do not spend
+too much time trying to understand what they are trying to accomplish. Below we provide the
+problem statements for the two SWE-Bench tasks:
+
+   ## Problem Description
+   ‘ RepeatedKFold ‘ and ‘ RepeatedStratifiedKFold ‘ do not show
+       correct __repr__ string .
+
+   ## Expected Results
+   ‘‘‘ python
+   >>> from sklearn . model_selection import RepeatedKFold ,
+         RepeatedStratifiedKFold
+   >>> repr ( RepeatedKFold () )
+   RepeatedKFold ( n_splits =5 , n_repeats =10 , random_state = None )
+   >>> repr ( R e p e a t e d S t r a t i f i e d K F o l d () )
+   R e p e a t e d S t r a t i f i e d K F o l d ( n_splits =5 , n_repeats =10 , random_state =
+         None )
+   ‘‘‘
+
+   ## Actual Results
+   ‘‘‘ python
+   >>> from sklearn . model_selection import RepeatedKFold ,
+        RepeatedStratifiedKFold
+   >>> repr ( RepeatedKFold () )
+   ’ < sklearn . model_selection . _split . RepeatedKFold object at 0
+        x000 001642 1AA42 88 > ’
+   >>> repr ( R e p e a t e d S t r a t i f i e d K F o l d () )
+   ’ < sklearn . model_selection . _split . R e p e a t e d S t r a t i f i e d K F o l d object
+        at 0 x0 000016 420E11 5C8 > ’
+   ‘‘‘
+
+
+
+
+                                                  24
+   ## Issue description
+   ascii . qdp assumes that commands in a QDP file are upper case ,
+      for example , for errors they must be " READ SERR 1 2 " whereas
+      QDP itself is not case sensitive and case use " read serr 1 2 "
+      .
+
+   As many QDP files are created by hand , the expectation that all
+      commands be all - caps should be removed .
+
+   ## Expected behavior
+   The following qdp file should read into a Table with errors ,
+      rather than crashing .
+
+   read serr 1 2
+   1 0.5 1 0.5
+
+
+   ## How to Reproduce
+
+   Create a QDP file :
+
+   > cat > test . qdp
+   read serr 1 2
+   1 0.5 1 0.5
+   < EOF >
+
+   > python
+   Python 3.10.9 ( main , Dec 7 2022 , 02:03:23) [ Clang 13.0.0 ( clang
+      -1300.0.29.30) ] on darwin
+   Type " help " , " copyright " , " credits " or " license " for more
+      information .
+
+   >>> from astropy . table import Table
+
+   >>> Table . read ( ’ test . qdp ’ , format = ’ ascii . qdp ’)
+   WARNING : table_id not specified . Reading the first available
+       table [ astropy . io . ascii . qdp ]
+   Traceback ( most recent call last ) :
+   ...
+        raise ValueError (f ’ Unrecognized QDP line : { line } ’)
+   ValueError : Unrecognized QDP line : read serr 1 2
+
+
+B.3   Add feature to repo
+Inspired by SWE-Bench [10] tasks, we create problems using a popular Python package
+matplotlib. Both tasks involve adding features to matplotlib and can be easily verified
+by the participant and grader whether the feature was successfully added. Below we provide the
+problem statements for the two tasks:
+
+
+
+
+                                             25
+# Task : Add Smooth Transitions Between Plots in Matplotlib
+
+## Objective
+Clone the Matplotlib repository and implement a new
+   functionality that enables smooth animations / transitions
+   between different states of a plot .
+
+## Requirements
+1. Create a new function called ‘ sm ooth_t ransit ion ( from_data ,
+   to_data , duration =1.0 , fps =30 , ** kwargs ) ‘ that :
+   - Takes initial and final data states
+   - Creates a smooth animation transitioning between the states
+   - Supports different plot types ( line , scatter , bar , etc .)
+   - Allows customization of transition duration and frames per
+      second
+   - Supports transitions of various plot properties :
+     - Data values (y - values in line plots , heights in bar
+        charts , etc .)
+     - Colors
+     - Sizes / widths
+     - Positions
+   - Provides options for different easing functions ( linear ,
+      ease - in , ease - out , etc .)
+2. Implement a complementary function ‘ t r a n s i t i o n _ p l o t _ s t a t e (
+   fig_from , fig_to , duration =1.0 , fps =30) ‘ that can transition
+   between two completely different figure states
+3. Create a demo showcasing various transition types
+
+# Task : Add Dark Mode Toggle to Matplotlib
+
+## Objective
+Add a new functionality that allows users to toggle any existing
+    plot to dark mode with a single function call .
+
+## Requirements
+1. Create a new function called ‘ toggle_dark_mode ( ax = None , fig =
+   None ) ‘ that :
+   - Can be applied to either a specific axis , a figure , or the
+      current figure if none is specified
+   - Converts the plot background to a dark color ( e . g . ,
+      #121212)
+   - Inverts text colors from dark to light
+   - Adjusts plot elements ( grid lines , tick marks , etc .) to be
+      visible on dark background
+   - Preserves the original colors of data elements ( lines ,
+      points , bars ) or provides an option to adjust them for
+      better visibility
+2. The function should be reversible ( calling it again should
+   toggle back to light mode )
+3. Create a simple demo script showing the functionality in
+   action
+
+
+
+
+                                          26
+C     Study Details
+C.1    Instructions
+All instructions are sent to participants in a google document. The order of phases are randomized
+accordingly, as shown in Figure 3.
+
+General instructions.
+
+    • Timing: You should plan to spend about 90 minutes (around 1.5 hours) for the entire study.
+      You can complete each phase in different sittings. However, you will not be compensated
+      until you complete all phases of the study.
+
+    • Compensation: We will send you a $35 Amazon gift card following the completion of the
+      study. You will be paid based on the effort in completing the study (e.g., spending the full
+      allocated time) rather than the absolute correctness of your code.
+
+    • Before you start: You will need access to a screen recording tool (feel free to use any tool
+      you would like, some suggestions for Mac and Windows), a GitHub account, and access to
+      GitHub Copilot on your choice of IDE.
+
+Example Phase 1 Instructions.         Phase 1: Solve coding tasks with GitHub Copilot (40 min)
+
+    • Getting started. The task instructions and starter code are provided here. Clone the
+      repository. Once you are ready to get started, set a timer for 40 minutes. Screen record
+      yourself while you are working on the task. In Phase 3, you will be directed to a Google
+      form where you can upload this screen recording. This data will never be publicly released.
+
+    • Deliverables. Code that will be uploaded to your GitHub repository. You must add [first
+      author] to the repository. Screen recording of you writing code in Github Copilot.
+
+Example Phase 2 Instructions.          Phase 2: Solve coding tasks with OpenHands agent (40
+min)
+
+    • Getting started. The task instructions and starter code are provided here. Follow these
+      instructions to set up the agent. Select the repository you just cloned. Once you select
+      the repository, just type in a message to the agent to get started. You can ask the agent
+      to run code or make edits, or you can directly edit code by clicking the VSCode button.
+      Don’t forget to set a timer for 40 minutes.
+
+    • Deliverables. Note that there is no screen recording necessary in this phase. We track your
+      interactions with the agent directly through the platform. Make sure that either you or
+      the agent pushes the latest changes to the GitHub repository. Code that will be uploaded
+      to your GitHub repository. You must add [first author] to the repository.
+
+C.2    Post-study survey
+In Phase 3, participants are asked to complete a Google form. We asked participants to provide
+a series of Likert scale ratings (5 point, ranging from strongly agree to strongly disagree):
+
+    • I was able to accomplish tasks faster with OpenHands than Github Copilot
+
+    • I was able to accomplish new tasks with OpenHands than Github Copilot
+
+    • I was less satisfied using OpenHands than Github Copilot
+
+
+                                                27
+                                                                                         Copilot              Agent
+                                 Task Correctness by Version                                                                   Task Correctness by Experience
+         1.0
+
+         0.8
+
+         0.6
+Scores
+         0.4
+
+         0.2
+
+         0.0
+                         nalysis            Fix Bug                        a      ture                                0 to 2               3 to 5               6 to 10
+                Data A                                              Add Fe
+                           Task Correctness by Copilot Usage                                                                     Task Correctness by Order
+         1.0
+
+         0.8
+
+         0.6
+Scores
+         0.4
+
+         0.2
+
+         0.0
+                                day nce a day                week                                         ymore                  First                          First
+                      times a      O                Once a                                          use an             Copilot                          Agent
+           Multiple                                                                not cu
+                                                                                          rrently
+                                                                               ,
+                                                                        Copilot
+                                                       o use   Github
+                                                Used t
+
+Figure 8: Analysis of task correctness by task version, programming experience, copilot usage,
+ordering of copilot/agent in study.
+
+
+          • I was more in the flow using OpenHands than Github Copilot
+
+          • I experience less cognitive load using OpenHands than Github Copilot
+
+          • I have a better understanding of Github Copilot outputs than OpenHands
+
+          • Moving forward, I would continue to use Github Copilot over OpenHands
+
+          • How competent is OpenHands compared to a human programmer?
+
+We also asked a series of open-ended questions:
+
+          • Describe your experience comparing the two tools: what can you do more easily with one
+            versus the other?
+
+          • Describe your experience comparing the two tools: when would you use one versus the
+            other?
+
+          • Explain your response (to the question “How competent is OpenHands compared to a
+            human programmer?”)
+
+          • How would you improve your experience using OpenHands?
+
+
+
+
+                                                                                                    28
+                                                                                                     Copilot                Agent
+                                                  Time/Effort by Version                                                                        Time/Effort by Experience
+                    40
+                    35
+                    30
+
+
+
+Time/Effort (min)
+                    25
+                    20
+                    15
+                    10
+                     5
+                     0
+                                    nalysis             Fix Bug                          a  ture                                    0 to 2                    3 to 5                  6 to 10
+                          Data A                                                  Add Fe
+                                               Time/Effort by Copilot Usage                                                                            Time/Effort by Order
+                    40
+                    35
+                    30
+
+
+
+Time/Effort (min)
+                    25
+                    20
+                    15
+                    10
+                     5
+                     0
+                                              day nce a day                week                                          more                  First                                  First
+                                    times a      O                Once a                                         use an
+                                                                                                                        y            Copilot                                  Agent
+                         Multiple                                                               not cu
+                                                                                                       rrently
+                                                                                       p ilo t,
+                                                                            ithub   Co
+                                                                    o use G
+                                                              Used t
+
+  Figure 9: Analysis of user effort by task version, programming experience, copilot usage,
+  ordering of copilot/agent in study.
+
+
+  D                          Additional Results
+  D.1                          Task Correctness Breakdown
+  In Figure 8, we break down task correctness by various attributes:
+
+                     • Task version: Fixing bugs seems to be where agents currently struggle. Future study is
+                       warranted to understand why some tasks might be harder for users to solve with agents.
+
+                     • Programming experience: In general, task correctness increases with programming expe-
+                       rience. Interestingly, there seems to be more benefit for people to use agents when they
+                       have more programming experience.
+
+                     • Copilot usage: This is not a significant effect, but we see a weak trend that users who use
+                       copilot less frequently would benefit more from agents. This is likely because the agent is
+                       completing tasks more autonomously, requiring less user expertise.
+
+                     • Ordering effect: We see a similar size effect regardless of whether users started with copilot
+                       or agent.
+
+  D.2                          User Effort Breakdown
+  In Figure 9, we break down user effort by various attributes.
+
+
+
+                                                                                                                 29
+• Task version: The fixing bug task type was where users experienced the least time savings
+  from using agents compared to copilots. These findings align with the task correctness
+  results.
+
+• Programming experience: We do not see any trends across programming experience.
+
+• Copilot usage: We do not see any trends across copilot usage frequency.
+
+• Ordering effect: Interestingly, the difference between copilot versus agent first is fairly
+  different. This may be because even if the agent did not fully solve the problem in the
+  agent-first condition, it showed users how to approach the problem in the subsequent
+  copilot condition.
+
+
+
+
+                                           30
+

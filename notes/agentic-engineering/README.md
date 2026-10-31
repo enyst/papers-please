@@ -32,6 +32,11 @@ The first is about *self-improvement*; the second is about *verifiability*. They
 
 - [Google SRE, second edition: agents and reliable operations](google-sre-second-edition-agent-era.md) — book bookmark plus full public companion-report reading. Separate reasoning from actuation; enforce scoped autonomy, dry runs and emergency stops; evaluate against human incident trajectories; validate agent-written releases in production. Book contents not read.
 
+## Human experience, cognition and skills
+
+- [Code with Me or for Me?](code-with-me-or-for-me-developer-workflows.md) — full controlled copilot/agent study; lower reported load and higher correctness, mixed satisfaction/understanding, no retention test.
+- [AI coding: cognitive load, skills, retention and ownership](ai-coding-cognition-skills-ownership-shortlist.md) — five close arXiv candidates with archived PDFs; randomized learning, 48-hour recall, six-month experience, industrial workload and professional ownership. Abstract-screened shortlist, not five full reviews.
+
 ## Open threads to chew on
 
 - **Factory vs. receipts are complementary, not rival.** Lloyd optimizes the *loop*; Rosen hardens the *evidence*. A factory that emits immutable artifacts is stronger than either alone — the scorer agents in Lloyd's loop would grade Rosen's receipts.

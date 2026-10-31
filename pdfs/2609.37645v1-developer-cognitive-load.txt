@@ -1,0 +1,849 @@
+   Beyond Productivity: Measuring Developers’
+ Cognitive Load During GenAI-Supported Software
+                  Development
+                 Charlotte Brandebusemeyer                                                   Daniela Gasser
+           Digital Health – Connected Healthcare                                Digital Health – Connected Healthcare
+        Hasso Plattner Institute, University of Potsdam                      Hasso Plattner Institute, University of Potsdam
+                     Potsdam, Germany                                                     Potsdam, Germany
+               char.brandebusemeyer@hpi.de                                           daniela.gasser@guest.hpi.de
+
+                       Tobias Schimmer                                                        Bert Arnrich
+                           SAP Labs                                             Digital Health – Connected Healthcare
+                             SAP                                             Hasso Plattner Institute, University of Potsdam
+                     Newport Beach, USA                                                   Potsdam, Germany
+                  tobias.schimmer@sap.com                                                 bert.arnrich@hpi.de
+
+
+    Abstract— Generative AI (GenAI) is changing software           cognitive resources, with potential implications for task
+development workflows and how developers work. Industry            performance [17, 32], sustained effective work and the
+evaluations of GenAI adoption often monitor productivity gains,    broader developer experience. Understanding the factors
+usage, and output quality, but limited attention is paid to the    associated with perceived cognitive load and how to measure
+interaction experience and cognitive load of the actual adopters   it during AI-supported software development in everyday
+and drivers of GenAI technology – the software developers.         real-life work settings is relevant for evaluating AI tools,
+Understanding whether GenAI changes or shifts developers’          designing effective workflows, and supporting long-term
+cognitive demands during everyday development is important         developer well-being.
+for a developer-centered evaluation of GenAI-supported
+software development. It can inform organizations in designing         Previous analyses of this broader study examined
+and evaluating effective AI-supported workflows. In this work,     developers’ subjective and behavioral experiences with
+we study how GenAI use and task context relate to professional     GenAI [8, 10], suggesting that cognitive load may depend on
+developers’ perceived cognitive load and whether wearable-         how developers interact with GenAI and evaluate its output.
+derived physiological characteristics provide additional           However, these analyses did not jointly estimate the
+information beyond this context. In a four-day industrial field    associations of GenAI use, task category, and task duration
+study at two SAP sites, 21 developers documented their tasks,      with perceived cognitive load. This combined analysis is
+task duration, GenAI use, and perceived cognitive load while
+                                                                   important because cognitive demands during AI-supported
+wearing an EmbracePlus wristband. The results show that
+                                                                   work may reflect both the task itself as well as the additional
+perceived cognitive load is associated with both GenAI use and
+task context, while physiological measures provide only limited    effort required to interact with and supervise the AI system.
+additional information. These findings suggest that developers’        Measuring cognitive load during everyday software
+perceived cognitive load during GenAI-supported software           development is challenging. Questionnaires can provide task-
+development should be evaluated in relation to the concrete        and context-specific information about developers’ perceived
+work context, with wearable physiological data used as             cognitive load. However, self-reported ratings are subject to
+complementary rather than standalone information.                  individual differences in how scales are used and interpreted,
+   Keywords—cognitive load, wearables, physiological data,
+                                                                   as well as in individual self-assessment and introspection.
+empirical software engineering, GenAI, real-world study,           Such subjective ratings lack an objective baseline and can
+developer experience, development productivity                     interrupt workflows. Wearables offer a less intrusive way to
+                                                                   collect continuous, objective physiological data, such as
+                      I. INTRODUCTION                              cardiovascular activity, electrodermal activity, and skin
+                                                                   temperature, which may provide complementary indicators
+    Generative AI (GenAI) tools are increasingly integrated
+                                                                   associated with cognitive load. Controlled studies have shown
+into professional software development workflows.
+                                                                   that physiological responses measured with wearables can
+Organizations commonly monitor GenAI adoption through
+                                                                   distinguish experimentally induced levels of cognitive load [2,
+active user rates, usage frequency, prompt or code completion
+                                                                   4, 19, 35]. However, physiological signals in real-world work
+counts, and suggestion acceptance counts, while productivity
+                                                                   settings are affected by multiple non-cognitive influences,
+effects are often assessed through task completion time,
+                                                                   such as movement, device fit, environmental conditions, the
+number of completed work items, pull-request cycle times and
+                                                                   type of activity performed, and affective states. Thus, it
+software delivery metrics. However, these measures offer
+                                                                   remains unclear how informative individual wearable-derived
+limited insight into the cognitive demands developers face
+                                                                   physiological metrics and multimodal physiological
+when using GenAI in everyday software development. The
+                                                                   characteristics are for understanding developers’ perceived
+evaluation of AI-generated suggestions and associated code
+                                                                   cognitive load in practice.
+comprehension places substantial demands on developers’
+
+
+
+XXX-X-XXXX-XXXX-X/XX/$XX.00 ©20XX IEEE
+    Our previous work has shown that wearable-derived               choose an appropriate interaction style, formulate prompts,
+physiological data can be collected during developers’              comprehend generated code, evaluate its correctness, and
+everyday work and may relate to perceived cognitive load [7].       integrate it into the existing codebase. It is therefore useful to
+The present study extends this work by examining whether            examine whether perceived cognitive load is associated with
+individual wearable-derived physiological metrics or                the underlying task context, with GenAI use, or with both. If
+multimodal physiological characteristics provide detectable         GenAI use remains associated with perceived cognitive load
+information about perceived cognitive load once GenAI use,          beyond the task context, this would motivate the design of
+task category, task duration, and participant-specific              interaction mechanisms that reduce avoidable AI-related
+differences are accounted for.                                      cognitive demands and help developers direct more cognitive
+                                                                    resources to the working task content itself.
+    We investigated these aspects in a real-world industrial
+setting with professional software developers at two SAP                Empirical studies on the cognitive demands of AI-assisted
+sites. During the study, developers documented their everyday       programming are as yet limited and mostly based on
+work tasks, the start and end times of each task, whether           controlled setups. Collectively, they suggest that developers
+GenAI was used, and their perceived cognitive load during           spend substantial cognitive effort in understanding and
+each task. In parallel, physiological activity was recorded         validating AI-generated code rather than generating it.
+using an EmbracePlus wristband. This setup allowed us to            Difficulties can arise in understanding, editing and debugging
+examine perceived cognitive load during developers’ natural         AI-generated solutions [32]. Likewise, awareness that code
+work activities rather than only during controlled laboratory       had been generated by AI increased developers’ effort to
+tasks, while linking task-level subjective ratings, task context,   inspect the code and locate potential errors, and increased their
+GenAI use, and wearable-derived physiological data.                 perceived cognitive workload [30]. While these studies have
+                                                                    provided valuable insights into AI’s impact on cognitive
+   We address the following research questions in this work:        demands, the predefined tasks and controlled study
+   RQ1: Is GenAI use associated with developers’ perceived          environments limit the transferability to everyday
+cognitive load after accounting for the working task category       development work.
+and task duration, and how are these task characteristics               Industrial research on AI coding assistants has primarily
+themselves associated with perceived cognitive load during          focused on productivity gains, AI tool adoption outcomes, and
+everyday software development?                                      developers’ perceptions of AI-supported work. Studies with
+    RQ2: Do wearable-derived physiological characteristics,         professional developers have reported higher task completion
+individual or multimodally, provide additional information          rates with GitHub Copilot [14], reduced task completion time
+about variations in perceived cognitive load beyond GenAI           [26], productivity benefits that vary across users [36], and
+use, task category, and task duration during everyday software      changes in developers’ perceptions of AI usefulness,
+development tasks?                                                  enjoyment, trust and everyday work practices [11]. However,
+                                                                    these studies do not explicitly measure cognitive load during
+    Our contribution is a context-aware and interpretable           naturally occurring work activities.
+analysis of how GenAI use, task context, and individual and
+combined wearable-derived physiological parameters relate to            Only a small number of studies have adopted a more
+perceived cognitive load during real-world software                 explicit developer-centered perspective on professional
+development. We contribute a real-world industrial analysis         developers’ cognitive load during real-world AI-supported
+of perceived cognitive load during GenAI-supported software         software development. Vella and Blincoe conducted a
+development and derive practical implications for using             longitudinal, questionnaire-based study and found that
+wearable data in real-world software engineering settings.          developers generally perceived AI coding assistants as
+                                                                    beneficial for cognitive load and perceived productivity [33].
+          II. BACKGROUND AND RELATED WORK                           Previous analyses of the controlled setup part of the broader
+                                                                    field study dataset used in this work showed that developers’
+A. Cognitive Load in GenAI-Supported Software
+                                                                    perceived workload depends not only on general GenAI use
+    Development
+                                                                    but also on the type and intensity of AI interaction for a
+    Software developers are one of the greatest adopters and        specific working task [8]. Analyses of the uncontrolled
+drivers of GenAI technology. It is therefore important to take      working tasks of this dataset indicated that perceived
+a developer-centered perspective on development                     cognitive load is linked more to the AI interaction, while
+productivity that can complement traditional productivity           perceived productivity depends more on the AI output quality
+measures by considering how developers experience AI-               [10]. Together, these findings motivate a detailed analysis of
+supported work. The developer experience framework [24]             how GenAI use and task context are associated with
+identifies three core dimensions for a developer-centered           developers’ perceived cognitive load during everyday AI-
+perspective on productivity and work satisfaction: cognitive        supported software development in an industrial setting.
+load (the amount of mental processing required to perform a
+task), feedback loop (the effectiveness and efficiency of           B. Wearable-Based Measurement of Cognitive Load
+interactions between developers and also between developers             Cognitive load is most commonly assessed using
+and tools) and flow (a positive mental state of optimal             subjective questionnaires, with the NASA Task Load Index
+productivity). In this work, we focus on the cognitive load         (NASA-TLX) being one of the most widely used [20].
+aspect of developer experience in the context of GenAI-             Questionnaires provide direct insights into developers’
+supported software development.                                     experiences, but they rely on self-assessment and may
+                                                                    interrupt ongoing work activities. Prior and current research
+   In AI-supported development, cognitive load can arise not
+                                                                    have therefore investigated whether physiological activity can
+only from the underlying software engineering task but also
+                                                                    provide objective indicators for cognitive load. This data
+from interacting with the AI assistant. Developers need to
+                                                                    could capture objective, continuous, real-time indicators of a
+person’s experience. Controlled experiments using                    participant privacy, no demographic information regarding
+standardized cognitive tasks, such as the n-back and Stroop          age or gender was collected. Participation was voluntary, and
+paradigms, have shown that cardiovascular measures, such as          the study design and procedures received approval from the
+heart rate and heart rate variability, and electrodermal activity,   ethics committee of the University of Potsdam.
+can distinguish experimentally induced cognitive workload
+conditions [2, 27]. However, physiological responses are not         B. Study Design and Procedure
+specific to cognitive load and can also reflect physical                 In Q2 2025, professional software developers from SAP
+movement, affective state, environmental conditions, and             participated in this four-day study. During the study period,
+individual physiological variation. Collecting physiological         they documented their workday using a workday
+signals from minimally invasive devices, such as wearable            questionnaire, and their physiological activity was recorded
+wristbands, in real-world settings with all the surrounding          (Fig. 1). In addition to the real-world workplace study period,
+confounding factors and deducing cognitive load from the             the developers also participated in controlled study sessions
+signals is an ongoing challenge, which we want to further            with predefined tasks on the first and last study days. These
+investigate in this work.                                            sessions are outside the scope and focus of this paper. Details
+                                                                     on the entire study procedure and findings from the controlled
+    Within software engineering, neurophysiological studies          sessions are presented in [1] and [10].
+have mostly examined code comprehension, task difficulty,
+and related developer states under controlled conditions [9,             During the uncontrolled study phase, work activities were
+35]. Work by Fritz et al. showed that multimodal                     documented using a paper-based questionnaire. The pen-and-
+physiological sensing can be used to distinguish developers'         paper format was chosen instead of an online version to
+cognitive states and task difficulty during programming tasks        provide a continuous visual reminder for participants to fill in
+[18]. For the field study in this work, we deduced that rather       the questionnaire without interrupting their workflow. Each
+than solely relying on individual physiological signals to infer     working task, its start and end times, associated perceived
+cognitive states in confound-heavy everyday settings,                cognitive load (7-point Likert scale) and productivity (6-point
+combining physiological recordings with subjective                   Likert scale), GenAI tools used for the task (yes/no), and the
+questionnaires and behavioral measures could give holistic           perceived helpfulness of a GenAI tool if used (open-ended
+insights into cognitive load during software development.            question) were documented (Fig. 1). The participants were
+                                                                     encouraged to interact with GenAI tools for at least one
+    A previous field study with professional software                continuous hour per day. They were free to choose which
+developers reported exploratory associations between                 GenAI tool to use.
+perceived cognitive load, working task categories, and
+wearable-derived physiological activity [7]. Complementary               In addition to subjective questionnaire data, continuous
+work on that same dataset subsequently evaluated whether             physiological data were gathered throughout the workday.
+multimodal physiological signals and task category                   Participants were given an EmbracePlus wristband [16] (Fig.
+information could predict perceived cognitive load, with             2), a smartphone to pair with for data recording, and written
+personalized models showing the strongest performance [31].          detailed instructions on how to record data (Fig. 1). At the start
+Together, these studies establish the feasibility and predictive     of each workday, participants logged into the “Care Lab App”
+potential of wearable sensing in real-world software                 on their smartphones by scanning a QR code with their
+engineering. However, existing research has not yet jointly          participant credentials. The smartphone was then paired with
+investigated the associations of GenAI use, task                     the wristband via Bluetooth. Participants were instructed to
+characteristics (e.g., task category and task duration), and         wear the wristband on their non-dominant hand and to ensure
+wearable-derived physiological measures with perceived               skin contact with the sensors to ensure reliable measurements.
+cognitive load.                                                      At the end of the workday, the participants synchronized the
+                                                                     data between the wristband and the smartphone and logged
+                        III. METHODS                                 out of the application on the smartphone. The physiological
+                                                                     data could be accessed by the experimenter via the Care Lab
+A. Participants
+                                                                     Portal provided by the wristband manufacturer, Empatica.
+    The participant cohort [6, 8, 10], comprised 22 SAP
+employees recruited from two company sites in California,
+USA. The sample included 12 software developers/engineers,
+8 senior software developers/engineers, one senior quality
+specialist, and one principal software architect. Participants
+reported between 5 and 10 years of experience in software
+development and related IT disciplines on average. Eligibility
+for participation required prior experience with Java, and all
+participants reported regular use of Java in their work. Python
+and JavaScript were also commonly used programming                   Fig. 1. An exemplary participant’s workplace setup: Whilst working, the
+languages. Self-assessments indicated a high level of                paper-based workday questionnaire (with also wristband and application
+proficiency in Java and proficiency with GenAI tools. GitHub         instructions attached) is in visual distance and is filled in. The wristband
+Copilot and ChatGPT were the most frequently used GenAI              records physiological data while being paired to the application on the
+tools in professional settings, whereas ChatGPT and Gemini           smartphone. The black workday questions are those relevant in this present
+                                                                     paper, while the light grey workday questions are only displayed for
+were most commonly used outside of work. Most participants           completion, but are not the focus of the present paper. The figure was taken
+reported having used GenAI tools for 6–12 months, with all           and adapted from [8].
+participants having had at least 1–6 months of prior
+experience. Due to non-adherence to the study protocol, one
+participant is excluded from the current analyses. To preserve
+C. Working Task Categorization                                                 •   mean_HR: mean HR (bpm)
+    After the study, the participants’ documented working                      •   HRV_SDNN: standard deviation of inter-beat
+tasks were grouped into three main categories: development-                        intervals (IBIs), reflecting overall heart rate
+heavy, collaboration-heavy or other activities. The                                variability (both sympathetic and parasympathetic
+categorizations were conducted by the authors of [10] and are                      influences)
+based on those of [22] and [7].                                                • HRV_RMSSD: root mean square of successive
+D. Wearable Device                                                                 differences between adjacent IBIs, reflecting
+                                                                                   parasympathetic activity
+    The EmbracePlus wristband (Fig. 2) was used in this study
+                                                                               • HRV_pNN50: percentage of adjacent IBI pairs that
+to record participants’ physiological activity. It is equipped
+with sensors that measure blood volume pulse (BVP) at 64Hz,                        differ more than 50ms, reflecting short-term HRV
+from which heart rate and heart rate variability can be derived;                   and parasympathetic regulation
+electrodermal activity (EDA) at 4Hz; skin temperature                         Cardiovascular metrics, including HR and HRV, have
+(TEMP) at 1Hz; and 3-axis wrist acceleration (ACC) at 64Hz                 been associated with psychological stress and mental
+[16].                                                                      workload in previous research [12, 21].
+                                                                               3) Electrodermal Activity (EDA)
+                                                                               High-motion segments were also filtered out of the EDA
+                                                                           signals and the gaps were interpolated. The signal was then
+                                                                           decomposed into its tonic and phasic components and skin
+                                                                           conductance responses (SCRs) were detected in the phasic
+                                                                           component of the signal. For each working task, the following
+                                                                           metrics were extracted:
+                                                                               •   mean_SCL: mean skin conductance level (SCL),
+Fig. 2. EmbracePlus wristband used in this study to record participants’           i.e. the mean of the tonic signal component
+physiological activity.
+                                                                               • mean_phasic: mean of the phasic signal
+E. Physiological Signal Processing                                                 component, reflecting the average magnitude of skin
+                                                                                   conductance fluctuations
+    Prior to statistical analyses, the physiological signals were
+pre-processed to reduce measurement artefacts, e.g. produced                   • mean_cleaned_EDA: mean of the cleaned EDA
+due to movement, and to derive reliable physiological metrics.                     signal containing both the tonic and phasic signal
+Signal processing was performed separately for each                                components
+participant and working day. Detailed descriptions of pre-                     • SCRs_norm_duration:             number    of   SCRs
+processing steps per physiological signal, and the evaluation                      normalized by the task duration in seconds,
+and selection of the pre-processing pipeline are provided in                       representing the rate of phasic electrodermal
+the supplementary material [5].                                                    responses
+                                                                              Electrodermal metrics reflect the activity of the
+    1) Acceleration (ACC)                                                  sympathetic nervous system and have been linked to
+    Wrist acceleration data were used solely to detect motion-             physiological arousal and mental workload [13, 27].
+related artefacts in the physiological recordings and were not
+included in the statistical analyses. For each participant and                 4) Skin Temperature (TEMP)
+working day, a motion threshold was calculated. This                           Motion artefacts were also removed from the TEMP signal
+threshold was used to identify and remove high-motion                      and implausible values were removed before calculating the
+segments from the physiological recordings before further                  following metrics:
+processing. The selected thresholding approach was chosen
+based on a comparative evaluation of two motion artifact                       •    mean_TEMP: mean skin temperature
+detection approaches (see supplementary material [5]).                         •    std_TEMP: standard deviation of the skin
+                                                                                    temperature
+    2) Blood Volume Pulse (BVP)                                                 • range_TEMP: range of skin temperature values
+    Motion-related artefacts identified from the acceleration                  Skin temperature may provide complementary
+recordings were removed from the BVP signal, and the                       information on peripheral physiological responses that may
+resulting gaps were interpolated prior to heartbeat detection.             accompany changes in stress, emotional arousal, and
+Heart rate (HR) and heart rate variability (HRV) metrics were              cognitive workload [7, 34].
+then calculated from the detected, physiologically plausible
+beat intervals. Since BVP recordings are particularly                          5) Summary of the Data
+susceptible to motion artefacts, six pre-processing pipelines                  TABLE I. summarizes the physiological dataset used for
+with different artefact-removal and signal-processing                      the statistical analyses after pre-processing: After
+strategies were compared to select the most appropriate one                physiological data cleaning, each participant’s working day
+for the study data. All pipelines yielded comparable model                 contained at least 83.23% (BVP), 74.6% (EDA), and 73.09%
+performance [5]. This indicates that the choice of pre-                    (TEMP) of its original data. All participants were included in
+processing pipeline for our physiological BVP data will not                the EDA and TEMP analyses, whereas two participants were
+have a major impact on the subsequent statistical analyses and             excluded from the BVP data analyses due to insufficient data
+interpretations of results. We selected the pre-processing                 quality.
+pipeline that retained the most working tasks. For each
+                                                                              Across the dataset, more working tasks were excluded
+working task, the following cardiovascular metrics were
+                                                                           during pre-processing for BVP than for EDA and TEMP.
+calculated:
+Fewer tasks can therefore be analyzed based on BVP data.              Before model fitting, physiological metrics with non-
+Among the retained tasks, development-heavy activities             normal distributions (e.g., RMSSD) were log-transformed,
+constitute the largest category, followed by collaboration-        and all metrics were z-standardized per participant.
+heavy and other tasks. Average task durations were computed
+for each combination of task category and physiological                3) Multimodal Physiological Analysis
+modality. Across all combinations, durations are comparable,           In addition to the individual-metric analyses, we examined
+ranging from 49.9 to 51.38 minutes.                                whether physiological characteristics jointly provided
+                                                                   information about perceived cognitive load. Before
+   TABLE I.                   OVERVIEW OF THE PHYSIOLOGICAL        constructing the multimodal model, we examined the
+   DATASET AFTER PRE-PROCESSING USED FOR STATISTICAL ANALYSES      correlations among the physiological metrics to avoid
+                         BVP            EDA          TEMP
+                                                                   redundant measurements influencing the analyses. Metrics
+                                                                   correlating above |r|=0.90 were removed (HRV_SDNN,
+ Min % of original   83.23%         74.6%         73.09%
+ data in a working
+                                                                   mean_cleaned_EDA, range_TEMP).
+ day                                                                  Principal component analysis (PCA) was then conducted
+ Number         of   19             21            21
+ participants
+                                                                   separately for the BVP and EDA metrics. Parallel analysis
+ included                                                          supported retaining one BVP component and one EDA
+ Number of working   263 (out of    371 (out of   371 (out of      component. The BVP component broadly represented higher
+ tasks included      382)           382)          382)             heart rate in combination with lower HRV, whereas the EDA
+ Development-        121            158           159              component primarily represented higher tonic activity and
+ heavy tasks                                                       SCR frequency.
+ Collaboration-      76             108           106
+ heavy tasks                                                           According to the correlation analysis, mean_TEMP and
+ Other tasks         66             105           106              std_TEMP were not correlated and therefore represented
+                                                                   distinct aspects of the skin temperature signal. They were
+F. Data Analysis – Linear Mixed-Effects Model                      therefore retained as separate predictors in the multimodal
+                                                                   model rather than combined into a single component. The
+    To investigate whether physiological activity, GenAI use,      final multimodal model (4) therefore included the BVP
+task category and task duration were associated with               principal component (PCBVP), the EDA principal component
+developers’ perceived cognitive load, we fitted a series of        (PCEDA), mean_TEMP, and std_TEMP as fixed effects,
+linear mixed-effects models. The lme4 and lmerTest packages        together with the work context covariates from the baseline
+in R were used for the analyses. All models included               model (1).
+participant as a random intercept to account for repeated
+measures within participants and to capture between-                   Cognitive load ~ GenAI use + task category +
+participant differences in cognitive load ratings.                             task duration + PCBVP + PCEDA +
+                                                                                                                             (4)
+                                                                               mean_TEMP       +   std_TEMP       +
+    1) Baseline Model                                                          (1|participant)
+    First, we fit a baseline model to assess the association
+between GenAI use, task category, task duration, and
+                                                                        4) Model Comparisons and P-Value Adjustments
+perceived cognitive load in the physiologically filtered
+dataset. The model included GenAI use (yes/no), task                    Likelihood-ratio tests (LRTs) were used to compare nested
+category (development-heavy, collaboration-heavy, or other),       models. Benjamini–Hochberg multiple comparison correction
+and task duration in minutes as fixed effects and participant as   was applied to the relevant families of hypothesis tests. Tukey
+a random intercept:                                                adjustment was used for pairwise post hoc comparisons
+                                                                   among task categories in the baseline model (1). Standard
+    Cognitive load ~ GenAI use + task category +                   diagnostic checks were used to assess model assumptions and
+                                                           (1)     fit.
+            task duration + (1|participant)
+
+    This baseline model served two purposes: First, it was                                IV. RESULTS
+used to assess the contribution of the task characteristics to     A. Work Context Factors Associated with Perceived
+perceived cognitive load. Second, it served as the baseline            Cognitive Load During Everyday Working Tasks
+model for evaluating whether physiological metrics provided
+additional explanatory value beyond GenAI use, task                    Using the behavioral baseline model (1) defined in Section
+category, task duration, and participant-specific differences.     III-F, we first examined whether GenAI use, task category,
+                                                                   and task duration were associated with developers’ perceived
+   2) Individual Physiological Metrics                             cognitive load during everyday working tasks.
+   We then investigated whether individual physiological
+                                                                       GenAI use, task category, and task duration each
+metrics provided additional information about perceived
+                                                                   significantly contributed to explaining developers’ perceived
+cognitive load beyond the work context baseline (1). Separate
+                                                                   cognitive load (TABLE II. ). GenAI use during working tasks
+models were fit for each physiological metric (four HR/HRV,
+                                                                   was associated with approximately a one-point higher
+four EDA, and three skin temperature metrics) (2) and were
+                                                                   cognitive load rating on the seven-point scale compared to
+then compared to the baseline model (1).
+                                                                   tasks not involving GenAI use (estimate=0.996, χ²(1)=23.80,
+    Cognitive load ~ physiological metric + GenAI                  p<0.001, ΔR²=0.047) (Fig. 3, left). Furthermore, perceived
+            use + task category + task duration +          (2)     cognitive load increased by 0.007 points for every additional
+            (1|participant)                                        minute of task duration (estimate=0.007, χ²(1)=15.21,
+                                                                   p<0.001, ΔR²=0.038). The task category added the largest
+                                                                   explanatory value to the model and therefore to explaining
+perceived cognitive load (χ²(2)=44.13, p<0.001, ΔR²=0.091).                                               metrics and then evaluated whether considering multiple
+Post hoc pairwise comparisons (Tukey-adjusted) showed that                                                physiological modalities together provided additional
+development-heavy tasks were associated with significantly                                                information.
+higher perceived cognitive load than collaboration-heavy
+tasks (estimate=0.591, p=0.0153) and other activities                                                         1) Individual Physiological Metrics
+(estimate=1.437, p<0.0001) (Fig. 3, right). Furthermore,                                                      Via the physiological model structure (2) defined in
+collaboration-heavy tasks were associated with significantly                                              Section III-F, each of the eleven physiological metrics was
+higher perceived cognitive load than other activities                                                     added separately to the contextual baseline model and
+(estimate=0.845, p<0.0001) (Fig. 3, right). Overall, the                                                  evaluated against the baseline model using a likelihood-ratio
+behavioral model accounted for 32.4% of the variance in                                                   test.
+perceived cognitive load through the three fixed effects and                                                  Across all eleven physiological metrics, skin temperature
+45.9% when participant-specific differences were included.                                                standard deviation (std_TEMP) was the only metric that
+    In sum, perceived cognitive load during everyday working                                              significantly improved model fit after correction for multiple
+tasks was associated with the work context: it was higher                                                 comparisons (TABLE III. ). Lower skin temperature
+during GenAI use, increased with task duration, and differed                                              variability was associated with higher perceived cognitive
+substantially across task categories, with development-heavy                                              load (estimate=-0.224, χ²(1)=8.43, pBH=0.041). However, the
+tasks showing the highest cognitive load.                                                                 additional explanatory contribution was small (ΔR²=0.014).
+                                                                                                          Skin temperature range (range_TEMP) showed a similar
+TABLE II.                              LIKELIHOOD-RATIO TEST RESULTS FOR THE                              negative association, but did not remain statistically
+                                   BEHAVIORAL MODEL                                                       significant after Benjamini-Hochberg correction (pBH=0.105).
+  Behavioral              Estimate             χ²           df             p             ΔR²
+                                                                                                          Mean skin temperature (mean_TEMP) showed a small
+     factor                                                                                               positive estimate but did not substantially improve model fit.
+ GenAI use                  0.996           23.80            1        < 0.001           0.047
+                                                                                                              As a sensitivity analysis, we repeated the analyses using
+ Task category                -             44.14            2        < 0.001           0.091
+                                                                                                          cumulative link mixed models to account for the ordinal
+ Task duration              0.007           15.21            1        < 0.001           0.038
+  a.
+                                                                                                          nature of the cognitive load ratings. The results were
+     ΔR² denotes the increase in marginal R² when the respective behavioral factor is included in the
+  model. The full model achieved a marginal R² of 0.324 and a conditional R² of 0.459. Marginal R²
+                                                                                                          consistent with the linear mixed-effects models: only skin
+ represents variance explained by fixed effects and conditional R² represents variance accounted for      temperature standard deviation significantly improved model
+                                                                   by both fixed and random effects.
+                                                                                                          fit after multiple comparison correction (estimate=-0.314,
+                                                                                                          χ²(1)=8.56, pBH=0.038), while the remaining individual
+                                                                                                          physiological metrics did not improve model fit beyond the
+                                                                                                          work context factors.
+                                                                                                              As an additional sensitivity check for the effect of the
+                                                                                                          rating scale granularity, we grouped the seven-point cognitive
+                                                                                                          load Likert scale into three broader ordinal categories - low
+                                                                                                          (1-2), medium (3-5), and high (6-7) - and repeated the
+                                                                                                          analyses with the cumulative link mixed models. The overall
+                                                                                                          patterns of the results remained mainly unchanged, but with
+Fig. 3. Model-predicted perceived cognitive load based on the contextual                                  skin temperature standard deviation no longer remaining
+mixed-effect model across working tasks without or with GenAI use (left)
+and across the three task categories (right). Points show estimated marginal                              statistically significant after multiple comparison correction
+means; error bars indicate 95% confidence intervals. Asterisks denote                                     (estimate=-0.331, χ²(1)=6.77, pBH=0.102).
+statistical significance (* p≤0.05, *** p≤0.001).
+                                                                                                              In sum, after accounting for GenAI use, task category and
+                                                                                                          task duration and participant-specific differences, skin
+B. RQ2: Limited Additional Information from Wearable-
+                                                                                                          temperature standard deviation was the only individual
+   derived Physiological Characteristics
+                                                                                                          physiological metric that improved the model’s ability to
+   To evaluate whether wearable-derived physiological                                                     account for variation in cognitive-load ratings. Sensitivity
+characteristics provided additional information about                                                     analyses showed consistent directions of the associations
+developers’ perceived cognitive load beyond the contextual                                                between physiological metrics and cognitive load ratings.
+baseline model (1), we first examined individual physiological
+
+                              TABLE III.                                  LIKELIHOOD-RATIO TEST RESULTS FOR INDIVIDUAL PHYSIOLOGICAL METRICS
+     Physiological signal                            Metric                               Estimate               χ²                df              p                   PBH                    ΔR²
+ Cardiovascular activity                     Mean_HR                                   -0.010                0.02              1          0.900                   0.900                  <0.001
+                                             HRV_lnRMSSD                               -0.052                0.41              1          0.521                   0.637                  <0.001
+                                             HRV_SDNN                                  -0.084                1.07              1          0.301                   0.552                  0.002
+                                             HRV_pNN50                                 0.057                 0.51              1          0.477                   0.637                  0.001
+ Electrodermal activity                      Mean_SCL                                  0.079                 1.29              1          0.256                   0.552                  0.002
+                                             Mean_phasic                               0.037                 0.28              1          0.594                   0.654                  <0.001
+                                             Mean_cleaned_EDA                          0.079                 1.29              1          0.255                   0.552                  0.002
+                                             SCR_norm_duration                         0.090                 1.58              1          0.208                   0.552                  0.002
+ Skin temperature                            Mean_TEMP                                 0.058                 0.69              1          0.412                   0.637                  <0.001
+                                             Std_TEMP                                  -0.224                8.43              1          0.004                   0.041                  0.014
+                                             Range_TEMP                                -0.181                5.49              1          0.019                   0.105                  0.009
+  b.
+    Each physiological model added one physiological metric to the contextual baseline model and was compared with that baseline using a likelihood ratio test(LRT). The baseline and physiological models in
+   each comparison were fitted to the same observations. Physiological metrics were z-standardized before model fitting. Consequently, the estimate of each physiological metric represents the expected change
+    in cognitive load ratings associated with a one standard deviation increase in the physiological metric, after accounting for GenAI use, task category, task duration, and participant-specific differences. ΔR²
+  denotes the increase in marginal R² when adding the physiological metric to the baseline model. LRT p-values were adjusted with the Benjamini–Hochberg (BH) method to account for multiple comparisons
+                                                                                                                                                                            across the eleven physiological metrics.
+
+
+
+                         TABLE IV.                                   LIKELIHOOD-RATIO TEST RESULTS FOR THE MULTIMODAL PHYSIOLOGICAL ANALYSIS
+                 Model comparison                                                         Estimate                χ²                        df              p                    pBH                  ΔR²
+ Complete multimodal model vs contextual baseline model                                        -                9.42                        4             0.052                   -                  0.019
+                                                                                     Single modality contribution
+ Cardiovascular component (PCBVP)                                                           -0.011              0.04                         1            0.844                 0.844               <0.001
+ Electrodermal component (PCEDA)                                                             0.075              1.31                         1            0.253                 0.379                0.002
+ Skin temperature metrics
+                                                                                                  -                       8.87               2            0.012                 0.035                0.018
+ (mean_TEMP + std_TEMP)
+                                                                                     TEMP follow-up comparison
+ Mean_TEMP                                                                                -0.025             0.09                            1            0.762                 0.762               <0.001
+ Std_TEMP                                                                                 -0.251             8.83                            1            0.003                 0.006                0.018
+    c.
+       The complete multimodal model included the cardiovascular principal component (PCBVP), the electrodermal principal component (PCEDA), mean skin temperature (mean_TEMP), and skin-temperature
+  standard deviation (std_TEMP). Estimates are reported only for single-predictor tests; no single estimate is available for the combined physiological block or the two-predictor temperature block. The single
+        modality likelihood ratio tests compared the complete multimodal model with models excluding the respective modality. Their p-values were adjusted across the three modalities using the Benjamini–
+Hochberg procedure. Temperature follow-up p-values were adjusted separately across mean_TEMP and std_TEMP. ΔR² denotes the increase in marginal R² associated with adding the tested block or predictor
+                                                                                                                                                                            to the corresponding reduced model.
+
+
+
+    2) Multimodal Physiological Characteristics                                                                 As a sensitivity analysis, we repeated the multimodal
+    To evaluate whether physiological information became                                                    comparison using cumulative link mixed models to account
+more informative when multiple modalities were considered                                                   for the ordinal nature of the seven-point cognitive load ratings
+jointly, we extended the contextual baseline model by adding                                                scale. The physiological model containing all four
+a cardiovascular principal component, an electrodermal-                                                     physiological predictors also significantly improved model fit
+activity principal component, mean skin temperature, and                                                    over the contextual baseline model (χ²(4)=10.89, p=0.028).
+skin-temperature standard deviation (Section III-F, (3)). The                                               The two skin temperature metrics together also contribute
+first cardiovascular component explained 68.8% of the                                                       significantly to the model fit (χ²(2)=10.46, pBH=0.016),
+variance across mean heart rate, lnRMSSD, and pNN50 and                                                     whereas PCBVP and PCEDA did not. As in the linear mixed-
+broadly represented higher heart rate combined with lower                                                   effects analysis, std_TEMP contributed significantly
+heart-rate variability. The first EDA component explained                                                   (estimate=-0.396,       χ²(1)=10.42,     pBH=0.002),      while
+45.7% of the variance and primarily captured higher SCL and                                                 mean_TEMP remained non-significant.
+SCR frequency with a weaker contribution of lower mean                                                          In sum, the multimodal analysis provided evidence that
+phasic activity.                                                                                            wearable-derived physiological information from BVP, EDA
+    Comparing the contextual baseline model with the model                                                  and skin temperature contained marginal but some additional
+that additionally contained all four physiological predictors                                               information about perceived cognitive load beyond GenAI use
+(PCBVP, PCEDA, mean_TEMP and std_TEMP) showed a                                                             and task context. The most informative metric was the
+nearly statistically significant contribution (χ²(4)=9.42,                                                  standard deviation of skin temperature, while the
+p=0.052) (TABLE IV. ). The combined physiological                                                           cardiovascular and EDA components made no major
+parameters increased the model’s ability to account for                                                     contribution. This finding is consistent with the individual
+additional variation in the cognitive load ratings beyond                                                   physiological analyses (RQ2), in which skin-temperature
+GenAI use, task category, task duration, and participant-                                                   standard deviation was likewise the only metric that
+specific differences. However, the additional explanatory                                                   significantly improved model fit after correction for multiple
+contribution was small (ΔR²=0.019).                                                                         comparisons.
+    Leave-one-modality-out model comparisons indicated                                                                                           V. DISCUSSION
+that most additional information was contained in the skin
+temperature (TABLE IV. ). Removing mean_TEMP and                                                            A. GenAI Use, Task Category, Task Duration are
+std_TEMP significantly reduced model fit (χ²(2)=8.87,                                                           Associated with Perceived Cognitive Load
+pBH=0.035, ΔR²=0.018). Neither PCBVP nor PCEDA                                                                  The results show that GenAI use was associated with
+significantly improved model fit (PCBVP: estimate=-0.011,                                                   higher perceived cognitive load during everyday software
+χ²(1)=0.04, pBH=0.844, ΔR²<0.001; PCEDA: estimate=0.075,                                                    development tasks, even after accounting for task category,
+χ²(1)=1.31, pBH=0.379, ΔR²=0.002).                                                                          task duration, and participant-specific differences. Task
+                                                                                                            category and task duration were also associated with cognitive
+    Follow-up comparisons of the contribution of the
+                                                                                                            load, indicating that GenAI use should be interpreted within
+individual skin temperature factors mean_TEMP and
+                                                                                                            the broader behavioral work context.
+std_TEMP indicated that the significant skin temperature
+result was driven by std_TEMP. Lower std_TEMP was                                                           GenAI Use
+associated with higher cognitive load ratings (estimate=-                                                       Tasks involving GenAI use were associated with nearly
+0.251, χ²(1)=8.83, pBH=0.006, ΔR²=0.018) (TABLE IV. ).                                                      one point higher perceived cognitive load rating than tasks
+Accordingly, a one-standard-deviation increase in skin-                                                     without GenAI use. This finding should not be interpreted as
+temperature variability was associated with an approximately                                                evidence that GenAI use generally makes software
+0.25-point decrease in perceived cognitive-load ratings after                                               development more difficult, nor does it contradict prior
+accounting for the contextual factors, participant-specific                                                 findings that developers perceive GenAI as useful [11].
+differences, and the remaining physiological predictors.                                                    Rather, it suggests that GenAI-supported work during
+Mean_TEMP provided no detectable further information.                                                       everyday software development is not necessarily experienced
+as cognitively less demanding. GenAI interaction may               Development-heavy tasks were associated with the highest
+introduce additional cognitive demands, such as formulating        perceived cognitive load, followed by collaboration-heavy
+prompts, evaluating generated outputs for correctness and          tasks and other activities. Consistent with previous findings
+usefulness, adapting suggestions, and integrating generated        [7, 10] the present analysis shows that task category remains
+content into an existing codebase.                                 strongly associated with perceived cognitive load even after
+                                                                   accounting for GenAI use, task duration, and participant-
+    This interpretation is consistent with previous findings       specific differences.
+from the same broader study [8]: In the controlled task setting,
+GitHub Copilot supported work efficiency and reduced                   The higher perceived cognitive load during development-
+perceived workload when the interaction type suited the task.      heavy tasks may reflect the developers’ need to understand
+Using multiple interaction types may have reflected                requirements, make implementation decisions, integrate
+uncertainty about how best to interact with the assistant, which   changes into the existing codebase, review and test the code
+can require additional cognitive effort [8]. During everyday       etc. The finding that collaboration-heavy tasks were
+work, GenAI-supported tasks were associated with both              associated with higher perceived cognitive load than other
+higher perceived cognitive load and higher productivity [8].       activities further shows that cognitive load in software
+Questionnaire results of the study further showed that             engineering is not limited to coding or implementation work.
+developers described work efficiency and productivity as           It may also arise from coordination and communication
+positive aspects of GenAI use, but also reported challenges        activities. These results show that task context is a central
+related to prompt sensitivity, output inaccuracies, and the need   factor for understanding perceived cognitive load during
+to validate generated output [10].                                 everyday software development.
+    Our task-level findings on perceived cognitive load differ     Task Duration
+from more general assessments reported in prior work. Vella            Task duration was also positively associated with
+and Blincoe found that developers generally perceived AI as        perceived cognitive load, although the estimated increase per
+beneficial for cognitive load [33], and the developers in this     minute was small. This result is consistent with previous work
+present study similarly tended to agree that working with AI       [7], which found a positive correlation between task duration
+is less mental effort compared to working without it [10]. In      and cognitive load ratings but no difference across task
+contrast, the task-level analysis associated GenAI-supported       categories. The present analysis extends this finding by
+tasks with higher perceived cognitive load. This divergence        showing that this association remains even after accounting
+may reflect discrepancies between global retrospective             for task category, GenAI use, and participant-specific
+evaluations, during which experiences are aggregated and can       differences. Thus, longer tasks may reflect sustained attention
+be influenced by more salient or recent events, and ratings of     or more complex work, which contributes to perceived
+specific activities [23]. The findings are not exclusive:          cognitive load during everyday software development tasks.
+developers may perceive AI as reducing cognitive load
+overall, while individual AI-supported tasks may still be             Overall, GenAI use, task category, and task duration each
+experienced as more cognitively demanding than comparable          accounted for a statistically significant share of variation in
+tasks completed without AI.                                        perceived cognitive load. These findings establish the
+                                                                   contextual baseline for RQ2, which examines whether
+    Together, the present and previous findings [8, 10, 33]        wearable-derived physiological characteristics provide
+suggest that GenAI use does not simply reduce developers’          additional information about perceived cognitive load beyond
+cognitive effort. Instead, perceived cognitive workload during     GenAI use and task context.
+GenAI-supported development could reflect an interplay
+between GenAI use, interaction type and intensity, output          B. Wearable-Derived Physiological Characteristics
+quality, and task characteristics [8, 10]. These factors may          Provide Limited but Detectable Additional Information
+determine how much effort GenAI use takes or saves. AI-               Beyond Work Context
+supported work may shift effort from producing solutions
+manually to supervising, evaluating, and integrating AI-           Individual Physiological Metrics
+generated output. Vella and Blincoe observed that developers           Most individual physiological metrics did not provide
+reported spending less time on direct code creation while          detectable additional information about variations in
+describing increased effort in directing, reviewing, and           perceived cognitive load ratings after GenAI use, task
+correcting AI output [33]. This cognitive offloading to AI         category, task duration, and participant-specific differences
+during implementation can come at a cost described by              were accounted for. Skin-temperature standard deviation was
+Alakmeh et al. as comprehension debt [1] - the growing gap         the only exception: lower within-task temperature variability
+between what developers can produce and what they                  was associated with higher perceived cognitive load.
+understand. This broader concern is also reflected in Storey’s
+                                                                       Ordinal sensitivity analyses yielded consistent results,
+Triple Debt theory [28], which highlights how increasing
+                                                                   whereas collapsing the seven-point cognitive load scale into
+reliance on AI-generated software may create longer-term
+                                                                   three broader categories removed the significance of
+costs for system understanding and maintainability. While the
+                                                                   std_TEMP, suggesting information loss due to broader
+present study does not measure these forms of debt or
+                                                                   groups. Therefore, the results of the linear mixed-effects
+cognitive offloading directly, its task-level findings are
+                                                                   models with a seven-point cognitive load rating scale are
+consistent with prior evidence that AI-supported development
+                                                                   discussed here.
+can remain cognitively demanding despite reduced manual
+code production.                                                       The absence of detectable associations across most
+                                                                   individual metrics illustrates a key challenge in transferring
+Task Category                                                      physiological cognitive load measurements from controlled
+   Task category showed the largest explanatory value for          laboratory settings to everyday, real-world software
+perceived cognitive load among the behavioral factors.
+engineering settings. Controlled studies using n-back, Stroop,       accounting for cardiovascular activity, EDA, and mean
+and arithmetic tasks have demonstrated physiological                 temperature. The findings indicate conditional robustness of
+responses to experimentally induced cognitive load levels [3,        skin-temperature variability rather than for multimodal
+15, 25, 29]. In real-world software development, however,            synergy among all investigated signals. Small or shared
+cognitive load differences are more subtle and physiological         physiological effects may still be present, but the current
+signals are simultaneously influenced by surrounding work            models did not isolate them.
+conditions, movement, emotional states, device fit and other
+uncontrolled factors. These influences may partly explain why            Complementary predictive work on our previous field-
+most individual metrics provided no detectable information           study dataset [7] found that multimodal physiological and
+beyond work context in the present study.                            task-context information can support cognitive load
+                                                                     prediction, particularly in personalized models such as
+    Against this background, the persistence of a temperature-       XGBoost [31]. Predictive models may exploit nonlinear
+variability association with perceived cognitive load is             relations, interactions, and shared information across signals,
+noteworthy: some task-level physiological information                whereas the present linear mixed-effects analysis assesses
+remained detectable despite the uncontrolled field conditions.       interpretable, adjusted associations and the unique
+Higher perceived cognitive load was associated with more             contribution of physiological characteristics beyond work
+stable skin temperature during working tasks, while mean skin        context. The two approaches are therefore complementary: the
+temperature was not significantly associated. Reduced                present results identify temperature variability as the clearest
+variability could reflect sustained peripheral physiological         adjusted physiological association, while the predictive
+regulation, stable posture and environmental conditions, or          findings motivate continued investigation of multimodal and
+other processes that covary with cognitively demanding work.         personalized representations.
+    These results relate to, but do not replicate, our findings in       All in all, the individual and multimodal analyses provide
+previous work, in which we found that mean skin temperature          modest evidence that wearable-derived physiological data
+was positively correlated with perceived cognitive load [7].         contains additional information about perceived cognitive
+Whereas the previous study found an association with mean            load beyond GenAI use and work context. The clearest
+skin temperature, the present study identifies an association        association was with skin-temperature variability, while
+with within-task temperature variability. Predictive analyses        cardiovascular and electrodermal characteristics provided no
+of cognitive load with XGBoost using a dataset from the              detectable additional contribution. The small physiological
+previous real-world study [7] found that working task                contribution and its concentration in one characteristic do not
+category, EDA and skin temperature were relevant in feature          support treating wearable physiology as a context-
+selection analyses [31]. This aligns with the present findings       independent measure of cognitive load.
+that work context accounts for a substantial share of variation
+in perceived cognitive load ratings and that skin temperature        C. Implications for Software Engineering Research and
+could be a direct or indirect indicative feature for cognitive           Practice
+load. Taken together, the studies suggest that the dynamics of           Our findings have implications for how organizations
+skin temperature could be worth further investigation in real-       evaluate     GenAI-supported       software      development.
+world cognitive load research.                                       Productivity gains, code output quality, and tool adoption
+                                                                     metrics should not be interpreted as evidence that GenAI-
+Multimodal Physiological Characteristics                             supported work is perceived as cognitively less demanding.
+   We next examined whether wearable-derived                         GenAI-supported tasks were associated with higher perceived
+physiological information became more informative when               cognitive load ratings after accounting for task category and
+considered jointly in a multimodal and context-aware                 duration. Evaluations of GenAI tools and developers’
+analysis. Cardiovascular activity, EDA, and skin temperature         interaction with them could therefore complement
+characteristics were combined into one physiological model           productivity and output quality measures with task-level
+and compared to the contextual baseline model. Adding                developer experience measures that also account for the work
+multimodal physiological information to the contextual               contexts in which GenAI is used. This can help distinguish
+baseline model provided an almost statistically significant,         cognitive demands associated with the underlying engineering
+though small, amount of additional information about                 task from demands related to prompting, validating,
+cognitive load variation. This result is noteworthy since            correcting, and integrating AI-generated output.
+despite substantial uncontrolled variation in everyday work
+environment, wearable-derived physiology contained a small               The results also provide practical guidance for wearable-
+but detectable amount of task-level information associated           based developer experience studies in real-world settings.
+with perceived cognitive load ratings after GenAI use, task          Individual physiological metrics should not be interpreted as
+context and participant-specific differences were considered.        direct measures of perceived cognitive load but analyzed
+                                                                     together with work context information, such as task type,
+    The leave-one-modality-out analyses clarified the source         duration, and GenAI use. The multimodal results support
+of this information. Removing the two skin temperature               combining physiological and contextual information, but not
+characteristics significantly reduced model fit, whereas             replacing task-level self-reports or work context measures
+removing the cardiovascular or EDA component did not.                with wearable sensing.
+Follow-up comparisons showed that the temperature result
+was again attributable to skin temperature standard deviation            At the present stage, wearable-derived cognitive load
+rather than mean temperature. Thus, the multimodal analysis          information is better suited to aggregate evaluations of tools,
+does not demonstrate a broadly informative physiological             workflows, and recurring work conditions than for individual
+pattern distributed across all modalities. Instead, the findings     performance assessment or automated workplace decisions.
+support the individual-metric result that the temperature            The practical value of wearables lies in their potential to help
+variability association remained detectable even after               identify whether tools and work designs systematically
+change or create novel and potentially avoidable cognitive         C. External Validity
+demands, as a continuous and objective complement to                   The study was conducted with professional software
+subjective self-reports and behavioral information.                developers in their everyday work environment, which
+   For development leaders, these findings suggest                 strengthens the ecological relevance of our findings.
+embedding GenAI evaluation in a broader measurement                However, a larger participant group, a longer study period,
+approach rather than treating it solely on productivity,           and data collection across multiple organizations could
+adoption, usage and delivery metrics that do not capture           strengthen their transferability.
+developers’ cognitive experience. Assessing GenAI impact               Because GenAI tools and interaction paradigms are
+across recurring work contexts, such as development-heavy          evolving rapidly, especially with the increasing use of agentic
+implementation tasks, review activities and collaboration-         systems, replication across organizations, roles, project types,
+heavy work, could help identify where workflow design,             working tasks, wearable platforms, and newer forms of AI-
+guidance, training and tool integration could reduce avoidable     supported development is needed before generalizing the
+cognitive load and support more cognitively sustainable AI-        observed associations broadly.
+supported work.
+                                                                   D. Future Work
+      VI. THREATS TO VALIDITY AND FUTURE WORK                          Future work could build on this study design and collect
+A. Construct Validity                                              larger real-world datasets across multiple organizations to
+                                                                   improve statistical power, generalizability, and to deduce if
+    A few aspects may impact the construct validity of this
+                                                                   cognitive load arises from AI interaction or from the actual
+study. First, cognitive load was measured via subjective
+                                                                   working task. More fine-grained GenAI interaction measures,
+ratings, which capture developers’ perceived cognitive load
+                                                                   including prompting characteristics, in-code completion,
+and may vary with individuals’scale use and self-assessment.
+                                                                   agentic delegation, validation effort, interaction intensity, and
+Sensitivity analyses using ordinal scale models and a three-
+                                                                   output quality, could clarify in more detail which forms of AI-
+category regrouping yielded broadly comparable results,
+                                                                   supported work introduce or reduce cognitive demands. More
+although the strength of evidence depended partly on the
+                                                                   work context features, such as task complexity, interruptions,
+original scale granularity. Nevertheless, self-reported
+                                                                   codebase familiarity etc. could also add to a more fine-grained
+cognitive load remains only an indirect measure of actual
+                                                                   analysis.
+cognitive processes.
+                                                                       Extended datasets could also be used to try multimodal
+    Secondly, physiological measures are not specific to
+                                                                   predictive approaches. As measurements of cognitive load via
+cognitive load and are also affected by movement, affect,
+environmental conditions and other internal and external           wearables in real-world settings become more reliable, such
+processes. The significant temperature variability result          information from physiological data could support code and
+therefore demonstrates an association with perceived               tool evaluation, task scheduling, and long-term developers’
+cognitive load ratings, rather than a direct measure of            well-being in their everyday work contexts.
+cognitive load.                                                        Future studies should examine GenAI-supported
+    Thirdly, GenAI use was measured as a binary task               development as part of a broader developer experience
+property. This binary measure aligns with the study’s research     enterprise ecosystem, which includes IDE assistants, chat-
+question but does not distinguish interaction type, interaction    based assistants, agentic systems, internal documentation
+intensity, output quality, or the extent of validation and         systems, and platform engineering services. This would allow
+                                                                   organizations to understand how these tools reshape developer
+correction, all of which could help explain heterogeneity in
+                                                                   workflows, coordination patterns and sustainable
+perceived cognitive load among GenAI-supported tasks.
+                                                                   productivity.
+   Finally, working tasks were documented at the granularity
+chosen by developers to minimize disruption and preserve                                VII. CONCLUSION
+ecological validity. This limited the amount and temporal              This study examined how GenAI use and task context
+precision of data available for linking working tasks, cognitive   relate to perceived cognitive load during real-world software
+load ratings and physiological signals.                            development and whether wearable-derived physiological
+B. Internal Validity                                               characteristics provide additional information beyond these
+                                                                   factors. GenAI use, task category, and task duration accounted
+   Real-world wearable data are affected by contextual and         for substantial variation in perceived cognitive load.
+emotional factors, movement, device fit, and other                 Wearable-derived physiology provided only limited
+uncontrolled influences. Although we pre-processed the             additional information: across individual and multimodal
+physiological signals to remove strong motion artefacts and        analyses, skin-temperature variability showed the clearest
+implausible values, we could not eliminate all non-cognitive       association, while cardiovascular and electrodermal
+sources of variation in the everyday setting.                      characteristics provided no significant additional contribution.
+    Additional     simulation-based     sensitivity analyses       Overall, these findings suggest that perceived cognitive load
+suggested that the available sample size and repeated-             in ecological software engineering settings is more strongly
+measures structure provided adequate sensitivity to detect         associated with GenAI use and work context than with
+moderate individual physiological associations but lower           wearable-derived physiological measures. Wearable data
+sensitivity for small associations and distributed multimodal      should therefore be interpreted in relation to the developers’
+effects. The non-significant physiological findings should         concrete work context.
+therefore not be interpreted as evidence of no association, but
+rather that smaller physiological associations may have
+remained undetected.
+                     REFERENCES                                      Interdisciplinary Systematic Mapping Review.
+[1]   Tarek Alakmeh, Norman Anderson, Victoria                       SSRN,      Manuscript      submitted    for     review.
+      Jackson, Guilherme Vaz Pereira, Umit Akirmak,                  https://doi.org/10.2139/ssrn.7477619
+      Anthony Estey, Rafael Prikladnicki, André van der       [10]   Charlotte Brandebusemeyer, Kerim Zunic, Thomas
+      Hoek, Margaret-Anne Storey, and Thomas Fritz.                  Zimmermann, Tobias Schimmer, and Bert Arnrich.
+      2026. Grasping AI Reliance in Program                          2026. Developers’ Experience with Generative AI
+      Comprehension and Coding through the AIRELI                    Beyond Productivity Assessment - Insights from an
+      Persona Taxonomy. In Proceedings of the 2026 34th              Empirical Mixed-Methods Field Study. ArXiv
+      IEEE/ACM International Conference on Program                   (2026). Retrieved         July 13, 2026 from
+      Comprehension, April 12, 2026. ACM, New York,                  https://arxiv.org/abs/2607.02337
+      NY,                   USA,                  123–134.    [11]   Jenna Butler, Jina Suh, Sankeerti Haniyur, and
+      https://doi.org/10.1145/3794763.3794804                        Constance Hadley. 2025. Dear Diary: A Randomized
+[2]   Christoph Anders, Sidratul Moontaha, Samik Real,               Controlled Trial of Generative AI Coding Tools in
+      and Bert Arnrich. 2024. Unobtrusive measurement of             the Workplace. In 2025 IEEE/ACM 47th
+      cognitive load and physiological signals in                    International Conference on Software Engineering:
+      uncontrolled environments. Sci. Data 11, 1                     Software Engineering in Practice (ICSE-SEIP), April
+      (September                 2024),              1000.           27,           2025.          IEEE,            319–329.
+      https://doi.org/10.1038/s41597-024-03738-7                     https://doi.org/10.1109/ICSE-
+[3]   Paul Ayres, Joy Yeonjoo Lee, Fred Paas, and Jeroen             SEIP66354.2025.00034
+      J.G. van Merriënboer. 2021. The Validity of             [12]   Rebecca L. Charles and Jim Nixon. 2019. Measuring
+      Physiological Measures to Identify Differences in              mental workload using physiological measures: A
+      Intrinsic Cognitive Load. Frontiers in Psychology 12.          systematic review. Appl. Ergon. 74, (January 2019),
+      https://doi.org/10.3389/fpsyg.2021.702538                      221–232.
+[4]   Vadim Borisov, Enkelejda Kasneci, and Gjergji                  https://doi.org/10.1016/j.apergo.2018.08.028
+      Kasneci. 2021. Robust cognitive load detection from     [13]   Hugo D. Critchley. 2002. Electrodermal Responses:
+      wrist-band sensors. Computers in Human Behavior                What Happens in the Brain. The Neuroscientist 8, 2
+      Reports       4,     (August      2021),     100116.           (April                 2002),                 132–142.
+      https://doi.org/10.1016/j.chbr.2021.100116                     https://doi.org/10.1177/107385840200800209
+[5]   Charlotte Brandebusemeyer, Daniela Gasser, Tobias       [14]   Kevin Zheyuan Cui, Mert Demirer, Sonia Jaffe, Leon
+      Schimmer, and Bert Arnrich. 2026. Supplementary                Musolff, Sida Peng, and Tobias Salz. 2026. The
+      Material for Beyond Productivity: Measuring                    Effects of Generative AI on High-Skilled Work:
+      Developers’ Cognitive Load During GenAI-                       Evidence from Three Field Experiments with
+      Supported       Software    Development.     Zenodo.           Software Developers. Manage. Sci. (February 2026).
+      https://doi.org/10.5281/zenodo.22692764                        https://doi.org/10.1287/mnsc.2025.00535
+[6]   Charlotte Brandebusemeyer, Fabian Georgi, and Bert      [15]   Neil Dallaway, Samuel J. E. Lucas, and Christopher
+      Arnrich. 2026. Reliability Assessment of Wearable              Ring. 2022. Cognitive tasks elicit mental fatigue and
+      Technologies for Physiological Measurements: An                impair subsequent physical task endurance: Effects
+      Evaluation of Shimmer3 GSR+, Empatica E4,                      of task duration and type. Psychophysiology 59, 12
+      EmbracePlus, and Pixel Watch 2 Across Cognitive,               (December                                        2022).
+      Affective and Physical Activity Tasks. Sensors 26,             https://doi.org/10.1111/psyp.14126
+      14             (July          2026),           4376.    [16]   Empatica Inc. 2025. EmbracePlus. Retrieved July 29,
+      https://doi.org/10.3390/s26144376                              2025        from       https://www.empatica.com/en-
+[7]   Charlotte Brandebusemeyer, Tobias Schimmer, and                eu/embraceplus/
+      Bert Arnrich. 2025. Wearables to Measure Developer      [17]   Sarah Fakhoury, Aaditya Naik, Georgios Sakkas,
+      Experience at Work. In 2025 IEEE/ACM 47th                      Saikat Chakraborty, and Shuvendu K. Lahiri. 2024.
+      International Conference on Software Engineering:              LLM-Based         Test-Driven     Interactive     Code
+      Software Engineering in Practice (ICSE-SEIP), April            Generation: User Study and Empirical Evaluation.
+      27,            2025.          IEEE,           23–33.           IEEE Transactions on Software Engineering 50, 9
+      https://doi.org/10.1109/ICSE-                                  (September              2024),             2254–2268.
+      SEIP66354.2025.00008                                           https://doi.org/10.1109/TSE.2024.3428972
+[8]   Charlotte Brandebusemeyer, Tobias Schimmer, and         [18]   Thomas Fritz, Andrew Begel, Sebastian C. Müller,
+      Bert Arnrich. 2026. Developers’ Experience with                Serap Yigit-Elliott, and Manuela Züger. 2014. Using
+      Generative AI - First Insights from an Empirical               psycho-physiological measures to assess task
+      Mixed-Methods Field Study. In Proceedings of the               difficulty in software development. In Proceedings -
+      IEEE/ACM 48th International Conference on                      International Conference on Software Engineering,
+      Software Engineering: Software Engineering in                  May 31, 2014. IEEE Computer Society, 402–413.
+      Practice, April 12, 2026. ACM, New York, NY,                   https://doi.org/10.1145/2568225.2568266
+      USA,                                        259–268.    [19]   Martin Gjoreski, Tine Kolenik, Timotej Knez, Mitja
+      https://doi.org/10.1145/3786583.3786870                        Luštrek, Matjaž Gams, Hristijan Gjoreski, and
+[9]   Charlotte Brandebusemeyer, Fabian Stolp, and Bert              Veljko Pejović. 2020. Datasets for Cognitive Load
+      Arnrich. 2026. Cognitive Load in Programming - An              Inference Using Wearable Sensors and Psychological
+       Traits. Applied Sciences 10, 11 (May 2020), 3843.               Age of AI. ArXiv (2026). Retrieved August 10, 2026
+       https://doi.org/10.3390/app10113843                             from https://arxiv.org/abs/2603.22106
+[20]   Sandra G. Hart. 2006. Nasa-Task Load Index               [29]   J. R. Stroop. 1935. Studies of interference in serial
+       (NASA-TLX); 20 Years Later. Proceedings of the                  verbal reactions. J. Exp. Psychol. 18, 6 (December
+       Human Factors and Ergonomics Society Annual                     1935), 643–662. https://doi.org/10.1037/h0054651
+       Meeting 50, 9 (October 2006), 904–908.                   [30]   Ningzhi Tang, Meng Chen, Zheng Ning, Aakash
+       https://doi.org/10.1177/154193120605000909                      Bansal, Yu Huang, Collin McMillan, and Toby Jia-
+[21]   Hye-Geum Kim, Eun-Jin Cheon, Dai-Seg Bai,                       Jun Li. 2024. Developer Behaviors in Validating and
+       Young Hwan Lee, and Bon-Hoon Koo. 2018. Stress                  Repairing LLM-Generated Code Using IDE and Eye
+       and Heart Rate Variability: A Meta-Analysis and                 Tracking. In 2024 IEEE Symposium on Visual
+       Review of the Literature. Psychiatry Investig. 15, 3            Languages       and     Human-Centric       Computing
+       (March                 2018),               235–245.            (VL/HCC), September 02, 2024. IEEE, 40–46.
+       https://doi.org/10.30773/pi.2017.08.17                          https://doi.org/10.1109/VL/HCC60511.2024.00015
+[22]   Andre N. Meyer, Earl T. Barr, Christian Bird, and        [31]   Annemarie Uhlig, Charlotte Brandebusemeyer,
+       Thomas Zimmermann. 2021. Today Was a Good                       Frédéric Li, Falco Lentzsch, Marcin Grzegorzek, and
+       Day: The Daily Life of Software Developers. IEEE                Bert Arnrich. 2026. Analyzing Cognitive Load of
+       Transactions on Software Engineering 47, 5 (May                 Software Developers Using Wearables During Their
+       2021),                                      863–880.            Everyday Work. Manuscript submitted for review.
+       https://doi.org/10.1109/TSE.2019.2904957                 [32]   Priyan Vaithilingam, Tianyi Zhang, and Elena L.
+[23]   Andreas B. Neubauer, Stacey B. Scott, Martin J.                 Glassman. 2022. Expectation vs. Experience:
+       Sliwinski, and Joshua M. Smyth. 2020. How was                   Evaluating the Usability of Code Generation Tools
+       your day? Convergence of aggregated momentary                   Powered by Large Language Models. In CHI
+       and retrospective end-of-day affect ratings across the          Conference on Human Factors in Computing
+       adult life span. J. Pers. Soc. Psychol. 119, 1 (July            Systems Extended Abstracts (CHI ’22 Extended
+       2020),                                      185–203.            Abstracts), April 27, 2022. ACM, New York, NY,
+       https://doi.org/10.1037/pspp0000248                             USA, 1–7. https://doi.org/10.1145/3491101.3519665
+[24]   Abi Noda, Margaret Anne Storey, Nicole Forsgren,         [33]   Annie Vella and Kelly Blincoe. 2026. The Impact of
+       and Michaela Greiler. 2023. DevEx: What Actually                AI Coding Assistants on Software Engineering: A
+       Drives Productivity. Queue 21, 2 (April 2023), 35–              Longitudinal         Study.         (May        2026).
+       53. https://doi.org/10.1145/3595878                             https://doi.org/10.48550/arXiv.2605.23135
+[25]   Adrian M. Owen, Kathryn M. McMillan, Angela R.           [34]   Christiaan H. Vinkers, Renske Penning, Juliane
+       Laird, and Ed Bullmore. 2005. N‐back working                    Hellhammer, Joris C. Verster, John H. G. M.
+       memory paradigm: A meta‐analysis of normative                   Klaessens, Berend Olivier, and Cor J. Kalkman.
+       functional neuroimaging studies. Hum. Brain Mapp.               2013. The effect of stress on core and peripheral body
+       25,         1        (May       2005),         46–59.           temperature in humans. Stress 16, 5 (September
+       https://doi.org/10.1002/hbm.20131                               2013),                                       520–530.
+[26]   Elise Paradis, Kate Grey, Quinn Madison, Daye                   https://doi.org/10.3109/10253890.2013.807243
+       Nam, Andrew Macvean, Vahid Meimand, Nan                  [35]   Barbara Weber, Thomas Fischer, and René Riedl.
+       Zhang, Ben Ferrari-Church, and Satish Chandra.                  2021. Brain and autonomic nervous system activity
+       2025. How Much Does AI Impact Development                       measurement in software engineering: A systematic
+       Speed? an Enterprise-Based Randomized Controlled                literature review. Journal of Systems and Software
+       Trial. In 2025 IEEE/ACM 47th International                      178,                   (August                  2021).
+       Conference on Software Engineering: Software                    https://doi.org/10.1016/j.jss.2021.110946
+       Engineering in Practice (ICSE-SEIP), April 27,           [36]   Justin D. Weisz, Shraddha Vijay Kumar, Michael
+       2025. IEEE, 618–629. https://doi.org/10.1109/ICSE-              Muller, Karen-Ellen Browne, Arielle Goldberg,
+       SEIP66354.2025.00060                                            Katrin Ellice Heintze, and Shagun Bajpai. 2025.
+[27]   Cornelia Setz, Bert Arnrich, Johannes Schumm,                   Examining the Use and Impact of an AI Code
+       Roberto La Marca, Gerhard Tröster, and Ulrike                   Assistant on Developer Productivity and Experience
+       Ehlert. 2010. Discriminating stress from cognitive              in the Enterprise. In Proceedings of the Extended
+       load using a wearable eda device. IEEE Transactions             Abstracts of the CHI Conference on Human Factors
+       on Information Technology in Biomedicine 14, 2                  in Computing Systems, April 26, 2025. ACM, New
+       (March                 2010),               410–417.            York,            NY,            USA,             1–13.
+       https://doi.org/10.1109/TITB.2009.2036164                       https://doi.org/10.1145/3706599.3706670
+[28]   Margaret-Anne Storey. 2026. From Technical Debt
+       to Intent Debt: Rethinking Software Health in the
+

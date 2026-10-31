@@ -1,0 +1,653 @@
+                                        Beyond the Commit: Developer Perspectives on Productivity with
+                                                            AI Coding Assistants
+                                                            Valerie Chen                                               Jasmyn He                            Behnjamin Williams
+                                                     valeriechen@cmu.edu                                          jasmyn.he@bny.com                      behnjamin.williams@bny.com
+                                                   Carnegie Mellon University                                         BNY Mellon                                BNY Mellon
+                                                      Pittsburgh, PA, USA                                          New York, NY, USA                         New York, NY, USA
+
+                                                                                      Jason Valentino                                   Ameet Talwalkar
+                                                                                 jason.valentino@bny.com                               talwalkar@cmu.edu
+                                                                                        BNY Mellon                                  Carnegie Mellon University
+                                                                                    Pittsburgh, PA, USA                                Pittsburgh, PA, USA
+
+
+
+
+arXiv:2602.03593v1 [cs.SE] 3 Feb 2026
+                                        Abstract                                                                                1   Introduction
+                                        Measuring developer productivity is a topic that has attracted at-                      AI-powered applications hold significant promise for increasing
+                                        tention from both academic research and industrial practice. In the                     human productivity, as many models—particularly large language
+                                        age of AI coding assistants, it has become even more important for                      models (LLMs)—have demonstrated human-level capabilities in
+                                        both academia and industry to understand how to measure their                           domains ranging from natural language understanding to code
+                                        impact on developer productivity, and to reconsider whether earlier                     generation [5, 7]. One salient and increasingly common use case
+                                        measures and frameworks still apply. This study analyzes the valid-                     of AI tools in practice is that of coding assistants, with prominent
+                                        ity of different approaches to evaluating the productivity impacts                      examples including GitHub Copilot and Cursor. As these systems
+                                        of AI coding assistants by leveraging mixed-method research. At                         are integrated into real-world software development workflows, a
+                                        BNY Mellon, we conduct a survey with 2989 developer responses                           natural question arises: how can we measure their impact on devel-
+                                        and 11 in-depth interviews. Our findings demonstrate that a mul-                        oper productivity? Indeed, AI coding assistants that substantially
+                                        tifaceted approach is needed to measure AI productivity impacts:                        boost productivity could necessitate a rethinking of how software
+                                        survey results expose conflicting perspectives on AI tool useful-                       is developed in the age of AI [33].
+                                        ness, while interviews elicit six distinct factors that capture both                       While improving productivity is a desirable goal for AI tools,
+                                        short-term and long-term dimensions of productivity. In contrast to                     “productivity” has become a complex and multi-faceted construct [14].
+                                        prior work, our factors highlight the importance of long-term met-                      To illustrate this challenge, consider several definitions from prior
+                                        rics like technical expertise and ownership of work. We hope this                       work. On one hand, GitHub Copilot’s developer survey reports
+                                        work encourages future research to incorporate a broader range of                       emphasize self-reported metrics such as developer satisfaction, per-
+                                        human-centered factors, and supports industry in adopting more                          ceived success in completing repetitive work, and ability to remain
+                                        holistic approaches to evaluating developer productivity.                               “in the flow” [15]. On the other hand, field studies have considered
+                                                                                                                                more objective measures, such as changes in commit frequency
+                                        CCS Concepts                                                                            between developers with and without access to AI coding assis-
+                                        • Human-centered computing → Human computer interac-                                    tants [33, 37]. The diversity of perspectives in existing literature
+                                        tion (HCI); • Software and its engineering → Collaboration                              motivates a careful examination of the broad set of metrics that
+                                        in software development.                                                                may be relevant to measuring productivity with AI tools—we refer
+                                                                                                                                to this as AI productivity metrics.
+                                        Keywords                                                                                   While the software engineering literature offers extensive ap-
+                                                                                                                                proaches to measuring developer productivity, such as the SPACE
+                                        developer productivity, large language models, AI coding assistants                     framework [14] and DORA metrics [12], comparatively little at-
+                                        ACM Reference Format:                                                                   tention has been given to productivity in the context of AI coding
+                                        Valerie Chen, Jasmyn He, Behnjamin Williams, Jason Valentino, and Ameet                 assistants. As tools like GitHub Copilot and Cursor become increas-
+                                        Talwalkar. 2026. Beyond the Commit: Developer Perspectives on Produc-                   ingly embedded in everyday workflows, it is essential to examine
+                                        tivity with AI Coding Assistants. In 2026 IEEE/ACM 48th International Con-              how their properties differ from existing tools. AI coding assis-
+                                        ference on Software Engineering (ICSE-SEIP ’26), April 12–18, 2026, Rio de              tants support a wide and expanding scope of tasks but generate
+                                        Janeiro, Brazil. ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/              outputs that are inherently non-deterministic [22], in contrast to
+                                        3786583.3786848
+                                                                                                                                traditional developer aids. Tools such as SonarQube, a widely used
+                                                                                                                                static analysis system, operate on well-defined inputs and outputs,
+                                                                                                                                producing consistent results under the same conditions. Likewise,
+                                        This work is licensed under a Creative Commons Attribution 4.0 International License.   integrated development environment features such as automated
+                                        ICSE-SEIP ’26, Rio de Janeiro, Brazil                                                   code formatting (e.g., Prettier) or linting (e.g., ESLint) apply de-
+                                        © 2026 Copyright held by the owner/author(s).                                           terministic transformations and rule-based checks, guaranteeing
+                                        ACM ISBN 979-8-4007-2426-8/2026/04
+                                        https://doi.org/10.1145/3786583.3786848                                                 identical outputs for identical code. These contrasts highlight why
+ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil                                                                              Chen et al.
+
+
+evaluating the productivity impacts of AI coding assistants requires      productivity was the strongest predictor of team-level productivity,
+new perspectives that account for their variability, unpredictability,    even more so than meetings or coordination activities. Similarly,
+and broader task coverage.                                                organizational and individual measures of engineering success can
+   We approach this investigation using a mixed-methods research          diverge, highlighting the need to separate different layers of mea-
+approach that leverages large-scale survey and semi-structured            surement [21]. Complementing these perspectives, new telemetry-
+interviews with developers at BNY Mellon. First, we demonstrate           driven metrics such as Diff Authoring Time (DAT) provide fine-
+why a holistic understanding across metrics is important by sur-          grained signals of developer effort at scale [2].
+veying nearly three thousand developers. We deploy the Developer              More recent frameworks have aimed to unify multiple facets
+Experience (DX) survey framework [17] across the company to col-          of productivity measures. For example, the SPACE framework dis-
+lect perceptions of productivity with AI coding assistants, focusing      tills both objective and subjective considerations across individuals,
+on two core questions: developers’ satisfaction with AI tools and         teams, and organizations [14], while the DORA metrics focus on
+their perceived time savings. Our survey results show that, while         DevOps performance [13]. Despite these advances, most frame-
+satisfaction with coding assistants like GitHub Copilot is high, re-      works were developed for traditional or DevOps workflows and
+ported time savings are relatively modest. This finding underscores       do not explicitly address the unique characteristics of AI coding
+the need for holistic evaluation frameworks and motivates our sub-        assistants, which is the focus of our work.
+sequent qualitative inquiry into diverse productivity dimensions.
+   Next, we explore the diversity and breadth of potential produc-            Measuring productivity with AI coding assistants. The adoption
+tivity metrics by conducting 11 semi-structured interviews with de-       of AI coding assistants has risen sharply in recent years, with tools
+velopers of varying backgrounds and levels of seniority. We identify      such as GitHub Copilot and Cursor now integrated into major IDEs
+six considerations that influence productivity across development,        and workflows used by millions of developers [16]. Their use spans
+deployment, and long-term career trajectories: self-sufficiency,          a number of day-to-day developer tasks such as code completion,
+frustration and cognitive load, task completion rate,                     automated documentation, refactoring suggestions, and even test
+ease of peer review, technical expertise, and ownership                   generation [38, 43]. To evaluate the impact of these tools on devel-
+of work. Notably, long-term factors such as technical expertise           oper productivity, many user studies have been conducted with
+development and sense of ownership have received little attention         popular assistants like GitHub Copilot or bespoke tools powered
+in prior research. These findings reinforce that productivity is inher-   by different LLMs. However, the findings are mixed.
+ently multi-dimensional and cannot be captured by a single metric.            For example, Weisz et al. [41] found that different users bene-
+To contextualize these dimensions, we apply them to common use            fited to varying degrees when using AI coding assistants. Ziegler
+cases surfaced through the interviews, which include implementing         et al. [43] found that developers who used GitHub Copilot reported
+a new feature, refactoring existing code, and generating documen-         higher productivity levels. Comparative evaluations across multiple
+tation or test cases, to illustrate how AI productivity measures may      assistants (e.g., Copilot, TabNine, ChatGPT) further demonstrate
+have varying impacts on different use cases.                              heterogeneous outcomes in correctness, speed, and acceptance [10].
+   We conclude by offering recommendations for operationalizing           At the same time, large-scale field studies of AI-enabled code search
+these factors in empirical studies and industry evaluations and           illustrate that adoption is uneven and effectiveness must outweigh
+providing a discussion that compares our factors to existing work         switching costs to drive real productivity benefits [23]. Comple-
+on developer productivity. We hope our work motivates and lays            mentary perspectives even propose physiological or cognitive-load
+the the groundwork for more nuanced, context-aware productivity           measures, such as those gathered via wearables, as additional dimen-
+measurement in AI-augmented software engineering.                         sions to capture productivity impacts of generative AI [3]. Across
+                                                                          these studies, inconsistent metrics are employed to study productiv-
+2    Related Work                                                         ity, leading to different downstream conclusions. Thus, we create
+We outline two areas relevant to our study: (1) productivity mea-         a similar framework—like SPACE/DORA—but specifically tailored
+sures in software engineering, including traditional and contempo-        for AI coding assistants.
+rary frameworks, and (2) empirical work on measuring productivity
+with AI coding assistants.                                                3   Research Design
+   Background on productivity in software engineering. Productiv-         We employed a sequential exploratory mixed-methods research
+ity in software engineering has been a growing area of research,          design [11] involving two phases. First, we conducted a large-scale
+which has increasingly shown how productivity is a multi-faceted          survey of nearly three thousand developers at BNY Mellon to quan-
+construct [35]. It has traditionally been evaluated through quanti-       tify perceptions of productivity with AI coding assistants using
+tative metrics like the ratio of output to effort, including lines of     two different metrics. This quantitative phase allowed us to mea-
+code over time, software complexity, and the presence of errors or        sure the prevalence of key developer experiences at scale. Next,
+defects [18, 20, 24, 27]. However, these measures have well-known         building on these results, we conducted in-depth semi-structured
+limitations in capturing the quality and maintainability of code.         interviews to qualitatively explore the nuanced productivity dimen-
+   More recent work has also emphasized subjective and cogni-             sions and contextual factors that underlie these perceptions. This
+tive dimensions, including developer perception, well-being, and          approach combines broad quantitative insights with rich qualitative
+satisfaction, which are now recognized as essential productivity          understanding to capture the complexity of AI-assisted software
+factors [28]. For example, Ruvimova et al. [34] found that perceived      development to answer the following research questions:
+Beyond the Commit: Developer Perspectives on Productivity with AI Coding Assistants                             ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil
+
+
+  • RQ1: To what extent do different AI productivity metrics align                                     Table 1: Interview Participants.
+    in their assessments?
+  • RQ2: What broader range of AI productivity metrics do devel-                               Seniority       Developer Role          Department Function
+    opers consider relevant in the context of AI coding assistants?
+                                                                                        P1     Early Career    Backend Dev             Customer Products
+  • RQ3: How do developers view the impact of AI productivity
+                                                                                        P2     Mid Career      Full stack Dev          Platform Engineering
+    metrics on different parts of the development process?                              P3     Mid Career      Full stack Dev          Data
+                                                                                        P4     Early Career    Backend Dev             Customer Products
+3.1     Survey                                                                          P5     Mid Career      Frontend Dev            Platform Engineering
+While prior studies have conducted surveys to understand the                            P6     Management      —                       Platform Engineering
+impact of AI coding assistants on various aspects of developer                          P7     Mid Career      Full stack Dev          Customer Products
+experience (e.g., [15, 30, 40]), they have not explicitly analyzed and                  P8     Early Career    Backend Dev             Data
+reported how user responses across different productivity metrics,                      P9     Mid Career      Backend Dev             Data
+                                                                                        P10    Management      —                       Platform Engineering
+which may be used in each of these surveys, correlate with each
+                                                                                        P11    Management      —                       Platform Engineering
+other (RQ1).
+
+   Participants. To recruit a varied and representative group of sur-
+vey respondents, we leveraged the large pool of engineers through-                     3.2    Interview
+out BNY Mellon who actively commit code. The survey was com-                           In addition to large-scale survey responses, we also want to target
+pleted by around 8000 total engineers throughout the company.                          individual developers through semi-structured interviews to un-
+Engineers opted in to answering questions based on whether it was                      derstand how they define different productivity metrics with AI
+relevant to them: it is possible that an engineer who does use AI                      coding tools. This helps us answer both RQ2 and RQ3.
+tools failed to answer the pertinent survey question. Regarding our
+particular questions, we had 2989 respondents—which is a majority                         Participants. We recruited developers across the company based
+of engineers who have access to GitHub Copilot, a specific AI cod-                     on three different criteria to ensure a diverse set of perspectives us-
+ing assistant that developers have access to within the company.                       ing purposive sampling [6]. First, we recruited participants of differ-
+All survey responses were anonymous.                                                   ent levels of seniority: early career (less than 3 years of experience),
+                                                                                       mid-career (more than 3 years of experience), and management
+   Protocol. The survey was conducted using the DX platform [17],                      level. Note that even management-level technical employees still
+which was created by the inventors of the SPACE and DORA frame-                        have experience with using GitHub Copilot (e.g., using them in code
+works. The survey contained two questions that pertain to AI coding                    reviews). We additionally considered the business sector, as the use
+assistants, which are the focus of our work:1                                          case of AI tools may vary. Finally, we recruited participants with
+                                                                                       varying roles in development (full stack, backend, and frontend
+(1) General satisfaction [15, 42]: Consumer Satisfaction score                         engineers). We obtained a list of internal developers with access
+    for GitHub Copilot. The response options are “very dissatisfied,”,                 to GitHub Copilot and filtered based on the list of three criteria
+    “dissatisfied,” “neutral,”, “satisfied,” and “very satisfied.”                     before reaching out to them via Teams to see if they were willing
+(2) Perceived time savings [26]: On average, how much time is                          to participate in the study. We also used snowball sampling [31]
+    saved with GitHub Copilot per week? The response options are                       to identify additional participants. In total, we reached out to an
+    “No time savings,” “1-30 min per week,” “31-60 min per week,”                      equal number of each subgroup, but the response rate varied. The
+    “1-2 hours per week,” and “2+ hours per week.”                                     final list of participants is in Table 1.
+These questions represent two approaches to measuring productiv-
+                                                                                           Protocol. We conducted 11 semi-structured interviews led by the
+ity tools: one looks at an objective metric (albeit estimated by the
+                                                                                       first author. The interviews were conducted virtually via Teams, last-
+user)—similar to prior work—and the other looks at a subjective
+                                                                                       ing between 30 and 45 minutes each. The interview content covered
+metric—which has also been considered in a separate set of prior
+                                                                                       topics around the participants’ engineering and AI background, use
+works. We note that we considered the use of direct objective met-
+                                                                                       cases of GitHub Copilot, and perceptions on productivity metrics.
+rics, like acceptance rates or chat acceptance rates, that do not rely
+on self-reports, but were unable to reliably obtain these metrics                        • Engineering and AI Background. We started each interview
+across all engineers. Participants in the survey could also elaborate                      by asking participants to describe their current role, how long
+on their multiple-choice responses.                                                        they have been at the company, and how many days a week
+                                                                                           they write code. We also inquired about their familiarity with
+   Analysis. In this paper, we report primarily quantitative results                       GitHub Copilot and the frequency at which they use it to write
+from ratings regarding both metrics. We also include brief snippets                        code. For more senior-level interviewees, we asked them to
+of additional comments that were provided by survey respondents.                           describe their prior approaches to software development and
+                                                                                           how it has changed since gaining access to AI tools.
+                                                                                         • Use Cases of AI coding assistants. We asked participants
+1 The two questions presented in our study are part of a larger survey on developer
+                                                                                           to talk through what successful and unsuccessful use cases of
+experience within BNY Mellon. To protect the confidentiality of company metrics and        GitHub Copilot were throughout the software development
+goals, we omit the remainder of the survey questionnaire beyond these two questions.       life cycle. This helps contextualize our discussion of varying
+ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil                                                                                                                                                           Chen et al.
+
+
+                                          GitHub Copilot                                         Time Saved with                                                               Time Savings vs
+                                         User Satisfaction                                        GitHub Copilot                                                             Satisfaction Analysis
+
+ Very dissatisfied       1%                                                  No time           8%                                                       2+ hours      293       351      121       17         6         80
+                                                                             savings                                                                    per week
+                                                                                                                                                                                                                        70
+
+
+
+
+                                                                                                                                                                                                                             Percentage within Time Category (%)
+     Dissatisfied        2%                                                1-30 min                                        29%                          1-2 hours     373       234       45        4         0         60
+
+
+
+
+                                                                                                                                  Time Saved per Week
+                                                                           per week                                                                     per week
+                                                                                                                                                                                                                        50
+          Neutral                  12%                                     31-60 min                                 23%                                31-60 min     397       199       37        3         0         40
+                                                                            per week                                                                     per week
+                                                                                                                                                                                                                        30
+        Satisfied                                     36%                  1-2 hours                                22%                                 1-30 min      368       105       19        1         1         20
+                                                                           per week                                                                     per week
+                                                                                                                                                                                                                        10
+   Very satisfied                                               50%        2+ hours                           18%                                         No time     36        63        59       16         6         0
+                                                                           per week                                                                       savings
+
+                     0        10         20     30      40     50     60               0   5   10     15      20     25    30    35                                   Very Satisfied Neutral Dissatisfied Very
+                                     Percentage of Users (%)                                    Percentage of Users (%)                                             Satisfied                           Dissatisfied
+                                                                                                                                                                            GitHub Copilot Satisfaction
+
+Figure 1: Survey responses from 2989 engineers on productivity with GitHub Copilot. In the left and middle panels, we show
+two different metrics relating to general satisfaction and perceived time savings. In the right panel, we provide a fine-grained
+breakdown of the two metrics.
+
+
+    productivity metrics in grounded use cases in software devel-                                          provide other solutions that reduce complexity and are more efficient.”
+    opment.                                                                                                On the other hand, we find that a majority of engineers (around
+  • Perceptions on productivity metrics. We talked about how                                               60%) report less than one hour of time savings (Figure 1 middle)—
+    they would define productivity in the context of AI coding                                             this is well below the average reported number by other companies
+    assistants (e.g., GitHub Copilot). We also brought up sample                                           of similar sizes, according to DX. In the participant comments, we
+    metrics from prior work, like those used in Section 3.1, and                                           see that this may be due to hallucinations where “asking it to fix it
+    asked them to comment on them.                                                                         does not work and just returns the same wrong answer” or limitations
+                                                                                                           due to certain use cases (i.e., “does not work as well for C#”).
+Upon completion of the interview, participants were compensated
+                                                                                                              These results suggest that developers can be satisfied with AI
+with internal company points for their time.
+                                                                                                           coding assistants like GitHub Copilot without necessarily getting
+   Analysis. For our semi-structured interview data, we recorded                                           significant time savings. When we correlate individual responses
+and transcribed each interview in addition to taking observational                                         on the two questions (𝑁 = 2754), we find a Pearson Correlation
+notes. To answer RQ2, we conducted inductive open coding and                                               Score of 𝑟 = 0.34, a positive but weak correlation (𝑝 < 0.0001).
+applied a descriptive thematic analysis of all responses to the ques-                                      When looking into the breakdown by category in Figure 1 (right),
+tions about perceptions on productivity metrics. We organize re-                                           we can see nearly 400 developers are very satisfied with GitHub
+curring patterns in the interview data, iterating multiple times to                                        Copilot despite saving only 30 minutes per week, while there are
+refine the resulting set of factors impacting developer productiv-                                         over 100 developers who save over 2+ hours a week but are neutral
+ity [1, 4]. We then map the set of factors to relevant phases in the                                       or dissatisfied with the tool. This type of cross-metric analysis
+software development process to contextualize how productivity                                             demonstrates why productivity may not necessarily be captured
+effects arise across development, deployment, and long-term main-                                          with a single metric, motivating a follow-up interview study.
+tenance. To address RQ3, we also created codes corresponding to
+GitHub Copilot use cases mentioned by multiple participants for
+the case studies, focusing our discussion on the top three most                                            4.2      RQ2: Which AI productivity metrics are
+common ones. Quotations have been lightly edited for concision                                                      important to developers?
+and grammar.                                                                                               As we showed in RQ1, one or two metrics are not sufficient to cap-
+                                                                                                           ture developer perspectives. To identify a diverse set of metrics, we
+4 Results                                                                                                  interviewed 11 developers across BNY Mellon. We identify 6 factors
+4.1 RQ1: Do AI productivity metrics align with                                                             to consider when measuring the impact of AI coding assistants. We
+                                                                                                           group them into the development process, the deployment process,
+    each other?
+                                                                                                           and the long-term impact.
+Figure 1 overviews the responses of 2898 engineers who answered
+at least one of the questions on general satisfaction and perceived
+time savings with GitHub Copilot. On one hand, we find that most                                           4.2.1 Impact on software development. During the development
+engineers are satisfied with their experience: 86% are either satisfied                                    process, it is important to consider how a developer feels when they
+or very satisfied (Figure 1 left). As one survey respondent described:                                     are writing code (P4) and whether the AI assistant is improving or
+“Its helping a lot in day-to-day work. It is providing to correct and help                                 hurting that experience. We identify two key factors:
+Beyond the Commit: Developer Perspectives on Productivity with AI Coding Assistants                           ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil
+
+
+   (Factor 1) Do AI tools improve self-sufficiency? A                                 producing such code may have unforeseen impacts when it comes
+challenge that developers had before getting access to GitHub Copi-                   to the review process. One senior manager noted that a recurring
+lot was the need to frequently context-switch when seeking help                       issue they observed with their junior developers when reviewing
+or feedback from external resources, whether it be a co-worker or                     their code is that “a problem if you optimize a piece of it” but it is
+Stack Overflow. P2 shared how getting help may require “poking                        not being optimized for the right things, leading others to spend
+people individually and exhausting various resources like Google and                  additional time fixing these issues (P2). Along with this same con-
+Stack Overflow.” When using GitHub Copilot to write code, this                        cern, P6 wondered how extensively junior engineers were testing
+is no longer the case if GitHub Copilot can easily infer what the                     their code, indicating that increased usage of coding assistants at
+developer wants and seamlessly provide the response or the next                       an earlier stage of a career may also impact how easily others can
+few lines of code. When dealing with projects that require upgrad-                    review their code or vice versa. However, for senior developers,
+ing on the order of “30-40 libraries,” P5 notes that they “never visit                Copilot can even aid in facilitating the code review process by
+Stack Overflow now.” Multiple participants noted feeling more self-                   quickly summarizing changes (P3, 10).
+sufficient with the AI assistant, likening the experience to “working
+                                                                                      4.2.3 Longer-term Developer Impact. Many interviewees also touched
+with a co-worker” (P5) or “a friend” (P7). A related challenge is
+                                                                                      on factors that were outside of the immediate development and
+when working on projects that require multiple languages (e.g.,
+                                                                                      deployment cycle and not immediately quantifiable.
+both Java and Python); having GitHub Copilot reduces the amount
+of documentation to look at (P4). In summary, P10 noted that “if                          (Factor 5) Do AI tools improve technical expertise?
+the team can focus on other things, cognitive effort can be offloaded                 Many interviewees emphasized the importance of growth as a
+by allowing team members to focus on other work.”                                     developer over time, rather than just an individual’s output per
+                                                                                      sprint. Interviewees touched on the importance of teaching junior
+   (Factor 2) Do AI tools reduce the level of frustration
+                                                                                      developers the proper way to code—whether it is thinking about
+and cognitive load? Outputs from GitHub Copilot are not per-
+                                                                                      architecture patterns or infrastructure considerations—and appro-
+fect. As such, figuring out how to properly integrate LLM responses
+                                                                                      priately scaffolding AI into this process remains challenging. In
+can add cognitive load for the developer. P8 noted how they need
+                                                                                      fact, having access to AI too early might disrupt one’s learning:
+to be “really careful with copying responses, otherwise they may not
+                                                                                      “If I have a team member who is brand new, they need to learn new
+realize there is another change.” There may also be challenges in
+                                                                                      technology. However, if the code just works, then you just accept it”
+terms of figuring out what is the best way to prompt the AI assis-
+                                                                                      (P10). P7 reflected on their experience as a developer before getting
+tant for the correct outputs. One developer (P3) reflected on the
+                                                                                      access to GitHub Copilot—an experience that junior developers no
+non-deterministic nature of LLMs, stating how you need to ask “ask
+                                                                                      longer have: “you need to know how to analyze. We had to go through
+four or five times to get the correct answer, even if you ask the same
+                                                                                      tons and tons of stack traces, which helped at a later point.” While
+thing.” This may be a problem, especially for junior developers,
+                                                                                      P6 was concerned about similar issues, they were also optimistic
+“because they never wrote anything from scratch. Given a template,
+                                                                                      about some skills that junior personnel may no longer need to
+they don’t know what to do with it.”
+                                                                                      learn, likening this transition phase to “learning handwriting skills”
+4.2.2 Impact on software deployment. The impact of AI assistants                      which are no longer as important. However, when used correctly,
+can be seen not only on a developer’s day-to-day workflow, but                        GitHub Copilot can facilitate developers in building new technical
+also on a team’s general performance.                                                 expertise. For example, P11 described how they can easily “look up
+                                                                                      and get examples of security topics that they are not aware of ” with
+   (Factor 3) Do AI tools improve the rates of and
+                                                                                      AI assistants.
+quality of task completion? Many participants noted the im-
+portance of measuring throughout (P5,9,11)—i.e., the rate at which                       (Factor 6) Do AI tools impact a developer’s sense
+individual or teams can complete a well-defined task, and quantify-                   of ownership of work? In addition to their technical expertise,
+ing how that is impacted by the use of AI assistants. This factor is                  interviewees talked about the importance of feeling like they owned
+most similar to metrics reported in prior work, though participants                   the code that they wrote. In particular, developers mentioned how
+provided different suggestions to quantify this benefit. For example,                 they valued the perceived authorship and accountability towards
+P5 said that if it previously took them “5 days, target finish in 3                   a piece of software, particularly how there is “nothing like doing
+days and do 2 days of testing. If I can write it in X number of lines,                it yourself ” (P1,3,5). This can be especially helpful when there is
+can Copilot do the same thing in 1 day.” However, P9 noted that                       a production issue, as developers who have a deep knowledge of
+the number of lines is not the only benchmark of progress: it is                      the code feel like they can fix the issues faster. For example, P9
+“not necessarily the amount of code you have written, but rather the                  described how “if you wrote the majority of it, you’d know exactly
+criticality of the work and what kind of benefit the company is seeing.”              where the issue is and know where to look.”
+Using simple metrics like the number of lines of code written does
+not necessarily correlate with impact. Relatedly, P11 added that it                   4.3    RQ3: How do AI productivity metrics impact
+remains a challenge within the company to quantify these metrics,                            the workflow?
+rather than simply relying on developer perceptions.
+                                                                                      In our semi-structured interviews, developers discussed multiple
+   (Factor 4) Do AI tools positively impact the peer                                  use cases for GitHub Copilot in their day-to-day workflows. We
+review process? Peer review of code is critical to deploying reli-                    highlight three of the most mentioned use cases, discuss how
+able software to production. However, the use of AI assistants in                     GitHub Copilot impacts each use case, and analyze how the use
+ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil                                                                                     Chen et al.
+
+
+
+       Use Cases                                           Impact Factors        existing code—e.g., refactoring a large code base or legacy applica-
+                                                                                 tions that have been “written a bunch of ways” (P3,4), interviewees
+                                                                                 described that the bulk of work is understanding what changes to
+                                                            Self-sufficiency     make and not necessarily in terms of making the changes them-
+                                                             improvement
+                                                                                 selves, which may only be a few lines of code changes. P11 describes
+       Implementing                                                              “how 70-80% of the time is about reading code, then only spending
+        new features                                                             10-20% is about writing code,” in fact not benefiting much from AI
+                                                             Frustration &
+                                                             cognitive load      assistance if they “already know where to put the code.” However,
+                                                               reduction         AI typically would fail without “a lot of context” and “very specific
+                                                                                 instructions” (P7). Across the board, developers find it challeng-
+                                                                                 ing to use GitHub Copilot to refactor code, particularly impacting
+        Improving                                            Task completion     deployment—i.e., task completion rate (Factor 3) and ease of peer
+       existing code                                        rate acceleration    review (Factor 4).
+
+                                                                                 4.3.3 Use Case 3: Generating test cases and documentation (P3,4,5,7,11).
+                                                              Ease of peer       In addition to generating code for new features, GitHub Copilot
+                                                           review challenges     are also used to generate tests and documentation for code [25, 39].
+    Generating tests                                                             Interviewees described test case generation and documentation as
+   and documentation                                                             fairly “boilerplate” tasks where developers rely on AI to automate
+                                                                                 the process (P4,7). As a result, P7 described how this is a task that
+                                                           Technical expertise
+                                                             enhancement         could have taken one day to complete without AI help, but now it
+                                                                                 can be done within one hour. Developer sentiment suggests that
+               Legend:                                                           GitHub Copilot can be overall helpful, particularly in reducing frus-
+                           Positive Impact                                       tration (Factor 2) and speeding up the rate of task completion
+                                                             Ownership of
+                           Negative Impact                   work concerns       (Factor 3). However, as a word of caution in line with building
+                                                                                 appropriate technical expertise (Factor 5), P5 noted that “it’s still
+                                                                                 important to think through the scenarios the tests should cover.”
+
+Figure 2: Mapping use cases of GitHub Copilot to productivity                    5     Discussion
+metrics, both in terms of positive and negative impact based                     Based on our findings, we discuss how to operationalize our AI pro-
+on interviewee sentiment.                                                        ductivity factors in real-world development contexts and compare
+                                                                                 the factors we identified to other metrics that have been proposed
+of coding assistants impacts the proposed factors. Overall, we find              in prior work.
+that the impact of GitHub Copilot on productivity factors varies by
+use cases (Figure 2), which highlights the importance of carefully               5.1    Operationalizing AI productivity factors
+considering the context of usage when making productivity claims.                For companies interested in incorporating a more holistic eval-
+4.3.1 Use Case 1: Implementing new features (P1,2,3,6,8,11). One                 uation of AI productivity or researchers conducting user studies
+of the predominant use cases of GitHub Copilot is to write code                  evaluating LLM use in production settings, we discuss what it would
+to implement new features [33]. Interviewees described how AI                    take to operationalize the factors we present in this work. We antic-
+can easily provide multiple implementations and “turn out far more               ipate that these considerations will be increasingly important given
+lines of code” than a human developer can (P6). While AI can give                the large number of potential AI tools for software development.
+developers a good starting point, there are concerns about “blindly
+                                                                                     Periodic surveys of user experience. Many companies are increas-
+copying and pasting” AI outputs (P1,3). However, we see a varied
+                                                                                 ingly adopting survey approaches to periodically get feedback from
+impact on short versus long-term metrics in terms of implementing
+                                                                                 their developers, whether through informal forms or through more
+new features and improving existing code, particularly for develop-
+                                                                                 sophisticated platforms like DX. However, even platforms like DX
+ers who have not had as much experience writing code on their own.
+                                                                                 are still geared towards general developer experiences and there is
+Interviewees discussed how using GitHub Copilot may improve
+                                                                                 little focus on AI coding assistants. As we showed in the large-scale
+certain factors in the shorter term—e.g., reduce frustration and
+                                                                                 survey earlier, questions around AI coding assistants are limited to
+cognitive load (Factor 2) and development time (Factor 3), but
+                                                                                 consumer satisfaction and perceived time saved. The two questions
+expressed concern about junior developers over-relying on GitHub
+                                                                                 can each be grouped under Factor 2 and Factor 3 respectively,
+Copilot at the expense of long-term technical expertise (Factor 5)
+                                                                                 though there are additional nuances that can be studied through
+as well as ownership (Factor 6).
+                                                                                 more in-depth questionnaires. For each factor, we highlight more
+4.3.2 Use Case 2: Improving existing code (P3,4,7,9,10). In addition             granular questions that can be included in future surveys based on
+to implementing new features, developers would also like GitHub                  points raised by participants in semi-structured interviews (Table 2).
+Copilot to improve an existing code base [7, 9, 36]. To improve                  Depending on the particular interest (e.g., impact on development
+Beyond the Commit: Developer Perspectives on Productivity with AI Coding Assistants                             ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil
+
+
+Table 2: We identify 6 factors impacting developer productivity with AI coding assistants that span short- to long-term
+dimensions. Based on participant quotes, we curate questions to facilitate future evaluations of each factor.
+
+ Impact on Development                                   Impact on Deployment                                 Longer-term Developer Impact
+ (1) Self-sufficiency:
+                                                         (3) Rate of task completion:                         (5)Technical expertise:
+  • What questions do developers still
+                                                          • By what measurable margin (time                    • Do junior engineers over-rely on AI,
+    escalate to teammates or external
+                                                            saved, lines of code written, bugs                   and how does this affect onboarding or
+    resources?
+                                                            avoided) do tasks complete faster?                   learning?
+  • To what extent does AI reduce
+                                                          • Which categories of tasks (e.g.,                   • Are developers at risk of skill decay
+    context-switching between tools (e.g.,
+                                                            boilerplate, bug fixing, design-heavy                due to continued AI usage?
+    docs, Stack Overflow, Google)?
+                                                            work) are accelerated most by AI?                  • How can management monitor and
+  • How confident are developers in
+                                                          • Do developers feel AI frees up time for              balance against potential loss of
+    relying solely on AI suggestions for
+                                                            more creative or higher-value work?                  expertise?
+    everyday work?
+                                                                                                              (6) Ownership of work:
+ (2) Frustration & cognitive load:                       (4) Ease of peer review:
+                                                                                                               • Do developers maintain a deep
+  • How often do developers experience                    • Does AI-generated code require more,
+                                                                                                                 understanding of codebases when AI
+    frustration due to irrelevant, incorrect,               less, or different types of review
+                                                                                                                 contributes significantly?
+    or repetitive AI suggestions?                           comments?
+                                                                                                               • Does AI affect perceived authorship,
+  • How much time is spent reformulating                  • Does the use of AI affect trust between
+                                                                                                                 accountability, and willingness to
+    or experimenting with prompts?                          reviewers and authors?
+                                                                                                                 maintain code?
+  • How does mental fatigue compare on                    • Can reviewers distinguish between AI-
+                                                                                                               • How does reliance on AI shape
+    days with heavy AI use versus                           and human-written code? Does this
+                                                                                                                 long-term identity of a developer and
+    without?                                                matter for review quality?
+                                                                                                                 broader team culture?
+
+              Table 3: Comparison of our identified productivity factors with existing frameworks and prior studies.
+
+                  Factor                                        SPACE/DORA?              Prior Studies
+                  (1) Self-sufficiency                          No
+                                                                                         • Weisz et al. [41]: variation in how much developers
+                                                                                           relied on AI assistance
+                  (2) Reduced cognitive load                    Yes (SPACE)
+                                                                                         • Ziegler et al. [43]: Copilot improved perceived effi-
+                                                                                           ciency and flow
+                                                                                         • Mozannar et al. [29]: assistants reduce developer
+                                                                                           effort in complex tasks
+                  (3) Rate of task completion                   Yes (DORA)
+                                                                                         • Imai [19]: AI tools increased lines of code but not
+                                                                                           necessarily useful output
+                  (4) Ease of peer review                       Yes (SPACE)
+                                                                                         • Nguyen and Nadi [32]: AI code quality issues com-
+                                                                                           plicating review
+                  (5) Long-term technical expertise             No                       N/A
+                  (6) Long-term Ownership of work               No                       N/A
+
+
+versus deployment), the company or researcher might tailor survey                     capture concrete time spent either completing the task (Factor 3)
+questions accordingly.                                                                or in the peer review process (Factor 4). It remains that we largely
+                                                                                      rely on survey-based approaches to measure the perceived time
+   Analyses of developer interactions with AI coding assistants. Be-                  saved rather than the actual time saved—prior work has shown that
+yond user surveys, objective metrics may also help measure the                        users themselves may not reliably report the amount of time sav-
+impact of AI coding assistants on deployment-related factors. Com-                    ings. Companies deploying these tools may benefit from scaffolding
+mit frequency and code completion acceptance are frequently used                      measures around Factors 3 and 4.
+to measure a developer’s usage of AI coding assistants. While these
+metrics are relevant to deployment factors, they are not able to
+ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil                                                                                           Chen et al.
+
+
+5.2     Comparison to Prior Work                                          Copilot, which is representative of many features of many current
+Finally, we discuss our findings in the context of prior work on mea-     coding assistants. However, we were not able to assess the user
+suring developer productivity. We focus on two categories: general        experience with other AI coding assistants. While new, emerging
+developer productivity and productivity with AI tools, summarized         tools may include more agentic workflows [8], those were out of
+in Table 3.                                                               scope for this work. Further, our findings provide a set of factors
+                                                                          and recommendations for measuring AI productivity and how to
+   Factors present in frameworks on general developer productivity.       operationalize these factors in practice. Due to the aforementioned
+Existing frameworks like DORA and SPACE capture only part of              limitations, the factors may not be fully comprehensive.
+the productivity factors we identify. DORA emphasizes throughput
+and stability—measures such as deployment frequency, lead time
+for changes, and change failure rate—which align closely with             6    Conclusion
+our rate of task completion factor (Factor 3). SPACE provides             Understanding productivity in the age of AI coding assistants re-
+broader coverage: its dimension of efficiency and flow resonates          quires rethinking established measures and frameworks. We lever-
+with our reduced friction / cognitive load factor (Factor 2), while its   age a mixed-methods approach to show that developer productiv-
+emphasis on collaboration and communication overlaps with our             ity using AI coding assistants cannot be captured by single met-
+ease of peer review factor (Factor 4). By contrast, self-sufficiency      rics alone. First, our survey results revealed high satisfaction but
+(Factor 1) is not explicitly addressed in these frameworks, likely        only modest time savings, underscoring the limits of efficiency-
+because traditional developer tools were more well-scoped and             focused measures. Second, our semi-structured interviews surfaced
+deterministic, with minimal impacts on a developer’s independence         six factors, ranging from self-sufficiency and reduced cognitive
+or reliance on the tool.                                                  load to long-term expertise and ownership, that capture both im-
+                                                                          mediate and long-term impacts. By framing productivity as multi-
+    Implications on Productivity with AI Tools. We find studies gen-
+                                                                          dimensional and context-dependent, this work offers a foundation
+erally consider metrics that span Factors 1-4 that pertain to
+                                                                          for more holistic evaluations of AI coding assistants for future
+impacts on development and deployment. For example, many of
+                                                                          research and industry deployments.
+the aforementioned SPACE dimensions have been operationalized
+in GitHub’s survey of Copilot users [15]. Industry-wide studies
+have operationalized productivity using a range of different metrics      References
+that map onto our factors. For example, Ziegler et al. [43] measured       [1] Sirwan Khalid Ahmed, Ribwar Arsalan Mohammed, Abdulqadir J Nashwan,
+                                                                               Radhwan Hussein Ibrahim, Araz Qadir Abdalla, Barzan Mohammed M Ameen,
+reduced friction through self-reported efficiency and flow; Weisz et           and Renas Mohammed Khdhir. 2025. Using thematic analysis in qualitative
+al. [41] captured self-sufficiency by examining the extent to which            research. Journal of Medicine, Surgery, and Public Health 6 (2025), 100198.
+developers relied on AI assistance; Imai [19] evaluated task comple-       [2] Moritz Beller, Amanda Park, Karim Nakad, Akshay Patel, Sarita Mohanty, Ford
+                                                                               Garberson, Ian G Malone, Vaishali Garg, Henri Verroken, Andrew Kennedy, et al.
+tion using lines of code and functional correctness; and Nguyen and            2025. What’s DAT? Three Case Studies of Measuring Software Development
+Nadi [32] studied peer review challenges by analyzing code quality             Productivity at Meta With Diff Authoring Time. arXiv preprint arXiv:2503.10977
+and reviewability of AI-generated suggestions.                                 (2025).
+                                                                           [3] Charlotte Brandebusemeyer. 2025. Interactions with Generative AI: Wearables
+                                                                               to Measure Developer Experience and Productivity Objectively. In Proceedings of
+   Prior work tends to miss out on long-term factors. Our study high-          the IEEE/ACM 47th International Conference on Software Engineering: Companion
+lights how long-term factors — long-term technical expertise and               Proceedings (Ottawa, Ontario, Canada) (ICSE ’25). IEEE Press, 148–150. doi:10.
+ownership of work (Factors 5 and 6)—remain largely unaddressed                 1109/ICSE-Companion66252.2025.00043
+                                                                           [4] Virginia Braun and Victoria Clarke. 2006. Using thematic analysis in psychology.
+in existing frameworks and surveys. Participants in our study voiced           Qualitative research in psychology 3, 2 (2006), 77–101.
+concerns that over-reliance on AI could erode debugging profi-             [5] Tom Brown, Benjamin Mann, Nick Ryder, et al. 2020. Language Models are Few-
+ciency among junior engineers or weaken collective ownership of                Shot Learners. In Advances in Neural Information Processing Systems (NeurIPS).
+                                                                           [6] Steve Campbell, Melanie Greenwood, Sarah Prior, Toniele Shearer, Kerrie Walkem,
+code. These longer-term effects are particularly salient for emerging          Sarah Young, Danielle Bywaters, and Kim Walker. 2020. Purposive sampling:
+technologies such as code agents, whose autonomy and sustained                 complex or simple? Research case examples. Journal of research in Nursing 25, 8
+                                                                               (2020), 652–661.
+interaction with developers may amplify such dynamics. By extend-          [7] Mark Chen, Jerry Tworek, Heewoo Jun, and et al. 2021. Evaluating Large
+ing beyond short-term outcomes to incorporate long-term risks                  Language Models Trained on Code. arXiv preprint arXiv:2107.03374. (2021).
+and trade-offs, our framework complements existing frameworks                  https://arxiv.org/abs/2107.03374
+                                                                           [8] Valerie Chen, Ameet Talwalkar, Robert Brennan, and Graham Neubig. 2025.
+and studies with qualitative insights into how AI tools reshape the            Code with me or for me? how increasing ai automation transforms developer
+developer experience over time.                                                workflows. arXiv preprint arXiv:2507.08149 (2025).
+                                                                           [9] Jonathan Cordeiro, Shayan Noei, and Ying Zou. 2024. An empirical study
+                                                                               on the code refactoring capability of large language models. arXiv preprint
+5.3     Threats to Validity                                                    arXiv:2411.02320 (2024).
+The surveys and interviews conducted in this work were limited            [10] Vincenzo Corso, Leonardo Mariani, Daniela Micucci, and Oliviero Riganelli. 2024.
+                                                                               Generating java methods: An empirical assessment of four ai-based code assis-
+to one company where there was growing adoption of AI coding                   tants. In Proceedings of the 32nd IEEE/ACM International Conference on Program
+assistants by developers. While the results may not generalize to all          Comprehension. 13–23.
+                                                                          [11] John W Creswell, Vicki L Plano Clark, Michelle L Gutmann, and William E
+other organizations or to independent developers, we attempted to              Hanson. 2003. Advanced mixed methods research designs. Handbook of mixed
+recruit a diverse set of participants that ranged in terms of sector,          methods in social and behavioral research 209, 240 (2003), 209–240.
+development expertise, and year of experience to maximize cov-            [12] Nicole Forsgren, Jez Humble, and Gene Kim. 2018. Accelerate: The Science of Lean
+                                                                               Software and DevOps. IT Revolution.
+erage. The primary external AI coding assistant that engineers in         [13] Nicole Forsgren and Mik Kersten. 2018. DevOps Metrics. Commun. ACM 61, 4
+this company have access to during the time of the study is GitHub             (2018), 44–48. doi:10.1145/3159169
+Beyond the Commit: Developer Perspectives on Productivity with AI Coding Assistants                                     ICSE-SEIP ’26, April 12–18, 2026, Rio de Janeiro, Brazil
+
+
+[14] Nicole Forsgren, Margaret-Anne Storey, Chandra Maddila, Thomas Zimmermann,                IEEE, 151–160.
+     Brian Houck, and Jenna Butler. 2021. The SPACE of Developer Productivity:            [37] Fangchen Song, Ashish Agarwal, and Wen Wen. 2024. The Impact of Generative
+     There’s more to it than you think. ACM Queue 19, 1 (2021).                                AI on Collaborative Open-Source Software Development: Evidence from GitHub
+[15] GitHub. 2022. Research: Quantifying GitHub Copilot’s impact on developer pro-             Copilot. arXiv preprint arXiv:2401.01812 (2024).
+     ductivity and happiness. https://github.blog/2022-09-07-research-quantifying-        [38] Priyan Vaithilingam, Tianyi Zhang, and Elena L. Glassman. 2022. Expectation
+     github-copilots-impact-on-developer-productivity-and-happiness/.                          vs. Experience: Evaluating the Usability of Code Generation Tools Powered by
+[16] GitHub. 2023. The State of the Octoverse 2023: The Year AI Changed Software               Large Language Models. In CHI 2022 Extended Abstracts. 1–7.
+     Development. https://virtualizationreview.com/articles/2023/11/09/octoverse-         [39] Wenhan Wang, Chenyuan Yang, Zhijie Wang, Yuheng Huang, Zhaoyang Chu, Da
+     2023.aspx. Accessed: 2025-08-29.                                                          Song, Lingming Zhang, An Ran Chen, and Lei Ma. 2024. Testeval: Benchmarking
+[17] Michaela Greiler, Margaret-Anne Storey, and Abi Noda. 2022. An actionable                 large language models for test case generation. arXiv preprint arXiv:2406.04531
+     framework for understanding and improving developer experience. IEEE Trans-               (2024).
+     actions on Software Engineering 49, 4 (2022), 1411–1425.                             [40] Justin D Weisz, Shraddha Vijay Kumar, Michael Muller, Karen-Ellen Browne,
+[18] Maurice H. Halstead. 1977. Elements of Software Science. Elsevier.                        Arielle Goldberg, Katrin Ellice Heintze, and Shagun Bajpai. 2025. Examining the
+[19] Saki Imai. 2022. Is GitHub copilot a substitute for human pair-programming? an            use and impact of an ai code assistant on developer productivity and experience
+     empirical study. In Proceedings of the ACM/IEEE 44th International Conference on          in the enterprise. In Proceedings of the Extended Abstracts of the CHI Conference
+     Software Engineering: Companion Proceedings (Pittsburgh, Pennsylvania) (ICSE              on Human Factors in Computing Systems. 1–13.
+     ’22). Association for Computing Machinery, New York, NY, USA, 319–321. doi:10.       [41] Justin D. Weisz, Michael Muller, Steven I. Ross, Fernando Martinez, Stephanie
+     1145/3510454.3522684                                                                      Houde, Mayank Agarwal, Kartik Talamadupula, and John T. Richards. 2022. Better
+[20] Amy J Ko and Brad A Myers. 2005. A framework and methodology for study-                   Together? An Evaluation of AI-Supported Code Translation. In Proceedings of
+     ing the causes of software errors in programming systems. Journal of Visual               the 27th International Conference on Intelligent User Interfaces. 369–391.
+     Languages & Computing 16, 1-2 (2005), 41–84.                                         [42] Erin Yepis. 2024.       Developers get by with a little help from AI: Stack
+[21] Carol S Lee, Morgan Ramsey, and Catherine M Hicks. 2023. Is Our Organization              Overflow Knows code assistant pulse survey results.               Stack Overflow
+     Actually Measuring Productivity? How Contrasting Organizational and Individ-              Blog. https://stackoverflow.blog/2024/05/29/developers-get-by-with-a-little-
+     ual Measures of Engineering Success is an Opportunity to Drive Engineering                help-from-ai-stack-overflow-knows-code-assistant-pulse-survey-results/
+     Transformation. arXiv preprint arXiv:2305.11030 (2023).                              [43] Albert Ziegler, Eirini Kalliamvakou, X. Alice Li, Andrew Rice, Devon Rifkin,
+[22] Jenny T Liang, Chenyang Yang, and Brad A Myers. 2024. A large-scale survey                Shawn Simister, Ganesh Sittampalam, and Edward Aftandilian. 2024. Measuring
+     on the usability of ai programming assistants: Successes and challenges. In               GitHub Copilot’s Impact on Productivity. Commun. ACM 67, 3 (2024), 54–63.
+     Proceedings of the 46th IEEE/ACM international conference on software engineering.
+     1–13.                                                                                Received 20 February 2007; revised 12 March 2009; accepted 5 June 2009
+[23] Chao Liu, Xindong Zhang, Hongyu Zhang, Zhiyuan Wan, Zhan Huang, and Meng
+     Yan. 2024. An Empirical Study of Code Search in Intelligent Coding Assistant:
+     Perceptions, Expectations, and Directions. In Companion Proceedings of the 32nd
+     ACM International Conference on the Foundations of Software Engineering (Porto
+     de Galinhas, Brazil) (FSE 2024). Association for Computing Machinery, New York,
+     NY, USA, 283–293. doi:10.1145/3663529.3663848
+[24] Graham C. Low and D. R. Jeffery. 1990. Function Points in the Estimation and
+     Evaluation of the Software Process. IEEE Transactions on Software Engineering
+     16, 3 (1990), 299–312.
+[25] Shuai Lu, Daya Guo, Shuo Ren, Junjie Huang, Alexey Svyatkovskiy, Ambro-
+     sio Blanco, Colin Clement, Dawn Drain, Daxin Jiang, Duyu Tang, et al. 2021.
+     Codexglue: A machine learning benchmark dataset for code understanding and
+     generation. arXiv preprint arXiv:2102.04664 (2021).
+[26] Irina Mariasova, Yanina Ledovaya, Olga Lvova, and Mikhail Bogdanov. 2024.
+     Developers save up to 8 hours per week with JetBrains AI Assistant. JetBrains AI
+     Blog. https://blog.jetbrains.com/ai/2024/04/developers-save-up-to-8-hours-per-
+     week-with-jetbrains-ai-assistant/ Survey with distribution of weekly time saved
+     (e.g., 1–3, 3–5, >8 hours)..
+[27] Thomas J. McCabe. 1976. A Complexity Measure. IEEE Transactions on Software
+     Engineering 2, 4 (1976), 308–320.
+[28] Andre N. Meyer, Thomas Fritz, Gail C. Murphy, and Thomas Zimmermann.
+     2014. Software Developers’ Perceptions of Productivity. In Proceedings of the
+     ACM SIGSOFT International Symposium on Foundations of Software Engineering.
+     192–203.
+[29] Hussein Mozannar, Gagan Bansal, Adam Fourney, and Eric Horvitz. 2024. Mod-
+     eling User Behavior and Costs in AI-Assisted Programming. Proceedings of the
+     ACM on Human-Computer Interaction (CHI) (2024). doi:10.1145/3613904.3641936
+[30] Hussein Mozannar, Valerie Chen, Mohammed Alsobay, Subhro Das, Sebastian
+     Zhao, Dennis Wei, Manish Nagireddy, Prasanna Sattigeri, Ameet Talwalkar, and
+     David Sontag. 2024. The RealHumanEval: Evaluating Large Language Models’
+     Abilities to Support Programmers. arXiv preprint arXiv:2404.02806 (2024).
+[31] Mahin Naderifar, Hamideh Goli, Fereshteh Ghaljaie, et al. 2017. Snowball sam-
+     pling: A purposeful method of sampling in qualitative research. Strides in devel-
+     opment of medical education 14, 3 (2017), 1–6.
+[32] Nhan Nguyen and Sarah Nadi. 2022. An empirical evaluation of GitHub copilot’s
+     code suggestions. In Proceedings of the 19th International Conference on Mining
+     Software Repositories. 1–5.
+[33] Sida Peng, Eirini Kalliamvakou, Peter Cihon, and Mert Demirer. 2023. The Impact
+     of AI on Developer Productivity: Evidence from GitHub Copilot. arXiv preprint
+     arXiv:2306.08516 (2023).
+[34] Anastasia Ruvimova, Alexander Lill, Jan Gugler, Lauren Howe, Elaine Huang,
+     Gail Murphy, and Thomas Fritz. 2022. An exploratory study of productivity
+     perceptions in software teams. In Proceedings of the 44th International Conference
+     on Software Engineering. 99–111.
+[35] Caitlin Sadowski and Thomas Zimmermann. 2019. Rethinking Productivity in
+     Software Engineering. Morgan Kaufmann.
+[36] Atsushi Shirafuji, Yusuke Oda, Jun Suzuki, Makoto Morishita, and Yutaka
+     Watanobe. 2023. Refactoring programs using large language models with few-
+     shot examples. In 2023 30th Asia-Pacific Software Engineering Conference (APSEC).
+

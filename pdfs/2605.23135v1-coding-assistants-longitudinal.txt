@@ -1,0 +1,1203 @@
+                                         The Impact of AI Coding Assistants on Software Engineering: A Longitudinal
+                                         Study
+
+                                         ANNIE VELLA, University of Auckland, New Zealand
+                                         KELLY BLINCOE, University of Auckland, New Zealand
+                                         AI coding assistants have become prolific in recent years. Through a longitudinal mixed-methods investigation, we examined how
+                                         professional software engineers perceive the effects of AI coding assistants in regard to task focus, developer experience, and
+                                         productivity. Two questionnaires were administered six months apart, yielding 158 eligible participants at the first time point, 101 at
+                                         the second, and a matched longitudinal cohort of 95. Participants reported spending less time on most development tasks, with 82%
+
+
+
+
+arXiv:2605.23135v1 [cs.SE] 22 May 2026
+                                         reporting less on writing code. We find broader shift in focus from creation to verification activities. We propose a new category of
+                                         work we term supervisory engineering work, encompassing the direction, evaluation, and correction of AI output. We also identified
+                                         a productivity-experience paradox: productivity perceptions held stable, with 84% reporting improvement at both time points, yet
+                                         among matched participants, the proportion reporting worsened developer experience in at least one dimension nearly doubled from
+                                         14% to 27%, with flow state and cognitive load eroding while feedback loops improved. These findings suggest that AI coding assistants
+                                         are impacting both the nature of software engineering work and how engineers experience it.
+
+                                         CCS Concepts: • Software and its engineering → Software development techniques; • Human-centered computing →
+                                         Empirical studies in collaborative and social computing.
+
+                                         Additional Key Words and Phrases: AI Impact, Software Engineering, Supervisory Engineering, Productivity-Experience Paradox
+
+                                         ACM Reference Format:
+                                         Annie Vella and Kelly Blincoe. 2026. The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study. 1, 1
+                                         (May 2026), 28 pages.
+
+
+                                         1   Introduction
+                                         AI coding assistants are changing the way software engineers work. Tools such as GitHub Copilot and Cursor, along with
+                                         general-purpose AI systems like ChatGPT and Claude, have become embedded in everyday development work in just a
+                                         few years [42, 43]. Promising reports of productivity gains [11, 35] have driven rapid adoption, both by organisations
+                                         seeking efficiency and by individuals seeking support across a wide range of development tasks. Yet, the 2025 Stack
+                                         Overflow survey found that while 60% of developers view AI tools favourably, this represents a decline from over 70%
+                                         in previous years [43]. More developers now distrust the accuracy of AI output than trust it, and a majority report
+                                         frustration with solutions that are “almost right, but not quite”. This mixed sentiment suggests that widespread use
+                                         coexists with reservations. Beyond productivity, these tools may be reshaping where engineers direct their effort and
+                                         how they experience their work.
+
+                                         Authors’ Contact Information: Annie Vella, annie.luxton@gmail.com, University of Auckland, New Zealand; Kelly Blincoe, k.blincoe@auckland.ac.nz,
+                                         University of Auckland, New Zealand.
+
+                                         Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not
+                                         made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components
+                                         of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on
+                                         servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+                                         © 2026 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+                                         Manuscript submitted to ACM
+
+
+                                         Manuscript submitted to ACM                                                                                                                             1
+2                                                                                                       Vella and Blincoe
+
+
+    Much of the early research in this area has centered on evaluating the technical capabilities of AI coding assistants:
+the correctness, security, and maintainability of generated code [29, 32, 36, 52]. Other studies have examined how
+engineers use these tools in practice [30, 34, 41]. A smaller body of work explores developers’ perceptions, covering
+trust, usability, and impacts on learning [22, 25], though often with students rather than professional practitioners [47].
+While productivity has been the focus of much research [17, 50], developer experience has not received much attention,
+despite prior research identifying it as a driver for productivity [27, 31, 44]. It is unclear whether the established
+relationship between productivity and developer experience holds when AI is embedded in development workflows.
+Further, what remains largely missing is an understanding of how professional software engineers experience these
+tools, and whether those experiences change over time.
+    We address this gap through a longitudinal mixed-methods study of professional software engineers using AI coding
+assistants. Participants completed two questionnaires six months apart, with 158 eligible respondents initially, 101 at
+follow-up, and 95 completing both phases. By prioritising lived experience over tool performance, this study offers a
+practice-oriented view of how AI coding assistants are influencing software engineering work. We examine perceptions
+of how focus shifts across tasks and perceptions of productivity and developer experience, guided by two research
+questions:
+      • RQ1: How does the introduction of AI coding assistants shift software engineers’ perceived focus across various
+        development tasks, such as designing, writing, refactoring, testing, debugging, and reviewing code?
+      • RQ2: How does the use of AI coding assistants impact software engineers’ perceptions of their developer
+        experience and productivity?
+    The main contributions of this study are:
+      • Evidence of a creation-to-verification shift: most participants perceived spending less time on the development
+        tasks we measured, with writing code showing the steepest decline. The balance tilted modestly toward verifica-
+        tion activities over the study period.
+      • A proposed new work category, supervisory engineering work, encompassing the effort required to direct AI,
+        evaluate its output, and correct its errors. This construct, which emerged from convergent quantitative and
+        qualitative patterns, may help explain where perceived time savings from traditional tasks are being reallocated.
+      • Evidence of a productivity-experience paradox: consistent productivity gains coexisting with declining developer
+        experience, especially in flow state and cognitive load. This pattern suggests the established relationship between
+        developer experience and productivity may operate differently when AI is embedded in workflows and how we
+        define and measure developer experience may need to evolve.
+    Together, these findings offer a grounded perspective on how AI coding assistants are transforming professional
+practice, and what that may signal for the future of software engineering.
+
+2     Literature Review
+This section examines existing research on the impact of AI coding assistants, spanning controlled experiments
+measuring productivity gains, surveys capturing developer perceptions, and studies examining workflow changes.
+
+2.1    Productivity and Workflow
+Developer productivity has been a primary focus of AI coding assistant research. A number of controlled experiments
+found that task completion time reduced significantly with the use of AI [35, 49]. Field studies in industry also found
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                            3
+
+
+increases in number of completed tasks, with less experienced developers showing greater gains [8, 11, 34]. Perceptions
+on productivity remain broadly positive in industry surveys [15, 17, 42]. Though, a study at IBM found that while
+productivity increased for most, some developers saw no gains at all, suggesting gains may not be uniform [50].
+  Research has found that developers do not always complete tasks faster due more time spent crafting prompts and
+understanding, editing, and debugging AI output [30, 47]. Studies report increased review effort and describe a role
+shift from direct production toward assessing and integrating suggestions [3, 46]. At a broader level of task allocation, a
+study found that access to GitHub Copilot shifted effort toward core coding activities and away from peripheral project
+management tasks, with effects strongest among less experienced developers [16]. These studies suggest that effort
+reallocation is occurring.
+  Research sheds some light on the reasons for these shifts. First, what developers delegate depends on what they enjoy:
+writing tests and documentation were rated least enjoyable and most likely to be delegated to AI, while implementing
+new features was most enjoyable and least likely to be delegated [41]. This aligns with broader findings that developers
+want AI to reduce toil, freeing them to focus on complex problem-solving [12]. Creativity in software engineering, often
+expressed through refactoring, designing reusable code, and learning, is something developers want to preserve [19].
+  Second, the capability of AI assistants depends on task complexity and context. While benchmarks show progress on
+isolated problems, performance drops on multi-file, real-world issues and varies by language and difficulty [20, 22, 32, 52].
+Common difficulties with AI coding assistants are that developers find it difficult to steer the tools toward the desired
+output and that outputs are not always correct [14, 25].
+  These studies indicate that AI coding assistants redistribute engineers’ focus and effort, though questions remain
+open. Controlled studies capture behaviour on predefined tasks, but how these patterns manifest in the varied contexts
+of day-to-day professional work is less well understood. Furthermore, both the underlying AI models and the tools
+built on them are evolving rapidly as adoption continues to grow. Understanding how engineers’ focus shifts as these
+tools mature, and how engineers perceive those shifts, would benefit from research that tracks practitioners over time.
+
+2.2   Developer Experience
+The Developer Experience (DevEx) framework identifies three dimensions: feedback loops (the speed at which developers
+receive information about their work), cognitive load (the mental effort required to complete tasks), and flow state (the
+state of full immersion and enjoyment) [33]. Prior research has shown that developer experience improves productivity,
+satisfaction, and retention [27, 31, 44]. Studies report higher satisfaction, engagement, and enjoyment when coding
+with AI assistance, yet concerns exist about reduced autonomy, decreased motivation, or persistent uncertainty about
+correctness [7, 9].These trade-offs suggest that productivity gains may not always translate into improved experience.
+  While some research has investigated each of the DevEx dimensions in relation to AI coding assistants, the results
+are not conclusive. AI coding assistants may shorten feedback loops by providing immediate suggestions, reducing pull
+request cycle time, and reducing reliance on colleagues [17, 23]. However, the usefulness of this feedback depends on
+its quality and relevance, and developers still report needing to validate AI output carefully [14].
+  Some studies found that cognitive load was reduced from having information centralised within the IDE and
+eliminating context-switching to external sources [18, 37]. However, evaluating AI outputs can also increase cognitive
+demands, particularly for complex tasks or when suggestions are overly verbose and lack project-specific context [1].
+Another study found that the opacity and unpredictability of AI-generated code led to elevated stress markers and
+frequent interpretive confusion among novice users [53]. These findings suggest that cognitive demands may not
+simply decrease with AI assistance; they shift and redistribute. How AI coding assistants affect flow state is not yet well
+                                                                                                   Manuscript submitted to ACM
+4                                                                                                     Vella and Blincoe
+
+
+understood. We found only one interview study that examined this; the findings suggest that whether AI disrupts or
+supports flow often depends on the task at hand rather than the tool alone [24].
+    Overall, prior work indicates that AI coding assistants can improve aspects of developer experience while simultane-
+ously introducing new sources of cognitive effort and fragmentation.
+
+
+2.3    Gaps in Current Understanding
+Much prior evidence is cross-sectional [42], short-term [8, 34, 35, 47], or benchmark-based [20, 52], limiting what
+we know about how perceptions evolve with sustained use. Recent longitudinal work has tracked objective outputs
+(e.g., commits, PRs) [45, 51], yet still leaves open how professionals perceive changing task focus, productivity, and
+experience over time. In addition, many findings derive from student populations, raising questions about transfer to
+industry contexts with legacy code, coordination, and real consequences for failure [13, 18, 21, 38, 39]. Finally, two
+dimensions of developer experience, feedback loops and flow state, have received limited attention in the context of
+AI coding assistants. Moreover, existing research has examined productivity and developer experience in isolation;
+few studies treat them jointly. These gaps motivate our longitudinal, mixed-methods investigation of professional
+developers, focusing on perceived shifts in task focus, DevEx, and productivity.
+
+
+3     Methodology
+This section describes the design, data collection, and analysis approach used to investigate how professional software
+engineers perceive the impact of AI coding assistants.
+
+
+3.1    Study Design
+We adopted a pragmatic interpretivist stance for this research due to the socio-technical nature of the topic and the
+student researcher’s position as a practising software engineer.
+
+3.1.1 Longitudinal Design. We invited the same participants to complete two questionnaires six months apart. AI
+coding assistants are evolving rapidly and adoption continues to grow; a single time point would only have captured a
+snapshot, whereas two time points allowed us to examine how perceptions evolved over time. The first questionnaire
+(Q1) was administered in October 2024 and the second (Q2) in April 2025, each open for four weeks.
+
+3.1.2 Data Collection Approach. Both questionnaires were administered online through Qualtrics, enabling us to reach
+professional software engineers globally. Each was designed to take approximately 15 minutes to complete, and followed
+a convergent parallel mixed-methods design [10], with qualitative accounts contextualising quantitative patterns.
+
+3.1.3 Questionnaire Structure. Each questionnaire had seven sections, of which four are aligned to our research
+questions in this paper: qualifying questions; experience and perceptions of AI tools; perceived productivity and
+developer experience; participant demographics. The survey also included questions on perceived impacts on skill
+development and self-efficacy, prompt engineering, and broader reflections on the profession; this data is not reported
+in this publication. The questionnaires included Likert-scale, multiple choice, ranking, and open-ended questions to
+support a mixed-methods analysis. The full study instrument is provided in our online replication package [48].
+    The Qualifying Questions section at the beginning of both questionnaires was used to check our eligibility criteria.
+Participants were required to be professional software engineers and to be currently using AI coding assistants. Those
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                           5
+
+
+who answered “No” to either qualifying question were routed to the end of the questionnaire and did not complete the
+remaining sections.
+  The Experience and Perceptions of AI Tools section captured tool usage patterns and attitudes, both providing study
+context as well as helping to answer RQ1. To provide context of AI use and perceptions, we asked participants which
+AI coding assistants they used, how frequently, and their initial impressions (in Q1) or anticipated disappointment if
+tools were removed (in Q2). Participants also ranked seven concerns about using AI coding assistants in their workflow:
+quality, readability, maintainability, security, dependency, learning curve, and other; we use primary concern to refer to
+whichever category a participant ranked first.
+  To answer RQ1 (How does the introduction of AI coding assistants shift software engineers’ perceived focus across
+various development tasks?), the section also asked how participants perceived changes in focus across six core
+development tasks: designing, writing code, refactoring code, reviewing code, testing, and debugging. These tasks
+reflect core activities identified in empirical studies of software engineering practice [26]. Participants were also asked
+to describe how AI coding assistants had changed their workflow.
+  The Perceived Productivity and Developer Experience section captured data to answer RQ2 (How does the use
+of AI coding assistants impact software engineers’ perceptions of their developer experience and productivity?).
+Participants rated their perceived productivity change and the impact of AI coding assistants on each of the three DevEx
+dimensions [33]: cognitive load, feedback loops, and flow state. They were also invited to describe specific instances
+where AI coding assistants helped or hindered their work in Q1, and any unexpected benefits or challenges they had
+experienced in Q2.
+  The Participant Demographics section captured gender, age, years of professional experience, self-reported expertise,
+role, primary programming language, industry, company size, country of residence and country of company headquarters.
+In Q2, demographic questions were optional; participants could choose to update selected fields (e.g., job role or primary
+language) if their circumstances had changed since Q1.
+
+3.1.4 Participant Recruitment. We recruited participants using a combination of convenience and referral-chain
+sampling [2]. The primary recruitment channels were our professional networks, including LinkedIn, X (formerly
+Twitter), Facebook, Discord, and several Slack communities, where invitations were shared directly or via community
+administrators. Additionally, 33 organisations were contacted to request internal distribution of which nine agreed
+to share the invitation with their engineering teams. Recruitment therefore drew from both individual networks and
+organisational channels, enabling participation from software engineers across a range of roles, experience levels,
+industries and countries.
+
+3.1.5 Ethics. This study received approval from the University of Auckland Human Participants Ethics Committee
+(Reference number UAHPEC27902). All participants were provided with a Participant Information Sheet and completed
+an electronic consent form. A $200 NZD gift card was offered as a prize draw incentive for those who completed both
+questionnaires.
+
+3.2   Participants
+A total of 224 responses were recorded for Q1. Of these, 35 were incomplete (Progress < 100%), 16 respondents indicated
+they were not professional software engineers, and 15 reported not using AI coding assistants, yielding a final Q1
+sample of 158 eligible participants (71% eligibility rate). All Q1 respondents who completed the questionnaire and
+confirmed they were professional software engineers were invited to participate in Q2, regardless of whether they
+                                                                                                  Manuscript submitted to ACM
+6                                                                                                       Vella and Blincoe
+
+                               Table 1. Participant Demographics and Organisational Context
+
+
+                                 Variable     Category                   Q1 n (%)    Q2 n (%)
+                                              Man                        135 (85%)   86 (85%)
+                                              Woman                      19 (12%)    12 (12%)
+                                 Gender       Non-binary                 1 (1%)      1 (1%)
+                                              Self-described             2 (1%)      1 (1%)
+                                              Not disclosed              1 (1%)      1 (1%)
+                                              18–24                      5 (3%)      2 (2%)
+                                              25–34                      55 (35%)    33 (33%)
+                                              35–44                      63 (40%)    45 (45%)
+                                 Age
+                                              45–54                      28 (18%)    15 (15%)
+                                              55+                        5 (3%)      4 (4%)
+                                              Not disclosed              2 (1%)      2 (2%)
+                                              Junior                     21 (13%)    13 (13%)
+                                 Experience   Mid-Career                 77 (49%)    51 (50%)
+                                 Level        Senior                     59 (37%)    37 (37%)
+                                              Not disclosed              1 (1%)      0 (0%)
+                                              Backend                    37 (23%)    28 (28%)
+                                              Frontend                   10 (6%)     7 (7%)
+                                              Fullstack                  57 (36%)    32 (32%)
+                                 Role         Manager/Architect          24 (15%)    16 (16%)
+                                              Mobile                     12 (8%)     7 (7%)
+                                              Specialised (e.g., Data)   15 (9%)     9 (9%)
+                                              Other                      3 (2%)      2 (2%)
+                                              Small                      44 (28%)    25 (25%)
+                                              Medium                     44 (28%)    25 (25%)
+                                 Company
+                                              Large                      34 (22%)    27 (27%)
+                                 Size
+                                              Very Large                 33 (21%)    22 (22%)
+                                              Not disclosed              3 (2%)      2 (2%)
+                                              New Zealand                65 (41%)    48 (48%)
+                                              Netherlands                16 (10%)    10 (10%)
+                                 Country of   United Kingdom             14 (9%)     11 (11%)
+                                 Residence    Australia                  14 (9%)     6 (6%)
+                                              United States              9 (6%)      3 (3%)
+                                              Other                      40 (25%)    23 (23%)
+
+
+
+
+reported using AI coding assistants at Q1 (𝑛 = 173). For Q2, 111 responses were recorded, of which 6 were incomplete
+and 4 reported not using AI coding assistants, yielding 101 eligible participants (91% eligibility rate).
+
+3.2.1 Longitudinal Attrition Analysis. Of the Q1 and Q2 eligible participants, 95 (60%) participated in both and formed
+the matched longitudinal cohort. Fisher’s exact tests compared those retained versus lost to follow-up across six
+variables: gender, experience, role, programming language, company size, and country. No significant differences were
+found (all 𝑝 > 0.05), and effect sizes were small (Cramér’s 𝑉 ≤ 0.23), suggesting that attrition was not systematic.
+
+3.2.2 Participant Demographics. Table 1 summarises the participant demographics. Participants represented 28 coun-
+tries, with the highest participation from New Zealand (41%).
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                         7
+
+
+3.3     Data Analysis
+3.3.1    Overview. Across both research questions, we followed the same three-step analytical structure.
+
+   Step 1: Quantitative Cross-sectional Analysis. For each research question, we first analysed quantitative data from Q1
+and Q2 separately. This allowed us to describe baseline perceptions at each time point.
+
+   Step 2: Quantitative Longitudinal Analysis. We then restricted analyses to participants who completed both Q1 and
+Q2. This enabled us to examine within-participant change over the study period.
+
+   Step 3: Qualitative Analysis. We conducted a reflexive thematic analysis [4, 5] of the open-ended responses to
+understand how participants described and contextualised their experiences with AI coding assistants, complementing
+the quantitative results.
+
+3.3.2 Quantitative Analysis. All quantitative analyses were conducted in R. The packages used are listed in our
+replication package [48]. All analyses used complete-case data; sample sizes vary slightly across constructs due to
+occasional missing responses on individual items (missingness was below 1% at both time points).
+
+   Measurement and Scoring. Most constructs were measured with single Likert-scale items. The constructs were
+sufficiently straightforward, and single items helped minimise respondent burden across two questionnaires. Where a
+construct comprised multiple dimensions (task focus shifts across six development activities; developer experience
+across feedback loops, cognitive load, and flow state), each dimension was analysed independently. Single Likert items
+are ordinal, so we used non-parametric tests for all comparisons involving these measures.
+
+   Descriptive Statistics. For each outcome, we computed means, standard deviations, and response category distributions
+for each time point. Likert-scale responses were summarised as numeric scores (1–5) and grouped into meaningful
+categories (e.g., less/same/more time, positive/negative/neutral). For longitudinal data, we constructed Q1-to-Q2
+transition matrices, summarised as movement patterns and visualised using alluvial diagrams.
+
+   Inferential Tests. For bipolar scales, we tested whether responses differed from the neutral midpoint (3.0) using one-
+sample Wilcoxon signed-rank tests. For longitudinal within-participant change, we used paired Wilcoxon signed-rank
+tests. For effect sizes, we report rank-biserial correlation (𝑟𝑟𝑏 ).
+
+   Correlations. We used Spearman rank correlations due to the ordinal nature of our Likert-scale measures.
+
+   Multiple Comparison Corrections. All multiple comparison corrections used the Holm-Bonferroni method. For cross-
+sectional analyses, correction was applied within each time point separately, as Q1 and Q2 represent independent
+cross-sections. For constructs measured through multiple related items or dimensions, corrections were applied across
+all items within that construct: the six task focus items (RQ1) and three developer experience dimensions (RQ2).
+
+   RQ-Specific Analytical Extensions. Each research question involved additional analyses tailored to its constructs,
+summarised below.
+   RQ1 (Task Focus Shifts) The six tasks were analysed independently. We also constructed two theoretically-motivated
+task groupings based on the Vee model [28]: creation tasks (designing, writing, refactoring) and verification tasks
+(reviewing, testing, debugging). These are theoretical distinctions rather than psychometric subscales, so we retain
+them despite low internal consistency (Creation: 𝛼 = 0.40–0.49; Verification: 𝛼 = 0.56–0.57).
+                                                                                                Manuscript submitted to ACM
+8                                                                                                       Vella and Blincoe
+
+
+    RQ2 (Developer Experience and Productivity) We examined the developer experience–productivity relationship through
+Spearman correlations. Similarly, relationships between these constructs and attitudes towards and concerns about AI
+tools were examined, since attitudes and concerns may shape how developers use these tools and perceive their impact.
+For developer experience, we identified a Negative cohort (participants reporting worsened experience on at least one
+dimension) and tracked transitions over time.
+
+3.3.3 Qualitative Analysis. We used reflexive thematic analysis following Braun and Clarke [4, 5] to analyse the
+open-ended responses. The open-ended questions associated with each research question were analysed across both
+time points.
+
+    Phase 1: Familiarisation with the Data. We read through all open-ended responses across both questionnaires multiple
+times, actively searching for meanings and patterns rather than passively absorbing content. These initial readings
+gave us a sense of the diversity of perspectives among professional software engineers and informed preliminary ideas
+that we carried into the coding phase.
+
+    Phase 2: Generating Initial Codes. Using NVivo, we followed an inductive approach, generating codes from participant
+responses rather than applying a pre-existing framework. Codes were applied across all open-ended questions, as
+participants frequently discussed similar themes regardless of which question prompted them, making a shared codebook
+more practical than separate per-question codebooks.
+    To illustrate the coding process, consider the following response to the question about how AI coding assistants
+changed workflow:
+       “I find them helpful when working with languages and technologies that I am less familiar with, or use less
+        frequently. They are often wrong but can help you move more quickly; A wrong-but-close answer can give
+        you a jump to the next thing to search for and solve the problem.” (P36, Q1)
+    Rather than coding the response as a single unit, we identified distinct segments conveying different ideas. The
+opening clause about working with unfamiliar technologies was coded as Capability Expansion; the observation that AI
+helps “move more quickly” was coded as Speed & Automation; and the framing of imperfect output as enabling forward
+momentum was coded as Confidence Boost.
+    The codebook was iteratively refined throughout the coding process: new codes were added when existing codes did
+not adequately capture a segment, similar codes were merged to reduce redundancy, and code definitions were clarified
+to improve consistency.
+    For some open-ended questions, we applied an additional layer of cross-cutting valence codes to capture the evaluative
+dimension of participants’ accounts. For example, the responses to the question asking whether AI coding assistants
+either helped or hindered work, each segment was coded with a valence reflecting the question wording: helpful or
+hindrance.
+
+    Phases 3–5: Generating, Reviewing, and Defining Themes. Following the coding phase, we developed themes at the
+research-question level rather than for each open-ended question, examining coded responses from both questionnaires
+to identify themes spanning the longitudinal period while revealing where accounts differed between time points. Code
+frequency summaries helped orient this process, but themes were generated based on conceptual significance rather
+than prevalence. We reviewed candidate themes against the original responses and refined them through multiple
+iterative passes until they provided a coherent interpretation of participants’ accounts. Some codes contributed to
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                          9
+
+
+multiple themes depending on contextual framing, and where themes were multi-faceted, sub-themes captured distinct
+dimensions. Where similar experiences surfaced across multiple research questions, themes were shaped to reflect the
+specific lens of each question rather than treated as identical.
+    To illustrate theme generation, for RQ2, codes including Productivity & Effort Impact, Cognitive Load Impact, and
+Prompt Interaction & Refinement frequently co-occurred in responses describing faster output alongside persistent
+friction; these were combined into a theme capturing accelerated throughput with uneven day-to-day experience.
+
+    Trustworthiness. All coding was conducted by the first author. The researcher’s position as a practising software
+engineer shaped interpretation; this was managed through reflexive memoing, actively seeking counter-examples,
+periodic reflection on how domain expertise might influence interpretation, and iterative discussions with the second
+author (the research supervisor) throughout the analysis process. The codebook was reviewed through several iterations
+of feedback and discussion, with attention to whether codes adequately captured the range of participant experiences.
+Ambiguous segments were flagged during initial coding and revisited after the full dataset was coded to ensure consistent
+application. Candidate themes were also reviewed as they developed. This approach is consistent with reflexive thematic
+analysis, where trustworthiness derives from transparency and reflexive engagement rather than procedural checks
+such as independent coder agreement.
+
+
+4     Results
+This section presents the findings from both questionnaires. To provide context for the analyses that follow, we begin
+by describing which AI coding assistants participants reported using, their usage patterns, and their attitudes and
+concerns about using these tools. We then address each RQ.
+
+
+4.1    Study Context
+4.1.1 AI Coding Assistants in Use. Participants reported using a wide range of AI coding assistants, with 37 unique
+tools mentioned across both time points (full list in replication package [48]), including 29 at Q1 (𝑛 = 158) and 24
+at Q2 (𝑛 = 101). GitHub Copilot and ChatGPT were the clear front-runners, both at 70% adoption at Q1 and 58% at
+Q2 (Figure 1). However, many other tools gained in popularity between the two questionnaires. Among matched
+participants (𝑛 = 95), the tools in use evolved considerably over the study period. The number of distinct tools increased
+from 18 to 24, 82% changed their tool combinations, and the mean number of tools per participant increased from 1.9
+(𝑆𝐷 = 0.8) to 2.9 (𝑆𝐷 = 1.6).
+
+4.1.2 Usage Frequency and Location. Over half of the participants in our study used AI coding assistants daily at both
+time points (57% at Q1 and 61% at Q2). Only a small number reported using AI coding assistants once a week or less
+(10% at Q1 and 8% at Q2). Usage frequency remained stable across time points (paired Wilcoxon signed-rank, 𝑝 = 0.17,
+𝑛 = 95 matched). The majority used them in both work and personal contexts (65% at Q1, 70% at Q2), with work-only
+usage less common (27% at Q1, 24% at Q2) and personal-only usage rare (8% at Q1, 6% at Q2).
+
+4.1.3 Attitudes Towards AI Coding Assistants. Participants’ attitudes towards AI coding assistants were captured through
+two measures: initial impressions at Q1 (Figure 2) and anticipated disappointment if tools were removed at Q2 (Figure 3).
+Initial impressions were predominantly positive, while anticipated disappointment was more evenly distributed. Among
+matched participants, the two measures showed a moderate positive correlation (𝜌 = 0.30, 𝑝 = 0.003).
+                                                                                                 Manuscript submitted to ACM
+10                                                                                                           Vella and Blincoe
+
+
+
+
+       Fig. 1. AI coding assistant adoption rates at Q1 and Q2. Top 10 tools by maximum usage at either time point shown.
+
+
+
+
+                              Fig. 2. Distribution of initial impressions of AI coding assistants at Q1.
+
+
+
+
+4.1.4 Concerns About Using AI Coding Assistants. Participants ranked seven concerns about AI coding assistants from
+most to least concerning. Quality was the dominant primary concern at both time points, though it declined from 44%
+to 36%, followed by security. The most notable shift was in maintainability, which rose from 3% to 19% as a primary
+concern between Q1 and Q2 (Figure 4). Paired Wilcoxon signed-rank tests confirmed maintainability was the only
+statistically significant change in ranking (𝑛 = 89 matched, 𝑝 = 0.003, moderate effect).
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                              11
+
+
+
+
+                 Fig. 3. Distribution of anticipated disappointment if AI coding assistants were removed at Q2.
+
+
+
+4.2     RQ1: Task Focus Shifts
+To examine how the introduction of AI coding assistants shifts perceived task focus, we analyse perceived time
+reallocation across six core development activities: designing, writing, refactoring, testing, debugging, and reviewing
+code.
+
+4.2.1 Cross-sectional Analysis. Figure 5 provides an overview of the response distributions across all six tasks at both
+time points. Writing code showed the strongest perceived time reduction at both time points (𝑀 = 2.10 at Q1, 𝑀 = 1.93
+
+
+
+
+                      Fig. 4. Primary concern distribution at Q1 and Q2. “Other” excluded from analysis.
+                                                                                                      Manuscript submitted to ACM
+12                                                                                                       Vella and Blincoe
+
+
+
+
+                                         Fig. 5. Task focus shifts across time points.
+
+
+
+
+at Q2), with 82% of participants reporting less time by Q2 and only 2% reporting more. Refactoring code and testing
+also showed means below neutral, with many reporting spending less time on these activities. In contrast, designing
+and debugging were near neutral at both time points. Reviewing code was the only task with means above the neutral
+midpoint at both time points (Q1: 3.03, Q2: 3.15) with slightly more participants reporting spending more time reviewing
+code compared to those reporting spending less time.
+
+4.2.2 Longitudinal Change in Task Focus. Next, we examined how task focus perceptions changed within participants
+(𝑛 = 88 matched participants). Paired Wilcoxon signed-rank tests with Holm-Bonferroni correction showed no
+statistically significant changes, though effect sizes varied from very small to moderate (Table 2). Writing code showed
+the largest effect in the expected direction (𝑟𝑟𝑏 = −0.35, moderate effect), while testing and reviewing showed small
+increases (𝑟𝑟𝑏 = 0.29 and 𝑟𝑟𝑏 = 0.26 respectively). These directional patterns, though not statistically significant, inform
+the subsequent analyses of task reallocation.
+     While aggregate statistics showed minimal change, individual transition patterns revealed substantial variation
+beneath these stable averages. Here we examine the three tasks showing the clearest directional effects: writing code
+(downward) and testing and reviewing code (upward).
+     Table 3 confirms divergent patterns: writing code showed high stability (56%) with continued downward drift (30%
+moved toward less time), while testing and reviewing showed upward movement (42% and 40% toward more time). Joint
+analysis revealed that only 8% simultaneously reduced writing time while increasing reviewing time, likely reflecting a
+floor effect: 81% had already reported spending less time writing code at baseline.
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                                              13
+
+  Table 2. Longitudinal Wilcoxon Signed-Rank Tests: Changes in Task Focus Perceptions Within Matched Participants (𝑛 = 88)
+
+
+                        Task                          Q1                 Q2                         Test Statistics
+                                                  𝑴        𝑺𝑫        𝑴        𝑺𝑫     𝚫𝑴            𝑽      𝒑 𝒂𝒅𝒋      𝒓 𝒓𝒃
+                        Designing               2.94     0.72     2.89     0.94      -0.06     595.5      1.000      -0.10
+                        Writing code            2.10     0.80     1.92     0.76      -0.18     255.0      0.263      -0.35
+                        Refactoring code        2.48     0.93     2.39     1.06      -0.09     688.0      1.000      -0.11
+                        Reviewing code          2.93     0.83     3.16     1.04      +0.23     967.0      0.333       0.26
+                        Testing                 2.52     0.92     2.77     0.98      +0.25     1030.5     0.263       0.29
+                        Debugging               2.84     0.93     2.84     0.79       0.00     556.0      1.000      -0.01
+                          Δ𝑀 = Mean change (Q2 - Q1). 𝑉 = Wilcoxon signed-rank test statistic. 𝑟𝑟𝑏 = rank-biserial correla-
+                          tion.
+
+
+                                          Table 3. Transition Patterns for Key Tasks (𝑛 = 88)
+
+
+                                  Task                        Less              Stable              More
+                                  Writing code         30% (𝑛 = 26)        56% (𝑛 = 49)        15% (𝑛 = 13)
+                                  Testing              22% (𝑛 = 19)        36% (𝑛 = 32)        42% (𝑛 = 37)
+                                  Reviewing            23% (𝑛 = 20)        38% (𝑛 = 33)        40% (𝑛 = 35)
+                                              Percentages may not sum to 100% due to rounding.
+
+
+
+
+  Creation-to-Verification Shift Analysis: Using the creation and verification task groupings defined in Section 3.3.2,
+we examined whether each task group changed over time and whether the balance between them shifted. Table 4
+presents the results.
+  Neither creation nor verification tasks changed significantly in isolation (𝑝𝑎𝑑 𝑗 = 0.092 and 0.060 respectively).
+However, the balance between task groups showed a significant shift toward verification (𝑝𝑎𝑑 𝑗 = 0.006, 𝑟𝑟𝑏 = 0.39,
+moderate effect), with the mean balance score increasing from 0.26 to 0.53. When examining individual participant
+shifts, 42% showed stability on at least one dimension, with the remaining 58% shifting. Of these, decreased creation
+and increased verification was the most common shift (20%), followed by both dimensions increasing (17%) and both
+decreasing (15%).
+
+
+         Table 4. Task Group-Level Wilcoxon Signed-Rank Tests: Creation vs Verification Task Group Averages (𝑛 = 88)
+
+
+                        Task Group                Q1                 Q2                            Test Statistics
+                                              𝑴        𝑺𝑫       𝑴         𝑺𝑫       𝚫𝑴          𝑽        𝒑 𝒂𝒅𝒋      𝒓 𝒓𝒃
+                        Creation             2.51      0.58     2.40     0.64      -0.11     814.5      0.092      -0.24
+                        Verification         2.77      0.66     2.92     0.69      +0.16     1527.5     0.060       0.30
+                        Balance (V-C)        0.26      0.58     0.53     0.83      +0.27     2365.5     0.006     0.39**
+                           Each group score is the mean of its three constituent task scores.
+                           Δ𝑀 = Mean change (Q2 - Q1). Balance = Verification - Creation. 𝑉 = Wilcoxon signed-rank test
+                           statistic. 𝑟𝑟𝑏 = rank-biserial correlation.
+                           Significance: *𝑝 < 0.05, **𝑝 < 0.01, ***𝑝 < 0.001. Holm-Bonferroni corrected.
+
+
+
+                                                                                                                      Manuscript submitted to ACM
+14                                                                                                        Vella and Blincoe
+
+
+4.2.3 Qualitative Perspectives on Workflow Changes. Reflexive thematic analysis of responses describing how AI coding
+assistants had changed participants’ workflows, identified four themes capturing changes in their interactions with
+code, tools, and information sources.
+
+     Theme 1: Compressing routine creation work. Participants across both time points consistently described AI coding
+assistants as reducing the effort required for routine implementation tasks. This theme aligns closely with the substantial
+quantitative reductions observed in writing code and, to a lesser extent, refactoring and testing.
+     Sub-theme 1A: Reducing manual implementation effort. Participants at both time points highlighted how AI tools
+helped them generate boilerplate, small functions, or repetitive structures. As one participant explained, “I spend less
+time writing repetitive and boilerplate code” (P25, Q1) and “Mostly, the routine tasks like coding and testing now require
+less manual effort.” (P98, Q2). Others noted that they now typed less: “Reduced my keystrokes. I mostly use AI only for
+line completion and most of the time I only have to type less than half a line before AI figures out what I want” (P44, Q1).
+     Sub-theme 1B: Supporting small-scale debugging and error handling. Participants described targeted improvements
+in resolving smaller issues, such as obtaining explanations of error messages or addressing minor test failures. This
+pattern appeared consistently across both questionnaires. As one participant noted, “I give the error message directly to
+ChatGPT and get a primer on what could be the possible cause of the issue” (P135, Q1). Another wrote, “Troubleshooting
+and debugging become faster.” (P91, Q1).
+
+     Theme 2: Rerouting information seeking and comprehension into AI interactions. Participants described noticeable
+changes in how they acquired information, understood unfamiliar code, and learned new concepts. This theme appeared
+strongly at Q1 and remained clear at Q2, although Q2 participants often described these behaviours as normalised
+rather than novel.
+     Sub-theme 2A: From search engines to real-time assistance. Developers increasingly used AI as the first step when
+encountering errors, clarifying APIs, or checking implementation details, for example: “Instead of going to Stack Overflow
+for a coding problem, I now go to ChatGPT first, even before any search engine.” (P135, Q1) and “Instead of googling the
+syntax for one language, I immediately ask ChatGPT to provide an example” (P149, Q2). For many, AI effectively displaced
+older search habits: “It has basically replaced google for me” (P143, Q1).
+     Sub-theme 2B: Accelerated learning, onboarding, and code understanding. Participants in both time points used AI to
+accelerate understanding across unfamiliar languages, frameworks, or legacy codebases. For example, one participant
+wrote: “Much easier to pick up new tools, libraries, languages and get productive.” (P132, Q1). Another wrote: “It has
+been particularly helpful in explaining legacy code and detecting bugs more efficiently.” (P2, Q2). Others reported gaining
+conceptual clarity: “Definitely felt like it’s given me a level up on understanding new concepts” (P5, Q2).
+
+     Theme 3: From doing to supervising AI-generated code. Across both time points, engineers described shifting effort
+from directly producing code to supervising AI-generated output. For example, “I ask AI to make changes first and review
+them before accepting or rejecting them” (P82, Q1). This shift toward oversight of AI-generated code aligns with the
+slight (non-significant) upward trend observed for reviewing activities.
+     While some participants framed this shift in terms of “design” or “higher-level thinking”, their descriptions more
+consistently reflected supervision-oriented activities, such as directing the assistant, evaluating its suggestions, and
+deciding what to accept, modify, or discard. This supervisory work replaced portions of hands-on implementation
+effort but does not map cleanly onto traditional software development task categories. As one participant explained,
+“Sometimes, I’ll not be happy with the original reference, and will ’coach’ the AI to produce something that works better for
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                                   15
+
+
+my use-case” (P75, Q1). At Q2, this supervisory framing became slightly more prominent. Participants increasingly
+articulated the effort involved in directing and controlling the assistant itself. One described their role as “Mostly reading
+the code and directing AI on the right way” (P54, Q2).
+
+   Theme 4: Verification and trust calibration moderating perceived benefits. Participants varied in how much they trusted
+or relied upon AI-generated code. Some reported substantial workflow improvements, while others emphasised the
+need to verify every suggestion or restrict use to low-risk contexts. This theme was evident at both time points. One
+participant described this careful approach succinctly: “I almost never let it write production code, or at least never leave
+in code that I don’t understand and or wouldn’t have written myself” (P119, Q1). Others stressed the limits of trust,
+particularly for complex or critical work: “I do not trust it for strategic or critical code.” (P8, Q1).
+   At Q2, similar concerns remained evident, though participants reflected on how their use of AI had evolved over time.
+One participant noted, “I think 6 months ago, I was using the tools a lot more cautiously with a lot more fact checking”
+(P109, Q2), while another highlighted the increasing verification effort required: “has increased the ‘is this code correct’,
+‘is it maintainable’, ‘is it secure’ and ‘is this just probabilistic hallucination’ time up.” (P88, Q2).
+
+4.2.4 Summary. A majority of participants (69%) perceived spending less time overall on the six development tasks
+at both time points. Writing code showed the largest reduction, with 82% reporting less time by Q2 and means well
+below neutral at both time points (𝑀 = 2.10 at Q1; 𝑀 = 1.93 at Q2). All tasks except reviewing showed means below
+neutral, with writing code furthest from the midpoint. Testing and reviewing were the only tasks to trend upward
+between time points. Among matched participants, a significant shift toward verification activities emerged (𝑟𝑟𝑏 = 0.39,
+𝑝𝑎𝑑 𝑗 = 0.006, moderate effect). Qualitatively, participants described compressed routine implementation, rerouted
+information seeking, a new supervisory layer of directing and evaluating AI output, and ongoing verification and trust
+calibration that moderated perceived benefits.
+
+
+4.3     RQ2: Developer Experience and Productivity
+To answer RQ2, we analyse two related constructs: developer experience (cognitive load, feedback loops, and flow state)
+and perceived productivity.
+
+4.3.1    Developer Experience.
+
+   Cross-sectional analysis. Figure 6 presents the distribution of responses at both time points. At Q1, participants
+reported similar improvements in cognitive load and feedback loops, while flow state lagged behind and attracted more
+negative ratings. By Q2, feedback loops showed the greatest improvement while cognitive load and flow state showed
+smaller improvements.
+   Table 5 shows Spearman correlations between attitudes towards AI tools and developer experience dimensions. Both
+initial impressions at Q1 and anticipated disappointment at Q2 showed significant positive associations with all three
+dimensions, with feedback loops consistently showing the strongest association (moderate effect at both time points).
+Positive correlations indicate more positive attitudes are associated with better developer experience.
+
+   Longitudinal Change in Developer Experience. Next, we examined how developer experience perceptions changed
+within participants (𝑛 = 94 matched participants). Paired Wilcoxon signed-rank tests with Holm-Bonferroni correction
+revealed divergent trajectories across dimensions (Table 6). Only feedback loops improved significantly; cognitive load
+                                                                                                           Manuscript submitted to ACM
+16                                                                                                                    Vella and Blincoe
+
+
+
+
+                                   Fig. 6. Perceived developer experience impact across time points.
+
+                     Table 5. Spearman Correlations Between Attitudes and Developer Experience Dimensions
+
+
+                         Dimension                  Q1 (𝑛 = 157)                       Q2 (𝑛 = 101)
+                                                Initial Impressions            Anticipated Disappointment
+                                                    𝝆           𝒑 𝒂𝒅𝒋              𝝆                𝒑 𝒂𝒅𝒋
+                         Feedback Loops         0.32***        <0.001          0.33**              0.002
+                         Flow State             0.27**         0.001           0.26*               0.015
+                         Cognitive Load         0.22**         0.007           0.23*               0.021
+                 *𝑝 < 0.05, **𝑝 < 0.01, ***𝑝 < 0.001 (Holm-Bonferroni corrected)
+
+
+and flow state showed non-significant declines. Individual variation was substantial: for feedback loops, 33% improved
+and 18% declined; for cognitive load, 19% improved and 29% declined; for flow state, 27% improved and 35% declined.
+
+Table 6. Longitudinal Wilcoxon Signed-Rank Tests: Changes in Developer Experience Dimensions Within Matched Participants
+(𝑛 = 94)
+
+
+                        Dimension                   Q1               Q2                         Test Statistics
+                                                𝑴        𝑺𝑫      𝑴        𝑺𝑫       𝚫𝑴       𝑽        𝒑 𝒂𝒅𝒋    𝒓 𝒓𝒃
+                        Feedback Loops         3.73     0.78    3.95    0.74       +0.21   810.5    0.038    0.38*
+                        Cognitive Load         3.74     0.80    3.60    0.79       −0.15   382.5    0.195    −0.26
+                        Flow State             3.54     0.84    3.36    1.01       −0.18   651.5    0.195    −0.24
+                           Δ𝑀 = Mean change (Q2 - Q1). 𝑉 = Wilcoxon signed-rank test statistic. 𝑟𝑟𝑏 = rank-biserial
+                           correlation.
+                           Significance: *𝑝 < 0.05, **𝑝 < 0.01, ***𝑝 < 0.001.
+
+
+     Among matched participants, we classified perceptions into cohorts based on meaningful thresholds: Positive (all three
+dimensions rated 4–5), Negative (any dimension rated 1–2), and Mixed/Neutral (neither fully positive nor containing
+any negative ratings). Figure 7 visualises how participants transitioned between these cohorts over the study period.
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                           17
+
+
+
+
+                          Fig. 7. Developer experience perception transitions between Q1 and Q2.
+
+
+The cohort analysis reveals a drift toward negative developer experience. The Negative cohort nearly doubled from 14%
+to 27%, while the Positive cohort showed poor retention at 37%. No participant who started in the Negative cohort
+recovered to fully Positive by Q2. Complete stability across all three dimensions was rare (9%). Within the Negative
+cohort, flow state was the predominant issue, affecting 54% at Q1 and rising to 76% at Q2.
+
+4.3.2   Productivity.
+
+   Cross-sectional analysis. At Q1, productivity perceptions were predominantly positive (𝑀 = 4.08, 𝑆𝐷 = 0.65), with
+84% reporting improvement. At Q2, perceptions were similar (𝑀 = 4.03, 𝑆𝐷 = 0.59), with identical 84% reporting
+improvement (Figure 8).
+   Spearman correlations showed a significant moderate positive association between initial impressions and produc-
+tivity at Q1 (𝜌 = 0.31, 𝑝 < 0.001, moderate effect). At Q2, anticipated disappointment showed a stronger positive
+correlation (𝜌 = 0.48, 𝑝 < 0.001, moderate effect). Primary concerns showed no significant association with productivity
+                                                                                                   Manuscript submitted to ACM
+18                                                                                                      Vella and Blincoe
+
+
+
+
+                                    Fig. 8. Perceived productivity impact across time points.
+
+
+
+at Q1, but at Q2 productivity perceptions differed by primary concern (𝜒 2 = 18.34, 𝑝 = 0.005, 𝜀 2 = 0.19, large effect),
+with those citing tool dependency reporting the highest productivity gains and those citing quality the lowest.
+     All three developer experience dimensions showed significant positive correlations with productivity at both time
+points (Holm-Bonferroni corrected). At Q1, flow state was strongest (𝜌 = 0.49, 𝑝𝑎𝑑 𝑗 < 0.001, moderate effect). By Q2, all
+three correlations weakened, and feedback loops replaced flow state as the strongest (𝜌 = 0.37, 𝑝𝑎𝑑 𝑗 < 0.001, moderate
+effect), while flow state dropped to a small effect (𝜌 = 0.20, 𝑝𝑎𝑑 𝑗 < 0.05).
+
+     Longitudinal Change in Productivity. Next, we examined how productivity perceptions changed within participants
+(𝑛 = 95 matched participants). Paired Wilcoxon signed-rank tests showed no significant change (Δ𝑀 = −0.05, 𝑉 = 99,
+𝑝 = 0.326, 𝑟𝑟𝑏 = −0.22, small effect). Stability was high: 77% maintained identical ratings, while 14% decreased and 9%
+increased intensity. No participant transitioned to negative perceptions.
+     Figure 9 visualises individual-level transitions between rating levels. Stability varied by initial position: 85% of
+“Somewhat better” respondents maintained their rating compared to 65% of “Much better” and 62% of neutral. Movement
+from neutral was entirely positive, with 38% shifting to “Somewhat better”.
+     We correlated change scores (Q2 minus Q1) for each developer experience dimension with productivity change (𝑛 = 94,
+Holm-Bonferroni corrected). None reached significance (smallest 𝑝𝑎𝑑 𝑗 = 0.313), contrasting with the moderate-to-strong
+cross-sectional correlations reported above.
+
+4.3.3 Qualitative Perspectives on Experience and Productivity. Reflexive thematic analysis of responses to the questions
+asking about instances where AI had significantly helped or hindered work (Q1) or unexpected benefits or challenges (Q2),
+identified three themes capturing accelerated throughput with uneven experience, expanded capability in unfamiliar
+work, and verification as ongoing engineering work.
+
+     Theme 1: Accelerated throughput with uneven day-to-day experience. Across both time points, participants described AI
+coding assistants as accelerating progress, particularly for early-stage or repetitive work such as boilerplate generation,
+test scaffolding, and quick prototyping. Many framed this as a tangible reduction in effort, for example: “Boring
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                              19
+
+
+
+
+                                 Fig. 9. Productivity perception transitions between Q1 and Q2.
+
+
+mechanical tasks like refactoring files, updating tests, adding translations, creating test fixtures are 10x less effort with AI
+assistants” (P132, Q1). Others described compressed delivery timelines: “It helped me complete the initial version of the
+project within hours instead of days . . . It made the entire process much faster and more efficient” (P91, Q2). AI support was
+most valued when it enabled rapid starts, reduced mechanical effort, and sustained momentum.
+  However, participants emphasised that these throughput gains were not uniformly experienced as smoother or
+easier work. Many described hidden costs in the form of repeated prompting, adaptation effort, or time lost to incorrect
+output. At Q1, some described prompt loops and rework, for example: “wasted some time getting into prompt loop” (P18,
+Q1). Others reverted to traditional sources when AI was unreliable: “. . . it would reference methods which were no longer
+relevant, even after specifying a specific version I was using, I ended up going to docs” (P26, Q1). By Q2, participants
+continued to describe speed alongside friction. Some described the variability directly: “Sometimes you gain productivity
+boost, the other time your wasting time on hallucinations or fixing the generated code” (P89, Q2). Others noted that flow
+could be disrupted even as output accelerated, for example: “This does break the flow, but still speeds up the overall process”
+                                                                                                      Manuscript submitted to ACM
+20                                                                                                             Vella and Blincoe
+
+
+(P28, Q2) and “less ‘in the zone’ time, because while code is being produced, I now find myself switching context more often”
+(P159, Q2). Altogether, AI often accelerated throughput while redistributing effort into supervision, correction, and
+verification. Perceived productivity and lived experience did not always move together.
+
+     Theme 2: Expanded perceived capability and willingness to engage with unfamiliar work. Participants described AI
+coding assistants as lowering the threshold for engaging with unfamiliar technologies, languages, and problem domains
+at both time points. Rather than claiming mastery, accounts emphasised practical reach, being able to start, explore, or
+contribute in areas that previously felt inaccessible or too time-consuming to approach. This was often described as a
+faster path from uncertainty to a workable first step, for example: “I don’t have a lot of experience in authentication flows
+and got good directions from Gemini on designing a solution” (P84, Q1) and “More confident picking up new tools that I’m
+otherwise unfamiliar with even if they don’t have beginner friendly docs” (P175, Q2).
+     This expanded capability was framed as reducing hesitation and encouraging experimentation through readily
+available examples, explanations, and first-pass implementations. However, some cautioned that AI-enabled progress
+could short-circuit learning even while increasing output: “Destroys process of learning something new - you get a working
+solution, but not understanding why and how it may work” (P41, Q1). Others cautioned critical judgement and active
+oversight were needed rather than passive trust: “I do like the fact that I can ask it about completely unfamiliar domains
+and it has a reasonable.. sounding at least.. response. I generally feel that I’m critical of all output, but am usually pleasantly
+surprised” (P75, Q2). Overall, these accounts position AI coding assistants as expanding perceived capability by making
+unfamiliar work more approachable and actionable, though sometimes at the expense of deeper understanding.
+
+     Theme 3: Verification and trust management as ongoing engineering work. AI coding assistants introduced new forms
+of verification and trust management that remained firmly within the engineer’s remit. Participants framed correctness,
+quality, and consequence as fundamentally human responsibilities rather than treating AI output as authoritative. This
+required active review, judgement, and intervention. Trust calibration through practices such as sceptical oversight,
+deliberate steering, and collaborative verification within teams recurred across both time points. These accounts position
+trust management as an ongoing form of engineering work that shapes how AI-generated code is evaluated, integrated,
+and governed in practice.
+     Sub-theme 3A: Individual oversight: scepticism, accountability, and steering practices. Participants framed AI-generated
+output as provisional, emphasising that responsibility for correctness and consequences remained with the engineer.
+This accountability manifested through both scepticism and concrete steering practices. At Q1, participants articulated
+the need for active control, for example: “You need to always be fully in control, and guide the AI into the direction you
+want, and not let the AI guide you” (P101, Q1), with some describing early over-trust as a corrective experience: “It’s
+gotten code templates completely wrong (yaml) and I was overconfident in the output” (P129, Q1). This scepticism translated
+into iterative refinement: “Often, it takes multiple tries and prompts to achieve the desired results” (P3, Q1). Steering
+sometimes required more precise articulation of intent, for example “E.g. "Track the width of this react component" didn’t
+work, but "Use a react reference to track the width of this react component when it’s rendered" did work” (P82, Q1). By Q2,
+participants described both recognising model failures and intervening accordingly, for example: “Identifying when the
+LLM has lost the thread of the problem and halting it is essential” (P8, Q2). Constraint-setting became more explicit, such
+as deliberately breaking work into smaller units to reduce hallucination and drift: “it’s been beneficial to break it down
+into smaller more specific "modules" and then tie them together at the end” (P79, Q2). Across both time points, effective AI
+use was framed as requiring ongoing human judgement—through deliberate scepticism and active steering—rather
+than increasing reliance or unquestioned trust in AI output.
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                           21
+
+
+    Sub-theme 3B: Collective trust, reputation, and collaborative implications. Participants described trust management
+as extending beyond individual practice into shared team contexts, where AI coding assistants affected code review
+effort, shared understanding, and reputational risk. At Q2, verification concerns extended to reputational and team-level
+stakes: “I might use AI chat to help with a question but I do not trust the answer enough for me to hang my reputation on it.
+I’ll always look for a corroborating answer elsewhere” (P76, Q2). These concerns extended to how participants judged
+others’ AI-generated work, with some expressing reduced confidence in the author’s understanding of the code: “If I
+know that a dev is using AI heavily I trust them much less to know what exactly their code is doing when reviewing their
+code” (P152, Q2), alongside worries about unchecked exploration by less experienced colleagues, such as “When left
+unsupervised with AI, junior colleagues sometimes have a tendency to pursue inappropriate solutions to the wrong problems
+much further” (P158, Q2). While these concerns were most explicit at Q2, Q1 accounts also signalled the need to retain
+human ownership over shared technical direction, for example: “Hence I keep control of the overall architecture” (P55,
+Q1). Altogether, verification was positioned as both an individual and a shared supervisory responsibility, involving
+additional review discipline, corroboration practices, and clear accountability.
+
+4.4    Summary
+Productivity perceptions were positive and stable, with 84% reporting improvement at both time points. Developer
+experience showed cross-sectional associations with productivity: flow state showed the strongest association at Q1
+(𝜌 = 0.49), though by Q2 feedback loops became the strongest. Among matched participants, 77% gave identical
+productivity ratings over six months, while the proportion reporting worsened developer experience in at least one
+dimension grew from 14% to 27%. Feedback loops improved significantly, while cognitive load and flow state showed
+non-significant declines. Critically, changes in developer experience did not correlate with changes in productivity.
+Qualitatively, participants described accelerated throughput and expanded capability alongside hidden costs, with trust
+calibration emerging as ongoing engineering work.
+
+5     Discussion
+This section interprets the findings presented in Section 4 and discusses limitations, implications, and directions for
+future research.
+
+5.1    Task Focus Shifts and Emergence of Supervisory Engineering
+Our results indicate that AI coding assistants are reshaping where software engineers direct their effort across de-
+velopment activities. Writing code showed the clearest decline, with 80% and 82% of participants reporting to spend
+less time on this activity at each time point, respectively. This is consistent with prior research showing AI tools
+accelerate code generation [11, 35]. Our qualitative findings help to explain where these perceived reductions in time
+came from. Participants described how AI handles boilerplate, scaffolding, and small fixes that previously consumed
+substantial effort (Theme 1, Compressing routine creation work). They also described turning to AI before Google or
+Stack Overflow, folding what was once a separate information-gathering step into the coding interaction itself, as well
+as accelerating onboarding onto unfamiliar codebases, languages, and legacy code (Theme 2, Rerouting information
+seeking and comprehension into AI interactions). Together, these patterns suggest that AI may compress not just the act
+of writing code but the preparatory work that surrounds it.
+    Some patterns ran counter to expectations. Given that previous research has found that verification consumes
+substantial time in AI-assisted development [30], we expected more participants to report spending more time on
+                                                                                                   Manuscript submitted to ACM
+22                                                                                                     Vella and Blincoe
+
+
+verification activities like testing and code review. Instead, reviewing code was the only task above neutral at either
+time point, and only modestly so. Testing remained below neutral throughout, meaning more engineers perceived
+spending less time on it even in an AI-assisted context, though it did trend upward between time points. One potential
+explanation is that engineers do not always recognise the verification they perform on AI-generated output, such as
+evaluating whether to accept a suggestion, scanning output for errors, or checking that generated code integrates
+correctly, as “testing” or “code review” in the traditional sense. As a result, standard Software Development Life Cycle
+(SDLC) categories may not fully capture where this verification effort is actually going.
+     Our qualitative findings suggest developers may view some of these activities as supervisory engineering work, a
+new distinct category of work that traditional SDLC taxonomies do not capture (Theme 3, From doing to supervising
+AI-generated code), encompassing:
+
+      • Directing: specifying intent, crafting prompts, providing context, and iterating when output misses the mark
+      • Evaluating: reading AI output and deciding what to accept, modify, or reject
+      • Correcting: fixing errors, integrating output into existing code, and maintaining consistency
+
+     Not all engineers experience this supervisory work equally. Theme 4 from our thematic analysis, Verification and
+trust calibration moderating perceived benefits, captured how engineers vary in their willingness to accept AI output,
+with some restricting AI to low-risk contexts while others accept suggestions more readily. This calibration directly
+mediates how much supervision is performed.
+     More broadly, these findings suggest that AI coding assistants are reshaping the nature of software development
+work itself. If engineers spend less time writing code and more time directing and evaluating AI output, this has
+implications for which skills remain essential, what engineers practice day-to-day, and how the profession develops its
+next generation.
+
+
+5.2    Developer Experience, Productivity, and Emergence of Productivity-Experience Paradox
+Our results found that software engineers predominantly perceived AI coding assistants as improving their productivity,
+with 84% reporting improvement at both time points, consistent with industry surveys [42]. Perceived impact on
+developer experience, using the three DevEx dimensions of cognitive load, feedback loops, and flow state, was also
+generally positive at Q1, though less uniformly so: 66% reported improved cognitive load, 62% improved feedback
+loops, and 53% improved flow state. Unlike productivity, developer experience showed concerning signs of erosion over
+the six-month study period, with the number of matched participants reporting worsened perceptions in at least one
+dimension increasing from 14% in Q1 to 27%. Our qualitative Theme 1, Accelerated throughput with uneven day-to-day
+experience, helps explain this pattern: participants described impressive time compression alongside persistent friction
+from repeated prompting and correction.
+     Flow state was most vulnerable to erosion. AI coding assistants may structurally undermine flow state. Each AI
+suggestion requires evaluation; each generation requires verification. The cycle of prompting, reviewing, accepting
+or rejecting, and iterating constitutes ongoing interruption built into the workflow itself. Our qualitative Theme 3,
+Verification and trust management as ongoing engineering work, captured this dynamic: participants described needing to
+maintain vigilance when reviewing AI output, a form of mental effort that persists even when the code itself is generated
+quickly. Prior research found that context switching and interruption frequency are key factors affecting flow [40].
+The delegation model frees developers to turn attention elsewhere while code is being generated, but this shifts work
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                       23
+
+
+from sustained focus to a rhythm of directing, waiting, and evaluating—precisely the supervisory engineering work we
+propose is emerging.
+  Our findings suggest that the established relationships between productivity and developer experience may need
+re-examination when AI is introduced. We term this pattern the productivity-experience paradox: sustained output
+perceptions alongside degrading experience, potentially decoupling the established relationship between the two. Prior
+research found that uninterrupted focus is central to developers’ sense of productivity [27] and that satisfaction and
+productivity are bidirectionally linked [44]. Our qualitative findings help explain why productivity held steady while
+developer experience lowered. Theme 1, Accelerated throughput with uneven day-to-day experience, captured participants
+describing faster output alongside persistent friction, with perceived productivity and lived experience not always
+moving together. The DevEx framework treats its three dimensions as complementary drivers of productivity, but AI
+assistance may reshape their relative contributions, with faster feedback compensating for increased cognitive friction.
+Whether this reconfiguration is sustainable, or whether the erosion in flow and cognitive load eventually undermines
+the gains, remains an open question.
+
+5.3   The Shifting Tool Landscape
+Our study captured a six-month window in a field evolving at unprecedented speed. The tool landscape shifted
+substantially even during data collection, with 82% of matched participants changing their tool combinations between
+time points. Two trends emerged. First, tool diversification: participants mentioned around 37 distinct tools across the
+study, and engineers are not settling on a single tool but building toolkits. The average number of tools per engineer
+increased from 1.9 at Q1 to 2.9 at Q2. Second, shift toward coding-specialised tools: across our full samples, ChatGPT
+declined from 70% to 58% usage, while Cursor grew from 16% to 29%. This suggests some engineers are moving from
+general-purpose conversational AI toward purpose-built coding environments.
+  The only concern that changed significantly over the six-month study period was maintainability, which increased.
+As engineers gained experience with AI-generated code, concerns about long-term maintainability grew. This may
+reflect accumulated experience recognising that AI optimises for “works now” rather than “maintains later”.
+
+5.4   Threats to Validity
+Several threats to validity warrant attention when interpreting our findings. First, regarding internal validity, 40%
+of participants who completed Q1 did not complete Q2, reducing our matched longitudinal sample from 158 to 95.
+As reported in Section 3, demographic comparisons showed no significant differences between retained and lost
+participants, supporting the representativeness of the matched cohort. However, we cannot rule out unmeasured
+differences in attitudes or experiences. Engineers who became disillusioned with AI tools may have been less motivated
+to complete a follow-up questionnaire about them, which would cause our longitudinal findings to overestimate stability
+and underestimate negative trajectories.
+  As disclosed in Section 1, the first author is a practising software engineer whose familiarity with the domain may
+have influenced the framing of questions, interpretation of findings, or emphasis on certain themes. We managed this
+threat to internal validity through iterative discussions with the research supervisor throughout data collection and
+analysis, including survey design and interpretation of both quantitative patterns and qualitative themes. However, this
+potential bias cannot be completely eliminated.
+  A threat to external validity are limitations of our sample. Our study only included engineers currently using AI
+coding assistants; those who tried these tools and abandoned them are absent from our sample. This selection bias
+                                                                                               Manuscript submitted to ACM
+24                                                                                                      Vella and Blincoe
+
+
+likely causes our findings to overestimate positive outcomes, as engineers who found AI unhelpful would have stopped
+using it and thus would not appear in our data. The 84% positive productivity rate should be interpreted as “84% of
+continuing users”, not “84% of all who tried”. Beyond this survivor bias, 85% of our sample were men and predominantly
+English-speaking, which limits generalisability to under-represented groups.
+     Another external validity threat is temporal. Our findings reflect experiences with AI coding assistants as they
+existed in late 2024 and early 2025. Rapid tool evolution means patterns may not hold with newer agentic tools that
+operate more autonomously. In addition, our data is confounded with a rapidly changing tool landscape; our findings
+reflect practice-in-the-wild rather than the maturation of any single tool. Changes we observed may stem from tool
+switching, tool improvement, or accumulated experience, which we cannot fully disentangle.
+     A threat to construct validity is our use of perception-based measures. We captured perceptions rather than objective
+performance. As discussed in Section 2, perceived and actual productivity can diverge substantially, and several factors
+may inflate positive perceptions in our data: social desirability, effort justification, and question framing. However, our
+interpretivist stance treats perceptions as meaningful data in their own right: they drive adoption decisions, shape
+professional identity, and influence how engineers approach their work.
+     Recall bias is another threat to construct validity. Engineers may overweight memorable events when summarising
+months of AI use, while recency effects may inflate the influence of experiences closest to each questionnaire. Internal
+benchmarks may also shift: an engineer who found AI frustrating six months ago may have recalibrated what counts
+as frustrating, making direct comparisons across time points imprecise. From our interpretivist perspective, however,
+these distortions are not merely noise to be eliminated but part of what we sought to understand.
+
+
+5.5    Implications
+5.5.1 For Individual Engineers. The emergence of supervisory engineering work suggests preparing for a shift in daily
+practice, with less time writing code and more time directing, evaluating, and correcting AI output. This is not freed-up
+time but differently allocated effort. Verification and trust calibration are important to get the most benefits from AI.
+Knowing when to accept and when to reject AI output emerged across our qualitative findings as an important skill,
+and one that transfers across the rapidly evolving tool landscape.
+
+5.5.2 For Organisations. Organisations should recognise that AI coding assistants may not deliver pure time savings.
+The effort reallocation we saw has implications for how organisations structure teams, evaluate performance, and
+prioritise skills when hiring, particularly as verification, judgement, and trust calibration become more central to the
+role. Output metrics alone may mask experiential erosion, so monitoring developer experience alongside productivity
+could provide earlier warning of unsustainable patterns. On tooling, enabling experimentation rather than mandating a
+single tool may better serve adaptation, given how substantially the landscape shifted even during our six-month study.
+
+5.5.3 For Educators. If AI is shifting engineering work from creation toward verification while introducing new
+responsibilities like supervisory engineering work, educational programmes may need to prepare students accordingly.
+This means teaching not just traditional technical skills but also judgement, trust calibration, and the components of
+supervisory work: directing, evaluating, and correcting AI output. More broadly, transferable principles of human-
+AI collaboration may prove more durable than tool-specific training given how rapidly the landscape is evolving.
+Assessment methods may also need to evolve, evaluating understanding rather than output quality alone, since students
+can now produce working code without necessarily understanding it.
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                         25
+
+
+5.6    Future Research Directions
+5.6.1 Emerging Competencies and Work Categories. AI assistance may be introducing new work categories that existing
+frameworks do not capture. The supervisory engineering work we proposed raises questions about whether this
+represents a genuinely new SDLC activity distinct from traditional categories like designing, coding, testing, and
+reviewing. Future research could examine whether supervisory engineering work is empirically distinct from existing
+activities, what skills it requires, and how engineers should develop them. If this work category proves real and distinct,
+established SDLC models may need updating to account for where developer effort now goes.
+
+5.6.2 Developer Experience and Productivity. Prior research has shown that developer experience drives productivity,
+yet our data suggests a productivity-experience paradox, with productivity holding steady while two of the three DevEx
+dimensions declined. Future research could examine whether the DevEx dimensions contribute differently in AI-assisted
+contexts, whether new dimensions are needed, and whether the causal mechanisms have changed. Longer-term studies
+tracking both productivity and experience could illuminate whether the divergence we observed is sustainable over
+longer time horizons or whether eroding flow state and cognitive load manifest as burnout or turnover.
+
+5.6.3 Satisfaction in Supervisory Work. The shift toward supervisory engineering work raises questions about developer
+satisfaction. The flow state decline and increased cognitive load we observed suggest some experiential costs may
+accompany this transition. Future research could examine whether engineers find supervisory work intrinsically
+satisfying or whether reduced hands-on coding diminishes professional fulfilment and whether these effects vary across
+developers. If supervisory work proves less satisfying, interventions could be devised to improve satisfaction.
+
+5.6.4 Team and Organisational Dynamics. Our study focused on individual engineers, but the creation-to-verification
+shift and supervisory engineering work we described likely have team-level implications. Research examining team
+dynamics and organisational structures could illuminate how individual-level findings aggregate at the team level and
+whether supervisory engineering and verification efforts are equally distributed.
+
+6     Conclusion
+This study examined how professional software engineers perceive the effects of AI coding assistants on their work by
+tracking their experiences over time. Using a longitudinal mixed-methods design with questionnaires administered at
+two time points six month apart allowed us to see shifts that cross-sectional snapshots would miss.
+    Our findings suggest that development work is being reorganised rather than simply accelerated. Most engineers
+perceived spending less time across traditional development tasks, with the relative balance shifting from creation
+toward verification; we have termed this the creation-to-verification shift. Yet the increase in verification was modest,
+raising the question of where the effort is going. We propose this effort flows into what we have called supervisory
+engineering work: directing AI, evaluating its output, and correcting its errors. Meanwhile, the productivity-experience
+paradox we documented suggests these tools may be decoupling dimensions that previously moved together, with
+productivity perceptions remaining consistently positive even as developer experience showed signs of erosion over
+time, particularly in flow state and cognitive load. Together, these patterns suggest that AI coding assistants are
+reshaping the nature of software engineering work, not merely making existing tasks faster.
+    Whether AI coding assistants will finally close the persistent gap between ambition and achievement that has defined
+software engineering since its origins remains to be seen. Brooks warned that technology alone has historically failed
+to deliver dramatic improvements [6], and our findings suggest that unintended consequences are indeed emerging.
+                                                                                                 Manuscript submitted to ACM
+26                                                                                                                               Vella and Blincoe
+
+
+As software engineering serves as a proving ground for AI-assisted work, these patterns may foreshadow dynamics
+that other professions will encounter as AI tools spread. For a global community of professionals who have built
+careers around the craft of building software, understanding how engineers perceive these tools is essential, because
+perceptions drive behaviour. This study contributes to that understanding, informing educators preparing the next
+generation and organisations supporting their teams, as well as engineers navigating their own paths through this
+period of rapid change.
+
+Use of GenAI
+We used Claude Code (Anthropic) to assist with developing R scripts for statistical analysis and reviewing written text
+for clarity and readability. All outputs were critically reviewed and validated, and responsibility for the correctness of
+the analysis and interpretations rests entirely with the researchers.
+
+Acknowledgments
+We thank all participants for their time and input into this research. This research was partially supported by Annie
+Vella’s employer, Westpac New Zealand, and a Rutherford Discovery Fellowship administered by the Royal Society Te
+Apārangi, New Zealand.
+
+References
+ [1] Adam Alami and Neil Ernst. 2025. Human and Machine: How Software Engineers Perceive and Engage with AI-Assisted Code Reviews Compared
+     to Their Peers. In 2025 IEEE/ACM 18th International Conference on Cooperative and Human Aspects of Software Engineering (CHASE). 63–74.
+     doi:10.1109/CHASE66643.2025.00016
+ [2] Sebastian Baltes and Paul Ralph. 2022. Sampling in software engineering research: a critical review and guidelines. Empirical Software Engineering
+     27, 4 (April 2022). doi:10.1007/s10664-021-10072-8
+ [3] Christian Bird, Denae Ford, Thomas Zimmermann, Nicole Forsgren, Eirini Kalliamvakou, Travis Lowdermilk, and Idan Gazit. 2022. Taking Flight
+     with Copilot: Early insights and opportunities of AI-powered pair-programming tools. Queue 20, 6 (Dec. 2022), 35–57. doi:10.1145/3582083
+ [4] Virginia Braun and Victoria Clarke. 2006. Using thematic analysis in psychology. Qualitative Research in Psychology 3, 2 (Jan. 2006), 77–101.
+     doi:10.1191/1478088706qp063oa
+ [5] Virginia Braun and Victoria Clarke. 2019. Reflecting on reflexive thematic analysis. Qualitative Research in Sport, Exercise and Health 11, 4 (Aug.
+     2019), 589–597. doi:10.1080/2159676x.2019.1628806
+ [6] Brooks. 1987. No Silver Bullet Essence and Accidents of Software Engineering. Computer 20, 4 (April 1987), 10–19. doi:10.1109/mc.1987.1663532
+ [7] Jenna Butler, Jina Suh, Sankeerti Haniyur, and Constance Hadley. 2025. Dear Diary: A Randomized Controlled Trial of Generative AI Coding Tools
+     in the Workplace. In 2025 IEEE/ACM 47th International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP). 319–329.
+     doi:10.1109/ICSE-SEIP66354.2025.00034
+ [8] Sayan Chatterjee, Ching Louis Liu, Gareth Rowland, and Tim Hogarth. 2024. The Impact of AI Tool on Engineering at ANZ Bank: An Empirical
+     Study on GitHub Copilot within Corporate Environment. doi:10.48550/arXiv.2402.05636
+ [9] Tianyi Chen. 2024. The Impact of AI-Pair Programmers on Code Quality and Developer Satisfaction: Evidence from TiMi studio. In 2024 International
+     Conference on Generative Artificial Intelligence and Information Security (GAIIS). 201–205. doi:10.1145/3665348.3665383
+[10] John W. Creswell and Vicki L. Plano Clark. 2018. Designing and Conducting Mixed Methods Research (third ed.). SAGE, Thousand Oaks, California.
+[11] Zheyuan (Kevin) Cui, Mert Demirer, Sonia Jaffe, Leon Musolff, Sida Peng, and Tobias Salz. 2025. The Effects of Generative AI on High-Skilled Work:
+     Evidence from Three Field Experiments with Software Developers. doi:10.2139/ssrn.4945566
+[12] Sarah D’Angelo, Ambar Murillo, Satish Chandra, and Andrew Macvean. 2024. What Do Developers Want From AI? IEEE Software 41, 3 (May 2024),
+     11–15. doi:10.1109/MS.2024.3363538
+[13] Paul Denny, Viraj Kumar, and Nasser Giacaman. 2023. Conversing with Copilot: Exploring Prompt Engineering for Solving CS1 Problems Using
+     Natural Language. In Proceedings of the 54th ACM Technical Symposium on Computer Science Education. Association for Computing Machinery,
+     1136–1142. doi:10.1145/3545945.3569823
+[14] Kayla DePalma, Izabel Miminoshvili, Chiara Henselder, Kate Moss, and Eman Abdullah AlOmar. 2024. Exploring ChatGPT’s code refactoring
+     capabilities: An empirical study. Expert Systems with Applications 249 (Sept. 2024), 123602. doi:10.1016/j.eswa.2024.123602
+[15] DORA. 2025. State of AI-assisted Software Development. Technical Report. Google. https://dora.dev/research/2025/dora-report/
+[16] Manuel Hoffmann, Sam Boysel, Frank Nagle, Sida Peng, and Kevin Xu. 2025. Generative AI and the Nature of Work. doi:10.2139/ssrn.5007084
+Manuscript submitted to ACM
+The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study                                                                     27
+
+
+[17] Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, and Ben Hanrahan. 2025. The SPACE of AI: Real-World Lessons on AI’s Impact on
+     Developers. doi:10.48550/arXiv.2508.00178
+[18] Anna Y. Q. Huang, Cheng-Yan Lin, Sheng-Yi Su, and Stephen J. H. Yang. 2025. The impact of GenAI-enabled coding hints on students’ programming
+     performance and cognitive load in an SRL-based Python course. British Journal of Educational Technology 56, 5 (2025), 1942–1972. doi:10.1111/bjet.
+     13589
+[19] Sarah Inman, Ambar Murillo, Sarah D’Angelo, Adam Brown, and Collin Green. 2025. Seamful AI for Creative Software Engineering. IEEE Software
+     42 (2025). doi:10.1109/MS.2025.3534085
+[20] Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik Narasimhan. 2023. SWE-bench: Can Language
+     Models Resolve Real-World GitHub Issues? doi:10.48550/arXiv.2310.06770
+[21] Nils Knoth, Antonia Tolzin, Andreas Janson, and Jan Marco Leimeister. 2024. AI literacy and its implications for prompt engineering strategies.
+     Computers and Education: Artificial Intelligence 6 (2024), 100225. doi:10.1016/j.caeai.2024.100225
+[22] Mohammad Amin Kuhail, Sujith Samuel Mathew, Ashraf Khalil, Jose Berengueres, and Syed Jawad Hussain Shah. 2024. "Will I be replaced?"
+     Assessing ChatGPT’s effect on software development and programmer perceptions of AI tools. Science of Computer Programming 235 (July 2024),
+     103111. doi:10.1016/j.scico.2024.103111
+[23] Anand Kumar, Vishal Khare, Deepak Sharma, Satyam Kumar, Vijay Saini, Anshul Yadav, Sachendra Jain, Ankit Rana, Pratham Verma, Vaibhav
+     Meena, and Avinash Edubilli. 2025. Intuition to Evidence: Measuring AI’s True Impact on Developer Productivity. doi:10.48550/arXiv.2509.19708
+[24] Eve Martina Lange, Åsa Cajander, and Maria Normark. 2025. Exploring Flow in IT Professionals’ Use of AI-Integrated Tools: Insights from Interviews.
+     In Artificial Intelligence in HCI, Helmut Degen and Stavroula Ntoa (Eds.). Springer Nature Switzerland, Cham, 44–58. doi:10.1007/978-3-031-93429-2_3
+[25] Jenny T. Liang, Chenyang Yang, and Brad A. Myers. 2024. A Large-Scale Survey on the Usability of AI Programming Assistants: Successes and
+     Challenges. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE ’24). Association for Computing Machinery,
+     New York, NY, USA, 1–13. doi:10.1145/3597503.3608128
+[26] André N. Meyer, Laura E. Barton, Gail C. Murphy, Thomas Zimmermann, and Thomas Fritz. 2017. The Work Life of Developers: Activities, Switches,
+     and Perceived Productivity. IEEE Transactions on Software Engineering 43, 12 (2017), 1178–1193. doi:10.1109/TSE.2017.2656886
+[27] André N. Meyer, Thomas Fritz, Gail C. Murphy, and Thomas Zimmermann. 2014. Software developers’ perceptions of productivity. In Proceedings of
+     the 22nd ACM SIGSOFT International Symposium on Foundations of Software Engineering (FSE 2014). Association for Computing Machinery, New
+     York, NY, USA, 19–29. doi:10.1145/2635868.2635892
+[28] Hal Mooz and Kevin Forsberg. 2006. 10.2.1 The Dual Vee - Illuminating the Management of Complexity. INCOSE International Symposium 16, 1
+     (2006), 1368–1381. doi:10.1002/j.2334-5837.2006.tb02819.x
+[29] Arghavan Moradi Dakhel, Vahid Majdinasab, Amin Nikanjam, Foutse Khomh, Michel C. Desmarais, and Zhen Ming (Jack) Jiang. 2023. GitHub
+     Copilot AI pair programmer: Asset or Liability? Journal of Systems and Software 203 (Sept. 2023), 111734. doi:10.1016/j.jss.2023.111734
+[30] Hussein Mozannar, Gagan Bansal, Adam Fourney, and Eric Horvitz. 2024. Reading Between the Lines: Modeling User Behavior and Costs in
+     AI-Assisted Programming. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems (CHI ’24). Association for Computing
+     Machinery, New York, NY, USA, 1–16. doi:10.1145/3613904.3641936
+[31] Emerson Murphy-Hill, Ciera Jaspan, Caitlin Sadowski, David Shepherd, Michael Phillips, Collin Winter, Andrea Knight, Edward Smith, and
+     Matthew Jorde. 2021. What Predicts Software Developers’ Productivity? IEEE Transactions on Software Engineering 47, 3 (March 2021), 582–594.
+     doi:10.1109/TSE.2019.2900308
+[32] Nhan Nguyen and Sarah Nadi. 2022. An empirical evaluation of GitHub copilot’s code suggestions. In Proceedings of the 19th International Conference
+     on Mining Software Repositories. ACM, Pittsburgh Pennsylvania, 1–5. doi:10.1145/3524842.3528470
+[33] Abi Noda, Margaret-Anne Storey, Nicole Forsgren, and Michaela Greiler. 2023. DevEx: What Actually Drives Productivity: The developer-centric
+     approach to measuring and improving productivity. Queue 21, 2 (May 2023), Pages 20:35–Pages 20:53. doi:10.1145/3595878
+[34] Ruchika Pandey, Prabhat Singh, Raymond Wei, and Shaila Shankar. 2024. Transforming Software Development: Evaluating the Efficiency and
+     Challenges of GitHub Copilot in Real-World Projects. arXiv:2406.17910 [cs.SE] https://arxiv.org/abs/2406.17910
+[35] Sida Peng, Eirini Kalliamvakou, Peter Cihon, and Mert Demirer. 2023. The Impact of AI on Developer Productivity: Evidence from GitHub Copilot.
+     arXiv:2302.06590 [cs.SE] https://arxiv.org/abs/2302.06590
+[36] Neil Perry, Megha Srivastava, Deepak Kumar, and Dan Boneh. 2023. Do Users Write More Insecure Code with AI Assistants?. In Proceedings of the
+     2023 ACM SIGSAC Conference on Computer and Communications Security (CCS ’23). Association for Computing Machinery, New York, NY, USA,
+     2785–2799. doi:10.1145/3576915.3623157
+[37] Gustavo Pinto, Cleidson De Souza, Thayssa Rocha, Igor Steinmacher, Alberto Souza, and Edward Monteiro. 2024. Developer Experiences with a
+     Contextualized AI Coding Assistant: Usability, Expectations, and Outcomes. In Proceedings of the IEEE/ACM 3rd International Conference on AI
+     Engineering - Software Engineering for AI (CAIN ’24). Association for Computing Machinery, New York, NY, USA, 81–91. doi:10.1145/3644815.3644949
+[38] James Prather, Brent N. Reeves, Juho Leinonen, Stephen MacNeil, Arisoa S. Randrianasolo, Brett A. Becker, Bailey Kimmel, Jared Wright, and Ben
+     Briggs. 2024. The Widening Gap: The Benefits and Harms of Generative AI for Novice Programmers. In Proceedings of the 2024 ACM Conference on
+     International Computing Education Research, Vol. 1. ACM, 469–486. doi:10.1145/3632620.3671116
+[39] Sanka Rasnayaka, Guanlin Wang, Ridwan Shariffdeen, and Ganesh Neelakanta Iyer. 2024. An Empirical Study on Usage and Perceptions of LLMs in
+     a Software Engineering Project. doi:10.48550/arXiv.2401.16186
+
+
+                                                                                                                         Manuscript submitted to ACM
+28                                                                                                                              Vella and Blincoe
+
+
+[40] Abdul Razzaq, Jim Buckley, Qin Lai, Tingting Yu, and Goetz Botterweck. 2024. A Systematic Literature Review on the Influence of Enhanced
+     Developer Experience on Developers’ Productivity: Factors, Practices, and Recommendations. ACM Comput. Surv. 57, 1 (Oct. 2024), 13:1–13:46.
+     doi:10.1145/3687299
+[41] Agnia Sergeyuk, Yaroslav Golubev, Timofey Bryksin, and Iftekhar Ahmed. 2025. Using AI-based coding assistants in practice: State of affairs,
+     perceptions, and ways forward. Information and Software Technology 178 (Feb. 2025), 107610. doi:10.1016/j.infsof.2024.107610
+[42] Stack Overflow. 2024. AI | 2024 Stack Overflow Developer Survey. https://survey.stackoverflow.co/2024/ai
+[43] Stack Overflow. 2025. 2025 Stack Overflow Developer Survey. https://survey.stackoverflow.co/2025/
+[44] Margaret-Anne Storey, Thomas Zimmermann, Christian Bird, Jacek Czerwonka, Brendan Murphy, and Eirini Kalliamvakou. 2021. Towards a
+     Theory of Software Developer Job Satisfaction and Perceived Productivity. IEEE Transactions on Software Engineering 47, 10 (Oct. 2021), 2125–2142.
+     doi:10.1109/TSE.2019.2944354
+[45] Viktoria Stray, Elias Goldmann Brandtzæg, Viggo Tellefsen Wivestad, Astri Barbala, and Nils Brede Moe. 2025. Developer Productivity With and
+     Without GitHub Copilot: A Longitudinal Mixed-Methods Case Study. doi:10.48550/arXiv.2509.20353
+[46] Thiago S. Vaillant, Felipe Deveza de Almeida, Paulo Anselmo M. S. Neto, Cuiyun Gao, Jan Bosch, and Eduardo Santana de Almeida. 2024. Developers’
+     Perceptions on the Impact of ChatGPT in Software Development: A Survey. http://arxiv.org/abs/2405.12195
+[47] Priyan Vaithilingam, Tianyi Zhang, and Elena L. Glassman. 2022. Expectation vs. Experience: Evaluating the Usability of Code Generation Tools
+     Powered by Large Language Models. In CHI Conference on Human Factors in Computing Systems Extended Abstracts. ACM, New Orleans LA USA,
+     1–7. doi:10.1145/3491101.3519665
+[48] Annie Vella and Kelly Blincoe. 2026. Replication package for “The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study”.
+     https://doi.org/10.5281/zenodo.18821767
+[49] Thomas Weber, Maximilian Brandmaier, Albrecht Schmidt, and Sven Mayer. 2024. Significant Productivity Gains through Programming with Large
+     Language Models. Proc. ACM Hum.-Comput. Interact. 8, EICS (June 2024), 256:1–256:29. doi:10.1145/3661145
+[50] Justin D. Weisz, Shraddha Kumar, Michael Muller, Karen-Ellen Browne, Arielle Goldberg, Ellice Heintze, and Shagun Bajpai. 2024. Examining the
+     Use and Impact of an AI Code Assistant on Developer Productivity and Experience in the Enterprise. doi:10.48550/arXiv.2412.06603
+[51] Feiyang Xu, Poonacha K. Medappa, Murat M. Tunc, Martijn Vroegindeweij, and Jan C. Fransoo. 2025. AI-assisted Programming May Decrease the
+     Productivity of Experienced Developers by Increasing Maintenance Burden. doi:10.48550/arXiv.2510.10165
+[52] Burak Yetiştiren, Işık Özsoy, Miray Ayerdem, and Eray Tüzün. 2023. Evaluating the Code Quality of AI-Assisted Code Generation Tools: An
+     Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT. arXiv:2304.10778 [cs.SE] https://arxiv.org/abs/2304.10778
+[53] Han Zhang, Shiyi Wang, and Zijian Li. 2025. The Neurophysiological Paradox of AI-Induced Frustration: A Multimodal Study of Heart Rate
+     Variability, Affective Responses, and Creative Output. Brain Sciences 15, 6 (May 2025), 565. doi:10.3390/brainsci15060565
+
+
+
+
+Manuscript submitted to ACM
+
