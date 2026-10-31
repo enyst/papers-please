@@ -54,7 +54,7 @@ tags: [human-agent-interaction, cognitive-load, developer-experience, code-under
 
 - Evaluate an agent's effect on the **human**, alongside its task score. Track active review effort, independent understanding, flow and perceived control separately from output correctness and elapsed time.
 - When designing explanations, include changed files, reasons, validation evidence and clear stopping points. Treat improved learning or skill preservation as hypotheses requiring an unassisted assessment.
-- The [cognition, skills and ownership shortlist](ai-coding-cognition-skills-ownership-shortlist.md) identifies more direct studies of learning and delayed recall.
+- The [cognition, skills and ownership synthesis](ai-coding-cognition-skills-ownership-shortlist.md) compares five further papers now read in full, including direct learning, delayed-recall and felt-ownership measurements.
 - [PULSE](../misc/pulse-assessing-human-agent-interactions-software-agent-design.md) studies satisfaction measurement in deployed agent sessions. Its larger scale does not turn satisfaction into a measure of skill retention.
 - [Andrew Ng's skills map](ai-engineering-skills-map-andrew-ng.md) argues human fundamentals remain necessary for steering trade-offs. This controlled study supplies a human-experience measurement example, not proof of that broader thesis.
 

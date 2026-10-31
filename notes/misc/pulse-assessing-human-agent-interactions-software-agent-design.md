@@ -65,5 +65,5 @@ Deployed in software engineering via a large web platform built on the open-sour
 ## Related
 
 - Earlier sibling controlled study: [Code with Me or for Me?](../agentic-engineering/code-with-me-or-for-me-developer-workflows.md) (Chen, Talwalkar, Brennan, Neubig; [arXiv](https://arxiv.org/abs/2507.08149)). Measures task correctness, active effort and reported experience, not long-term skills.
-- [Cognition, skills and ownership shortlist](../agentic-engineering/ai-coding-cognition-skills-ownership-shortlist.md) — more direct learning/recall candidates; satisfaction in PULSE is not evidence of retained competence.
+- [Cognition, skills and ownership synthesis](../agentic-engineering/ai-coding-cognition-skills-ownership-shortlist.md) — five further papers now read in full, including learning/recall and felt-ownership measurements; satisfaction in PULSE is not evidence of retained competence.
 - Context: OpenHands/extensions PR #378 (automation A/B config docs) and OpenHands/automation#221 (transparency request: LLM + trajectories).

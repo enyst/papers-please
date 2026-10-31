@@ -1,0 +1,169 @@
+    Supplementary Material – Physiological Signal Processing
+ Beyond Productivity: Measuring Developers ’ Cognitive Load During GenAI-Supported Software
+                                       Development
+  I. PHYSIOLOGICAL SIGNAL PROCESSING AND PIPELINE                      BVP signal, from which the HR and HRV metrics are
+                     SELECTION                                         calculated.
+This supplementary material provides the detailed                      The Neurokit pipeline applies standard pre-processing steps
+physiological signal pre-processing and pipeline selection             as implemented by the widely used NeuroKit2 library [1],
+procedures of the main paper. To eliminate confounding                 including signal cleaning (nk.clean), peak detection on the
+artefacts from the data, the physiological signals were pre-           cleaned signal (nk.ppg_findpeaks), and correction of
+processed before analyses. The processing steps were                   erroneous peak detections based on outliers in the peak-to-
+performed per participant and working day and are described            peak differences (nk.signal_fixpeaks). Neither pipeline
+in the following.                                                      explicitly addresses the problem of motion artefacts in the
+                                                                       data.
+A. Acceleration (ACC)                                                  The Motion and Motion_90 pipelines extend the Neurokit
+The wrist acceleration data were used to filter motion-related         pipeline by incorporating motion artefact removal based on
+artefacts in the physiological signals. The data of the three          wrist acceleration. High-motion segments are identified by
+movement axes x, y and z were independently filtered with a            using participant-specific movement thresholds (Thard or T90).
+4th-order Butterworth bandpass filter with a low cutoff at 0.5         These segments are eliminated and reconstructed using
+Hz and a high cutoff at 4 Hz. Subsequently, the root mean              monotone cubic interpolation. Then the Neurokit processing
+square (RMS) was calculated across the three axes as a                 steps are applied. The pipelines differ only in their motion-
+measure of total movement magnitude (1).                               thresholding strategy.
+                                                                       The HR_Pipeline and the HR_Pipeline_90 further extend the
+                              (x2 + y2 + z2 )                          previous pipelines by additionally filtering implausible heart
+                   RMS = √                                   (1)
+                                     3                                 rate transitions. Peaks associated with successive HR changes
+Two motion threshold strategies were evaluated on the BVP              >40% are removed. These pipelines also differ only in their
+data for identifying and removing motion artefacts. The best           motion thresholding strategy.
+performing strategy was then also applied to the other                 After the pre-processing steps, HR and HRV metrics were
+physiological signals. The first strategy used a hard cutoff           calculated for each working task. For all pipelines, HR and
+defined as the sum of the mean and standard deviation of the           HRV metrics were only computed for working task segments
+RMS values (2). Physiological data coinciding with RMS                 that contained >20% peaks which were associated with
+values exceeding the cutoff were classified as motion                  physiologically valid HR ranges (40-180 bpm).
+artefacts. The second strategy employed a percentile-based             The following metrics were calculated per working task and
+cutoff with the 90th percentile of the participant-specific RMS        are used in the following analyses:
+distribution for each working day used as the threshold.                    • mean_HR: mean HR (bpm)
+Consequently, physiological data coinciding with RMS                        • median_HR: median HR (bpm)
+values above the threshold were classified as motion                        • HRV_SDNN: standard deviation of inter-beat
+artefacts.                                                                       intervals (IBIs), reflecting overall heart rate
+Hard cutoff:                                                                     variability (both sympathetic and parasympathetic
+                Thard = mean(RMS) + std(RMS)                 (2)                 influences)
+   th
+90 percentile cutoff:                                                       • HRV_RMSSD: root mean square of successive
+                        T90 = P90(RMS)                       (3)                 differences between adjacent IBIs, reflecting
+                                                                                 parasympathetic activity
+B. Blood Volume Pulse (BVP)                                                 • HRV_pNN50: percentage of adjacent IBI pairs that
+We compared six BVP pre-processing pipelines that differed                       differ more than 50ms, reflecting short-term HRV
+in their extent of signal pre-processing (TABLE . ): The                         and parasympathetic regulation
+Baseline pipeline solely performs peak detection on the raw
+                                       TABLE I.         BVP PRE-PROCESSING PIPELINE COMPARISON
+    Pipeline       Motion    Type      Abrupt      >20%                                 BVP signal processing steps
+                    filter      of     changes     Valid
+                             motion     in HR       HR
+                              filter   filtered    peaks
+                                                  (40-180
+                                                   bpm)
+    Baseline                   -                  ✓                     Peak detection on raw data: nk.ppg_findpeaks(raw_data)
+    Neurokit                   -                  ✓               Neurokit’s pipeline: nk.clean, nk.ppg_findpeaks, nk.signal_fixpeaks
+     Motion          ✓        Thard                ✓              Neurokit’s pipeline + motion artefact filtering and signal interpolation
+   Motion_90         ✓        T90                  ✓              Neurokit’s pipeline + motion artefact filtering and signal interpolation
+   HR_Pipeline       ✓        Thard      ✓          ✓          Motion artefact removal pipeline + filtering of consecutive HR beats that differ
+                                                                                                   >40%
+ HR_Pipeline_90      ✓         T90       ✓          ✓          Motion artefact removal pipeline + filtering of consecutive HR beats that differ
+                                                                                                   >40%
+                                                                   values (mean HR=70.16; mean RMSSD=0.28; mean
+C. Pre-Processing Pipeline Evaluation Based on BVP Data
+                                                                   SDNN=0.21) to the other pipelines (TABLE III. ).
+To obtain reliable results, the impact of data quality and pre-    The substantially lower number of retained tasks for
+processing steps of the physiological data on the analyses was     HR_Pipeline (45.03%; 172 tasks) and HR_Pipeline_90
+examined. There is no consensus in the research community          (23.82%; 91 tasks) and the lower mean RMSSD
+on which exact processing steps should be performed, but           (HR_Pipeline=0.14, HR_Pipeline_90=0.13) and mean
+processing steps affect data quality and therefore may             SDNN (HR_Pipeline=0.15, HR_Pipeline_90=0.14) values
+influence the results derived from the physiological data. The     suggest that the more aggressive filtering may have removed
+extent of preprocessing required depends strongly on the           physiological variability in addition to artefacts.
+recording devices and tasks performed with the device –            On the other hand, the reduced number of retained tasks when
+especially when body movement is involved.                         running the Baseline pipeline (45.55%, 174 tasks), together
+For pre-processing pipeline selection, the six pipelines were      with higher mean RMSSD (0.33) and mean SDNN (0.23)
+compared by fitting the same linear mixed-effects model to         values, indicate insufficient artefact removal.
+each pipeline (4). The model included the log-transformed          In sum, the Motion pipeline with motion artefact removal via
+and participant-standardized RMSSD (lnRMSSD_z)                     a hard cutoff value provided the best trade-off between data
+physiological metric, GenAI use (yes/no), task category            retention, data quality improvement due to movement
+(development-heavy, collaboration-heavy and other), and            artefact removal, physiological plausibility, and processing
+task duration (in minutes) as fixed effects, with participant as   extent and complexity. The Motion pipeline was therefore
+a random intercept. The random intercept was included to           selected for BVP pre-processing. The corresponding Thard
+account for repeated working task observations within              motion threshold was also used for motion artefact removal
+participants and between-participant differences in cognitive      in the EDA and TEMP signals described in the following
+load ratings. To improve compliance with the assumptions of        sections.
+the linear mixed-effects models, physiological metrics with
+skewed distributions (e.g., RMSSD) were natural log-               II. PROCESSING OF ADDITIONAL PHYSIOLOGICAL SIGNALS
+transformed and z-standardized per participant prior to
+                                                                   A. Electrodermal Activity (EDA)
+analysis.
+                                                                   Consistent with the motion artefact removal strategy from the
+    Cognitive load ~ lnRMSSD_z + GenAI + task                      BVP signal, the same Thard cutoff was also applied to the EDA
+            category     +  task duration   +              (4)     signal. Signal segments exceeding the threshold were
+            (1|participant)                                        removed, and the resulting gaps filled via monotone cubic
+                                                                   interpolation. The cleaned EDA signal was then decomposed
+To examine the impact of data quality and pre-processing on        into its tonic and phasic components using the NeuroKit2 [1]
+the results, the pre-processing pipelines were compared using      decomposition method. Skin conductance responses (SCRs),
+identical linear mixed-effects models of cognitive load based      visible as peaks in the phasic component of the EDA signal,
+on lnRMSSD_z, task category, GenAI use and task duration.          were detected when their amplitude surpassed 0.05 μS.
+The model comparisons were conducted with lnRMSSD_z as             Following pre-processing, EDA metrics were then calculated
+an exemplary physiological HRV metric. Other metrics               per working task from the cleaned EDA signal, as well as
+showed comparable results. Only working tasks, for which all       from the tonic and the phasic components to capture both
+pipelines produced valid HR and HRV metrics, were                  slow-varying and event-related EDA:
+compared. The common subset contained 89 working tasks.                 • mean_SCL: mean skin conductance level (SCL),
+Model performance was highly comparable across pipelines                      i.e. the mean of the tonic signal component
+with only negligible differences in model fit (AIC: 302.73-             • mean_phasic: mean of the phasic signal
+303.12) and explanatory power (marginal R2: 0.316-0.320;                      component, reflecting the average magnitude of skin
+conditional R2:: 0.374-0.375) (TABLE II. ). This indicates                    conductance fluctuations
+that the choice of the suggested pre-processing pipeline on             • mean_cleaned_EDA: mean of the cleaned EDA
+our physiological BVP data will not have a major impact on                    signal containing both the tonic and phasic signal
+the cognitive load predictions and result interpretation in the               components
+following.                                                              • SCRs_norm_duration:               number    of    SCRs
+The pipelines, however, differed substantially in the number                  normalized by the task duration in seconds,
+of retained working tasks (TABLE III. ). The number of                        representing the rate of phasic electrodermal
+retained working tasks was calculated separately for each                     responses
+pipeline based on the complete set of 382 working tasks. A         The EDA metrics reflect the sympathetic nervous system
+working task was counted as retained when valid HR and             activity, with high values indicating increased physiological
+HRV metrics could be calculated for the respective pre-            arousal. In the context of working task performance, elevated
+processing pipeline. The mean HR, RMSSD and SDNN                   values have been associated with increased mental workload
+values in TABLE III. were calculated across the working            and stress-related states.
+tasks retained by the respective pipeline and across
+                                                                   B. Skin Temperature (TEMP)
+participants.
+The Motion pipeline retained the largest proportion of             Motion artefacts were also removed from the TEMP signal
+working tasks (68.85%; 263 out of 382), whilst also                by using the Thard cutoff. TEMP data below 25°C and above
+maintaining comparable model fit and mean HR and HRV               40°C were removed, since the values are physiologically
+                                                                   implausible. The gaps in the data were filled via monotone
+cubic interpolation. TEMP metrics were then calculated from
+the pre-processed signal per working task:
+     • mean_TEMP: mean skin temperature
+     • std_TEMP: standard deviation of the skin
+         temperature
+     • range_TEMP: range of skin temperature values
+
+ TABLE II.     COMPARISON OF PRE-PROCESSING PIPELINES BASED ON LINEAR MIXED-EFFECTS MODEL PERFORMANCE ON A COMMON DATASET (MODEL
+                  FIT: AKAIKE INFORMATION CRITERION (AIC); EXPLANATORY POWER VIA MARGINAL R2 AND CONDITIONAL R2)
+
+                                     Pipeline comparison        AIC         Marginal R2     Conditional
+                                           lnRMSSD                                             R2
+                                     Baseline                  303.07          0.316          0.375
+                                     Neurokit                  302.73          0.320          0.374
+                                     Motion                    302.74          0.320          0.374
+                                     Motion_90                 302.77          0.320          0.375
+                                     HR_Pipeline               303.07          0.317          0.374
+                                     HR_Pipeline_90            303.12          0.316          0.374
+
+
+
+
+ TABLE III.    PROPORTION AND NUMBER OF RETAINED WORKING TASKS (OUT OF 382 TASKS) AND MEAN HR, RMSSD AND SDNN VALUES ACROSS ALL
+                                    WORKING TASKS AND PARTICIPANTS PER PRE-PROCESSING PIPELINE
+
+                         Pipeline            Retained tasks       Mean HR (bpm)        Mean RMSSD           Mean SDNN
+                  Baseline                    45.55% (174)            71.59                0.33                0.23
+                  Neurokit                    65.45% (250)            70.56                0.28                0.21
+                  Motion                     68.85% (263)             70.16                0.28                0.21
+                  Motion_90                   47.64% (182)            71.24                0.31                0.22
+                  HR_Pipeline                 45.03% (172)            72.04                0.14                0.15
+                  HR_Pipeline_90               23.82% (91)            73.29                0.13                0.14
+
+
+                                                               REFERENCES
+[1]     Dominique Makowski, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, and S. H. Annabel Chen.
+        2021. NeuroKit2: A Python toolbox for neurophysiological signal processing. Behav. Res. Methods 53, 4 (August 2021), 1689–1696.
+        https://doi.org/10.3758/s13428-020-01516-y
+
+                                                                        .
+

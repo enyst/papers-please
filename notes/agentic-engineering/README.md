@@ -35,7 +35,12 @@ The first is about *self-improvement*; the second is about *verifiability*. They
 ## Human experience, cognition and skills
 
 - [Code with Me or for Me?](code-with-me-or-for-me-developer-workflows.md) — full controlled copilot/agent study; lower reported load and higher correctness, mixed satisfaction/understanding, no retention test.
-- [AI coding: cognitive load, skills, retention and ownership](ai-coding-cognition-skills-ownership-shortlist.md) — five close arXiv candidates with archived PDFs; randomized learning, 48-hour recall, six-month experience, industrial workload and professional ownership. Abstract-screened shortlist, not five full reviews.
+- [AI coding: cognitive load, skills, retention and ownership](ai-coding-cognition-skills-ownership-shortlist.md) — synthesis after full reading of all five candidates; independent competence, felt ownership, self-reported experience and causal limits kept separate.
+- [How AI Impacts Skill Formation](how-ai-impacts-skill-formation.md) — randomized unfamiliar-library learning; lower immediate comprehension, exploratory usage patterns, no long-term decay test.
+- [Programming students: recall and psychological ownership](programming-students-chatgpt-recall-ownership.md) — better assisted code, lower immediate/48-hour recall and felt ownership; no detected extra forgetting, selection/exposure caveats.
+- [AI coding assistants: six-month developer experience](ai-coding-assistants-longitudinal-developer-experience.md) — continuing-user perceptions from Oct 2024 to Apr 2025; significant relative verification shift, nonsignificant average flow/load declines.
+- [GenAI and task-level developer cognitive load](genai-developer-cognitive-load-field-study.md) — SAP field associations and small physiological contribution; full preprocessing supplement, no causal workload estimate.
+- [Beyond the Commit: expertise and ownership](beyond-the-commit-expertise-ownership.md) — workplace survey/interviews expose missing human-centered metrics; long-term concerns are not measured skill loss.
 
 ## Open threads to chew on
 
