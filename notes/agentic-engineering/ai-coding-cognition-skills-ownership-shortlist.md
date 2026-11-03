@@ -61,6 +61,11 @@ tags: [developer-cognition, cognitive-load, skill-formation, retention, psycholo
 - For existing-skill loss, assess unaided baseline competence, follow sustained use, then measure unaided retention and transfer. Include continuing users, abandoners and nonusers; tool switching and task choice matter.
 - Explanations, prediction questions and independent debugging are candidates, not proven cures from these papers. Claims about burnout, pride or identity need their own measures.
 
+## Practitioner follow-up: retaining judgment while delegating work
+
+- [Osmani, “Critical thinking when agents do the work”](../../blogs/interesting-posts.md#2026-11-03---critical-thinking-when-agents-do-the-work) adds practical hypotheses: form expectations before reading output, inspect verification evidence and its limits, recover local understanding, and cap generation at review capacity. Full essay read; these practices are not experimentally validated by it.
+- Its linked Anthropic workplace report's “paradox of supervision” is a concern about needing expertise to check AI, not a longitudinal skill-decay test. Osmani's ownership/answerability framing should remain distinct from the student experiment's felt-ownership measure.
+
 ## Search record and lower-priority leads
 
 - Searched the arXiv API on **2026-10-31**, using workload/deskilling/skill-formation terms combined with programming/developer/coding-assistant terms; ownership/pride/identity/frustration combined with AI-assisted programming/coding assistants/vibe coding; and title-based skills/cognition/learning/offloading queries. Initially screened primary abstracts, not titles alone; subsequently read the five main candidates in full. Lower-priority leads below remain abstract-only. This is a targeted discovery pass, **not a systematic literature review**. Snapshot: [query strings, API responses and candidate metadata](../../sources/ai-coding-cognition-arxiv-search-2026-10-31.json).
