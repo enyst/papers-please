@@ -2,6 +2,16 @@
 
 Research notes and bookmarks for interesting external things to revisit — essays, talks, tools and scenarios as well as technical posts. Label the source type and what was actually read; a bookmark is not an endorsement.
 
+## 2026-11-07 - [Don’t Call It a Decision Model](https://typesafe.ai/blog/dont-call-it-a-decision-model) (Allie Laabs, TypeSafe; published 2026-11-03)
+
+**Take:** build a normal software workflow, ask Jev atomic semantic questions, and compose the answers with exact facts and explicit rules in code. A trace can then show which judgment and rule produced the outcome.
+
+- The support example separates refund intent, unauthorized-charge reports and human requests from eligibility lookups, amount checks and rule precedence. Questions can share one batched request; code selects the relevant results and retains approval authority.
+- The current official docs explain Noul, Choice and Score, applicability checks, native confidence formulas and risk-dependent routing. Their sample thresholds need local evaluation; semantic intent and action authorization are separate inputs.
+- **Full note and practical sequence:** [Jev: atomic judgments, code-owned decisions](../notes/misc/jev-system-one-atomic-judgments-code-decisions.md). Cross-linked to our judge-cascade and threshold/calibration notes. Current Choice native confidence is a transform of top-label probability; the paper's gate uses top-label probability directly.
+
+**Read depth:** full article and core implementation/confidence/routing/limitations docs; selected primitive-page sections. Source snapshots and exact scope recorded in the full note. Live API/SDK integration remains a next step.
+
 ## 2026-11-03 - [Critical thinking when agents do the work](https://x.com/addyosmani/status/2117512471930167377) (Addy Osmani; X article, published 2026-11-03; via Choblin)
 
 **Practitioner essay, full read.** Worth keeping for its practical distinction between delegating implementation and losing the ability to judge the result. This is Osmani's argument and advice, not a new controlled study or an official Anthropic policy.

@@ -1,0 +1,470 @@
+
+
+
+
+
+	
+	
+	
+	Don’t Call It a Decision Model - TypeSafe AI Blog
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
+	
+	
+	
+    
+
+
+
+    
+	
+	
+	
+	
+	
+    
+    
+	
+
+
+	
+	
+    
+    
+	
+	
+
+
+
+
+
+
+
+
+TypeSafe AI
+
+
+
+Enterprise
+
+
+Thoughts
+Company
+
+
+Docs
+
+
+
+API console
+
+
+
+Contact us
+
+
+
+
+
+
+
+
+
+
+API console
+
+
+Docs
+
+
+Menu
+
+
+
+
+
+∵ Back
+
+
+
+ 
+
+
+
+
+
+
+
+Thoughts
+
+
+
+
+Thoughts
+
+Don’t Call It a Decision Model
+
+
+
+
+
+
+Nov 3, 2026
+
+
+
+
+Nov 3, 2026
+
+
+
+
+Nov 3, 2026
+
+
+
+
+
+
+Jev makes judgments, code makes decisions.Allie Laabs, DevRel, TypeSafe
+
+We love that people have recognized the importance of the new category of models that Jev pioneered. It’s unsurprising that the term “decision models” has caught on as a name. When you first see Jev pick an option from a list, it’s easy to see it as making decisions. And indeed, we have used the word “decision” in our own education materials! So why is TypeSafe holding firm on calling Jev a System One model instead of a decision model? Let’s talk about it.
+
+
+
+The System One name comes from the concept Daniel Kahneman popularized in his book Thinking, Fast and Slow. System 1 thinking is fast and intuitive. System 2 is slower and more deliberate. With Jev, the emphasis is on fast, focused judgments, hence the System One name.
+It’s about where Jev fits in a system
+Let’s break down what a typical system is, using the metaphor of circuits: inputs on the left (your data, application state, etc), they flow into logic, and then outputs on the right. Let’s use a simplified version of the Customer Service workflow from our evals page as an example. The naive approach to using Jev in this workflow would be to place the entire decision in to a single Jev question:
+
+
+
+
+When people first see Jev, this is how they imagine it fitting in to systems: give it all of your state, and have it make a decision about what should happen. This often looks like one big Choice question, and stuffing lots of semantic descriptions of business logic and caveats in to the criteria field.
+While this can work, you will quickly find yourself engaging in what we call prompt gymnastics: tweaking these long explanations of conditions over and over to get each edge case handled. And then the next day you get some input you hadn’t thought of, the system fails, and you’re back to stuffing more caveats and clarifications in to criteria prose.
+What’s happening here is trying to put intelligence at the wrong layer of abstraction. Your system already knows the criteria for each of your expected outcomes, and only some of it actually requires judgement. The rest is cold, hard logic:
+When
+Exit
+reports an unauthorized charge
+Fraud team: freeze & dispute
+asks for a person, or threatens legal action
+Hand to a person
+wants money back, claim eligible, ≤ $25
+Refund now
+wants money back, claim eligible, over $25
+Refunds team reviews
+wants to cancel, subscription active, open to an offer
+Offer to stay
+otherwise
+Answer & continue
+So where does Jev fit in to this kind of system? To understand the answer, we need to peek inside to see what a decision is actually made of:
+Peel off the cap
+
+
+
+
+Decisions in a system are rarely one atomic choice. Peel off the cap and we find wires running from the inputs through nodes of code and nodes of judgment. Decisions in software, workflows, and business are built this way. Checking “claim eligible, unpaid” is math. Answering “does the user want money back?” takes judgment. That’s where Jev belongs, and it’s exactly what we mean by System One: the quick intuitive judgments a knowledgeable person makes in seconds.
+Code is great for answering what it can answer exactly. Jev answers only the small questions code can’t. Logic then combines those answers into the decision. It’s the combination of both judgement and code that allows a system to make reliable, observable decisions.
+Why Build It This Way
+1. Clarity of design
+Reliable systems require a clear understanding of how decisions are made. By decomposing decisions into their atomic judgments and logic paths, we gain clarity about what actually flows through the system, and what edge cases need to be handled.
+2. Observability
+In our all-in-one-judgment example from earlier, you’d write a single Choice stuffed with criteria:
+
+
+
+
+
+
+
+
+{
+  "model": "jev-latest",
+  "state": {
+    "conversation": "Customer: Hi, I'm not saying someone stole my card or anything, but t…",
+    "account": "Ledger: txn-51a · Tucson Hardware Supply · $240.00 · Aug 14 · card pr…"
+  },
+  "questions": {
+    "action": {
+      "type": "choice",
+      "instructions": "What should support do with this conversation?",
+      "criteria": {
+        "fraud_team": "The customer reports a charge, withdrawal, login, or account change they did not make or authorize. Pick this even if they also want a refund, ask for a person, or want to cancel.",
+        "handoff_person": "The customer asks for a person, a manager, or a supervisor, or threatens legal action, a lawyer, or a regulator. Not if they report an unauthorized charge.",
+        "instant_refund": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is $25 or less. Not if they report an unauthorized charge or ask for a person.",
+        "refunds_team": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is over $25. Not if they report an unauthorized charge or ask for a person.",
+        "retention_offer": "The customer wants to cancel, close, or downgrade, the subscription is active, and they would stay if something were offered or fixed. Not if any option above applies.",
+        "answer": "None of the above. Answer the customer and continue the conversation, with no action on the account."
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+{
+  "model": "jev-latest",
+  "state": {
+    "conversation": "Customer: Hi, I'm not saying someone stole my card or anything, but t…",
+    "account": "Ledger: txn-51a · Tucson Hardware Supply · $240.00 · Aug 14 · card pr…"
+  },
+  "questions": {
+    "action": {
+      "type": "choice",
+      "instructions": "What should support do with this conversation?",
+      "criteria": {
+        "fraud_team": "The customer reports a charge, withdrawal, login, or account change they did not make or authorize. Pick this even if they also want a refund, ask for a person, or want to cancel.",
+        "handoff_person": "The customer asks for a person, a manager, or a supervisor, or threatens legal action, a lawyer, or a regulator. Not if they report an unauthorized charge.",
+        "instant_refund": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is $25 or less. Not if they report an unauthorized charge or ask for a person.",
+        "refunds_team": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is over $25. Not if they report an unauthorized charge or ask for a person.",
+        "retention_offer": "The customer wants to cancel, close, or downgrade, the subscription is active, and they would stay if something were offered or fixed. Not if any option above applies.",
+        "answer": "None of the above. Answer the customer and continue the conversation, with no action on the account."
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+{
+  "model": "jev-latest",
+  "state": {
+    "conversation": "Customer: Hi, I'm not saying someone stole my card or anything, but t…",
+    "account": "Ledger: txn-51a · Tucson Hardware Supply · $240.00 · Aug 14 · card pr…"
+  },
+  "questions": {
+    "action": {
+      "type": "choice",
+      "instructions": "What should support do with this conversation?",
+      "criteria": {
+        "fraud_team": "The customer reports a charge, withdrawal, login, or account change they did not make or authorize. Pick this even if they also want a refund, ask for a person, or want to cancel.",
+        "handoff_person": "The customer asks for a person, a manager, or a supervisor, or threatens legal action, a lawyer, or a regulator. Not if they report an unauthorized charge.",
+        "instant_refund": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is $25 or less. Not if they report an unauthorized charge or ask for a person.",
+        "refunds_team": "The customer wants money back, the refund claim on the account is eligible and not already refunded, and the amount is over $25. Not if they report an unauthorized charge or ask for a person.",
+        "retention_offer": "The customer wants to cancel, close, or downgrade, the subscription is active, and they would stay if something were offered or fixed. Not if any option above applies.",
+        "answer": "None of the above. Answer the customer and continue the conversation, with no action on the account."
+      }
+    }
+  }
+}
+
+When a case gets routed to an unexpected place, the only data you have about why is a single probability number. Which judgment mattered? Which rule? There’s nothing inside to read.
+But take the cap off, and we get logs that read like this:
+
+
+
+
+
+
+
+
+exit  fraud_team
+  ├─ g_fraud    reports an unauthorized charge (p > 0.6)        true   ← decided
+  ├─ g_person   asks for a person, or threatens legal action …  –
+  ├─ g_instant  wants money back, claim eligible, amount ≤ $25  –
+  ├─ g_large    wants money back, claim eligible, amount over…  –
+  ├─ g_offer    wants to cancel, subscription active, open to…  –
+  └─ else       answer                                          –
+  judgments · Jev
+       wants_money_back       0.99
+       reports_unauthorized   0.94  ←
+       requests_human         0.02
+       threat_legal           0.01
+       wants_to_cancel        0.02
+       open_to_offer          0.22
+  facts · your code
+       refund_eligible       false
+       small_refund          false
+       subscription_active   false
+
+
+
+
+
+
+
+
+exit  fraud_team
+  ├─ g_fraud    reports an unauthorized charge (p > 0.6)        true   ← decided
+  ├─ g_person   asks for a person, or threatens legal action …  –
+  ├─ g_instant  wants money back, claim eligible, amount ≤ $25  –
+  ├─ g_large    wants money back, claim eligible, amount over…  –
+  ├─ g_offer    wants to cancel, subscription active, open to…  –
+  └─ else       answer                                          –
+  judgments · Jev
+       wants_money_back       0.99
+       reports_unauthorized   0.94  ←
+       requests_human         0.02
+       threat_legal           0.01
+       wants_to_cancel        0.02
+       open_to_offer          0.22
+  facts · your code
+       refund_eligible       false
+       small_refund          false
+       subscription_active   false
+
+
+
+
+
+
+
+
+exit  fraud_team
+  ├─ g_fraud    reports an unauthorized charge (p > 0.6)        true   ← decided
+  ├─ g_person   asks for a person, or threatens legal action …  –
+  ├─ g_instant  wants money back, claim eligible, amount ≤ $25  –
+  ├─ g_large    wants money back, claim eligible, amount over…  –
+  ├─ g_offer    wants to cancel, subscription active, open to…  –
+  └─ else       answer                                          –
+  judgments · Jev
+       wants_money_back       0.99
+       reports_unauthorized   0.94  ←
+       requests_human         0.02
+       threat_legal           0.01
+       wants_to_cancel        0.02
+       open_to_offer          0.22
+  facts · your code
+       refund_eligible       false
+       small_refund          false
+       subscription_active   false
+
+Instead of “the model chose fraud_team,” you get “the model made these six judgements, and here’s the logic path that followed.” The trace shows that reports_unauthorized sent it to the fraud team. Now we have real observable data to take action on. Was the judgment wrong, or the rule? The trace lets you tell, and the fix can be much more focused.
+3. Extendability
+Let’s say you suddenly have two new output paths, or thirty! When our system is designed with good decomposition, all you have to do is map out the logic for what would take those new paths, add any new judgments they require, and all of your existing carefully chosen judgments stay in place.
+
+
+
+
+Here we see a new “Waive the fee” extension: one new judgment, one new code-computed fact, and the rest of the system stays in place. Because all Jev judgments are evaluated in isolation from one another, we don’t have to worry about new judgments having any impact on the ones we’ve already validated.
+
+
+
+
+We invite you to try sketching the inside of one decision in your own app. Mark the lookups and arithmetic, then write a question next to each spot that needs judgment. How to build with TypeSafe covers decomposing questions and combining answers in code, and the patterns show more ways to wire them.
+Having trouble figuring out how to decompose the judgments in your own systems? Coding agents tend to be particularly good at understanding these kinds of systems! Try pointing your agent at this article and tell it to find places in your systems or code well suited for atomic judgments. And if you prefer a more human touch, please head on over to our Discord where both our team and our community of builders would be happy to help out!
+Jev makes judgments, code makes decisions.
+
+
+
+
+
+
+∵ ⩆
+
+
+
+⩆ ∵
+
+
+
+
+
+
+
+
+TypeSafe AI © 2026
+
+
+
+Contact
+
+
+
+Terms of Use
+
+
+Privacy Policy
+
+
+Acceptable Use Policy
+
+
+Accessibility
+
+
+
+LinkedIn
+
+
+X
+
+
+
+
+
+TypeSafe AI © 2026
+
+
+
+Contact
+
+
+
+Terms of Use
+
+
+Privacy Policy
+
+
+Acceptable Use Policy
+
+
+Accessibility
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+	
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

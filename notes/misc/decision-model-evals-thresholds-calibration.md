@@ -46,6 +46,9 @@ tags: [evaluation, decision-models, calibration, cross-validation, precision-rec
 
 ## Practical scope and related reading
 
+- **Implementation companion (2026-11-07):** [Jev: atomic judgments, code-owned decisions](jev-system-one-atomic-judgments-code-decisions.md) turns the narrow-judge recommendation into a composition pattern. Keep failure probability, chosen-label probability and native confidence explicitly named; current official docs define each interface statistic. Evaluate both atomic checks and the combined disposition.
+
+
 - The broad failure-finding task exposes differences, but authors recommend a **separate narrow judge per failure mode** in practice. Smaller performance gaps on narrower tasks are an expectation, not demonstrated here.
 - Prompt optimization needs reliable labels and a final test set outside development. Their manual Jev prompt experiment raises default-threshold F1 **0.78→0.80**. It **did not use GEPA** and cannot establish GEPA's effect; GEPA is linked as an optional method.
 - [JEV-as-a-Judge](jev-as-a-judge-confidence-escalation.md) independently tests confidence-gated escalation. It uses **max label probability**, whereas this guide's score means **probability of failure**. Do not transplant one threshold into the other.

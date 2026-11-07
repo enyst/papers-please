@@ -16,7 +16,7 @@ tags: [evaluation, decision-models, jev, selective-prediction, calibration, casc
 
 ## Mechanism and protocol
 
-- **JEV 1.13.0 is a proprietary hosted decision service**, not a new architecture proposed here. It takes state, instructions and label criteria; returns probabilities without a generated rationale. Size, training data and recipe are unknown. Most requests use `Choice`; the paper's confidence is **maximum label probability**, not the service's separate undocumented native-confidence field.
+- **JEV 1.13.0 is a proprietary hosted decision service**, not a new architecture proposed here. It takes state, instructions and label criteria; returns probabilities without a generated rationale. Size, training data and recipe are unknown. Most requests use `Choice`; the paper's confidence is **maximum label probability**, not the service's separate native-confidence field (described as undocumented at paper collection time; current formulas are linked below).
 - For a pair, judge both candidate orders. Map probabilities to candidate identity before averaging: `p(A) = (p_first(A,B) + 1 - p_first(B,A))/2`. Accept the most probable candidate when `max(p(A),1-p(A)) >= tau`; otherwise call GPT-6 Astra independently, without showing JEV's answer. The fallback replaces the verdict rather than voting with it. Invalid first-stage outputs escalate; invalid fallback outputs count as errors.
 - Generative judges receive the same verdict-and-probability contract, **without explanations**, mostly with low reasoning effort. This is not a comparison against unrestricted chain-of-thought evaluators. Hidden labels, generator identities and split metadata are excluded; payload perturbation tests check that exclusion.
 - **Base evaluation:** 5,172 judgments: RewardBench 1,500 pairs, JudgeBench GPT-4o split 350 pairs, HaluEval 3,000 evidence-grounded answers, 150 final-answer replies and 172 positive/synthetic controls. The 4,850 public judgments define the pooled ranking. Compare 15 LLM judges including JEV and two reward models; the open-decision appendix adds another 21 models.
@@ -54,6 +54,12 @@ tags: [evaluation, decision-models, jev, selective-prediction, calibration, casc
 - **Appendix A matters:** Perplexity Decider v1.1 27B and Eikos-27B reach **89.0%** pooled public accuracy versus JEV **88.3%**, within sampling error; several other open models are comparable. Decision Index rank barely predicts this evaluation (rank correlation **0.12**). Local H100 versus hosted timing compares deployments, not architectures. **Their cascades, prospective transfer and calibration under escalation were not tested.**
 - Laya provides a useful negative control: valid, fast typed outputs, but chance-level pairwise judgments and uninformative confidence even on context-complete examples. ModernBERT weights are not JEV weights; neither Laya's failure nor JEV's success establishes that the interface causes quality.
 - Final-answer labels lack complete annotator provenance; all-positive GSM8K trajectories are only positive controls. Unknown training overlap, unequal compute, restricted professional-domain coverage and correlated judge errors remain. Finished-output judging **does not test tool selection or online agent control**. No model is trained here; supplementary offline scripts are described but not run in this ingest.
+
+## Implementation update — official documentation checked 2026-11-07
+
+- [Atomic judgments and code-owned decisions](jev-system-one-atomic-judgments-code-decisions.md) adds TypeSafe's current composition guidance: narrow semantic questions, batched independent evaluation, explicit code facts/rules and observable routing.
+- Native Choice confidence is now documented as `(p_max - 1/n)/(1 - 1/n)`; Noul has no separate confidence field, and Score uses ordinal spread. This paper's q remains **maximum label probability**, with its stated order-averaging protocol. A paper threshold of q=.9 must not be copied to native confidence=.9.
+- The current stable alias resolves to `jev-1.14.0`; this paper measured `jev-1.13.0`. Preserve the frozen historical evaluation and validate a new version locally before changing a gate.
 
 ## Why it matters for us
 
